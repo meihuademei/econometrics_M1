@@ -1,0 +1,9 @@
+---
+title: "Tutorial 7"
+---
+
+[Back to Class 7](../classes/class-07.qmd)
+
+## Exercises
+
+## R Applications

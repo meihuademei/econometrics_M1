@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-201d31e195916211fa1ce5c8f54b28c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,7 +109,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -121,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Econometrics — M1 S1</a></li><li class="breadcrumb-item"><a href="../classes/class-06.html">Class 6</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../classes/class-06.html">Class 6</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -155,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Econometrics — M1 S1</span></a>
+ <span class="menu-text">Lectures</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -211,6 +241,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 8</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -221,18 +310,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#theory-intuition" id="toc-theory-intuition" class="nav-link active" data-scroll-target="#theory-intuition">Theory &amp; Intuition</a></li>
-  <li><a href="#mathematical-derivations" id="toc-mathematical-derivations" class="nav-link" data-scroll-target="#mathematical-derivations">Mathematical Derivations</a></li>
-  <li><a href="#tutorial-exercises" id="toc-tutorial-exercises" class="nav-link" data-scroll-target="#tutorial-exercises">Tutorial Exercises</a></li>
+  <li><a href="#theory-intuition" id="toc-theory-intuition" class="nav-link active" data-scroll-target="#theory-intuition">Theory &amp; Intuition</a>
+  <ul class="collapse">
+  <li><a href="#the-central-problem-unobserved-differences-between-units" id="toc-the-central-problem-unobserved-differences-between-units" class="nav-link" data-scroll-target="#the-central-problem-unobserved-differences-between-units">1. The central problem: unobserved differences between units</a></li>
+  <li><a href="#the-within-transformation-compare-each-unit-with-itself" id="toc-the-within-transformation-compare-each-unit-with-itself" class="nav-link" data-scroll-target="#the-within-transformation-compare-each-unit-with-itself">2. The within transformation: compare each unit with itself</a></li>
+  <li><a href="#what-variation-identifies-the-coefficient" id="toc-what-variation-identifies-the-coefficient" class="nav-link" data-scroll-target="#what-variation-identifies-the-coefficient">3. What variation identifies the coefficient?</a></li>
+  <li><a href="#assumptions-when-can-we-trust-fe" id="toc-assumptions-when-can-we-trust-fe" class="nav-link" data-scroll-target="#assumptions-when-can-we-trust-fe">4. Assumptions: when can we trust FE?</a></li>
+  <li><a href="#fixed-effects-as-a-dummy-variable-regression" id="toc-fixed-effects-as-a-dummy-variable-regression" class="nav-link" data-scroll-target="#fixed-effects-as-a-dummy-variable-regression">5. Fixed effects as a dummy-variable regression</a></li>
+  <li><a href="#empirical-example-job-training-grants-and-manufacturing-defects" id="toc-empirical-example-job-training-grants-and-manufacturing-defects" class="nav-link" data-scroll-target="#empirical-example-job-training-grants-and-manufacturing-defects">6. Empirical example: job-training grants and manufacturing defects</a></li>
+  <li><a href="#fixed-effects-or-first-differences" id="toc-fixed-effects-or-first-differences" class="nav-link" data-scroll-target="#fixed-effects-or-first-differences">7. Fixed effects or first differences?</a></li>
+  <li><a href="#unbalanced-panels-and-missing-observations" id="toc-unbalanced-panels-and-missing-observations" class="nav-link" data-scroll-target="#unbalanced-panels-and-missing-observations">8. Unbalanced panels and missing observations</a></li>
+  <li><a href="#two-way-fixed-effects-control-for-units-and-years" id="toc-two-way-fixed-effects-control-for-units-and-years" class="nav-link" data-scroll-target="#two-way-fixed-effects-control-for-units-and-years">9. Two-way fixed effects: control for units <em>and</em> years</a></li>
+  <li><a href="#random-effects-a-stronger-assumption" id="toc-random-effects-a-stronger-assumption" class="nav-link" data-scroll-target="#random-effects-a-stronger-assumption">10. Random effects: a stronger assumption</a></li>
+  <li><a href="#fixed-effects-beyond-panel-data-siblings-firms-and-schools" id="toc-fixed-effects-beyond-panel-data-siblings-firms-and-schools" class="nav-link" data-scroll-target="#fixed-effects-beyond-panel-data-siblings-firms-and-schools">11. Fixed effects beyond panel data: siblings, firms and schools</a></li>
+  </ul></li>
+  <li><a href="#mathematical-derivations" id="toc-mathematical-derivations" class="nav-link" data-scroll-target="#mathematical-derivations">Mathematical Derivations</a>
+  <ul class="collapse">
+  <li><a href="#deriving-the-within-estimator" id="toc-deriving-the-within-estimator" class="nav-link" data-scroll-target="#deriving-the-within-estimator">1. Deriving the within estimator</a></li>
+  <li><a href="#why-strict-exogeneity-matters" id="toc-why-strict-exogeneity-matters" class="nav-link" data-scroll-target="#why-strict-exogeneity-matters">2. Why strict exogeneity matters</a></li>
+  <li><a href="#why-time-invariant-regressors-disappear" id="toc-why-time-invariant-regressors-disappear" class="nav-link" data-scroll-target="#why-time-invariant-regressors-disappear">3. Why time-invariant regressors disappear</a></li>
+  <li><a href="#equivalence-with-unit-dummy-variables" id="toc-equivalence-with-unit-dummy-variables" class="nav-link" data-scroll-target="#equivalence-with-unit-dummy-variables">4. Equivalence with unit dummy variables</a></li>
+  <li><a href="#decomposing-within-and-between-variation" id="toc-decomposing-within-and-between-variation" class="nav-link" data-scroll-target="#decomposing-within-and-between-variation">5. Decomposing within and between variation</a></li>
+  <li><a href="#first-differences-versus-fixed-effects" id="toc-first-differences-versus-fixed-effects" class="nav-link" data-scroll-target="#first-differences-versus-fixed-effects">6. First differences versus fixed effects</a></li>
+  <li><a href="#unbalanced-panels-unit-specific-means" id="toc-unbalanced-panels-unit-specific-means" class="nav-link" data-scroll-target="#unbalanced-panels-unit-specific-means">7. Unbalanced panels: unit-specific means</a></li>
+  <li><a href="#two-way-fixed-effects-and-double-demeaning" id="toc-two-way-fixed-effects-and-double-demeaning" class="nav-link" data-scroll-target="#two-way-fixed-effects-and-double-demeaning">8. Two-way fixed effects and double demeaning</a></li>
+  <li><a href="#random-effects-and-the-composite-error" id="toc-random-effects-and-the-composite-error" class="nav-link" data-scroll-target="#random-effects-and-the-composite-error">9. Random effects and the composite error</a></li>
+  <li><a href="#sibling-differences-fixed-effects-without-time" id="toc-sibling-differences-fixed-effects-without-time" class="nav-link" data-scroll-target="#sibling-differences-fixed-effects-without-time">10. Sibling differences: fixed effects without time</a></li>
+  <li><a href="#formula-checklist" id="toc-formula-checklist" class="nav-link" data-scroll-target="#formula-checklist">Formula checklist</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Econometrics — M1 S1</a></li><li class="breadcrumb-item"><a href="../classes/class-06.html">Class 6</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../classes/class-06.html">Class 6</a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Class 6</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Advanced Panel Data Methods: Fixed Effects and Other Data Structures</p>
 </div>
 
 
@@ -251,16 +366,544 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="theory-intuition" class="level2">
 <h2 class="anchored" data-anchor-id="theory-intuition">Theory &amp; Intuition</h2>
+<section id="the-central-problem-unobserved-differences-between-units" class="level3">
+<h3 class="anchored" data-anchor-id="the-central-problem-unobserved-differences-between-units">1. The central problem: unobserved differences between units</h3>
+<p>Panel data follow the <strong>same units</strong> (people, firms or schools) over several periods. Suppose we want to estimate how training affects a firm’s defect rate. Firms differ in management quality, and better-managed firms might both provide more training and produce fewer defects. If management quality is not observed, an ordinary regression may confuse its influence with the effect of training.</p>
+<p>Write the model as</p>
+<p><span class="math display">\[
+y_{it}=\boldsymbol{x}_{it}'\boldsymbol{\beta}+a_i+u_{it},
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(i=1,\ldots,N\)</span> identifies the unit and <span class="math inline">\(t=1,\ldots,T\)</span> identifies the period;</li>
+<li><span class="math inline">\(y_{it}\)</span> is the outcome and <span class="math inline">\(\boldsymbol{x}_{it}\)</span> contains the explanatory variables;</li>
+<li><span class="math inline">\(a_i\)</span> is an <strong>unobserved, time-invariant unit effect</strong> (for example, persistent management quality);</li>
+<li><span class="math inline">\(u_{it}\)</span> is the <strong>idiosyncratic error</strong>, which can change over time.</li>
+</ul>
+<p><strong>Fixed effects (FE)</strong> remove <span class="math inline">\(a_i\)</span> before estimating <span class="math inline">\(\boldsymbol{\beta}\)</span>. Crucially, FE allows <span class="math inline">\(a_i\)</span> to be correlated with the explanatory variables. It does <strong>not</strong> automatically solve endogeneity caused by changes in unobserved factors over time.</p>
+</section>
+<section id="the-within-transformation-compare-each-unit-with-itself" class="level3">
+<h3 class="anchored" data-anchor-id="the-within-transformation-compare-each-unit-with-itself">2. The within transformation: compare each unit with itself</h3>
+<p>For each unit, calculate its average outcome and average explanatory variables across time. Then subtract those averages from each observation:</p>
+<p><span class="math display">\[
+\ddot y_{it}=y_{it}-\bar y_i,\qquad
+\ddot x_{itj}=x_{itj}-\bar x_{ij}.
+\]</span></p>
+<p>This is <strong>time demeaning</strong>, also called the <strong>within transformation</strong>. The resulting regression uses only movements <em>within</em> a unit, rather than differences <em>between</em> units.</p>
+<p><strong>Small example.</strong> A firm’s training intensity is 2 in year 1 and 4 in year 2, so its mean is 3. Its demeaned training values are <span class="math inline">\(-1\)</span> and <span class="math inline">\(+1\)</span>. If the firm’s persistent management quality is 7 in both years, its demeaned values are <span class="math inline">\(7-7=0\)</span> in both years. That constant influence disappears.</p>
+<blockquote class="blockquote">
+<p><strong>Key limitation:</strong> A variable that never changes within a unit also disappears. For example, a person’s place of birth cannot have its own coefficient in a person fixed-effects regression if it is constant throughout the panel.</p>
+</blockquote>
+</section>
+<section id="what-variation-identifies-the-coefficient" class="level3">
+<h3 class="anchored" data-anchor-id="what-variation-identifies-the-coefficient">3. What variation identifies the coefficient?</h3>
+<p>The lecture distinguishes three kinds of variation:</p>
+<ul>
+<li><strong>Within variation:</strong> changes over time around each unit’s own mean.</li>
+<li><strong>Between variation:</strong> differences between units’ means.</li>
+<li><strong>Overall variation:</strong> differences between all observations and the grand mean.</li>
+</ul>
+<p>FE estimates slopes from <strong>within variation</strong> only. A variable that barely changes within units provides little information for FE, even if it differs greatly across units.</p>
+<p><strong>Healthy-eating reminders (slides 10–13).</strong> The lecture’s plots show that the raw observations have no obvious relationship between reminder intensity and healthy-eating scores. The <em>between-person</em> relationship is negative: people who use more reminders tend to have lower average scores (reported between correlation: <span class="math inline">\(-0.440\)</span>). Once each person’s average is removed, the <em>within-person</em> relationship appears positive. The point is not that one correlation must always be right: they answer different questions. FE asks whether <strong>a person scores differently when their own reminder intensity changes</strong>.</p>
+</section>
+<section id="assumptions-when-can-we-trust-fe" class="level3">
+<h3 class="anchored" data-anchor-id="assumptions-when-can-we-trust-fe">4. Assumptions: when can we trust FE?</h3>
+<p>The lecture gives three principal conditions:</p>
+<ol type="1">
+<li><p><strong>Random sampling across units:</strong> the sampled units are drawn independently from the relevant population.</p></li>
+<li><p><strong>Sufficient within variation and no perfect multicollinearity:</strong> the transformed regressors must contain enough independent variation to identify their coefficients.</p></li>
+<li><p><strong>Strict exogeneity:</strong> for every period <span class="math inline">\(t\)</span>,</p>
+<p><span class="math display">\[
+E(u_{it}\mid\boldsymbol X_i,a_i)=0,
+\]</span></p>
+<p>where <span class="math inline">\(\boldsymbol X_i\)</span> contains the unit’s explanatory variables in <strong>all</strong> observed periods.</p></li>
+</ol>
+<p>Strict exogeneity is stronger than merely requiring <span class="math inline">\(x_{it}\)</span> to be unrelated to <span class="math inline">\(u_{it}\)</span> in the same period. It rules out a shock to the outcome today systematically changing an explanatory variable in a later period, after conditioning on the full regressor history and <span class="math inline">\(a_i\)</span>.</p>
+<p><strong>Example.</strong> If an unexpected fall in a firm’s defect rate in 1988 causes it to reduce training in 1989, strict exogeneity may fail. Removing persistent management quality does not remove this feedback.</p>
+<p>Under the lecture’s sampling, rank and strict-exogeneity assumptions, FE is unbiased (conditional on an appropriate full-rank regressor design) and consistent as the number of units grows. <strong>Conventional OLS standard errors</strong> additionally require appropriate assumptions about the idiosyncratic errors, notably no serial correlation and homoskedasticity. In applied panel work, <strong>unit-clustered standard errors</strong> are commonly used to allow arbitrary within-unit serial correlation and heteroskedasticity, provided there are sufficiently many independent clusters.</p>
+</section>
+<section id="fixed-effects-as-a-dummy-variable-regression" class="level3">
+<h3 class="anchored" data-anchor-id="fixed-effects-as-a-dummy-variable-regression">5. Fixed effects as a dummy-variable regression</h3>
+<p>An alternative is to include an indicator for every unit (omitting one if a common intercept is included). This is the <strong>least-squares dummy-variable (LSDV)</strong> approach. It gives <strong>exactly the same slope estimates</strong> as the within estimator on the same sample.</p>
+<p>A regression with unit indicators may have a high ordinary <span class="math inline">\(R^2\)</span> because the indicators explain persistent differences between units. That does <strong>not</strong> mean the time-varying regressors explain within-unit changes particularly well.</p>
+<p>For a balanced panel with <span class="math inline">\(N\)</span> units, <span class="math inline">\(T\)</span> periods and <span class="math inline">\(k\)</span> identified slope regressors, the residual degrees of freedom are</p>
+<p><span class="math display">\[
+\boxed{df=NT-N-k.}
+\]</span></p>
+<p>The <span class="math inline">\(N\)</span> unit-specific intercepts consume <span class="math inline">\(N\)</span> degrees of freedom (or equivalently one common intercept plus <span class="math inline">\(N-1\)</span> unit indicators).</p>
+</section>
+<section id="empirical-example-job-training-grants-and-manufacturing-defects" class="level3">
+<h3 class="anchored" data-anchor-id="empirical-example-job-training-grants-and-manufacturing-defects">6. Empirical example: job-training grants and manufacturing defects</h3>
+<p><strong>Michigan Job Training Programme (slides 14–17).</strong> The lecture follows <strong>54 firms</strong> in <strong>1987, 1988 and 1989</strong>. The outcome is the <strong>scrap rate</strong>: defective items per 100 items produced. The main explanatory variables are:</p>
+<ul>
+<li><code>grant</code>: 1 if the firm receives a training grant <strong>this year</strong>;</li>
+<li><code>grant_1</code>: 1 if the firm received a training grant <strong>the previous year</strong>;</li>
+<li><code>d88</code> and <code>d89</code>: indicators for 1988 and 1989, with 1987 as the reference year.</li>
+</ul>
+<p>The dependent variable in the reported regression is <strong><span class="math inline">\(\log(\text{scrap})\)</span></strong>, not the scrap rate in levels. The estimated coefficients are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Regressor</th>
+<th style="text-align: right;">Coefficient</th>
+<th style="text-align: right;">Standard error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>d88</code></td>
+<td style="text-align: right;"><span class="math inline">\(-0.080\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(0.109\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>d89</code></td>
+<td style="text-align: right;"><span class="math inline">\(-0.247\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(0.133\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>grant</code></td>
+<td style="text-align: right;"><span class="math inline">\(-0.252\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(0.151\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>grant_1</code></td>
+<td style="text-align: right;"><span class="math inline">\(-0.422\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(0.210\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The table reports <strong>162 observations</strong>, <strong>104 residual degrees of freedom</strong>, and <strong><span class="math inline">\(R^2=0.201\)</span></strong>.</p>
+<p><strong>Interpretation.</strong> Holding the other regressors and firm effects fixed, a grant in the current year is associated with approximately <span class="math inline">\(25.2\%\)</span> lower scrap rates using the usual log-point approximation. The exact percentage transformation is <span class="math inline">\(100(e^{-0.252}-1)\approx-22.3\%\)</span>. For a grant received in the previous year, the exact transformation is <span class="math inline">\(100(e^{-0.422}-1)\approx-34.4\%\)</span>. The estimated lagged association is larger in magnitude.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Statistical significance: read the table, not just the accompanying claim
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Slide 17 describes <strong>both</strong> grant coefficients as significant. However, the reported standard errors on slide 16 give approximate <span class="math inline">\(t\)</span>-statistics of <span class="math inline">\(-0.252/0.151=-1.67\)</span> and <span class="math inline">\(-0.422/0.210=-2.01\)</span>. With 104 degrees of freedom, the <strong>current-year grant coefficient is not significant at the conventional two-sided 5% level</strong>, whereas the lagged coefficient is approximately significant at that level. This distinction matters; do not label both as 5%-significant.</p>
+</div>
+</div>
+<p>The negative <code>d89</code> coefficient suggests scrap rates were lower in 1989 than in 1987, after accounting for the model’s other terms. Year indicators help prevent economy-wide or industry-wide improvements from being wrongly attributed to training grants. Nevertheless, causal interpretation still depends on the FE exogeneity assumptions.</p>
+<p><strong>Data structure.</strong> The data are in <strong>long format</strong>: one row per firm-year, with columns for firm ID, year, outcome and regressors.</p>
+</section>
+<section id="fixed-effects-or-first-differences" class="level3">
+<h3 class="anchored" data-anchor-id="fixed-effects-or-first-differences">7. Fixed effects or first differences?</h3>
+<p>Both FE and <strong>first differencing (FD)</strong> remove time-invariant <span class="math inline">\(a_i\)</span>, but they transform the data differently:</p>
+<ul>
+<li><strong>FE:</strong> subtract each unit’s time average.</li>
+<li><strong>FD:</strong> subtract the previous period’s observation from the current one.</li>
+</ul>
+<p>For <strong>two periods</strong>, they produce the <strong>same slope estimates</strong>. For more than two periods, they generally differ.</p>
+<p>The lecture’s efficiency comparison is conditional on the structure of <span class="math inline">\(u_{it}\)</span>:</p>
+<ul>
+<li>If the idiosyncratic errors are homoskedastic and serially uncorrelated, FE is generally more efficient than FD under the standard assumptions.</li>
+<li>If <span class="math inline">\(u_{it}\)</span> follows a random walk, first differencing removes its persistent component and can be preferable.</li>
+</ul>
+<p>Neither method is universally superior. With two periods, the slope estimates coincide; comparisons of reported standard errors and test statistics also depend on using equivalent variance estimators and degrees-of-freedom conventions.</p>
+</section>
+<section id="unbalanced-panels-and-missing-observations" class="level3">
+<h3 class="anchored" data-anchor-id="unbalanced-panels-and-missing-observations">8. Unbalanced panels and missing observations</h3>
+<p>A <strong>balanced panel</strong> observes every unit in every period. An <strong>unbalanced panel</strong> is missing one or more periods for some units.</p>
+<p>FE can use all observed periods for each unit: it subtracts that unit’s mean over its available observations. A unit observed only once has no within variation and contributes nothing to the FE slope estimate. Missing intermediate years are not inherently a problem for FE; FD needs pairs of <strong>consecutive</strong> observations, so gaps can break usable differences.</p>
+<p><strong>Caution:</strong> FE does not automatically fix selection bias from missing data. If a firm’s disappearance from the dataset depends on an unobserved current shock <span class="math inline">\(u_{it}\)</span>, estimates may be biased. The lecture requires missingness to be suitably unrelated to the idiosyncratic error after conditioning on observed characteristics and fixed effects.</p>
+</section>
+<section id="two-way-fixed-effects-control-for-units-and-years" class="level3">
+<h3 class="anchored" data-anchor-id="two-way-fixed-effects-control-for-units-and-years">9. Two-way fixed effects: control for units <em>and</em> years</h3>
+<p>A one-way FE model removes persistent unit differences. A <strong>two-way FE</strong> model also controls for shocks common to all units in a given period:</p>
+<p><span class="math display">\[
+y_{it}=\boldsymbol{x}_{it}'\boldsymbol\beta+a_i+\gamma_t+u_{it},
+\]</span></p>
+<p>where <span class="math inline">\(\gamma_t\)</span> is a <strong>time fixed effect</strong>.</p>
+<p><strong>Example.</strong> A recession may affect every firm’s defect rate or productivity in a given year. Year indicators absorb such common changes, while firm indicators absorb stable firm differences.</p>
+<p>A regressor that takes <strong>the same value for every unit in a given year</strong> (for example, a single national GDP growth rate) is perfectly collinear with a full set of year effects, so its separate coefficient cannot be estimated. A regressor must retain variation after both unit and time effects have been removed.</p>
+</section>
+<section id="random-effects-a-stronger-assumption" class="level3">
+<h3 class="anchored" data-anchor-id="random-effects-a-stronger-assumption">10. Random effects: a stronger assumption</h3>
+<p>A <strong>random-effects (RE)</strong> model also includes an unobserved unit effect <span class="math inline">\(a_i\)</span>, but assumes it is uncorrelated with <strong>every explanatory variable in every period</strong>:</p>
+<p><span class="math display">\[
+\operatorname{Cov}(a_i,x_{itj})=0\quad\text{for all }t,j.
+\]</span></p>
+<p>Under suitable RE assumptions, an efficient RE estimator uses both within-unit and between-unit information and accounts for the dependence generated by <span class="math inline">\(a_i\)</span>. It can be more precise than FE. But if, for example, more able workers systematically obtain more training, and ability is part of <span class="math inline">\(a_i\)</span>, the RE assumption is doubtful. <strong>FE remains valid with this particular correlation</strong>, provided strict exogeneity with respect to <span class="math inline">\(u_{it}\)</span> holds.</p>
+<p><strong>Decision rule:</strong> choose FE when correlation between stable unobserved characteristics and regressors is plausible; consider RE only when its stronger orthogonality assumptions are credible. Efficiency is useful only when the estimator is consistent.</p>
+</section>
+<section id="fixed-effects-beyond-panel-data-siblings-firms-and-schools" class="level3">
+<h3 class="anchored" data-anchor-id="fixed-effects-beyond-panel-data-siblings-firms-and-schools">11. Fixed effects beyond panel data: siblings, firms and schools</h3>
+<p>The second part of the lecture applies FE to <strong>clustered cross-sectional data</strong>, even when there is no time dimension. The crucial feature is not time: it is <strong>multiple observations sharing an unobserved cluster characteristic</strong>.</p>
+<ul>
+<li><strong>Siblings</strong> share some family background; comparing siblings removes a family fixed effect.</li>
+<li><strong>Employees</strong> share workplace characteristics; firm FE remove common firm influences.</li>
+<li><strong>Pupils or classes</strong> share school characteristics; school FE remove common school influences.</li>
+</ul>
+<p>As before, only variables that <strong>vary within the cluster</strong> can be identified separately from its fixed effect.</p>
+<p><strong>Teenage childbearing example (slides 26–27).</strong> Geronimus and Korenman (1992) compare pairs of sisters to examine the association between teenage motherhood and later economic outcomes. The outcome is the log of income relative to needs. The lecture reports:</p>
+<ul>
+<li><strong>Pooled OLS:</strong> estimated coefficient on teenage childbearing <span class="math inline">\(=-0.33\)</span>, statistically significant.</li>
+<li><strong>Within-family first differences:</strong> estimated coefficient <span class="math inline">\(=-0.08\)</span>, statistically insignificant.</li>
+</ul>
+<p>The much smaller within-family estimate suggests that <strong>shared family background explains part of the negative association</strong> seen in pooled data. It does not establish that the true causal effect is zero: sibling-specific omitted factors may remain, and an insignificant estimate is not proof of no effect.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The central lesson of Class 6
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>FE removes unobserved characteristics that are constant within a unit or cluster.</strong> It identifies effects using within-unit or within-cluster comparisons. The price is that constant regressors cannot be estimated, and changing omitted variables or feedback from outcomes to regressors can still cause bias.</p>
+</div>
+</div>
+</section>
 </section>
 <section id="mathematical-derivations" class="level2">
 <h2 class="anchored" data-anchor-id="mathematical-derivations">Mathematical Derivations</h2>
+<section id="deriving-the-within-estimator" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-within-estimator">1. Deriving the within estimator</h3>
+<p>Start with one regressor and a balanced panel:</p>
+<p><span class="math display">\[
+\underbrace{y_{it}}_{\text{outcome}}=\beta x_{it}+a_i+u_{it}.
+\tag{1}
+\]</span></p>
+<p><strong>Step 1 — Average over time for the same unit.</strong> Define</p>
+<p><span class="math display">\[
+\bar y_i=\frac1T\sum_{t=1}^T y_{it},\quad
+\bar x_i=\frac1T\sum_{t=1}^T x_{it},\quad
+\bar u_i=\frac1T\sum_{t=1}^T u_{it}.
+\]</span></p>
+<p>Since <span class="math inline">\(a_i\)</span> is constant over time,</p>
+<p><span class="math display">\[
+\bar y_i=\beta\bar x_i+a_i+\bar u_i.
+\tag{2}
+\]</span></p>
+<p><strong>Step 2 — Subtract (2) from (1).</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+y_{it}-\bar y_i
+&amp;=\beta(x_{it}-\bar x_i)
+  +\underbrace{(a_i-a_i)}_{0}
+  +(u_{it}-\bar u_i)\\
+&amp;=\beta(x_{it}-\bar x_i)+(u_{it}-\bar u_i).
+\end{aligned}
+\]</span></p>
+<p>With dots denoting demeaned variables:</p>
+<p><span class="math display">\[
+\boxed{\ddot y_{it}=\beta\ddot x_{it}+\ddot u_{it}.}
+\tag{3}
+\]</span></p>
+<p><strong>Step 3 — Estimate by OLS on the transformed observations.</strong> With one regressor,</p>
+<p><span class="math display">\[
+\boxed{
+\widehat\beta_{FE}
+=\frac{\displaystyle\sum_{i=1}^N\sum_{t=1}^T
+(x_{it}-\bar x_i)(y_{it}-\bar y_i)}
+{\displaystyle\sum_{i=1}^N\sum_{t=1}^T
+(x_{it}-\bar x_i)^2}.
+}
+\tag{4}
+\]</span></p>
+<p>The denominator must be positive: if <span class="math inline">\(x_{it}=\bar x_i\)</span> for every observation, the coefficient is not identified.</p>
+<p>For <span class="math inline">\(k\)</span> regressors, stack the demeaned data into <span class="math inline">\(\ddot{\boldsymbol X}\)</span> and <span class="math inline">\(\ddot{\boldsymbol y}\)</span>:</p>
+<p><span class="math display">\[
+\boxed{
+\widehat{\boldsymbol\beta}_{FE}
+=(\ddot{\boldsymbol X}'\ddot{\boldsymbol X})^{-1}
+\ddot{\boldsymbol X}'\ddot{\boldsymbol y}.
+}
+\tag{5}
+\]</span></p>
+<p>This requires <span class="math inline">\(\ddot{\boldsymbol X}\)</span> to have full column rank. The transformed regression has <strong>no separately identified common intercept</strong> because each unit’s demeaned variables sum to zero.</p>
 </section>
-<section id="tutorial-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-exercises">Tutorial Exercises</h2>
+<section id="why-strict-exogeneity-matters" class="level3">
+<h3 class="anchored" data-anchor-id="why-strict-exogeneity-matters">2. Why strict exogeneity matters</h3>
+<p>The transformed error is</p>
+<p><span class="math display">\[
+\ddot u_{it}=u_{it}-\frac1T\sum_{s=1}^T u_{is}.
+\]</span></p>
+<p>Even if <span class="math inline">\(x_{it}\)</span> is unrelated to <span class="math inline">\(u_{it}\)</span> in the same year, <span class="math inline">\(\ddot x_{it}\)</span> and <span class="math inline">\(\ddot u_{it}\)</span> depend on observations from <strong>all years</strong>. This is why the lecture assumes</p>
+<p><span class="math display">\[
+\boxed{E(u_{it}\mid\boldsymbol X_i,a_i)=0\quad\text{for every }t.}
+\]</span></p>
+<p>It follows that</p>
+<p><span class="math display">\[
+E(\ddot u_{it}\mid\boldsymbol X_i,a_i)=0,
+\]</span></p>
+<p>so the within-transformed regressors are orthogonal to the transformed error. Conditional on a full-rank design, this gives</p>
+<p><span class="math display">\[
+E(\widehat{\boldsymbol\beta}_{FE}\mid\boldsymbol X,a)=\boldsymbol\beta.
+\]</span></p>
+<p><strong>Important:</strong> <span class="math inline">\(a_i\)</span> may be correlated with <span class="math inline">\(\boldsymbol X_i\)</span>; it disappears algebraically. This argument does <strong>not</strong> allow correlation between regressors and the idiosyncratic errors.</p>
+</section>
+<section id="why-time-invariant-regressors-disappear" class="level3">
+<h3 class="anchored" data-anchor-id="why-time-invariant-regressors-disappear">3. Why time-invariant regressors disappear</h3>
+<p>Suppose <span class="math inline">\(z_i\)</span> is constant over time:</p>
+<p><span class="math display">\[
+y_{it}=\beta x_{it}+\theta z_i+a_i+u_{it}.
+\]</span></p>
+<p>After time demeaning,</p>
+<p><span class="math display">\[
+\theta(z_i-\bar z_i)=\theta(z_i-z_i)=0.
+\]</span></p>
+<p>Thus <span class="math inline">\(\theta\)</span> cannot be estimated from within-unit variation. FE removes <strong>both</strong> unobserved constant characteristics and observed constant regressors.</p>
+</section>
+<section id="equivalence-with-unit-dummy-variables" class="level3">
+<h3 class="anchored" data-anchor-id="equivalence-with-unit-dummy-variables">4. Equivalence with unit dummy variables</h3>
+<p>The least-squares dummy-variable regression can be written as</p>
+<p><span class="math display">\[
+y_{it}=\alpha_i+\boldsymbol x_{it}'\boldsymbol\beta+u_{it}.
+\]</span></p>
+<p>For any proposed <span class="math inline">\(\boldsymbol\beta\)</span>, minimising the residual sum of squares with respect to <span class="math inline">\(\alpha_i\)</span> gives</p>
+<p><span class="math display">\[
+\widehat\alpha_i(\boldsymbol\beta)
+=\bar y_i-\bar{\boldsymbol x}_i'\boldsymbol\beta.
+\]</span></p>
+<p>Substituting this expression back into the residuals gives</p>
+<p><span class="math display">\[
+y_{it}-\widehat\alpha_i(\boldsymbol\beta)
+-\boldsymbol x_{it}'\boldsymbol\beta
+=\ddot y_{it}-\ddot{\boldsymbol x}_{it}'\boldsymbol\beta.
+\]</span></p>
+<p>Therefore minimising the dummy-variable regression’s residual sum of squares is <strong>the same optimisation problem</strong> as OLS on demeaned data. Both produce identical slope coefficients.</p>
+<p>For a balanced panel with <span class="math inline">\(NT\)</span> observations, <span class="math inline">\(N\)</span> unit intercepts and <span class="math inline">\(k\)</span> slopes,</p>
+<p><span class="math display">\[
+\boxed{df=NT-N-k.}
+\]</span></p>
+<p><strong>Training-grant example:</strong> <span class="math inline">\(N=54\)</span>, <span class="math inline">\(T=3\)</span> and <span class="math inline">\(k=4\)</span> (two grant variables plus two year indicators):</p>
+<p><span class="math display">\[
+df=54\times3-54-4=\boxed{104}.
+\]</span></p>
+<p>The estimated unit intercepts can be recovered as</p>
+<p><span class="math display">\[
+\widehat a_i=\bar y_i-\bar{\boldsymbol x}_i'\widehat{\boldsymbol\beta}_{FE},
+\]</span></p>
+<p>under the lecture’s no-common-intercept parameterisation. With fixed <span class="math inline">\(T\)</span>, each <span class="math inline">\(\widehat a_i\)</span> is estimated from only <span class="math inline">\(T\)</span> observations; increasing <span class="math inline">\(N\)</span> does not make the estimate for a <strong>particular unit</strong> consistent.</p>
+</section>
+<section id="decomposing-within-and-between-variation" class="level3">
+<h3 class="anchored" data-anchor-id="decomposing-within-and-between-variation">5. Decomposing within and between variation</h3>
+<p>Let <span class="math inline">\(\bar x_i\)</span> be unit <span class="math inline">\(i\)</span>’s time average and let <span class="math inline">\(\bar x\)</span> be the grand mean. Then</p>
+<p><span class="math display">\[
+x_{it}-\bar x=(x_{it}-\bar x_i)+(\bar x_i-\bar x).
+\]</span></p>
+<p>Squaring and summing over <span class="math inline">\(i\)</span> and <span class="math inline">\(t\)</span> yields</p>
+<p><span class="math display">\[
+\boxed{
+\sum_i\sum_t(x_{it}-\bar x)^2
+=\sum_i\sum_t(x_{it}-\bar x_i)^2
++T\sum_i(\bar x_i-\bar x)^2.
+}
+\tag{6}
+\]</span></p>
+<p>The cross-product vanishes because <span class="math inline">\(\sum_t(x_{it}-\bar x_i)=0\)</span> for every <span class="math inline">\(i\)</span>.</p>
+<p>Equation (6) is the <strong>exact sum-of-squares decomposition</strong> for a balanced panel. It is important not to write <span class="math inline">\(s_O^2=s_W^2+s_B^2\)</span> automatically: the lecture defines its displayed within, between and overall variance measures using <strong>different denominators</strong>, so their numerical values do not add without appropriate weights.</p>
+</section>
+<section id="first-differences-versus-fixed-effects" class="level3">
+<h3 class="anchored" data-anchor-id="first-differences-versus-fixed-effects">6. First differences versus fixed effects</h3>
+<p>The FD transformation of (1) is</p>
+<p><span class="math display">\[
+\Delta y_{it}=y_{it}-y_{i,t-1}
+=\beta(x_{it}-x_{i,t-1})+(u_{it}-u_{i,t-1}),
+\]</span></p>
+<p>or</p>
+<p><span class="math display">\[
+\boxed{\Delta y_{it}=\beta\Delta x_{it}+\Delta u_{it}.}
+\tag{7}
+\]</span></p>
+<p>For <span class="math inline">\(T=2\)</span>,</p>
+<p><span class="math display">\[
+\ddot x_{i1}=-\frac{\Delta x_{i2}}2,
+\qquad
+\ddot x_{i2}=\frac{\Delta x_{i2}}2,
+\]</span></p>
+<p>and similarly for <span class="math inline">\(y\)</span>. Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_{t=1}^2\ddot x_{it}\ddot y_{it}
+&amp;=\tfrac12\Delta x_{i2}\Delta y_{i2},\\
+\sum_{t=1}^2\ddot x_{it}^{\,2}
+&amp;=\tfrac12(\Delta x_{i2})^2.
+\end{aligned}
+\]</span></p>
+<p>The factors <span class="math inline">\(1/2\)</span> cancel in the OLS slope formula, giving</p>
+<p><span class="math display">\[
+\boxed{\widehat\beta_{FE}=\widehat\beta_{FD}\quad\text{when }T=2.}
+\]</span></p>
+<p>For <span class="math inline">\(T&gt;2\)</span>, FE uses deviations from the unit mean, while FD uses adjacent changes, so their estimates generally differ.</p>
+<p><strong>Error dependence and efficiency.</strong> If <span class="math inline">\(u_{it}\)</span> is serially independent with variance <span class="math inline">\(\sigma^2\)</span>, then</p>
+<p><span class="math display">\[
+\operatorname{Cov}(\Delta u_{it},\Delta u_{i,t-1})=-\sigma^2,
+\]</span></p>
+<p>because adjacent differences share one error with opposite signs. Conversely, if <span class="math inline">\(u_{it}=u_{i,t-1}+\varepsilon_{it}\)</span> with serially independent innovations, then <span class="math inline">\(\Delta u_{it}=\varepsilon_{it}\)</span>. This helps explain the lecture’s FE-versus-FD efficiency comparison.</p>
+</section>
+<section id="unbalanced-panels-unit-specific-means" class="level3">
+<h3 class="anchored" data-anchor-id="unbalanced-panels-unit-specific-means">7. Unbalanced panels: unit-specific means</h3>
+<p>If unit <span class="math inline">\(i\)</span> is observed in <span class="math inline">\(T_i\)</span> periods, define the mean over its <strong>observed</strong> periods <span class="math inline">\(\mathcal T_i\)</span>:</p>
+<p><span class="math display">\[
+\bar x_i=\frac1{T_i}\sum_{t\in\mathcal T_i}x_{it},
+\qquad
+\ddot x_{it}=x_{it}-\bar x_i.
+\]</span></p>
+<p>If <span class="math inline">\(T_i=1\)</span>, then <span class="math inline">\(\ddot x_{it}=0\)</span>: the observation provides no within-unit information. The simple balanced-panel degrees-of-freedom formula must be adjusted to the actual sample and the number of identified unit effects.</p>
+</section>
+<section id="two-way-fixed-effects-and-double-demeaning" class="level3">
+<h3 class="anchored" data-anchor-id="two-way-fixed-effects-and-double-demeaning">8. Two-way fixed effects and double demeaning</h3>
+<p>Consider</p>
+<p><span class="math display">\[
+y_{it}=\boldsymbol x_{it}'\boldsymbol\beta+a_i+\gamma_t+u_{it}.
+\tag{8}
+\]</span></p>
+<p>For a <strong>balanced</strong> panel, define the unit mean <span class="math inline">\(\bar y_i\)</span>, period mean <span class="math inline">\(\bar y_t\)</span> and grand mean <span class="math inline">\(\bar y\)</span>. The two-way transformation is</p>
+<p><span class="math display">\[
+\boxed{\widetilde y_{it}=y_{it}-\bar y_i-\bar y_t+\bar y.}
+\]</span></p>
+<p>The same transformation is applied to each regressor. To see why it works, apply it to <span class="math inline">\(a_i\)</span>:</p>
+<p><span class="math display">\[
+a_i-a_i-\bar a+\bar a=0,
+\]</span></p>
+<p>and to <span class="math inline">\(\gamma_t\)</span>:</p>
+<p><span class="math display">\[
+\gamma_t-\bar\gamma-\gamma_t+\bar\gamma=0.
+\]</span></p>
+<p>Hence</p>
+<p><span class="math display">\[
+\widetilde y_{it}=\widetilde{\boldsymbol x}_{it}'\boldsymbol\beta
++\widetilde u_{it}.
+\]</span></p>
+<p>A national variable <span class="math inline">\(z_t\)</span> that is identical across units in each year satisfies <span class="math inline">\(z_t-\bar z- z_t+\bar z=0\)</span> and cannot be separately identified alongside full time effects. <strong>For unbalanced panels, this simple double-demeaning formula is generally not sufficient</strong>; estimation must properly partial out both sets of indicators.</p>
+</section>
+<section id="random-effects-and-the-composite-error" class="level3">
+<h3 class="anchored" data-anchor-id="random-effects-and-the-composite-error">9. Random effects and the composite error</h3>
+<p>Write the RE model as</p>
+<p><span class="math display">\[
+y_{it}=\beta_0+\boldsymbol x_{it}'\boldsymbol\beta+a_i+u_{it},
+\qquad E(a_i)=0.
+\]</span></p>
+<p>The composite error is <span class="math inline">\(v_{it}=a_i+u_{it}\)</span>. Under the standard RE error-components assumptions, with <span class="math inline">\(\operatorname{Var}(a_i)=\sigma_a^2\)</span> and <span class="math inline">\(\operatorname{Var}(u_{it})=\sigma_u^2\)</span>, and with <span class="math inline">\(a_i\)</span> independent of <span class="math inline">\(u_{it}\)</span> and <span class="math inline">\(u_{it}\)</span> serially uncorrelated,</p>
+<p><span class="math display">\[
+\operatorname{Var}(v_{it})=\sigma_a^2+\sigma_u^2,
+\]</span></p>
+<p>and for <span class="math inline">\(t\neq s\)</span>,</p>
+<p><span class="math display">\[
+\operatorname{Cov}(v_{it},v_{is})=\sigma_a^2.
+\]</span></p>
+<p>Thus pooled OLS ignores within-unit error dependence, even when its slope coefficients are consistent under the RE exogeneity assumptions. RE uses an error-covariance-aware estimator (typically feasible generalised least squares) to improve efficiency. The key extra restriction remains</p>
+<p><span class="math display">\[
+\boxed{\operatorname{Cov}(a_i,x_{itj})=0\quad\forall t,j.}
+\]</span></p>
+<p>This covariance calculation is an <strong>explanatory extension</strong> of the lecture’s discussion of correlated composite errors; it relies on the additional variance assumptions stated above.</p>
+</section>
+<section id="sibling-differences-fixed-effects-without-time" class="level3">
+<h3 class="anchored" data-anchor-id="sibling-differences-fixed-effects-without-time">10. Sibling differences: fixed effects without time</h3>
+<p>The lecture studies sisters <span class="math inline">\(s=1,2\)</span> in family <span class="math inline">\(f\)</span>. A simplified version of its model is</p>
+<p><span class="math display">\[
+\log(\mathrm{incneeds}_{fs})
+=\beta_0+\delta_0\,\mathrm{sister2}_{fs}
++\beta_1\,\mathrm{teenbrth}_{fs}
++\beta_2\,\mathrm{age}_{fs}
++\boldsymbol z_{fs}'\boldsymbol\theta
++a_f+u_{fs},
+\tag{9}
+\]</span></p>
+<p>where <span class="math inline">\(a_f\)</span> is shared, unobserved family background, and <span class="math inline">\(\boldsymbol z_{fs}\)</span> denotes any other included controls.</p>
+<p>Subtract sister 1’s equation from sister 2’s equation <strong>within the same family</strong>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\log(\mathrm{incneeds}_{f2})-\log(\mathrm{incneeds}_{f1})
+={}&amp;\delta_0
++\beta_1(\mathrm{teenbrth}_{f2}-\mathrm{teenbrth}_{f1})\\
+&amp;+\beta_2(\mathrm{age}_{f2}-\mathrm{age}_{f1})
++\Delta\boldsymbol z_f'\boldsymbol\theta
++(u_{f2}-u_{f1}).
+\end{aligned}
+\]</span></p>
+<p>The common intercept <span class="math inline">\(\beta_0\)</span> and family effect <span class="math inline">\(a_f\)</span> cancel. Writing <span class="math inline">\(\Delta\)</span> for <strong>sister 2 minus sister 1</strong>,</p>
+<p><span class="math display">\[
+\boxed{
+\Delta\log(\mathrm{incneeds})
+=\delta_0+\beta_1\Delta\mathrm{teenbrth}
++\beta_2\Delta\mathrm{age}
++\Delta\boldsymbol z'\boldsymbol\theta+\Delta u.
+}
+\tag{10}
+\]</span></p>
+<p>Here <span class="math inline">\(\Delta\)</span> is <strong>not a change over time</strong>. It is a difference between sisters. The ordering of sisters must be defined consistently (for example, by age), so that the intercept <span class="math inline">\(\delta_0\)</span> has a stable interpretation.</p>
+<p>The lecture’s reported change in the estimated teenage-childbearing coefficient from <span class="math inline">\(-0.33\)</span> (pooled OLS) to <span class="math inline">\(-0.08\)</span> (within-family differences) illustrates how shared unobserved family characteristics can confound a cross-sectional association. Consistent causal estimation still requires the <strong>within-family difference in teenage childbearing</strong> to be exogenous to the <strong>difference in sister-specific errors</strong>, conditional on included controls.</p>
+</section>
+<section id="formula-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="formula-checklist">Formula checklist</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Concept</th>
+<th style="text-align: left;">Formula</th>
+<th style="text-align: left;">What to remember</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Unit effect model</td>
+<td style="text-align: left;"><span class="math inline">\(y_{it}=\boldsymbol x_{it}'\boldsymbol\beta+a_i+u_{it}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(a_i\)</span> is constant over time.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Within transformation</td>
+<td style="text-align: left;"><span class="math inline">\(\ddot z_{it}=z_{it}-\bar z_i\)</span></td>
+<td style="text-align: left;">Removes <span class="math inline">\(a_i\)</span> and all constant regressors.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FE estimator</td>
+<td style="text-align: left;"><span class="math inline">\((\ddot X'\ddot X)^{-1}\ddot X'\ddot y\)</span></td>
+<td style="text-align: left;">Uses within-unit variation.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Strict exogeneity</td>
+<td style="text-align: left;"><span class="math inline">\(E(u_{it}\mid X_i,a_i)=0\)</span></td>
+<td style="text-align: left;">Conditions on regressors from every period.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">FE degrees of freedom</td>
+<td style="text-align: left;"><span class="math inline">\(NT-N-k\)</span></td>
+<td style="text-align: left;">Balanced panel; <span class="math inline">\(k\)</span> identified slopes.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">First differences</td>
+<td style="text-align: left;"><span class="math inline">\(\Delta y_{it}=\boldsymbol\beta'\Delta\boldsymbol x_{it}+\Delta u_{it}\)</span></td>
+<td style="text-align: left;">Same slopes as FE when <span class="math inline">\(T=2\)</span>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Two-way FE</td>
+<td style="text-align: left;"><span class="math inline">\(y_{it}=\boldsymbol x_{it}'\boldsymbol\beta+a_i+\gamma_t+u_{it}\)</span></td>
+<td style="text-align: left;">Controls for unit and period effects.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RE restriction</td>
+<td style="text-align: left;"><span class="math inline">\(\operatorname{Cov}(a_i,x_{itj})=0\)</span></td>
+<td style="text-align: left;">Stronger than FE’s allowance for correlation.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sibling differences</td>
+<td style="text-align: left;"><span class="math inline">\(\Delta y_f=\boldsymbol\beta'\Delta\boldsymbol x_f+\Delta u_f\)</span></td>
+<td style="text-align: left;">Differences are across siblings, not time.</td>
+</tr>
+</tbody>
+</table>
+<p><em>Source: Arne Uhlendorff, <strong>Advanced Panel Data Methods</strong>, Lecture 6 (27 October 2026), slides 1–27. The explanations and algebraic steps above expand the lecture for learning purposes; empirical figures and reported estimates are taken from the slides.</em></p>
+<hr>
+<p><strong>Ready to practise?</strong></p>
+<p><a href="../tutorials/tutorial-06.html">Go to Tutorial 6</a></p>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -717,13 +1360,574 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Class 6"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Theory &amp; Intuition</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mathematical Derivations</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tutorial Exercises</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Advanced Panel Data Methods: Fixed Effects and Other Data Structures"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Theory &amp; Intuition</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. The central problem: unobserved differences between units</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Panel data follow the **same units** (people, firms or schools) over several periods. Suppose we want to estimate how training affects a firm's defect rate. Firms differ in management quality, and better-managed firms might both provide more training and produce fewer defects. If management quality is not observed, an ordinary regression may confuse its influence with the effect of training.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Write the model as</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>y_{it}=\boldsymbol{x}_{it}'\boldsymbol{\beta}+a_i+u_{it},</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>where:</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$i=1,\ldots,N$ identifies the unit and $t=1,\ldots,T$ identifies the period;</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$y_{it}$ is the outcome and $\boldsymbol{x}_{it}$ contains the explanatory variables;</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$a_i$ is an **unobserved, time-invariant unit effect** (for example, persistent management quality);</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$u_{it}$ is the **idiosyncratic error**, which can change over time.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>**Fixed effects (FE)** remove $a_i$ before estimating $\boldsymbol{\beta}$. Crucially, FE allows $a_i$ to be correlated with the explanatory variables. It does **not** automatically solve endogeneity caused by changes in unobserved factors over time.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. The within transformation: compare each unit with itself</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>For each unit, calculate its average outcome and average explanatory variables across time. Then subtract those averages from each observation:</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>\ddot y_{it}=y_{it}-\bar y_i,\qquad</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>\ddot x_{itj}=x_{itj}-\bar x_{ij}.</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>This is **time demeaning**, also called the **within transformation**. The resulting regression uses only movements *within* a unit, rather than differences *between* units.</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>**Small example.** A firm's training intensity is 2 in year 1 and 4 in year 2, so its mean is 3. Its demeaned training values are $-1$ and $+1$. If the firm's persistent management quality is 7 in both years, its demeaned values are $7-7=0$ in both years. That constant influence disappears.</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Key limitation:** A variable that never changes within a unit also disappears. For example, a person's place of birth cannot have its own coefficient in a person fixed-effects regression if it is constant throughout the panel.</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. What variation identifies the coefficient?</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>The lecture distinguishes three kinds of variation:</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Within variation:** changes over time around each unit's own mean.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Between variation:** differences between units' means.</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Overall variation:** differences between all observations and the grand mean.</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>FE estimates slopes from **within variation** only. A variable that barely changes within units provides little information for FE, even if it differs greatly across units.</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>**Healthy-eating reminders (slides 10–13).** The lecture's plots show that the raw observations have no obvious relationship between reminder intensity and healthy-eating scores. The *between-person* relationship is negative: people who use more reminders tend to have lower average scores (reported between correlation: $-0.440$). Once each person's average is removed, the *within-person* relationship appears positive. The point is not that one correlation must always be right: they answer different questions. FE asks whether **a person scores differently when their own reminder intensity changes**.</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. Assumptions: when can we trust FE?</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>The lecture gives three principal conditions:</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Random sampling across units:** the sampled units are drawn independently from the relevant population.</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Sufficient within variation and no perfect multicollinearity:** the transformed regressors must contain enough independent variation to identify their coefficients.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Strict exogeneity:** for every period $t$,</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>   $$</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>   E(u_{it}\mid\boldsymbol X_i,a_i)=0,</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>   $$</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>   where $\boldsymbol X_i$ contains the unit's explanatory variables in **all** observed periods.</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>Strict exogeneity is stronger than merely requiring $x_{it}$ to be unrelated to $u_{it}$ in the same period. It rules out a shock to the outcome today systematically changing an explanatory variable in a later period, after conditioning on the full regressor history and $a_i$.</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>**Example.** If an unexpected fall in a firm's defect rate in 1988 causes it to reduce training in 1989, strict exogeneity may fail. Removing persistent management quality does not remove this feedback.</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>Under the lecture's sampling, rank and strict-exogeneity assumptions, FE is unbiased (conditional on an appropriate full-rank regressor design) and consistent as the number of units grows. **Conventional OLS standard errors** additionally require appropriate assumptions about the idiosyncratic errors, notably no serial correlation and homoskedasticity. In applied panel work, **unit-clustered standard errors** are commonly used to allow arbitrary within-unit serial correlation and heteroskedasticity, provided there are sufficiently many independent clusters.</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. Fixed effects as a dummy-variable regression</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>An alternative is to include an indicator for every unit (omitting one if a common intercept is included). This is the **least-squares dummy-variable (LSDV)** approach. It gives **exactly the same slope estimates** as the within estimator on the same sample.</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>A regression with unit indicators may have a high ordinary $R^2$ because the indicators explain persistent differences between units. That does **not** mean the time-varying regressors explain within-unit changes particularly well.</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>For a balanced panel with $N$ units, $T$ periods and $k$ identified slope regressors, the residual degrees of freedom are</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>\boxed{df=NT-N-k.}</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>The $N$ unit-specific intercepts consume $N$ degrees of freedom (or equivalently one common intercept plus $N-1$ unit indicators).</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. Empirical example: job-training grants and manufacturing defects</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>**Michigan Job Training Programme (slides 14–17).** The lecture follows **54 firms** in **1987, 1988 and 1989**. The outcome is the **scrap rate**: defective items per 100 items produced. The main explanatory variables are:</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`grant`</span>: 1 if the firm receives a training grant **this year**;</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`grant_1`</span>: 1 if the firm received a training grant **the previous year**;</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`d88`</span> and <span class="in">`d89`</span>: indicators for 1988 and 1989, with 1987 as the reference year.</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>The dependent variable in the reported regression is **$\log(\text{scrap})$**, not the scrap rate in levels. The estimated coefficients are:</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regressor <span class="pp">|</span> Coefficient <span class="pp">|</span> Standard error <span class="pp">|</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>:--<span class="pp">|</span>--:<span class="pp">|</span>--:<span class="pp">|</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`d88`</span> <span class="pp">|</span> $-0.080$ <span class="pp">|</span> $0.109$ <span class="pp">|</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`d89`</span> <span class="pp">|</span> $-0.247$ <span class="pp">|</span> $0.133$ <span class="pp">|</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`grant`</span> <span class="pp">|</span> $-0.252$ <span class="pp">|</span> $0.151$ <span class="pp">|</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="in">`grant_1`</span> <span class="pp">|</span> $-0.422$ <span class="pp">|</span> $0.210$ <span class="pp">|</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>The table reports **162 observations**, **104 residual degrees of freedom**, and **$R^2=0.201$**.</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>**Interpretation.** Holding the other regressors and firm effects fixed, a grant in the current year is associated with approximately $25.2\%$ lower scrap rates using the usual log-point approximation. The exact percentage transformation is $100(e^{-0.252}-1)\approx-22.3\%$. For a grant received in the previous year, the exact transformation is $100(e^{-0.422}-1)\approx-34.4\%$. The estimated lagged association is larger in magnitude.</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="fu">## Statistical significance: read the table, not just the accompanying claim</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>Slide 17 describes **both** grant coefficients as significant. However, the reported standard errors on slide 16 give approximate $t$-statistics of $-0.252/0.151=-1.67$ and $-0.422/0.210=-2.01$. With 104 degrees of freedom, the **current-year grant coefficient is not significant at the conventional two-sided 5% level**, whereas the lagged coefficient is approximately significant at that level. This distinction matters; do not label both as 5%-significant.</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>The negative <span class="in">`d89`</span> coefficient suggests scrap rates were lower in 1989 than in 1987, after accounting for the model's other terms. Year indicators help prevent economy-wide or industry-wide improvements from being wrongly attributed to training grants. Nevertheless, causal interpretation still depends on the FE exogeneity assumptions.</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>**Data structure.** The data are in **long format**: one row per firm-year, with columns for firm ID, year, outcome and regressors.</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="fu">### 7. Fixed effects or first differences?</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>Both FE and **first differencing (FD)** remove time-invariant $a_i$, but they transform the data differently:</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**FE:** subtract each unit's time average.</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**FD:** subtract the previous period's observation from the current one.</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>For **two periods**, they produce the **same slope estimates**. For more than two periods, they generally differ.</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>The lecture's efficiency comparison is conditional on the structure of $u_{it}$:</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If the idiosyncratic errors are homoskedastic and serially uncorrelated, FE is generally more efficient than FD under the standard assumptions.</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>If $u_{it}$ follows a random walk, first differencing removes its persistent component and can be preferable.</span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>Neither method is universally superior. With two periods, the slope estimates coincide; comparisons of reported standard errors and test statistics also depend on using equivalent variance estimators and degrees-of-freedom conventions.</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="fu">### 8. Unbalanced panels and missing observations</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a>A **balanced panel** observes every unit in every period. An **unbalanced panel** is missing one or more periods for some units.</span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>FE can use all observed periods for each unit: it subtracts that unit's mean over its available observations. A unit observed only once has no within variation and contributes nothing to the FE slope estimate. Missing intermediate years are not inherently a problem for FE; FD needs pairs of **consecutive** observations, so gaps can break usable differences.</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>**Caution:** FE does not automatically fix selection bias from missing data. If a firm's disappearance from the dataset depends on an unobserved current shock $u_{it}$, estimates may be biased. The lecture requires missingness to be suitably unrelated to the idiosyncratic error after conditioning on observed characteristics and fixed effects.</span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="fu">### 9. Two-way fixed effects: control for units *and* years</span></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>A one-way FE model removes persistent unit differences. A **two-way FE** model also controls for shocks common to all units in a given period:</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>y_{it}=\boldsymbol{x}_{it}'\boldsymbol\beta+a_i+\gamma_t+u_{it},</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>where $\gamma_t$ is a **time fixed effect**.</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>**Example.** A recession may affect every firm's defect rate or productivity in a given year. Year indicators absorb such common changes, while firm indicators absorb stable firm differences.</span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>A regressor that takes **the same value for every unit in a given year** (for example, a single national GDP growth rate) is perfectly collinear with a full set of year effects, so its separate coefficient cannot be estimated. A regressor must retain variation after both unit and time effects have been removed.</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="fu">### 10. Random effects: a stronger assumption</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>A **random-effects (RE)** model also includes an unobserved unit effect $a_i$, but assumes it is uncorrelated with **every explanatory variable in every period**:</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>\operatorname{Cov}(a_i,x_{itj})=0\quad\text{for all }t,j.</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>Under suitable RE assumptions, an efficient RE estimator uses both within-unit and between-unit information and accounts for the dependence generated by $a_i$. It can be more precise than FE. But if, for example, more able workers systematically obtain more training, and ability is part of $a_i$, the RE assumption is doubtful. **FE remains valid with this particular correlation**, provided strict exogeneity with respect to $u_{it}$ holds.</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>**Decision rule:** choose FE when correlation between stable unobserved characteristics and regressors is plausible; consider RE only when its stronger orthogonality assumptions are credible. Efficiency is useful only when the estimator is consistent.</span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="fu">### 11. Fixed effects beyond panel data: siblings, firms and schools</span></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>The second part of the lecture applies FE to **clustered cross-sectional data**, even when there is no time dimension. The crucial feature is not time: it is **multiple observations sharing an unobserved cluster characteristic**.</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Siblings** share some family background; comparing siblings removes a family fixed effect.</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Employees** share workplace characteristics; firm FE remove common firm influences.</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Pupils or classes** share school characteristics; school FE remove common school influences.</span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>As before, only variables that **vary within the cluster** can be identified separately from its fixed effect.</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>**Teenage childbearing example (slides 26–27).** Geronimus and Korenman (1992) compare pairs of sisters to examine the association between teenage motherhood and later economic outcomes. The outcome is the log of income relative to needs. The lecture reports:</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Pooled OLS:** estimated coefficient on teenage childbearing $=-0.33$, statistically significant.</span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Within-family first differences:** estimated coefficient $=-0.08$, statistically insignificant.</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>The much smaller within-family estimate suggests that **shared family background explains part of the negative association** seen in pooled data. It does not establish that the true causal effect is zero: sibling-specific omitted factors may remain, and an insignificant estimate is not proof of no effect.</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="fu">## The central lesson of Class 6</span></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>**FE removes unobserved characteristics that are constant within a unit or cluster.** It identifies effects using within-unit or within-cluster comparisons. The price is that constant regressors cannot be estimated, and changing omitted variables or feedback from outcomes to regressors can still cause bias.</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mathematical Derivations</span></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. Deriving the within estimator</span></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>Start with one regressor and a balanced panel:</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>\underbrace{y_{it}}_{\text{outcome}}=\beta x_{it}+a_i+u_{it}.</span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>\tag{1}</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>**Step 1 — Average over time for the same unit.** Define</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>\bar y_i=\frac1T\sum_{t=1}^T y_{it},\quad</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>\bar x_i=\frac1T\sum_{t=1}^T x_{it},\quad</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>\bar u_i=\frac1T\sum_{t=1}^T u_{it}.</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>Since $a_i$ is constant over time,</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>\bar y_i=\beta\bar x_i+a_i+\bar u_i.</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>\tag{2}</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>**Step 2 — Subtract (2) from (1).**</span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>y_{it}-\bar y_i</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>&amp;=\beta(x_{it}-\bar x_i)</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>  +\underbrace{(a_i-a_i)}_{0}</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>  +(u_{it}-\bar u_i)<span class="sc">\\</span></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>&amp;=\beta(x_{it}-\bar x_i)+(u_{it}-\bar u_i).</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>With dots denoting demeaned variables:</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>\boxed{\ddot y_{it}=\beta\ddot x_{it}+\ddot u_{it}.}</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>\tag{3}</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>**Step 3 — Estimate by OLS on the transformed observations.** With one regressor,</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>\boxed{</span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>\widehat\beta_{FE}</span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>=\frac{\displaystyle\sum_{i=1}^N\sum_{t=1}^T</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>(x_{it}-\bar x_i)(y_{it}-\bar y_i)}</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>{\displaystyle\sum_{i=1}^N\sum_{t=1}^T</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>(x_{it}-\bar x_i)^2}.</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>\tag{4}</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>The denominator must be positive: if $x_{it}=\bar x_i$ for every observation, the coefficient is not identified.</span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>For $k$ regressors, stack the demeaned data into $\ddot{\boldsymbol X}$ and $\ddot{\boldsymbol y}$:</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>\boxed{</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>\widehat{\boldsymbol\beta}_{FE}</span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>=(\ddot{\boldsymbol X}'\ddot{\boldsymbol X})^{-1}</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>\ddot{\boldsymbol X}'\ddot{\boldsymbol y}.</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>\tag{5}</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>This requires $\ddot{\boldsymbol X}$ to have full column rank. The transformed regression has **no separately identified common intercept** because each unit's demeaned variables sum to zero.</span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. Why strict exogeneity matters</span></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>The transformed error is</span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>\ddot u_{it}=u_{it}-\frac1T\sum_{s=1}^T u_{is}.</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>Even if $x_{it}$ is unrelated to $u_{it}$ in the same year, $\ddot x_{it}$ and $\ddot u_{it}$ depend on observations from **all years**. This is why the lecture assumes</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>\boxed{E(u_{it}\mid\boldsymbol X_i,a_i)=0\quad\text{for every }t.}</span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>It follows that</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>E(\ddot u_{it}\mid\boldsymbol X_i,a_i)=0,</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>so the within-transformed regressors are orthogonal to the transformed error. Conditional on a full-rank design, this gives</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>E(\widehat{\boldsymbol\beta}_{FE}\mid\boldsymbol X,a)=\boldsymbol\beta.</span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>**Important:** $a_i$ may be correlated with $\boldsymbol X_i$; it disappears algebraically. This argument does **not** allow correlation between regressors and the idiosyncratic errors.</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. Why time-invariant regressors disappear</span></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>Suppose $z_i$ is constant over time:</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>y_{it}=\beta x_{it}+\theta z_i+a_i+u_{it}.</span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>After time demeaning,</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>\theta(z_i-\bar z_i)=\theta(z_i-z_i)=0.</span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>Thus $\theta$ cannot be estimated from within-unit variation. FE removes **both** unobserved constant characteristics and observed constant regressors.</span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. Equivalence with unit dummy variables</span></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>The least-squares dummy-variable regression can be written as</span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>y_{it}=\alpha_i+\boldsymbol x_{it}'\boldsymbol\beta+u_{it}.</span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>For any proposed $\boldsymbol\beta$, minimising the residual sum of squares with respect to $\alpha_i$ gives</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>\widehat\alpha_i(\boldsymbol\beta)</span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>=\bar y_i-\bar{\boldsymbol x}_i'\boldsymbol\beta.</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>Substituting this expression back into the residuals gives</span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>y_{it}-\widehat\alpha_i(\boldsymbol\beta)</span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>-\boldsymbol x_{it}'\boldsymbol\beta</span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>=\ddot y_{it}-\ddot{\boldsymbol x}_{it}'\boldsymbol\beta.</span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>Therefore minimising the dummy-variable regression's residual sum of squares is **the same optimisation problem** as OLS on demeaned data. Both produce identical slope coefficients.</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>For a balanced panel with $NT$ observations, $N$ unit intercepts and $k$ slopes,</span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>\boxed{df=NT-N-k.}</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>**Training-grant example:** $N=54$, $T=3$ and $k=4$ (two grant variables plus two year indicators):</span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>df=54\times3-54-4=\boxed{104}.</span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>The estimated unit intercepts can be recovered as</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>\widehat a_i=\bar y_i-\bar{\boldsymbol x}_i'\widehat{\boldsymbol\beta}_{FE},</span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>under the lecture's no-common-intercept parameterisation. With fixed $T$, each $\widehat a_i$ is estimated from only $T$ observations; increasing $N$ does not make the estimate for a **particular unit** consistent.</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. Decomposing within and between variation</span></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>Let $\bar x_i$ be unit $i$'s time average and let $\bar x$ be the grand mean. Then</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>x_{it}-\bar x=(x_{it}-\bar x_i)+(\bar x_i-\bar x).</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>Squaring and summing over $i$ and $t$ yields</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>\boxed{</span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>\sum_i\sum_t(x_{it}-\bar x)^2</span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>=\sum_i\sum_t(x_{it}-\bar x_i)^2</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>+T\sum_i(\bar x_i-\bar x)^2.</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>\tag{6}</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>The cross-product vanishes because $\sum_t(x_{it}-\bar x_i)=0$ for every $i$.</span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>Equation (6) is the **exact sum-of-squares decomposition** for a balanced panel. It is important not to write $s_O^2=s_W^2+s_B^2$ automatically: the lecture defines its displayed within, between and overall variance measures using **different denominators**, so their numerical values do not add without appropriate weights.</span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. First differences versus fixed effects</span></span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>The FD transformation of (1) is</span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>\Delta y_{it}=y_{it}-y_{i,t-1}</span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>=\beta(x_{it}-x_{i,t-1})+(u_{it}-u_{i,t-1}),</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>or</span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>\boxed{\Delta y_{it}=\beta\Delta x_{it}+\Delta u_{it}.}</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>\tag{7}</span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a>For $T=2$,</span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>\ddot x_{i1}=-\frac{\Delta x_{i2}}2,</span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>\qquad</span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>\ddot x_{i2}=\frac{\Delta x_{i2}}2,</span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>and similarly for $y$. Therefore,</span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>\sum_{t=1}^2\ddot x_{it}\ddot y_{it}</span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>&amp;=\tfrac12\Delta x_{i2}\Delta y_{i2},<span class="sc">\\</span></span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>\sum_{t=1}^2\ddot x_{it}^{\,2}</span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a>&amp;=\tfrac12(\Delta x_{i2})^2.</span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>The factors $1/2$ cancel in the OLS slope formula, giving</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a>\boxed{\widehat\beta_{FE}=\widehat\beta_{FD}\quad\text{when }T=2.}</span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a>For $T&gt;2$, FE uses deviations from the unit mean, while FD uses adjacent changes, so their estimates generally differ.</span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>**Error dependence and efficiency.** If $u_{it}$ is serially independent with variance $\sigma^2$, then</span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>\operatorname{Cov}(\Delta u_{it},\Delta u_{i,t-1})=-\sigma^2,</span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>because adjacent differences share one error with opposite signs. Conversely, if $u_{it}=u_{i,t-1}+\varepsilon_{it}$ with serially independent innovations, then $\Delta u_{it}=\varepsilon_{it}$. This helps explain the lecture's FE-versus-FD efficiency comparison.</span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a><span class="fu">### 7. Unbalanced panels: unit-specific means</span></span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a>If unit $i$ is observed in $T_i$ periods, define the mean over its **observed** periods $\mathcal T_i$:</span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>\bar x_i=\frac1{T_i}\sum_{t\in\mathcal T_i}x_{it},</span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a>\qquad</span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>\ddot x_{it}=x_{it}-\bar x_i.</span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a>If $T_i=1$, then $\ddot x_{it}=0$: the observation provides no within-unit information. The simple balanced-panel degrees-of-freedom formula must be adjusted to the actual sample and the number of identified unit effects.</span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a><span class="fu">### 8. Two-way fixed effects and double demeaning</span></span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>Consider</span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a>y_{it}=\boldsymbol x_{it}'\boldsymbol\beta+a_i+\gamma_t+u_{it}.</span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>\tag{8}</span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>For a **balanced** panel, define the unit mean $\bar y_i$, period mean $\bar y_t$ and grand mean $\bar y$. The two-way transformation is</span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>\boxed{\widetilde y_{it}=y_{it}-\bar y_i-\bar y_t+\bar y.}</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>The same transformation is applied to each regressor. To see why it works, apply it to $a_i$:</span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>a_i-a_i-\bar a+\bar a=0,</span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>and to $\gamma_t$:</span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a>\gamma_t-\bar\gamma-\gamma_t+\bar\gamma=0.</span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>Hence</span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a>\widetilde y_{it}=\widetilde{\boldsymbol x}_{it}'\boldsymbol\beta</span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>+\widetilde u_{it}.</span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>A national variable $z_t$ that is identical across units in each year satisfies $z_t-\bar z- z_t+\bar z=0$ and cannot be separately identified alongside full time effects. **For unbalanced panels, this simple double-demeaning formula is generally not sufficient**; estimation must properly partial out both sets of indicators.</span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a><span class="fu">### 9. Random effects and the composite error</span></span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>Write the RE model as</span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a>y_{it}=\beta_0+\boldsymbol x_{it}'\boldsymbol\beta+a_i+u_{it},</span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a>\qquad E(a_i)=0.</span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a>The composite error is $v_{it}=a_i+u_{it}$. Under the standard RE error-components assumptions, with $\operatorname{Var}(a_i)=\sigma_a^2$ and $\operatorname{Var}(u_{it})=\sigma_u^2$, and with $a_i$ independent of $u_{it}$ and $u_{it}$ serially uncorrelated,</span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a>\operatorname{Var}(v_{it})=\sigma_a^2+\sigma_u^2,</span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>and for $t\neq s$,</span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a>\operatorname{Cov}(v_{it},v_{is})=\sigma_a^2.</span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>Thus pooled OLS ignores within-unit error dependence, even when its slope coefficients are consistent under the RE exogeneity assumptions. RE uses an error-covariance-aware estimator (typically feasible generalised least squares) to improve efficiency. The key extra restriction remains</span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>\boxed{\operatorname{Cov}(a_i,x_{itj})=0\quad\forall t,j.}</span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a>This covariance calculation is an **explanatory extension** of the lecture's discussion of correlated composite errors; it relies on the additional variance assumptions stated above.</span>
+<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a><span class="fu">### 10. Sibling differences: fixed effects without time</span></span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>The lecture studies sisters $s=1,2$ in family $f$. A simplified version of its model is</span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>\log(\mathrm{incneeds}_{fs})</span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>=\beta_0+\delta_0\,\mathrm{sister2}_{fs}</span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a>+\beta_1\,\mathrm{teenbrth}_{fs}</span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a>+\beta_2\,\mathrm{age}_{fs}</span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>+\boldsymbol z_{fs}'\boldsymbol\theta</span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>+a_f+u_{fs},</span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a>\tag{9}</span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>where $a_f$ is shared, unobserved family background, and $\boldsymbol z_{fs}$ denotes any other included controls.</span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>Subtract sister 1's equation from sister 2's equation **within the same family**:</span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>\log(\mathrm{incneeds}_{f2})-\log(\mathrm{incneeds}_{f1})</span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a>={}&amp;\delta_0</span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a>+\beta_1(\mathrm{teenbrth}_{f2}-\mathrm{teenbrth}_{f1})<span class="sc">\\</span></span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a>&amp;+\beta_2(\mathrm{age}_{f2}-\mathrm{age}_{f1})</span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>+\Delta\boldsymbol z_f'\boldsymbol\theta</span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>+(u_{f2}-u_{f1}).</span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a>The common intercept $\beta_0$ and family effect $a_f$ cancel. Writing $\Delta$ for **sister 2 minus sister 1**,</span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a>\boxed{</span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>\Delta\log(\mathrm{incneeds})</span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a>=\delta_0+\beta_1\Delta\mathrm{teenbrth}</span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a>+\beta_2\Delta\mathrm{age}</span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>+\Delta\boldsymbol z'\boldsymbol\theta+\Delta u.</span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a>\tag{10}</span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a>Here $\Delta$ is **not a change over time**. It is a difference between sisters. The ordering of sisters must be defined consistently (for example, by age), so that the intercept $\delta_0$ has a stable interpretation.</span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a>The lecture's reported change in the estimated teenage-childbearing coefficient from $-0.33$ (pooled OLS) to $-0.08$ (within-family differences) illustrates how shared unobserved family characteristics can confound a cross-sectional association. Consistent causal estimation still requires the **within-family difference in teenage childbearing** to be exogenous to the **difference in sister-specific errors**, conditional on included controls.</span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a><span class="fu">### Formula checklist</span></span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Concept <span class="pp">|</span> Formula <span class="pp">|</span> What to remember <span class="pp">|</span></span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>:--<span class="pp">|</span>:--<span class="pp">|</span>:--<span class="pp">|</span></span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Unit effect model <span class="pp">|</span> $y_{it}=\boldsymbol x_{it}'\boldsymbol\beta+a_i+u_{it}$ <span class="pp">|</span> $a_i$ is constant over time. <span class="pp">|</span></span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Within transformation <span class="pp">|</span> $\ddot z_{it}=z_{it}-\bar z_i$ <span class="pp">|</span> Removes $a_i$ and all constant regressors. <span class="pp">|</span></span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> FE estimator <span class="pp">|</span> $(\ddot X'\ddot X)^{-1}\ddot X'\ddot y$ <span class="pp">|</span> Uses within-unit variation. <span class="pp">|</span></span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Strict exogeneity <span class="pp">|</span> $E(u_{it}\mid X_i,a_i)=0$ <span class="pp">|</span> Conditions on regressors from every period. <span class="pp">|</span></span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> FE degrees of freedom <span class="pp">|</span> $NT-N-k$ <span class="pp">|</span> Balanced panel; $k$ identified slopes. <span class="pp">|</span></span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> First differences <span class="pp">|</span> $\Delta y_{it}=\boldsymbol\beta'\Delta\boldsymbol x_{it}+\Delta u_{it}$ <span class="pp">|</span> Same slopes as FE when $T=2$. <span class="pp">|</span></span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Two-way FE <span class="pp">|</span> $y_{it}=\boldsymbol x_{it}'\boldsymbol\beta+a_i+\gamma_t+u_{it}$ <span class="pp">|</span> Controls for unit and period effects. <span class="pp">|</span></span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> RE restriction <span class="pp">|</span> $\operatorname{Cov}(a_i,x_{itj})=0$ <span class="pp">|</span> Stronger than FE's allowance for correlation. <span class="pp">|</span></span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sibling differences <span class="pp">|</span> $\Delta y_f=\boldsymbol\beta'\Delta\boldsymbol x_f+\Delta u_f$ <span class="pp">|</span> Differences are across siblings, not time. <span class="pp">|</span></span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a>*Source: Arne Uhlendorff, **Advanced Panel Data Methods**, Lecture 6 (27 October 2026), slides 1–27. The explanations and algebraic steps above expand the lecture for learning purposes; empirical figures and reported estimates are taken from the slides.*</span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a>**Ready to practise?**</span>
+<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Go to Tutorial 6</span><span class="co">](../tutorials/tutorial-06.qmd)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

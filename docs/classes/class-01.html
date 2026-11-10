@@ -109,6 +109,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -122,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Course Content</a></li><li class="breadcrumb-item"><a href="../classes/class-01.html">Class 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../classes/class-01.html">Class 1</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -156,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Course Content</span></a>
+ <span class="menu-text">Lectures</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -212,6 +241,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 8</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -222,18 +310,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#theory-intuition" id="toc-theory-intuition" class="nav-link active" data-scroll-target="#theory-intuition">Theory &amp; Intuition</a></li>
-  <li><a href="#mathematical-derivations" id="toc-mathematical-derivations" class="nav-link" data-scroll-target="#mathematical-derivations">Mathematical Derivations</a></li>
-  <li><a href="#tutorial-exercises" id="toc-tutorial-exercises" class="nav-link" data-scroll-target="#tutorial-exercises">Tutorial Exercises</a></li>
+  <li><a href="#theory-intuition" id="toc-theory-intuition" class="nav-link active" data-scroll-target="#theory-intuition">Theory &amp; Intuition</a>
+  <ul class="collapse">
+  <li><a href="#what-does-econometrics-do" id="toc-what-does-econometrics-do" class="nav-link" data-scroll-target="#what-does-econometrics-do">1. What does econometrics do?</a></li>
+  <li><a href="#economic-models-econometric-models-and-the-error-term" id="toc-economic-models-econometric-models-and-the-error-term" class="nav-link" data-scroll-target="#economic-models-econometric-models-and-the-error-term">2. Economic models, econometric models and the error term</a></li>
+  <li><a href="#four-common-data-structures" id="toc-four-common-data-structures" class="nav-link" data-scroll-target="#four-common-data-structures">3. Four common data structures</a></li>
+  <li><a href="#causality-and-ceteris-paribus" id="toc-causality-and-ceteris-paribus" class="nav-link" data-scroll-target="#causality-and-ceteris-paribus">4. Causality and <em>ceteris paribus</em></a></li>
+  <li><a href="#potential-outcomes-defining-a-causal-effect" id="toc-potential-outcomes-defining-a-causal-effect" class="nav-link" data-scroll-target="#potential-outcomes-defining-a-causal-effect">5. Potential outcomes: defining a causal effect</a></li>
+  <li><a href="#the-selection-problem" id="toc-the-selection-problem" class="nav-link" data-scroll-target="#the-selection-problem">6. The selection problem</a></li>
+  <li><a href="#simple-linear-regression-the-basic-model" id="toc-simple-linear-regression-the-basic-model" class="nav-link" data-scroll-target="#simple-linear-regression-the-basic-model">7. Simple linear regression: the basic model</a></li>
+  <li><a href="#the-key-assumption-zero-conditional-mean" id="toc-the-key-assumption-zero-conditional-mean" class="nav-link" data-scroll-target="#the-key-assumption-zero-conditional-mean">8. The key assumption: zero conditional mean</a></li>
+  <li><a href="#ordinary-least-squares-ols-choosing-the-best-fitting-line" id="toc-ordinary-least-squares-ols-choosing-the-best-fitting-line" class="nav-link" data-scroll-target="#ordinary-least-squares-ols-choosing-the-best-fitting-line">9. Ordinary least squares (OLS): choosing the best-fitting line</a></li>
+  <li><a href="#algebraic-properties-of-ols" id="toc-algebraic-properties-of-ols" class="nav-link" data-scroll-target="#algebraic-properties-of-ols">10. Algebraic properties of OLS</a></li>
+  <li><a href="#goodness-of-fit-interpreting-r2" id="toc-goodness-of-fit-interpreting-r2" class="nav-link" data-scroll-target="#goodness-of-fit-interpreting-r2">11. Goodness of fit: interpreting <span class="math inline">\(R^2\)</span></a></li>
+  <li><a href="#units-logarithms-and-functional-form" id="toc-units-logarithms-and-functional-form" class="nav-link" data-scroll-target="#units-logarithms-and-functional-form">12. Units, logarithms and functional form</a></li>
+  <li><a href="#what-makes-ols-unbiased" id="toc-what-makes-ols-unbiased" class="nav-link" data-scroll-target="#what-makes-ols-unbiased">13. What makes OLS unbiased?</a></li>
+  </ul></li>
+  <li><a href="#mathematical-derivations" id="toc-mathematical-derivations" class="nav-link" data-scroll-target="#mathematical-derivations">Mathematical Derivations</a>
+  <ul class="collapse">
+  <li><a href="#recentring-the-error-to-have-mean-zero" id="toc-recentring-the-error-to-have-mean-zero" class="nav-link" data-scroll-target="#recentring-the-error-to-have-mean-zero">1. Recentring the error to have mean zero</a></li>
+  <li><a href="#from-zero-conditional-mean-to-the-population-regression-function" id="toc-from-zero-conditional-mean-to-the-population-regression-function" class="nav-link" data-scroll-target="#from-zero-conditional-mean-to-the-population-regression-function">2. From zero conditional mean to the population regression function</a></li>
+  <li><a href="#deriving-the-ols-estimates-by-minimisation" id="toc-deriving-the-ols-estimates-by-minimisation" class="nav-link" data-scroll-target="#deriving-the-ols-estimates-by-minimisation">3. Deriving the OLS estimates by minimisation</a></li>
+  <li><a href="#why-the-residual-properties-hold" id="toc-why-the-residual-properties-hold" class="nav-link" data-scroll-target="#why-the-residual-properties-hold">4. Why the residual properties hold</a></li>
+  <li><a href="#deriving-the-decomposition-of-variation-and-r2" id="toc-deriving-the-decomposition-of-variation-and-r2" class="nav-link" data-scroll-target="#deriving-the-decomposition-of-variation-and-r2">5. Deriving the decomposition of variation and <span class="math inline">\(R^2\)</span></a></li>
+  <li><a href="#deriving-the-log-level-percentage-effect" id="toc-deriving-the-log-level-percentage-effect" class="nav-link" data-scroll-target="#deriving-the-log-level-percentage-effect">6. Deriving the log-level percentage effect</a></li>
+  <li><a href="#deriving-the-levellog-and-loglog-interpretations" id="toc-deriving-the-levellog-and-loglog-interpretations" class="nav-link" data-scroll-target="#deriving-the-levellog-and-loglog-interpretations">7. Deriving the level–log and log–log interpretations</a></li>
+  <li><a href="#deriving-the-unbiasedness-of-the-ols-slope" id="toc-deriving-the-unbiasedness-of-the-ols-slope" class="nav-link" data-scroll-target="#deriving-the-unbiasedness-of-the-ols-slope">8. Deriving the unbiasedness of the OLS slope</a></li>
+  <li><a href="#deriving-the-unbiasedness-of-the-intercept" id="toc-deriving-the-unbiasedness-of-the-intercept" class="nav-link" data-scroll-target="#deriving-the-unbiasedness-of-the-intercept">9. Deriving the unbiasedness of the intercept</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Course Content</a></li><li class="breadcrumb-item"><a href="../classes/class-01.html">Class 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../classes/class-01.html">Class 1</a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Class 1</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Introduction to Econometrics and Simple Linear Regression</p>
 </div>
 
 
@@ -250,18 +364,573 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<blockquote class="blockquote">
+<p><strong>Source and scope.</strong> Study notes based on Arne Uhlendorff’s <em>Applied Econometrics</em>, Lecture 1 (68 slides). Explanations and worked illustrations are rewritten for learning purposes. The lecture covers both causal inference and simple regression; neither should be skipped. Tutorial exercises are intentionally reserved for later.</p>
+</blockquote>
 <section id="theory-intuition" class="level2">
 <h2 class="anchored" data-anchor-id="theory-intuition">Theory &amp; Intuition</h2>
+<section id="what-does-econometrics-do" class="level3">
+<h3 class="anchored" data-anchor-id="what-does-econometrics-do">1. What does econometrics do?</h3>
+<p><strong>Econometrics</strong> uses economic theory, data and statistical methods to quantify relationships, test hypotheses, evaluate policies and make forecasts. Its central challenge is distinguishing <strong>association</strong> from <strong>causation</strong>.</p>
+<p>For example, people with more education often earn more. This is an <em>association</em>. To claim that an additional year of education <strong>causes</strong> higher earnings, we must rule out alternative explanations, such as differences in ability or family background.</p>
+<p>A typical analysis proceeds as follows:</p>
+<ol type="1">
+<li><strong>Define a question:</strong> Does an extra year of schooling increase hourly wages?</li>
+<li><strong>Specify an economic model:</strong> Explain why education might affect productivity and wages.</li>
+<li><strong>Specify an econometric model:</strong> Express the relationship mathematically, including unobserved influences.</li>
+<li><strong>Collect data, estimate and draw inferences:</strong> Evaluate the evidence and assess whether the assumptions are credible.</li>
+</ol>
+</section>
+<section id="economic-models-econometric-models-and-the-error-term" class="level3">
+<h3 class="anchored" data-anchor-id="economic-models-econometric-models-and-the-error-term">2. Economic models, econometric models and the error term</h3>
+<p>An <strong>economic model</strong> describes a mechanism. An <strong>econometric model</strong> translates it into a relationship that can be estimated from data.</p>
+<p>The lecture uses Gary Becker’s model of criminal behaviour as an illustration. Economic theory suggests that time devoted to crime depends on the returns to criminal and legal activity, the risk of being caught and punished, age and other factors. An empirical equation might be:</p>
+<p><span class="math display">\[
+crime_i = \beta_0 + \beta_1 wage_i + \beta_2 income_i
++ \beta_3 arrests_i + \beta_4 convictions_i
++ \beta_5 sentence_i + \beta_6 age_i + u_i.
+\]</span></p>
+<p>Here, <span class="math inline">\(crime_i\)</span> is a measure of criminal activity, and <span class="math inline">\(u_i\)</span> contains influences not explicitly included in the model (for example, some aspects of personal circumstances). The precise proxies and functional form are modelling choices, not facts supplied by economic theory.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Why the error term matters
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If an omitted factor affects both an explanatory variable and the outcome, the estimated relationship may be misleading. Including an error term does <strong>not</strong> automatically solve omitted-variable bias; we need assumptions about how that error relates to the observed variables.</p>
+</div>
+</div>
+</section>
+<section id="four-common-data-structures" class="level3">
+<h3 class="anchored" data-anchor-id="four-common-data-structures">3. Four common data structures</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Structure</th>
+<th>What is observed?</th>
+<th>Example</th>
+<th>Main feature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Cross-section</strong></td>
+<td>Different units in one period</td>
+<td>Wages of 526 workers</td>
+<td>Units differ, time is essentially fixed</td>
+</tr>
+<tr class="even">
+<td><strong>Pooled cross-sections</strong></td>
+<td>Separate samples from multiple periods</td>
+<td>House prices from different houses in 1993 and 1995</td>
+<td>Units need not be the same across periods</td>
+</tr>
+<tr class="odd">
+<td><strong>Panel (longitudinal)</strong></td>
+<td>The same units repeatedly over time</td>
+<td>Crime rates in the same cities in 1986 and 1990</td>
+<td>Tracks within-unit changes</td>
+</tr>
+<tr class="even">
+<td><strong>Time series</strong></td>
+<td>One unit or aggregate measured over time</td>
+<td>Quarterly GDP</td>
+<td>Observations may be serially correlated</td>
+</tr>
+</tbody>
+</table>
+<p>The lecture initially concentrates on a <strong>random cross-sectional sample</strong>. Random sampling is an assumption about how observations are obtained; it does <strong>not</strong> mean that education, wages or other explanatory variables are randomly assigned.</p>
+<p>Panel data can help account for characteristics that do not change over time. Time-series data require particular care with trends, seasonality and dependence between successive observations.</p>
+</section>
+<section id="causality-and-ceteris-paribus" class="level3">
+<h3 class="anchored" data-anchor-id="causality-and-ceteris-paribus">4. Causality and <em>ceteris paribus</em></h3>
+<p><em>Ceteris paribus</em> means <strong>holding other relevant factors constant</strong>. The causal question is not merely whether <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> move together, but what would happen to <span class="math inline">\(y\)</span> if we changed <span class="math inline">\(x\)</span> while relevant alternative influences remained fixed.</p>
+<ul>
+<li><strong>Education and wages:</strong> People choose different amounts of education; those choices may correlate with ability and family background.</li>
+<li><strong>Minimum wages and unemployment:</strong> Governments change minimum wages in response to economic and political circumstances, which may also affect employment.</li>
+<li><strong>Ice cream and drowning:</strong> Both may increase in hot weather. Their correlation does not establish that one causes the other.</li>
+</ul>
+<p>A useful thought experiment is to ask what <strong>randomised experiment</strong> would answer the question. Random assignment can make treatment groups comparable <em>on average</em>. Where experiments are infeasible, econometric methods attempt to construct credible comparisons using observational data.</p>
+</section>
+<section id="potential-outcomes-defining-a-causal-effect" class="level3">
+<h3 class="anchored" data-anchor-id="potential-outcomes-defining-a-causal-effect">5. Potential outcomes: defining a causal effect</h3>
+<p>Let <span class="math inline">\(D_i=1\)</span> if person <span class="math inline">\(i\)</span> receives a treatment and <span class="math inline">\(D_i=0\)</span> otherwise. Define:</p>
+<ul>
+<li><span class="math inline">\(Y_i(1)\)</span>: the outcome person <span class="math inline">\(i\)</span> <strong>would have</strong> under treatment;</li>
+<li><span class="math inline">\(Y_i(0)\)</span>: the outcome the same person <strong>would have</strong> without treatment.</li>
+</ul>
+<p>The <strong>individual treatment effect</strong> is:</p>
+<p><span class="math display">\[
+\Delta_i=Y_i(1)-Y_i(0).
+\]</span></p>
+<p><strong>Fundamental problem of causal inference:</strong> for a given person at a given point in time, we observe only one of these two potential outcomes. The other is a <strong>counterfactual</strong>.</p>
+<p>For example, if a worker earns £18 per hour after a training programme, that does not tell us what the <em>same worker</em> would have earned without training.</p>
+<p>We therefore study average effects:</p>
+<p><span class="math display">\[
+\underbrace{ATE}_{\text{average treatment effect}}
+=\mathbb E[Y(1)-Y(0)],
+\]</span></p>
+<p><span class="math display">\[
+\underbrace{ATT}_{\text{average treatment effect on the treated}}
+=\mathbb E[Y(1)-Y(0)\mid D=1].
+\]</span></p>
+<p><strong>ATE</strong> concerns the population overall; <strong>ATT</strong> concerns those who actually received treatment. They need not coincide when effects differ across individuals.</p>
+</section>
+<section id="the-selection-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-selection-problem">6. The selection problem</h3>
+<p>A tempting estimate is the difference between the average observed outcomes of treated and untreated people:</p>
+<p><span class="math display">\[
+\mathbb E[Y\mid D=1]-\mathbb E[Y\mid D=0].
+\]</span></p>
+<p>But the two groups might have differed <strong>even without treatment</strong>. That pre-existing difference is <strong>selection bias</strong>.</p>
+<p><strong>Illustration (hypothetical):</strong> Trainees earn £20/hour after training, while non-trainees earn £17/hour. The observed difference is £3/hour. Suppose the trainees would already have earned £19/hour without training. Then the ATT is £1/hour and the selection bias is £2/hour. We normally cannot observe that £19 counterfactual directly.</p>
+<p>Random assignment makes treatment independent of potential outcomes in the population, removing selection bias <strong>in expectation</strong>. In a finite experiment, realised sample means can still differ by chance. Without randomisation, methods such as regression, difference-in-differences and instrumental variables require additional identifying assumptions.</p>
+</section>
+<section id="simple-linear-regression-the-basic-model" class="level3">
+<h3 class="anchored" data-anchor-id="simple-linear-regression-the-basic-model">7. Simple linear regression: the basic model</h3>
+<p>The population model is:</p>
+<p><span class="math display">\[
+\boxed{Y_i=\beta_0+\beta_1 X_i+u_i.}
+\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Y_i\)</span></td>
+<td>Dependent variable: outcome to explain</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(X_i\)</span></td>
+<td>Explanatory variable (regressor)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\beta_0\)</span></td>
+<td>Population intercept</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\beta_1\)</span></td>
+<td>Population slope</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(u_i\)</span></td>
+<td>Unobserved influences on <span class="math inline">\(Y_i\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(i=1,\ldots,n\)</span></td>
+<td>Observation index</td>
+</tr>
+</tbody>
+</table>
+<p>The model is <strong>linear in its parameters</strong>. For a fixed error term, increasing <span class="math inline">\(X\)</span> by <span class="math inline">\(\Delta X\)</span> changes <span class="math inline">\(Y\)</span> by <span class="math inline">\(\beta_1\Delta X\)</span>.</p>
+<p><strong>Wage example:</strong></p>
+<p><span class="math display">\[
+wage_i=\beta_0+\beta_1 educ_i+u_i.
+\]</span></p>
+<p>If <span class="math inline">\(\beta_1=0.54\)</span>, an additional year of education corresponds to £0.54 more in hourly wages <strong>within this model, holding <span class="math inline">\(u_i\)</span> fixed</strong>. Interpreting an estimated slope as a causal effect requires stronger assumptions than fitting a line.</p>
+<section id="population-parameters-versus-sample-estimates" class="level4">
+<h4 class="anchored" data-anchor-id="population-parameters-versus-sample-estimates">Population parameters versus sample estimates</h4>
+<p><span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are fixed but unknown <strong>population parameters</strong>. Their estimates, <span class="math inline">\(\hat\beta_0\)</span> and <span class="math inline">\(\hat\beta_1\)</span>, are calculated from a sample and vary across samples.</p>
+<p>The <strong>population regression function</strong> (PRF) describes the conditional average outcome:</p>
+<p><span class="math display">\[
+\mathbb E[Y\mid X=x]=\beta_0+\beta_1x
+\]</span></p>
+<p><strong>provided</strong> <span class="math inline">\(\mathbb E[u\mid X=x]=0\)</span>. Individual outcomes can lie above or below this line because their errors differ.</p>
+</section>
+</section>
+<section id="the-key-assumption-zero-conditional-mean" class="level3">
+<h3 class="anchored" data-anchor-id="the-key-assumption-zero-conditional-mean">8. The key assumption: zero conditional mean</h3>
+<p>The lecture distinguishes two conditions:</p>
+<ol type="1">
+<li><strong>Zero unconditional mean:</strong> <span class="math inline">\(\mathbb E[u]=0\)</span>. With an intercept, we can absorb any non-zero error mean into the intercept.</li>
+<li><strong>Zero conditional mean:</strong> <span class="math inline">\(\mathbb E[u\mid X]=0\)</span>. At <strong>every</strong> value of <span class="math inline">\(X\)</span>, the average unobserved influence is zero.</li>
+</ol>
+<p>The second is much more demanding. In the wage example, it says that people with different years of education do not systematically differ in the <em>combined omitted influences</em> on wages. If ability affects wages and is associated with schooling, this condition may fail.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Three distinctions worth remembering
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><span class="math inline">\(\mathbb E[u]=0\)</span> does <strong>not</strong> imply <span class="math inline">\(\mathbb E[u\mid X]=0\)</span>.</li>
+<li>A random <strong>sample</strong> does <strong>not</strong> imply random <strong>assignment</strong> of <span class="math inline">\(X\)</span>.</li>
+<li>OLS residuals are uncorrelated with <span class="math inline">\(X\)</span> <strong>by construction</strong>; this does <strong>not</strong> prove that the unobserved population errors are unrelated to <span class="math inline">\(X\)</span>.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="ordinary-least-squares-ols-choosing-the-best-fitting-line" class="level3">
+<h3 class="anchored" data-anchor-id="ordinary-least-squares-ols-choosing-the-best-fitting-line">9. Ordinary least squares (OLS): choosing the best-fitting line</h3>
+<p>Given observations <span class="math inline">\((X_i,Y_i)\)</span>, OLS selects the intercept and slope that minimise the <strong>sum of squared residuals</strong>:</p>
+<p><span class="math display">\[
+\min_{b_0,b_1}\sum_{i=1}^n(Y_i-b_0-b_1X_i)^2.
+\]</span></p>
+<p>For each observation:</p>
+<p><span class="math display">\[
+\hat Y_i=\hat\beta_0+\hat\beta_1X_i,
+\qquad \hat u_i=Y_i-\hat Y_i.
+\]</span></p>
+<p><span class="math inline">\(\hat Y_i\)</span> is the <strong>fitted value</strong>; <span class="math inline">\(\hat u_i\)</span> is the <strong>residual</strong>. A residual is observable after estimation; the population error <span class="math inline">\(u_i\)</span> is not.</p>
+<p>Squaring residuals prevents positive and negative errors from cancelling and penalises large errors more heavily.</p>
+<p>The resulting estimates are:</p>
+<p><span class="math display">\[
+\boxed{\hat\beta_1=
+\frac{\sum_i(X_i-\bar X)(Y_i-\bar Y)}
+{\sum_i(X_i-\bar X)^2}},
+\qquad
+\boxed{\hat\beta_0=\bar Y-\hat\beta_1\bar X}.
+\]</span></p>
+<p>The slope is the sample covariance of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> divided by the sample variance of <span class="math inline">\(X\)</span> (using the same denominator convention for both). It is defined only when <span class="math inline">\(X\)</span> varies in the sample.</p>
+<p><strong>Lecture illustration:</strong> In a sample of 526 workers, the estimated line is</p>
+<p><span class="math display">\[
+\widehat{wage}=-0.90+0.54\,educ.
+\]</span></p>
+<p>At eight years of education, the fitted hourly wage is <span class="math inline">\(-0.90+0.54(8)=3.42\)</span> in the dataset’s wage units. The negative intercept should not be interpreted literally if zero years of education lies outside the relevant sample range. The £ amounts used elsewhere on this page are separate illustrative units, not a claim about the dataset’s currency.</p>
+</section>
+<section id="algebraic-properties-of-ols" class="level3">
+<h3 class="anchored" data-anchor-id="algebraic-properties-of-ols">10. Algebraic properties of OLS</h3>
+<p>When OLS includes an intercept, the fitted line has several <strong>exact sample properties</strong>:</p>
+<ul>
+<li><strong>Residuals sum to zero:</strong> <span class="math inline">\(\sum_i\hat u_i=0\)</span>.</li>
+<li><strong>Residuals are orthogonal to <span class="math inline">\(X\)</span>:</strong> <span class="math inline">\(\sum_i X_i\hat u_i=0\)</span>.</li>
+<li><strong>Fitted values and residuals are orthogonal:</strong> <span class="math inline">\(\sum_i\hat Y_i\hat u_i=0\)</span>.</li>
+<li><strong>Average fitted outcome equals average actual outcome:</strong> <span class="math inline">\(\overline{\hat Y}=\bar Y\)</span>.</li>
+<li><strong>The fitted line passes through the sample means:</strong> <span class="math inline">\((\bar X,\bar Y)\)</span>.</li>
+</ul>
+<p>These are algebraic consequences of minimising squared residuals, <strong>not</strong> evidence that the regression is causal or correctly specified.</p>
+</section>
+<section id="goodness-of-fit-interpreting-r2" class="level3">
+<h3 class="anchored" data-anchor-id="goodness-of-fit-interpreting-r2">11. Goodness of fit: interpreting <span class="math inline">\(R^2\)</span></h3>
+<p>With an intercept, the total variation in the outcome can be split into explained and unexplained parts:</p>
+<p><span class="math display">\[
+\underbrace{\sum_i(Y_i-\bar Y)^2}_{SST}
+=
+\underbrace{\sum_i(\hat Y_i-\bar Y)^2}_{SSE\;\text{(explained)}}
++
+\underbrace{\sum_i\hat u_i^2}_{SSR\;\text{(residual)}}.
+\]</span></p>
+<p><strong>Note the lecture’s notation:</strong> It calls the explained sum of squares <strong>SSE</strong> and the residual sum of squares <strong>SSR</strong>. Other textbooks use different abbreviations, so always check definitions.</p>
+<p>For <span class="math inline">\(SST&gt;0\)</span>:</p>
+<p><span class="math display">\[
+\boxed{R^2=\frac{SSE}{SST}=1-\frac{SSR}{SST}.}
+\]</span></p>
+<p>In simple OLS with an intercept, <span class="math inline">\(0\le R^2\le1\)</span>. For example, <span class="math inline">\(R^2=0.40\)</span> means the fitted line accounts for 40% of the <em>sample variation</em> in <span class="math inline">\(Y\)</span> around its mean. It does <strong>not</strong> mean that <span class="math inline">\(X\)</span> causes 40% of <span class="math inline">\(Y\)</span>, nor that 40% of individuals’ outcomes are determined by <span class="math inline">\(X\)</span>.</p>
+</section>
+<section id="units-logarithms-and-functional-form" class="level3">
+<h3 class="anchored" data-anchor-id="units-logarithms-and-functional-form">12. Units, logarithms and functional form</h3>
+<p>The units of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> determine how to read a coefficient. If wages are converted from pounds to pence, all wage-level coefficients multiply by 100, but <span class="math inline">\(R^2\)</span> stays unchanged.</p>
+<p>The lecture introduces four common specifications. Here <span class="math inline">\(\log\)</span> means the <strong>natural logarithm</strong>; log models require positive values for logged variables.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Equation</th>
+<th>Interpretation of <span class="math inline">\(\beta_1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Level–level</strong></td>
+<td><span class="math inline">\(Y=\beta_0+\beta_1X+u\)</span></td>
+<td>One extra unit of <span class="math inline">\(X\)</span> corresponds to <span class="math inline">\(\beta_1\)</span> units of <span class="math inline">\(Y\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Log–level</strong></td>
+<td><span class="math inline">\(\log Y=\beta_0+\beta_1X+u\)</span></td>
+<td>One extra unit of <span class="math inline">\(X\)</span> corresponds to approximately <span class="math inline">\(100\beta_1\%\)</span> change in <span class="math inline">\(Y\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Level–log</strong></td>
+<td><span class="math inline">\(Y=\beta_0+\beta_1\log X+u\)</span></td>
+<td>A 1% increase in <span class="math inline">\(X\)</span> corresponds to approximately <span class="math inline">\(\beta_1/100\)</span> units of <span class="math inline">\(Y\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>Log–log</strong></td>
+<td><span class="math inline">\(\log Y=\beta_0+\beta_1\log X+u\)</span></td>
+<td>A 1% increase in <span class="math inline">\(X\)</span> corresponds to approximately <span class="math inline">\(\beta_1\%\)</span> change in <span class="math inline">\(Y\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>These are interpretations of the specified relationships; <strong>causal</strong> interpretations still require identification assumptions.</p>
+<section id="marginal-effects-semi-elasticities-and-elasticities" class="level4">
+<h4 class="anchored" data-anchor-id="marginal-effects-semi-elasticities-and-elasticities">Marginal effects, semi-elasticities and elasticities</h4>
+<p><span class="math display">\[
+\text{Marginal effect}=\frac{\partial Y}{\partial X},\qquad
+\text{Semi-elasticity}=\frac{1}{Y}\frac{\partial Y}{\partial X},\qquad
+\text{Elasticity}=\frac{X}{Y}\frac{\partial Y}{\partial X}.
+\]</span></p>
+<p>The <strong>marginal effect</strong> measures units of <span class="math inline">\(Y\)</span> per unit of <span class="math inline">\(X\)</span>. The <strong>semi-elasticity</strong> measures proportional change in <span class="math inline">\(Y\)</span> per unit of <span class="math inline">\(X\)</span>. The <strong>elasticity</strong> measures proportional change in <span class="math inline">\(Y\)</span> per proportional change in <span class="math inline">\(X\)</span>.</p>
+<p><strong>Lecture wage illustration:</strong></p>
+<p><span class="math display">\[
+\widehat{\log(wage)}=0.584+0.083\,educ.
+\]</span></p>
+<p>One more year of education is associated with approximately <strong>8.3%</strong> higher wages. The exact percentage difference implied by the log-level equation is <span class="math inline">\(100(e^{0.083}-1)\approx8.65\%\)</span> (about <strong>8.7%</strong>). This is an association unless the relevant causal assumptions hold.</p>
+</section>
+</section>
+<section id="what-makes-ols-unbiased" class="level3">
+<h3 class="anchored" data-anchor-id="what-makes-ols-unbiased">13. What makes OLS unbiased?</h3>
+<p>The lecture concludes with four assumptions for simple linear regression:</p>
+<ol type="1">
+<li><strong>SLR.1 — Linear in parameters:</strong> <span class="math inline">\(Y_i=\beta_0+\beta_1X_i+u_i\)</span>.</li>
+<li><strong>SLR.2 — Random sampling:</strong> <span class="math inline">\((X_i,Y_i)\)</span> are independently sampled from the population.</li>
+<li><strong>SLR.3 — Sample variation:</strong> <span class="math inline">\(\sum_i(X_i-\bar X)^2&gt;0\)</span>.</li>
+<li><strong>SLR.4 — Zero conditional mean:</strong> <span class="math inline">\(\mathbb E[u_i\mid X_i]=0\)</span>.</li>
+</ol>
+<p>Under these assumptions, OLS is <strong>unbiased</strong>:</p>
+<p><span class="math display">\[
+\mathbb E[\hat\beta_1]=\beta_1,
+\qquad
+\mathbb E[\hat\beta_0]=\beta_0.
+\]</span></p>
+<p>Unbiasedness means that the estimator is correct <strong>on average across repeated random samples</strong>; it does not guarantee that any one estimate equals the population parameter. The lecture proves the slope result and leaves the intercept proof implicit. Both derivations are supplied below.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>The central diagnostic question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>What is hidden in <span class="math inline">\(u\)</span>? Could those omitted influences be systematically related to <span class="math inline">\(X\)</span>? If so, zero conditional mean is doubtful and the OLS slope need not identify the causal effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span>.</p>
+</div>
+</div>
+</section>
 </section>
 <section id="mathematical-derivations" class="level2">
 <h2 class="anchored" data-anchor-id="mathematical-derivations">Mathematical Derivations</h2>
+<section id="recentring-the-error-to-have-mean-zero" class="level3">
+<h3 class="anchored" data-anchor-id="recentring-the-error-to-have-mean-zero">1. Recentring the error to have mean zero</h3>
+<p>Start from <span class="math inline">\(Y=\beta_0+\beta_1X+u\)</span>, and suppose <span class="math inline">\(\mathbb E[u]=\alpha_0\)</span>. Define <span class="math inline">\(u^*=u-\alpha_0\)</span> and <span class="math inline">\(\beta_0^*=\beta_0+\alpha_0\)</span>. Then</p>
+<p><span class="math display">\[
+Y=\beta_0^*+\beta_1X+u^*,
+\qquad \mathbb E[u^*]=0.
+\]</span></p>
+<p>Thus, with an intercept, imposing a zero <strong>unconditional</strong> error mean is a normalisation: the slope does not change. It says nothing about whether <span class="math inline">\(\mathbb E[u^*\mid X]=0\)</span>.</p>
 </section>
-<section id="tutorial-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-exercises">Tutorial Exercises</h2>
+<section id="from-zero-conditional-mean-to-the-population-regression-function" class="level3">
+<h3 class="anchored" data-anchor-id="from-zero-conditional-mean-to-the-population-regression-function">2. From zero conditional mean to the population regression function</h3>
+<p>Assume <span class="math inline">\(\mathbb E[u\mid X]=0\)</span>. By linearity of conditional expectation,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbb E[Y\mid X]
+&amp;=\mathbb E[\beta_0+\beta_1X+u\mid X]\\
+&amp;=\beta_0+\beta_1X+\mathbb E[u\mid X]\\
+&amp;=\beta_0+\beta_1X.
+\end{aligned}
+\]</span></p>
+<p>By iterated expectations, <span class="math inline">\(\mathbb E[u]=\mathbb E[\mathbb E[u\mid X]]=0\)</span>. Moreover,</p>
+<p><span class="math display">\[
+\operatorname{Cov}(X,u)
+=\mathbb E[Xu]-\mathbb E[X]\mathbb E[u]=0,
+\]</span></p>
+<p>provided the relevant moments exist, because <span class="math inline">\(\mathbb E[Xu]=\mathbb E[X\mathbb E[u\mid X]]=0\)</span>. The converse is <strong>not</strong> generally true: zero covariance is weaker than zero conditional mean.</p>
+</section>
+<section id="deriving-the-ols-estimates-by-minimisation" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-ols-estimates-by-minimisation">3. Deriving the OLS estimates by minimisation</h3>
+<p>For candidate coefficients <span class="math inline">\(b_0,b_1\)</span>, define</p>
+<p><span class="math display">\[
+Q(b_0,b_1)=\sum_{i=1}^n(Y_i-b_0-b_1X_i)^2.
+\]</span></p>
+<p><strong>Step 1 — Differentiate with respect to the intercept.</strong></p>
+<p><span class="math display">\[
+\frac{\partial Q}{\partial b_0}
+=-2\sum_i(Y_i-b_0-b_1X_i)=0.
+\]</span></p>
+<p>Hence <span class="math inline">\(\sum_i(Y_i-\hat\beta_0-\hat\beta_1X_i)=0\)</span>, so</p>
+<p><span class="math display">\[
+\boxed{\hat\beta_0=\bar Y-\hat\beta_1\bar X.}
+\]</span></p>
+<p><strong>Step 2 — Differentiate with respect to the slope.</strong></p>
+<p><span class="math display">\[
+\frac{\partial Q}{\partial b_1}
+=-2\sum_i X_i(Y_i-b_0-b_1X_i)=0.
+\]</span></p>
+<p><strong>Step 3 — Substitute the intercept formula.</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+0&amp;=\sum_i X_i\big[(Y_i-\bar Y)-\hat\beta_1(X_i-\bar X)\big]\\
+&amp;=\sum_i(X_i-\bar X)(Y_i-\bar Y)
+-\hat\beta_1\sum_i(X_i-\bar X)^2.
+\end{aligned}
+\]</span></p>
+<p>We used <span class="math inline">\(\sum_i(X_i-\bar X)=0\)</span> and <span class="math inline">\(\sum_i(Y_i-\bar Y)=0\)</span>.</p>
+<p><strong>Step 4 — Solve.</strong> If <span class="math inline">\(S_{xx}=\sum_i(X_i-\bar X)^2&gt;0\)</span>,</p>
+<p><span class="math display">\[
+\boxed{\hat\beta_1=
+\frac{\sum_i(X_i-\bar X)(Y_i-\bar Y)}{S_{xx}}.}
+\]</span></p>
+<p>Since <span class="math inline">\(Q\)</span> is a sum of squares, and the design matrix has full column rank when <span class="math inline">\(S_{xx}&gt;0\)</span>, these first-order conditions give the unique global minimum.</p>
+</section>
+<section id="why-the-residual-properties-hold" class="level3">
+<h3 class="anchored" data-anchor-id="why-the-residual-properties-hold">4. Why the residual properties hold</h3>
+<p>The two first-order conditions can be written</p>
+<p><span class="math display">\[
+\sum_i\hat u_i=0,
+\qquad
+\sum_iX_i\hat u_i=0.
+\]</span></p>
+<p>Since <span class="math inline">\(\hat Y_i=\hat\beta_0+\hat\beta_1X_i\)</span>,</p>
+<p><span class="math display">\[
+\sum_i\hat Y_i\hat u_i
+=\hat\beta_0\sum_i\hat u_i
++\hat\beta_1\sum_iX_i\hat u_i=0.
+\]</span></p>
+<p>Averaging <span class="math inline">\(Y_i=\hat Y_i+\hat u_i\)</span> gives <span class="math inline">\(\bar Y=\overline{\hat Y}\)</span>. Substituting the intercept formula into the fitted line shows</p>
+<p><span class="math display">\[
+\hat\beta_0+\hat\beta_1\bar X=\bar Y.
+\]</span></p>
+<p>Hence the fitted line passes through <span class="math inline">\((\bar X,\bar Y)\)</span>.</p>
+</section>
+<section id="deriving-the-decomposition-of-variation-and-r2" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-decomposition-of-variation-and-r2">5. Deriving the decomposition of variation and <span class="math inline">\(R^2\)</span></h3>
+<p>For each observation,</p>
+<p><span class="math display">\[
+Y_i-\bar Y=(Y_i-\hat Y_i)+(\hat Y_i-\bar Y)
+=\hat u_i+(\hat Y_i-\bar Y).
+\]</span></p>
+<p>Square and sum:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_i(Y_i-\bar Y)^2
+&amp;=\sum_i\hat u_i^2
++\sum_i(\hat Y_i-\bar Y)^2\\
+&amp;\quad+2\sum_i\hat u_i(\hat Y_i-\bar Y).
+\end{aligned}
+\]</span></p>
+<p>The cross-term is zero because <span class="math inline">\(\sum_i\hat u_i\hat Y_i=0\)</span> and <span class="math inline">\(\sum_i\hat u_i=0\)</span>. Therefore,</p>
+<p><span class="math display">\[
+SST=SSR+SSE,
+\qquad
+R^2=1-\frac{SSR}{SST}=\frac{SSE}{SST}.
+\]</span></p>
+<p>This decomposition assumes OLS <strong>with an intercept</strong>; it should not be applied uncritically to regressions without one.</p>
+</section>
+<section id="deriving-the-log-level-percentage-effect" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-log-level-percentage-effect">6. Deriving the log-level percentage effect</h3>
+<p>Consider <span class="math inline">\(\log Y=\beta_0+\beta_1X+u\)</span> with <span class="math inline">\(Y&gt;0\)</span>. Holding <span class="math inline">\(u\)</span> fixed, compare <span class="math inline">\(X_0\)</span> and <span class="math inline">\(X_1\)</span>:</p>
+<p><span class="math display">\[
+\log Y_1-\log Y_0=\beta_1(X_1-X_0)=\beta_1\Delta X.
+\]</span></p>
+<p>Exponentiating,</p>
+<p><span class="math display">\[
+\frac{Y_1}{Y_0}=e^{\beta_1\Delta X}.
+\]</span></p>
+<p>Thus the <strong>exact</strong> percentage change is</p>
+<p><span class="math display">\[
+\boxed{100\frac{Y_1-Y_0}{Y_0}
+=100\left(e^{\beta_1\Delta X}-1\right).}
+\]</span></p>
+<p>For small <span class="math inline">\(\beta_1\Delta X\)</span>, use <span class="math inline">\(e^z\approx1+z\)</span> to obtain the approximation <span class="math inline">\(100\beta_1\Delta X\%\)</span>. The approximation becomes less accurate as the change grows.</p>
+</section>
+<section id="deriving-the-levellog-and-loglog-interpretations" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-levellog-and-loglog-interpretations">7. Deriving the level–log and log–log interpretations</h3>
+<p>For the <strong>level–log</strong> model <span class="math inline">\(Y=\beta_0+\beta_1\log X+u\)</span> (<span class="math inline">\(X&gt;0\)</span>), holding <span class="math inline">\(u\)</span> fixed,</p>
+<p><span class="math display">\[
+\frac{\partial Y}{\partial X}=\frac{\beta_1}{X}.
+\]</span></p>
+<p>A 1% increase in <span class="math inline">\(X\)</span> means <span class="math inline">\(\Delta X\approx0.01X\)</span>, giving <span class="math inline">\(\Delta Y\approx\beta_1/100\)</span>. The <strong>exact</strong> finite change for a 1% increase is <span class="math inline">\(\beta_1\log(1.01)\)</span>.</p>
+<p>For the <strong>log–log</strong> model <span class="math inline">\(\log Y=\beta_0+\beta_1\log X+u\)</span> (<span class="math inline">\(X,Y&gt;0\)</span>),</p>
+<p><span class="math display">\[
+\frac{1}{Y}\frac{\partial Y}{\partial X}
+=\frac{\beta_1}{X}
+\quad\Longrightarrow\quad
+\boxed{\frac{X}{Y}\frac{\partial Y}{\partial X}=\beta_1.}
+\]</span></p>
+<p>Thus <span class="math inline">\(\beta_1\)</span> is the elasticity. For a finite 1% increase in <span class="math inline">\(X\)</span>, the exact percentage change in <span class="math inline">\(Y\)</span> (holding <span class="math inline">\(u\)</span> fixed) is <span class="math inline">\(100[(1.01)^{\beta_1}-1]\%\)</span>.</p>
+</section>
+<section id="deriving-the-unbiasedness-of-the-ols-slope" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-unbiasedness-of-the-ols-slope">8. Deriving the unbiasedness of the OLS slope</h3>
+<p>Let <span class="math inline">\(S_{xx}=\sum_i(X_i-\bar X)^2&gt;0\)</span>. Write the OLS slope as</p>
+<p><span class="math display">\[
+\hat\beta_1=\frac{\sum_i(X_i-\bar X)Y_i}{S_{xx}}.
+\]</span></p>
+<p><strong>Step 1 — Substitute the population model.</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat\beta_1
+&amp;=\frac{\sum_i(X_i-\bar X)(\beta_0+\beta_1X_i+u_i)}{S_{xx}}\\
+&amp;=\beta_1+\frac{\sum_i(X_i-\bar X)u_i}{S_{xx}}.
+\end{aligned}
+\]</span></p>
+<p>This uses <span class="math inline">\(\sum_i(X_i-\bar X)=0\)</span> and <span class="math inline">\(\sum_i(X_i-\bar X)X_i=S_{xx}\)</span>.</p>
+<p><strong>Step 2 — Condition on all observed <span class="math inline">\(X\)</span> values.</strong> Let <span class="math inline">\(\mathbf X=(X_1,\ldots,X_n)\)</span>. Under random sampling and zero conditional mean, <span class="math inline">\(\mathbb E[u_i\mid\mathbf X]=0\)</span>. Therefore,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbb E[\hat\beta_1\mid\mathbf X]
+&amp;=\beta_1+\frac{\sum_i(X_i-\bar X)\mathbb E[u_i\mid\mathbf X]}{S_{xx}}\\
+&amp;=\boxed{\beta_1}.
+\end{aligned}
+\]</span></p>
+<p><strong>Step 3 — Remove the conditioning.</strong> By iterated expectations,</p>
+<p><span class="math display">\[
+\boxed{\mathbb E[\hat\beta_1]=\beta_1.}
+\]</span></p>
+<p>This is <strong>unbiasedness</strong>, not a claim that every estimated slope is accurate.</p>
+</section>
+<section id="deriving-the-unbiasedness-of-the-intercept" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-unbiasedness-of-the-intercept">9. Deriving the unbiasedness of the intercept</h3>
+<p>Recall <span class="math inline">\(\hat\beta_0=\bar Y-\hat\beta_1\bar X\)</span> and</p>
+<p><span class="math display">\[
+\bar Y=\beta_0+\beta_1\bar X+\bar u.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\hat\beta_0
+=\beta_0+\bar u-(\hat\beta_1-\beta_1)\bar X.
+\]</span></p>
+<p>Conditioning on <span class="math inline">\(\mathbf X\)</span>, the zero conditional mean assumption gives <span class="math inline">\(\mathbb E[\bar u\mid\mathbf X]=0\)</span>, and the preceding proof gives <span class="math inline">\(\mathbb E[\hat\beta_1-\beta_1\mid\mathbf X]=0\)</span>. Consequently,</p>
+<p><span class="math display">\[
+\mathbb E[\hat\beta_0\mid\mathbf X]=\beta_0
+\quad\Longrightarrow\quad
+\boxed{\mathbb E[\hat\beta_0]=\beta_0.}
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What the proofs do — and do not — establish
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The derivations establish the algebraic OLS formulae and, <strong>under SLR.1–SLR.4</strong>, unbiasedness across repeated samples. They do <strong>not</strong> establish that zero conditional mean is plausible for a particular dataset, that coefficients are causal, or that standard errors and confidence intervals are valid without further assumptions.</p>
+</div>
+</div>
+<hr>
+<p><strong>Ready to practise?</strong></p>
+<p><a href="../tutorials/tutorial-01.html">Go to Tutorial 1</a></p>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -718,13 +1387,558 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Class 1"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Theory &amp; Intuition</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mathematical Derivations</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tutorial Exercises</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Introduction to Econometrics and Simple Linear Regression"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Source and scope.** Study notes based on Arne Uhlendorff's *Applied Econometrics*, Lecture 1 (68 slides). Explanations and worked illustrations are rewritten for learning purposes. The lecture covers both causal inference and simple regression; neither should be skipped. Tutorial exercises are intentionally reserved for later.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Theory &amp; Intuition</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. What does econometrics do?</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>**Econometrics** uses economic theory, data and statistical methods to quantify relationships, test hypotheses, evaluate policies and make forecasts. Its central challenge is distinguishing **association** from **causation**.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>For example, people with more education often earn more. This is an *association*. To claim that an additional year of education **causes** higher earnings, we must rule out alternative explanations, such as differences in ability or family background.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>A typical analysis proceeds as follows:</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Define a question:** Does an extra year of schooling increase hourly wages?</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Specify an economic model:** Explain why education might affect productivity and wages.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Specify an econometric model:** Express the relationship mathematically, including unobserved influences.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Collect data, estimate and draw inferences:** Evaluate the evidence and assess whether the assumptions are credible.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. Economic models, econometric models and the error term</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>An **economic model** describes a mechanism. An **econometric model** translates it into a relationship that can be estimated from data.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>The lecture uses Gary Becker's model of criminal behaviour as an illustration. Economic theory suggests that time devoted to crime depends on the returns to criminal and legal activity, the risk of being caught and punished, age and other factors. An empirical equation might be:</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>crime_i = \beta_0 + \beta_1 wage_i + \beta_2 income_i</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\beta_3 arrests_i + \beta_4 convictions_i</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>\beta_5 sentence_i + \beta_6 age_i + u_i.</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Here, $crime_i$ is a measure of criminal activity, and $u_i$ contains influences not explicitly included in the model (for example, some aspects of personal circumstances). The precise proxies and functional form are modelling choices, not facts supplied by economic theory.</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why the error term matters</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>If an omitted factor affects both an explanatory variable and the outcome, the estimated relationship may be misleading. Including an error term does **not** automatically solve omitted-variable bias; we need assumptions about how that error relates to the observed variables.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. Four common data structures</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Structure <span class="pp">|</span> What is observed? <span class="pp">|</span> Example <span class="pp">|</span> Main feature <span class="pp">|</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|---|</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Cross-section** <span class="pp">|</span> Different units in one period <span class="pp">|</span> Wages of 526 workers <span class="pp">|</span> Units differ, time is essentially fixed <span class="pp">|</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Pooled cross-sections** <span class="pp">|</span> Separate samples from multiple periods <span class="pp">|</span> House prices from different houses in 1993 and 1995 <span class="pp">|</span> Units need not be the same across periods <span class="pp">|</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Panel (longitudinal)** <span class="pp">|</span> The same units repeatedly over time <span class="pp">|</span> Crime rates in the same cities in 1986 and 1990 <span class="pp">|</span> Tracks within-unit changes <span class="pp">|</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Time series** <span class="pp">|</span> One unit or aggregate measured over time <span class="pp">|</span> Quarterly GDP <span class="pp">|</span> Observations may be serially correlated <span class="pp">|</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>The lecture initially concentrates on a **random cross-sectional sample**. Random sampling is an assumption about how observations are obtained; it does **not** mean that education, wages or other explanatory variables are randomly assigned.</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>Panel data can help account for characteristics that do not change over time. Time-series data require particular care with trends, seasonality and dependence between successive observations.</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. Causality and *ceteris paribus*</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>*Ceteris paribus* means **holding other relevant factors constant**. The causal question is not merely whether $x$ and $y$ move together, but what would happen to $y$ if we changed $x$ while relevant alternative influences remained fixed.</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Education and wages:** People choose different amounts of education; those choices may correlate with ability and family background.</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Minimum wages and unemployment:** Governments change minimum wages in response to economic and political circumstances, which may also affect employment.</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Ice cream and drowning:** Both may increase in hot weather. Their correlation does not establish that one causes the other.</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>A useful thought experiment is to ask what **randomised experiment** would answer the question. Random assignment can make treatment groups comparable *on average*. Where experiments are infeasible, econometric methods attempt to construct credible comparisons using observational data.</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. Potential outcomes: defining a causal effect</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>Let $D_i=1$ if person $i$ receives a treatment and $D_i=0$ otherwise. Define:</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$Y_i(1)$: the outcome person $i$ **would have** under treatment;</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$Y_i(0)$: the outcome the same person **would have** without treatment.</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>The **individual treatment effect** is:</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>\Delta_i=Y_i(1)-Y_i(0).</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>**Fundamental problem of causal inference:** for a given person at a given point in time, we observe only one of these two potential outcomes. The other is a **counterfactual**.</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>For example, if a worker earns £18 per hour after a training programme, that does not tell us what the *same worker* would have earned without training.</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>We therefore study average effects:</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>\underbrace{ATE}_{\text{average treatment effect}}</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>=\mathbb E<span class="co">[</span><span class="ot">Y(1)-Y(0)</span><span class="co">]</span>,</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>\underbrace{ATT}_{\text{average treatment effect on the treated}}</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>=\mathbb E<span class="co">[</span><span class="ot">Y(1)-Y(0)\mid D=1</span><span class="co">]</span>.</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>**ATE** concerns the population overall; **ATT** concerns those who actually received treatment. They need not coincide when effects differ across individuals.</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. The selection problem</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>A tempting estimate is the difference between the average observed outcomes of treated and untreated people:</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>\mathbb E<span class="co">[</span><span class="ot">Y\mid D=1</span><span class="co">]</span>-\mathbb E<span class="co">[</span><span class="ot">Y\mid D=0</span><span class="co">]</span>.</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>But the two groups might have differed **even without treatment**. That pre-existing difference is **selection bias**.</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>**Illustration (hypothetical):** Trainees earn £20/hour after training, while non-trainees earn £17/hour. The observed difference is £3/hour. Suppose the trainees would already have earned £19/hour without training. Then the ATT is £1/hour and the selection bias is £2/hour. We normally cannot observe that £19 counterfactual directly.</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>Random assignment makes treatment independent of potential outcomes in the population, removing selection bias **in expectation**. In a finite experiment, realised sample means can still differ by chance. Without randomisation, methods such as regression, difference-in-differences and instrumental variables require additional identifying assumptions.</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### 7. Simple linear regression: the basic model</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>The population model is:</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>\boxed{Y_i=\beta_0+\beta_1 X_i+u_i.}</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Symbol <span class="pp">|</span> Meaning <span class="pp">|</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $Y_i$ <span class="pp">|</span> Dependent variable: outcome to explain <span class="pp">|</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $X_i$ <span class="pp">|</span> Explanatory variable (regressor) <span class="pp">|</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\beta_0$ <span class="pp">|</span> Population intercept <span class="pp">|</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\beta_1$ <span class="pp">|</span> Population slope <span class="pp">|</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $u_i$ <span class="pp">|</span> Unobserved influences on $Y_i$ <span class="pp">|</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $i=1,\ldots,n$ <span class="pp">|</span> Observation index <span class="pp">|</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>The model is **linear in its parameters**. For a fixed error term, increasing $X$ by $\Delta X$ changes $Y$ by $\beta_1\Delta X$.</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>**Wage example:**</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>wage_i=\beta_0+\beta_1 educ_i+u_i.</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>If $\beta_1=0.54$, an additional year of education corresponds to £0.54 more in hourly wages **within this model, holding $u_i$ fixed**. Interpreting an estimated slope as a causal effect requires stronger assumptions than fitting a line.</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Population parameters versus sample estimates</span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>$\beta_0$ and $\beta_1$ are fixed but unknown **population parameters**. Their estimates, $\hat\beta_0$ and $\hat\beta_1$, are calculated from a sample and vary across samples.</span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>The **population regression function** (PRF) describes the conditional average outcome:</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a>\mathbb E<span class="co">[</span><span class="ot">Y\mid X=x</span><span class="co">]</span>=\beta_0+\beta_1x</span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>**provided** $\mathbb E<span class="co">[</span><span class="ot">u\mid X=x</span><span class="co">]</span>=0$. Individual outcomes can lie above or below this line because their errors differ.</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="fu">### 8. The key assumption: zero conditional mean</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>The lecture distinguishes two conditions:</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Zero unconditional mean:** $\mathbb E<span class="co">[</span><span class="ot">u</span><span class="co">]</span>=0$. With an intercept, we can absorb any non-zero error mean into the intercept.</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Zero conditional mean:** $\mathbb E[u\mid X]=0$. At **every** value of $X$, the average unobserved influence is zero.</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>The second is much more demanding. In the wage example, it says that people with different years of education do not systematically differ in the *combined omitted influences* on wages. If ability affects wages and is associated with schooling, this condition may fail.</span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a><span class="fu">## Three distinctions worth remembering</span></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\mathbb E<span class="co">[</span><span class="ot">u</span><span class="co">]</span>=0$ does **not** imply $\mathbb E<span class="co">[</span><span class="ot">u\mid X</span><span class="co">]</span>=0$.</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A random **sample** does **not** imply random **assignment** of $X$.</span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>OLS residuals are uncorrelated with $X$ **by construction**; this does **not** prove that the unobserved population errors are unrelated to $X$.</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="fu">### 9. Ordinary least squares (OLS): choosing the best-fitting line</span></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>Given observations $(X_i,Y_i)$, OLS selects the intercept and slope that minimise the **sum of squared residuals**:</span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>\min_{b_0,b_1}\sum_{i=1}^n(Y_i-b_0-b_1X_i)^2.</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>For each observation:</span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>\hat Y_i=\hat\beta_0+\hat\beta_1X_i,</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>\qquad \hat u_i=Y_i-\hat Y_i.</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>$\hat Y_i$ is the **fitted value**; $\hat u_i$ is the **residual**. A residual is observable after estimation; the population error $u_i$ is not.</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>Squaring residuals prevents positive and negative errors from cancelling and penalises large errors more heavily.</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>The resulting estimates are:</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>\boxed{\hat\beta_1=</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>\frac{\sum_i(X_i-\bar X)(Y_i-\bar Y)}</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>{\sum_i(X_i-\bar X)^2}},</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>\qquad</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>\boxed{\hat\beta_0=\bar Y-\hat\beta_1\bar X}.</span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>The slope is the sample covariance of $X$ and $Y$ divided by the sample variance of $X$ (using the same denominator convention for both). It is defined only when $X$ varies in the sample.</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>**Lecture illustration:** In a sample of 526 workers, the estimated line is</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>\widehat{wage}=-0.90+0.54\,educ.</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>At eight years of education, the fitted hourly wage is $-0.90+0.54(8)=3.42$ in the dataset's wage units. The negative intercept should not be interpreted literally if zero years of education lies outside the relevant sample range. The £ amounts used elsewhere on this page are separate illustrative units, not a claim about the dataset's currency.</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a><span class="fu">### 10. Algebraic properties of OLS</span></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>When OLS includes an intercept, the fitted line has several **exact sample properties**:</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Residuals sum to zero:** $\sum_i\hat u_i=0$.</span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Residuals are orthogonal to $X$:** $\sum_i X_i\hat u_i=0$.</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Fitted values and residuals are orthogonal:** $\sum_i\hat Y_i\hat u_i=0$.</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Average fitted outcome equals average actual outcome:** $\overline{\hat Y}=\bar Y$.</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**The fitted line passes through the sample means:** $(\bar X,\bar Y)$.</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>These are algebraic consequences of minimising squared residuals, **not** evidence that the regression is causal or correctly specified.</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a><span class="fu">### 11. Goodness of fit: interpreting $R^2$</span></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>With an intercept, the total variation in the outcome can be split into explained and unexplained parts:</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>\underbrace{\sum_i(Y_i-\bar Y)^2}_{SST}</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>=</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>\underbrace{\sum_i(\hat Y_i-\bar Y)^2}_{SSE\;\text{(explained)}}</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>+</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>\underbrace{\sum_i\hat u_i^2}_{SSR\;\text{(residual)}}.</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>**Note the lecture's notation:** It calls the explained sum of squares **SSE** and the residual sum of squares **SSR**. Other textbooks use different abbreviations, so always check definitions.</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>For $SST&gt;0$:</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>\boxed{R^2=\frac{SSE}{SST}=1-\frac{SSR}{SST}.}</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>In simple OLS with an intercept, $0\le R^2\le1$. For example, $R^2=0.40$ means the fitted line accounts for 40% of the *sample variation* in $Y$ around its mean. It does **not** mean that $X$ causes 40% of $Y$, nor that 40% of individuals' outcomes are determined by $X$.</span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="fu">### 12. Units, logarithms and functional form</span></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>The units of $X$ and $Y$ determine how to read a coefficient. If wages are converted from pounds to pence, all wage-level coefficients multiply by 100, but $R^2$ stays unchanged.</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>The lecture introduces four common specifications. Here $\log$ means the **natural logarithm**; log models require positive values for logged variables.</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Model <span class="pp">|</span> Equation <span class="pp">|</span> Interpretation of $\beta_1$ <span class="pp">|</span></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Level–level** <span class="pp">|</span> $Y=\beta_0+\beta_1X+u$ <span class="pp">|</span> One extra unit of $X$ corresponds to $\beta_1$ units of $Y$ <span class="pp">|</span></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Log–level** <span class="pp">|</span> $\log Y=\beta_0+\beta_1X+u$ <span class="pp">|</span> One extra unit of $X$ corresponds to approximately $100\beta_1\%$ change in $Y$ <span class="pp">|</span></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Level–log** <span class="pp">|</span> $Y=\beta_0+\beta_1\log X+u$ <span class="pp">|</span> A 1% increase in $X$ corresponds to approximately $\beta_1/100$ units of $Y$ <span class="pp">|</span></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **Log–log** <span class="pp">|</span> $\log Y=\beta_0+\beta_1\log X+u$ <span class="pp">|</span> A 1% increase in $X$ corresponds to approximately $\beta_1\%$ change in $Y$ <span class="pp">|</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>These are interpretations of the specified relationships; **causal** interpretations still require identification assumptions.</span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Marginal effects, semi-elasticities and elasticities</span></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>\text{Marginal effect}=\frac{\partial Y}{\partial X},\qquad</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>\text{Semi-elasticity}=\frac{1}{Y}\frac{\partial Y}{\partial X},\qquad</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>\text{Elasticity}=\frac{X}{Y}\frac{\partial Y}{\partial X}.</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>The **marginal effect** measures units of $Y$ per unit of $X$. The **semi-elasticity** measures proportional change in $Y$ per unit of $X$. The **elasticity** measures proportional change in $Y$ per proportional change in $X$.</span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>**Lecture wage illustration:**</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>\widehat{\log(wage)}=0.584+0.083\,educ.</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>One more year of education is associated with approximately **8.3%** higher wages. The exact percentage difference implied by the log-level equation is $100(e^{0.083}-1)\approx8.65\%$ (about **8.7%**). This is an association unless the relevant causal assumptions hold.</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="fu">### 13. What makes OLS unbiased?</span></span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>The lecture concludes with four assumptions for simple linear regression:</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**SLR.1 — Linear in parameters:** $Y_i=\beta_0+\beta_1X_i+u_i$.</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**SLR.2 — Random sampling:** $(X_i,Y_i)$ are independently sampled from the population.</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**SLR.3 — Sample variation:** $\sum_i(X_i-\bar X)^2&gt;0$.</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**SLR.4 — Zero conditional mean:** $\mathbb E<span class="co">[</span><span class="ot">u_i\mid X_i</span><span class="co">]</span>=0$.</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>Under these assumptions, OLS is **unbiased**:</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>\mathbb E<span class="co">[</span><span class="ot">\hat\beta_1</span><span class="co">]</span>=\beta_1,</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>\qquad</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>\mathbb E<span class="co">[</span><span class="ot">\hat\beta_0</span><span class="co">]</span>=\beta_0.</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>Unbiasedness means that the estimator is correct **on average across repeated random samples**; it does not guarantee that any one estimate equals the population parameter. The lecture proves the slope result and leaves the intercept proof implicit. Both derivations are supplied below.</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a><span class="fu">## The central diagnostic question</span></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>What is hidden in $u$? Could those omitted influences be systematically related to $X$? If so, zero conditional mean is doubtful and the OLS slope need not identify the causal effect of $X$ on $Y$.</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mathematical Derivations</span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. Recentring the error to have mean zero</span></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>Start from $Y=\beta_0+\beta_1X+u$, and suppose $\mathbb E<span class="co">[</span><span class="ot">u</span><span class="co">]</span>=\alpha_0$. Define $u^*=u-\alpha_0$ and $\beta_0^*=\beta_0+\alpha_0$. Then</span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>Y=\beta_0^*+\beta_1X+u^*,</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>\qquad \mathbb E<span class="co">[</span><span class="ot">u^*</span><span class="co">]</span>=0.</span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>Thus, with an intercept, imposing a zero **unconditional** error mean is a normalisation: the slope does not change. It says nothing about whether $\mathbb E<span class="co">[</span><span class="ot">u^*\mid X</span><span class="co">]</span>=0$.</span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. From zero conditional mean to the population regression function</span></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>Assume $\mathbb E<span class="co">[</span><span class="ot">u\mid X</span><span class="co">]</span>=0$. By linearity of conditional expectation,</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>\mathbb E<span class="co">[</span><span class="ot">Y\mid X</span><span class="co">]</span></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>&amp;=\mathbb E<span class="co">[</span><span class="ot">\beta_0+\beta_1X+u\mid X</span><span class="co">]</span><span class="sc">\\</span></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>&amp;=\beta_0+\beta_1X+\mathbb E<span class="co">[</span><span class="ot">u\mid X</span><span class="co">]</span><span class="sc">\\</span></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>&amp;=\beta_0+\beta_1X.</span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>By iterated expectations, $\mathbb E<span class="co">[</span><span class="ot">u</span><span class="co">]</span>=\mathbb E<span class="co">[</span><span class="ot">\mathbb E[u\mid X]</span><span class="co">]</span>=0$. Moreover,</span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>\operatorname{Cov}(X,u)</span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>=\mathbb E<span class="co">[</span><span class="ot">Xu</span><span class="co">]</span>-\mathbb E<span class="co">[</span><span class="ot">X</span><span class="co">]</span>\mathbb E<span class="co">[</span><span class="ot">u</span><span class="co">]</span>=0,</span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>provided the relevant moments exist, because $\mathbb E<span class="co">[</span><span class="ot">Xu</span><span class="co">]</span>=\mathbb E<span class="co">[</span><span class="ot">X\mathbb E[u\mid X]</span><span class="co">]</span>=0$. The converse is **not** generally true: zero covariance is weaker than zero conditional mean.</span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. Deriving the OLS estimates by minimisation</span></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>For candidate coefficients $b_0,b_1$, define</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>Q(b_0,b_1)=\sum_{i=1}^n(Y_i-b_0-b_1X_i)^2.</span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>**Step 1 — Differentiate with respect to the intercept.**</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>\frac{\partial Q}{\partial b_0}</span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>=-2\sum_i(Y_i-b_0-b_1X_i)=0.</span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>Hence $\sum_i(Y_i-\hat\beta_0-\hat\beta_1X_i)=0$, so</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>\boxed{\hat\beta_0=\bar Y-\hat\beta_1\bar X.}</span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>**Step 2 — Differentiate with respect to the slope.**</span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>\frac{\partial Q}{\partial b_1}</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>=-2\sum_i X_i(Y_i-b_0-b_1X_i)=0.</span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>**Step 3 — Substitute the intercept formula.**</span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>0&amp;=\sum_i X_i\big<span class="co">[</span><span class="ot">(Y_i-\bar Y)-\hat\beta_1(X_i-\bar X)\big</span><span class="co">]</span><span class="sc">\\</span></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>&amp;=\sum_i(X_i-\bar X)(Y_i-\bar Y)</span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>-\hat\beta_1\sum_i(X_i-\bar X)^2.</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>We used $\sum_i(X_i-\bar X)=0$ and $\sum_i(Y_i-\bar Y)=0$.</span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>**Step 4 — Solve.** If $S_{xx}=\sum_i(X_i-\bar X)^2&gt;0$,</span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>\boxed{\hat\beta_1=</span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>\frac{\sum_i(X_i-\bar X)(Y_i-\bar Y)}{S_{xx}}.}</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>Since $Q$ is a sum of squares, and the design matrix has full column rank when $S_{xx}&gt;0$, these first-order conditions give the unique global minimum.</span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. Why the residual properties hold</span></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>The two first-order conditions can be written</span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>\sum_i\hat u_i=0,</span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>\qquad</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>\sum_iX_i\hat u_i=0.</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>Since $\hat Y_i=\hat\beta_0+\hat\beta_1X_i$,</span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>\sum_i\hat Y_i\hat u_i</span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>=\hat\beta_0\sum_i\hat u_i</span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>+\hat\beta_1\sum_iX_i\hat u_i=0.</span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>Averaging $Y_i=\hat Y_i+\hat u_i$ gives $\bar Y=\overline{\hat Y}$. Substituting the intercept formula into the fitted line shows</span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>\hat\beta_0+\hat\beta_1\bar X=\bar Y.</span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>Hence the fitted line passes through $(\bar X,\bar Y)$.</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. Deriving the decomposition of variation and $R^2$</span></span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>For each observation,</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a>Y_i-\bar Y=(Y_i-\hat Y_i)+(\hat Y_i-\bar Y)</span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a>=\hat u_i+(\hat Y_i-\bar Y).</span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a>Square and sum:</span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a>\sum_i(Y_i-\bar Y)^2</span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>&amp;=\sum_i\hat u_i^2</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a>+\sum_i(\hat Y_i-\bar Y)^2<span class="sc">\\</span></span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>&amp;\quad+2\sum_i\hat u_i(\hat Y_i-\bar Y).</span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>The cross-term is zero because $\sum_i\hat u_i\hat Y_i=0$ and $\sum_i\hat u_i=0$. Therefore,</span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>SST=SSR+SSE,</span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a>\qquad</span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>R^2=1-\frac{SSR}{SST}=\frac{SSE}{SST}.</span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a>This decomposition assumes OLS **with an intercept**; it should not be applied uncritically to regressions without one.</span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. Deriving the log-level percentage effect</span></span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>Consider $\log Y=\beta_0+\beta_1X+u$ with $Y&gt;0$. Holding $u$ fixed, compare $X_0$ and $X_1$:</span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a>\log Y_1-\log Y_0=\beta_1(X_1-X_0)=\beta_1\Delta X.</span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>Exponentiating,</span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>\frac{Y_1}{Y_0}=e^{\beta_1\Delta X}.</span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a>Thus the **exact** percentage change is</span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>\boxed{100\frac{Y_1-Y_0}{Y_0}</span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>=100\left(e^{\beta_1\Delta X}-1\right).}</span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a>For small $\beta_1\Delta X$, use $e^z\approx1+z$ to obtain the approximation $100\beta_1\Delta X\%$. The approximation becomes less accurate as the change grows.</span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a><span class="fu">### 7. Deriving the level–log and log–log interpretations</span></span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a>For the **level–log** model $Y=\beta_0+\beta_1\log X+u$ ($X&gt;0$), holding $u$ fixed,</span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a>\frac{\partial Y}{\partial X}=\frac{\beta_1}{X}.</span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>A 1% increase in $X$ means $\Delta X\approx0.01X$, giving $\Delta Y\approx\beta_1/100$. The **exact** finite change for a 1% increase is $\beta_1\log(1.01)$.</span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>For the **log–log** model $\log Y=\beta_0+\beta_1\log X+u$ ($X,Y&gt;0$),</span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>\frac{1}{Y}\frac{\partial Y}{\partial X}</span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a>=\frac{\beta_1}{X}</span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a>\quad\Longrightarrow\quad</span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>\boxed{\frac{X}{Y}\frac{\partial Y}{\partial X}=\beta_1.}</span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a>Thus $\beta_1$ is the elasticity. For a finite 1% increase in $X$, the exact percentage change in $Y$ (holding $u$ fixed) is $100<span class="co">[</span><span class="ot">(1.01)^{\beta_1}-1</span><span class="co">]</span>\%$.</span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a><span class="fu">### 8. Deriving the unbiasedness of the OLS slope</span></span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a>Let $S_{xx}=\sum_i(X_i-\bar X)^2&gt;0$. Write the OLS slope as</span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a>\hat\beta_1=\frac{\sum_i(X_i-\bar X)Y_i}{S_{xx}}.</span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>**Step 1 — Substitute the population model.**</span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a>\hat\beta_1</span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{\sum_i(X_i-\bar X)(\beta_0+\beta_1X_i+u_i)}{S_{xx}}<span class="sc">\\</span></span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>&amp;=\beta_1+\frac{\sum_i(X_i-\bar X)u_i}{S_{xx}}.</span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>This uses $\sum_i(X_i-\bar X)=0$ and $\sum_i(X_i-\bar X)X_i=S_{xx}$.</span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a>**Step 2 — Condition on all observed $X$ values.** Let $\mathbf X=(X_1,\ldots,X_n)$. Under random sampling and zero conditional mean, $\mathbb E<span class="co">[</span><span class="ot">u_i\mid\mathbf X</span><span class="co">]</span>=0$. Therefore,</span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a>\mathbb E<span class="co">[</span><span class="ot">\hat\beta_1\mid\mathbf X</span><span class="co">]</span></span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>&amp;=\beta_1+\frac{\sum_i(X_i-\bar X)\mathbb E<span class="co">[</span><span class="ot">u_i\mid\mathbf X</span><span class="co">]</span>}{S_{xx}}<span class="sc">\\</span></span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a>&amp;=\boxed{\beta_1}.</span>
+<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a>**Step 3 — Remove the conditioning.** By iterated expectations,</span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>\boxed{\mathbb E<span class="co">[</span><span class="ot">\hat\beta_1</span><span class="co">]</span>=\beta_1.}</span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a>This is **unbiasedness**, not a claim that every estimated slope is accurate.</span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a><span class="fu">### 9. Deriving the unbiasedness of the intercept</span></span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>Recall $\hat\beta_0=\bar Y-\hat\beta_1\bar X$ and</span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a>\bar Y=\beta_0+\beta_1\bar X+\bar u.</span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a>Therefore,</span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a>\hat\beta_0</span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a>=\beta_0+\bar u-(\hat\beta_1-\beta_1)\bar X.</span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a>Conditioning on $\mathbf X$, the zero conditional mean assumption gives $\mathbb E<span class="co">[</span><span class="ot">\bar u\mid\mathbf X</span><span class="co">]</span>=0$, and the preceding proof gives $\mathbb E<span class="co">[</span><span class="ot">\hat\beta_1-\beta_1\mid\mathbf X</span><span class="co">]</span>=0$. Consequently,</span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>\mathbb E<span class="co">[</span><span class="ot">\hat\beta_0\mid\mathbf X</span><span class="co">]</span>=\beta_0</span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a>\quad\Longrightarrow\quad</span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a>\boxed{\mathbb E<span class="co">[</span><span class="ot">\hat\beta_0</span><span class="co">]</span>=\beta_0.}</span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a><span class="fu">## What the proofs do — and do not — establish</span></span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a>The derivations establish the algebraic OLS formulae and, **under SLR.1–SLR.4**, unbiasedness across repeated samples. They do **not** establish that zero conditional mean is plausible for a particular dataset, that coefficients are causal, or that standard errors and confidence intervals are valid without further assumptions.</span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a>**Ready to practise?**</span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Go to Tutorial 1</span><span class="co">](../tutorials/tutorial-01.qmd)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

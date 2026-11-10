@@ -1,0 +1,9 @@
+---
+title: "Tutorial 2"
+---
+
+[Back to Class 2](../classes/class-02.qmd)
+
+## Exercises
+
+## R Applications

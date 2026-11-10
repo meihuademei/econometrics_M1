@@ -1,10 +1,571 @@
 ---
 title: "Class 6"
+subtitle: "Advanced Panel Data Methods: Fixed Effects and Other Data Structures"
 ---
 
 ## Theory & Intuition
 
+### 1. The central problem: unobserved differences between units
+
+Panel data follow the **same units** (people, firms or schools) over several periods. Suppose we want to estimate how training affects a firm's defect rate. Firms differ in management quality, and better-managed firms might both provide more training and produce fewer defects. If management quality is not observed, an ordinary regression may confuse its influence with the effect of training.
+
+Write the model as
+
+$$
+y_{it}=\boldsymbol{x}_{it}'\boldsymbol{\beta}+a_i+u_{it},
+$$
+
+where:
+
+- $i=1,\ldots,N$ identifies the unit and $t=1,\ldots,T$ identifies the period;
+- $y_{it}$ is the outcome and $\boldsymbol{x}_{it}$ contains the explanatory variables;
+- $a_i$ is an **unobserved, time-invariant unit effect** (for example, persistent management quality);
+- $u_{it}$ is the **idiosyncratic error**, which can change over time.
+
+**Fixed effects (FE)** remove $a_i$ before estimating $\boldsymbol{\beta}$. Crucially, FE allows $a_i$ to be correlated with the explanatory variables. It does **not** automatically solve endogeneity caused by changes in unobserved factors over time.
+
+### 2. The within transformation: compare each unit with itself
+
+For each unit, calculate its average outcome and average explanatory variables across time. Then subtract those averages from each observation:
+
+$$
+\ddot y_{it}=y_{it}-\bar y_i,\qquad
+\ddot x_{itj}=x_{itj}-\bar x_{ij}.
+$$
+
+This is **time demeaning**, also called the **within transformation**. The resulting regression uses only movements *within* a unit, rather than differences *between* units.
+
+**Small example.** A firm's training intensity is 2 in year 1 and 4 in year 2, so its mean is 3. Its demeaned training values are $-1$ and $+1$. If the firm's persistent management quality is 7 in both years, its demeaned values are $7-7=0$ in both years. That constant influence disappears.
+
+> **Key limitation:** A variable that never changes within a unit also disappears. For example, a person's place of birth cannot have its own coefficient in a person fixed-effects regression if it is constant throughout the panel.
+
+### 3. What variation identifies the coefficient?
+
+The lecture distinguishes three kinds of variation:
+
+- **Within variation:** changes over time around each unit's own mean.
+- **Between variation:** differences between units' means.
+- **Overall variation:** differences between all observations and the grand mean.
+
+FE estimates slopes from **within variation** only. A variable that barely changes within units provides little information for FE, even if it differs greatly across units.
+
+**Healthy-eating reminders (slides 10–13).** The lecture's plots show that the raw observations have no obvious relationship between reminder intensity and healthy-eating scores. The *between-person* relationship is negative: people who use more reminders tend to have lower average scores (reported between correlation: $-0.440$). Once each person's average is removed, the *within-person* relationship appears positive. The point is not that one correlation must always be right: they answer different questions. FE asks whether **a person scores differently when their own reminder intensity changes**.
+
+### 4. Assumptions: when can we trust FE?
+
+The lecture gives three principal conditions:
+
+1. **Random sampling across units:** the sampled units are drawn independently from the relevant population.
+2. **Sufficient within variation and no perfect multicollinearity:** the transformed regressors must contain enough independent variation to identify their coefficients.
+3. **Strict exogeneity:** for every period $t$,
+
+   $$
+   E(u_{it}\mid\boldsymbol X_i,a_i)=0,
+   $$
+
+   where $\boldsymbol X_i$ contains the unit's explanatory variables in **all** observed periods.
+
+Strict exogeneity is stronger than merely requiring $x_{it}$ to be unrelated to $u_{it}$ in the same period. It rules out a shock to the outcome today systematically changing an explanatory variable in a later period, after conditioning on the full regressor history and $a_i$.
+
+**Example.** If an unexpected fall in a firm's defect rate in 1988 causes it to reduce training in 1989, strict exogeneity may fail. Removing persistent management quality does not remove this feedback.
+
+Under the lecture's sampling, rank and strict-exogeneity assumptions, FE is unbiased (conditional on an appropriate full-rank regressor design) and consistent as the number of units grows. **Conventional OLS standard errors** additionally require appropriate assumptions about the idiosyncratic errors, notably no serial correlation and homoskedasticity. In applied panel work, **unit-clustered standard errors** are commonly used to allow arbitrary within-unit serial correlation and heteroskedasticity, provided there are sufficiently many independent clusters.
+
+### 5. Fixed effects as a dummy-variable regression
+
+An alternative is to include an indicator for every unit (omitting one if a common intercept is included). This is the **least-squares dummy-variable (LSDV)** approach. It gives **exactly the same slope estimates** as the within estimator on the same sample.
+
+A regression with unit indicators may have a high ordinary $R^2$ because the indicators explain persistent differences between units. That does **not** mean the time-varying regressors explain within-unit changes particularly well.
+
+For a balanced panel with $N$ units, $T$ periods and $k$ identified slope regressors, the residual degrees of freedom are
+
+$$
+\boxed{df=NT-N-k.}
+$$
+
+The $N$ unit-specific intercepts consume $N$ degrees of freedom (or equivalently one common intercept plus $N-1$ unit indicators).
+
+### 6. Empirical example: job-training grants and manufacturing defects
+
+**Michigan Job Training Programme (slides 14–17).** The lecture follows **54 firms** in **1987, 1988 and 1989**. The outcome is the **scrap rate**: defective items per 100 items produced. The main explanatory variables are:
+
+- `grant`: 1 if the firm receives a training grant **this year**;
+- `grant_1`: 1 if the firm received a training grant **the previous year**;
+- `d88` and `d89`: indicators for 1988 and 1989, with 1987 as the reference year.
+
+The dependent variable in the reported regression is **$\log(\text{scrap})$**, not the scrap rate in levels. The estimated coefficients are:
+
+| Regressor | Coefficient | Standard error |
+|:--|--:|--:|
+| `d88` | $-0.080$ | $0.109$ |
+| `d89` | $-0.247$ | $0.133$ |
+| `grant` | $-0.252$ | $0.151$ |
+| `grant_1` | $-0.422$ | $0.210$ |
+
+The table reports **162 observations**, **104 residual degrees of freedom**, and **$R^2=0.201$**.
+
+**Interpretation.** Holding the other regressors and firm effects fixed, a grant in the current year is associated with approximately $25.2\%$ lower scrap rates using the usual log-point approximation. The exact percentage transformation is $100(e^{-0.252}-1)\approx-22.3\%$. For a grant received in the previous year, the exact transformation is $100(e^{-0.422}-1)\approx-34.4\%$. The estimated lagged association is larger in magnitude.
+
+::: {.callout-important}
+## Statistical significance: read the table, not just the accompanying claim
+
+Slide 17 describes **both** grant coefficients as significant. However, the reported standard errors on slide 16 give approximate $t$-statistics of $-0.252/0.151=-1.67$ and $-0.422/0.210=-2.01$. With 104 degrees of freedom, the **current-year grant coefficient is not significant at the conventional two-sided 5% level**, whereas the lagged coefficient is approximately significant at that level. This distinction matters; do not label both as 5%-significant.
+:::
+
+The negative `d89` coefficient suggests scrap rates were lower in 1989 than in 1987, after accounting for the model's other terms. Year indicators help prevent economy-wide or industry-wide improvements from being wrongly attributed to training grants. Nevertheless, causal interpretation still depends on the FE exogeneity assumptions.
+
+**Data structure.** The data are in **long format**: one row per firm-year, with columns for firm ID, year, outcome and regressors.
+
+### 7. Fixed effects or first differences?
+
+Both FE and **first differencing (FD)** remove time-invariant $a_i$, but they transform the data differently:
+
+- **FE:** subtract each unit's time average.
+- **FD:** subtract the previous period's observation from the current one.
+
+For **two periods**, they produce the **same slope estimates**. For more than two periods, they generally differ.
+
+The lecture's efficiency comparison is conditional on the structure of $u_{it}$:
+
+- If the idiosyncratic errors are homoskedastic and serially uncorrelated, FE is generally more efficient than FD under the standard assumptions.
+- If $u_{it}$ follows a random walk, first differencing removes its persistent component and can be preferable.
+
+Neither method is universally superior. With two periods, the slope estimates coincide; comparisons of reported standard errors and test statistics also depend on using equivalent variance estimators and degrees-of-freedom conventions.
+
+### 8. Unbalanced panels and missing observations
+
+A **balanced panel** observes every unit in every period. An **unbalanced panel** is missing one or more periods for some units.
+
+FE can use all observed periods for each unit: it subtracts that unit's mean over its available observations. A unit observed only once has no within variation and contributes nothing to the FE slope estimate. Missing intermediate years are not inherently a problem for FE; FD needs pairs of **consecutive** observations, so gaps can break usable differences.
+
+**Caution:** FE does not automatically fix selection bias from missing data. If a firm's disappearance from the dataset depends on an unobserved current shock $u_{it}$, estimates may be biased. The lecture requires missingness to be suitably unrelated to the idiosyncratic error after conditioning on observed characteristics and fixed effects.
+
+### 9. Two-way fixed effects: control for units *and* years
+
+A one-way FE model removes persistent unit differences. A **two-way FE** model also controls for shocks common to all units in a given period:
+
+$$
+y_{it}=\boldsymbol{x}_{it}'\boldsymbol\beta+a_i+\gamma_t+u_{it},
+$$
+
+where $\gamma_t$ is a **time fixed effect**.
+
+**Example.** A recession may affect every firm's defect rate or productivity in a given year. Year indicators absorb such common changes, while firm indicators absorb stable firm differences.
+
+A regressor that takes **the same value for every unit in a given year** (for example, a single national GDP growth rate) is perfectly collinear with a full set of year effects, so its separate coefficient cannot be estimated. A regressor must retain variation after both unit and time effects have been removed.
+
+### 10. Random effects: a stronger assumption
+
+A **random-effects (RE)** model also includes an unobserved unit effect $a_i$, but assumes it is uncorrelated with **every explanatory variable in every period**:
+
+$$
+\operatorname{Cov}(a_i,x_{itj})=0\quad\text{for all }t,j.
+$$
+
+Under suitable RE assumptions, an efficient RE estimator uses both within-unit and between-unit information and accounts for the dependence generated by $a_i$. It can be more precise than FE. But if, for example, more able workers systematically obtain more training, and ability is part of $a_i$, the RE assumption is doubtful. **FE remains valid with this particular correlation**, provided strict exogeneity with respect to $u_{it}$ holds.
+
+**Decision rule:** choose FE when correlation between stable unobserved characteristics and regressors is plausible; consider RE only when its stronger orthogonality assumptions are credible. Efficiency is useful only when the estimator is consistent.
+
+### 11. Fixed effects beyond panel data: siblings, firms and schools
+
+The second part of the lecture applies FE to **clustered cross-sectional data**, even when there is no time dimension. The crucial feature is not time: it is **multiple observations sharing an unobserved cluster characteristic**.
+
+- **Siblings** share some family background; comparing siblings removes a family fixed effect.
+- **Employees** share workplace characteristics; firm FE remove common firm influences.
+- **Pupils or classes** share school characteristics; school FE remove common school influences.
+
+As before, only variables that **vary within the cluster** can be identified separately from its fixed effect.
+
+**Teenage childbearing example (slides 26–27).** Geronimus and Korenman (1992) compare pairs of sisters to examine the association between teenage motherhood and later economic outcomes. The outcome is the log of income relative to needs. The lecture reports:
+
+- **Pooled OLS:** estimated coefficient on teenage childbearing $=-0.33$, statistically significant.
+- **Within-family first differences:** estimated coefficient $=-0.08$, statistically insignificant.
+
+The much smaller within-family estimate suggests that **shared family background explains part of the negative association** seen in pooled data. It does not establish that the true causal effect is zero: sibling-specific omitted factors may remain, and an insignificant estimate is not proof of no effect.
+
+::: {.callout-tip}
+## The central lesson of Class 6
+
+**FE removes unobserved characteristics that are constant within a unit or cluster.** It identifies effects using within-unit or within-cluster comparisons. The price is that constant regressors cannot be estimated, and changing omitted variables or feedback from outcomes to regressors can still cause bias.
+:::
+
 ## Mathematical Derivations
 
-## Tutorial Exercises
+### 1. Deriving the within estimator
+
+Start with one regressor and a balanced panel:
+
+$$
+\underbrace{y_{it}}_{\text{outcome}}=\beta x_{it}+a_i+u_{it}.
+\tag{1}
+$$
+
+**Step 1 — Average over time for the same unit.** Define
+
+$$
+\bar y_i=\frac1T\sum_{t=1}^T y_{it},\quad
+\bar x_i=\frac1T\sum_{t=1}^T x_{it},\quad
+\bar u_i=\frac1T\sum_{t=1}^T u_{it}.
+$$
+
+Since $a_i$ is constant over time,
+
+$$
+\bar y_i=\beta\bar x_i+a_i+\bar u_i.
+\tag{2}
+$$
+
+**Step 2 — Subtract (2) from (1).**
+
+$$
+\begin{aligned}
+y_{it}-\bar y_i
+&=\beta(x_{it}-\bar x_i)
+  +\underbrace{(a_i-a_i)}_{0}
+  +(u_{it}-\bar u_i)\\
+&=\beta(x_{it}-\bar x_i)+(u_{it}-\bar u_i).
+\end{aligned}
+$$
+
+With dots denoting demeaned variables:
+
+$$
+\boxed{\ddot y_{it}=\beta\ddot x_{it}+\ddot u_{it}.}
+\tag{3}
+$$
+
+**Step 3 — Estimate by OLS on the transformed observations.** With one regressor,
+
+$$
+\boxed{
+\widehat\beta_{FE}
+=\frac{\displaystyle\sum_{i=1}^N\sum_{t=1}^T
+(x_{it}-\bar x_i)(y_{it}-\bar y_i)}
+{\displaystyle\sum_{i=1}^N\sum_{t=1}^T
+(x_{it}-\bar x_i)^2}.
+}
+\tag{4}
+$$
+
+The denominator must be positive: if $x_{it}=\bar x_i$ for every observation, the coefficient is not identified.
+
+For $k$ regressors, stack the demeaned data into $\ddot{\boldsymbol X}$ and $\ddot{\boldsymbol y}$:
+
+$$
+\boxed{
+\widehat{\boldsymbol\beta}_{FE}
+=(\ddot{\boldsymbol X}'\ddot{\boldsymbol X})^{-1}
+\ddot{\boldsymbol X}'\ddot{\boldsymbol y}.
+}
+\tag{5}
+$$
+
+This requires $\ddot{\boldsymbol X}$ to have full column rank. The transformed regression has **no separately identified common intercept** because each unit's demeaned variables sum to zero.
+
+### 2. Why strict exogeneity matters
+
+The transformed error is
+
+$$
+\ddot u_{it}=u_{it}-\frac1T\sum_{s=1}^T u_{is}.
+$$
+
+Even if $x_{it}$ is unrelated to $u_{it}$ in the same year, $\ddot x_{it}$ and $\ddot u_{it}$ depend on observations from **all years**. This is why the lecture assumes
+
+$$
+\boxed{E(u_{it}\mid\boldsymbol X_i,a_i)=0\quad\text{for every }t.}
+$$
+
+It follows that
+
+$$
+E(\ddot u_{it}\mid\boldsymbol X_i,a_i)=0,
+$$
+
+so the within-transformed regressors are orthogonal to the transformed error. Conditional on a full-rank design, this gives
+
+$$
+E(\widehat{\boldsymbol\beta}_{FE}\mid\boldsymbol X,a)=\boldsymbol\beta.
+$$
+
+**Important:** $a_i$ may be correlated with $\boldsymbol X_i$; it disappears algebraically. This argument does **not** allow correlation between regressors and the idiosyncratic errors.
+
+### 3. Why time-invariant regressors disappear
+
+Suppose $z_i$ is constant over time:
+
+$$
+y_{it}=\beta x_{it}+\theta z_i+a_i+u_{it}.
+$$
+
+After time demeaning,
+
+$$
+\theta(z_i-\bar z_i)=\theta(z_i-z_i)=0.
+$$
+
+Thus $\theta$ cannot be estimated from within-unit variation. FE removes **both** unobserved constant characteristics and observed constant regressors.
+
+### 4. Equivalence with unit dummy variables
+
+The least-squares dummy-variable regression can be written as
+
+$$
+y_{it}=\alpha_i+\boldsymbol x_{it}'\boldsymbol\beta+u_{it}.
+$$
+
+For any proposed $\boldsymbol\beta$, minimising the residual sum of squares with respect to $\alpha_i$ gives
+
+$$
+\widehat\alpha_i(\boldsymbol\beta)
+=\bar y_i-\bar{\boldsymbol x}_i'\boldsymbol\beta.
+$$
+
+Substituting this expression back into the residuals gives
+
+$$
+y_{it}-\widehat\alpha_i(\boldsymbol\beta)
+-\boldsymbol x_{it}'\boldsymbol\beta
+=\ddot y_{it}-\ddot{\boldsymbol x}_{it}'\boldsymbol\beta.
+$$
+
+Therefore minimising the dummy-variable regression's residual sum of squares is **the same optimisation problem** as OLS on demeaned data. Both produce identical slope coefficients.
+
+For a balanced panel with $NT$ observations, $N$ unit intercepts and $k$ slopes,
+
+$$
+\boxed{df=NT-N-k.}
+$$
+
+**Training-grant example:** $N=54$, $T=3$ and $k=4$ (two grant variables plus two year indicators):
+
+$$
+df=54\times3-54-4=\boxed{104}.
+$$
+
+The estimated unit intercepts can be recovered as
+
+$$
+\widehat a_i=\bar y_i-\bar{\boldsymbol x}_i'\widehat{\boldsymbol\beta}_{FE},
+$$
+
+under the lecture's no-common-intercept parameterisation. With fixed $T$, each $\widehat a_i$ is estimated from only $T$ observations; increasing $N$ does not make the estimate for a **particular unit** consistent.
+
+### 5. Decomposing within and between variation
+
+Let $\bar x_i$ be unit $i$'s time average and let $\bar x$ be the grand mean. Then
+
+$$
+x_{it}-\bar x=(x_{it}-\bar x_i)+(\bar x_i-\bar x).
+$$
+
+Squaring and summing over $i$ and $t$ yields
+
+$$
+\boxed{
+\sum_i\sum_t(x_{it}-\bar x)^2
+=\sum_i\sum_t(x_{it}-\bar x_i)^2
++T\sum_i(\bar x_i-\bar x)^2.
+}
+\tag{6}
+$$
+
+The cross-product vanishes because $\sum_t(x_{it}-\bar x_i)=0$ for every $i$.
+
+Equation (6) is the **exact sum-of-squares decomposition** for a balanced panel. It is important not to write $s_O^2=s_W^2+s_B^2$ automatically: the lecture defines its displayed within, between and overall variance measures using **different denominators**, so their numerical values do not add without appropriate weights.
+
+### 6. First differences versus fixed effects
+
+The FD transformation of (1) is
+
+$$
+\Delta y_{it}=y_{it}-y_{i,t-1}
+=\beta(x_{it}-x_{i,t-1})+(u_{it}-u_{i,t-1}),
+$$
+
+or
+
+$$
+\boxed{\Delta y_{it}=\beta\Delta x_{it}+\Delta u_{it}.}
+\tag{7}
+$$
+
+For $T=2$,
+
+$$
+\ddot x_{i1}=-\frac{\Delta x_{i2}}2,
+\qquad
+\ddot x_{i2}=\frac{\Delta x_{i2}}2,
+$$
+
+and similarly for $y$. Therefore,
+
+$$
+\begin{aligned}
+\sum_{t=1}^2\ddot x_{it}\ddot y_{it}
+&=\tfrac12\Delta x_{i2}\Delta y_{i2},\\
+\sum_{t=1}^2\ddot x_{it}^{\,2}
+&=\tfrac12(\Delta x_{i2})^2.
+\end{aligned}
+$$
+
+The factors $1/2$ cancel in the OLS slope formula, giving
+
+$$
+\boxed{\widehat\beta_{FE}=\widehat\beta_{FD}\quad\text{when }T=2.}
+$$
+
+For $T>2$, FE uses deviations from the unit mean, while FD uses adjacent changes, so their estimates generally differ.
+
+**Error dependence and efficiency.** If $u_{it}$ is serially independent with variance $\sigma^2$, then
+
+$$
+\operatorname{Cov}(\Delta u_{it},\Delta u_{i,t-1})=-\sigma^2,
+$$
+
+because adjacent differences share one error with opposite signs. Conversely, if $u_{it}=u_{i,t-1}+\varepsilon_{it}$ with serially independent innovations, then $\Delta u_{it}=\varepsilon_{it}$. This helps explain the lecture's FE-versus-FD efficiency comparison.
+
+### 7. Unbalanced panels: unit-specific means
+
+If unit $i$ is observed in $T_i$ periods, define the mean over its **observed** periods $\mathcal T_i$:
+
+$$
+\bar x_i=\frac1{T_i}\sum_{t\in\mathcal T_i}x_{it},
+\qquad
+\ddot x_{it}=x_{it}-\bar x_i.
+$$
+
+If $T_i=1$, then $\ddot x_{it}=0$: the observation provides no within-unit information. The simple balanced-panel degrees-of-freedom formula must be adjusted to the actual sample and the number of identified unit effects.
+
+### 8. Two-way fixed effects and double demeaning
+
+Consider
+
+$$
+y_{it}=\boldsymbol x_{it}'\boldsymbol\beta+a_i+\gamma_t+u_{it}.
+\tag{8}
+$$
+
+For a **balanced** panel, define the unit mean $\bar y_i$, period mean $\bar y_t$ and grand mean $\bar y$. The two-way transformation is
+
+$$
+\boxed{\widetilde y_{it}=y_{it}-\bar y_i-\bar y_t+\bar y.}
+$$
+
+The same transformation is applied to each regressor. To see why it works, apply it to $a_i$:
+
+$$
+a_i-a_i-\bar a+\bar a=0,
+$$
+
+and to $\gamma_t$:
+
+$$
+\gamma_t-\bar\gamma-\gamma_t+\bar\gamma=0.
+$$
+
+Hence
+
+$$
+\widetilde y_{it}=\widetilde{\boldsymbol x}_{it}'\boldsymbol\beta
++\widetilde u_{it}.
+$$
+
+A national variable $z_t$ that is identical across units in each year satisfies $z_t-\bar z- z_t+\bar z=0$ and cannot be separately identified alongside full time effects. **For unbalanced panels, this simple double-demeaning formula is generally not sufficient**; estimation must properly partial out both sets of indicators.
+
+### 9. Random effects and the composite error
+
+Write the RE model as
+
+$$
+y_{it}=\beta_0+\boldsymbol x_{it}'\boldsymbol\beta+a_i+u_{it},
+\qquad E(a_i)=0.
+$$
+
+The composite error is $v_{it}=a_i+u_{it}$. Under the standard RE error-components assumptions, with $\operatorname{Var}(a_i)=\sigma_a^2$ and $\operatorname{Var}(u_{it})=\sigma_u^2$, and with $a_i$ independent of $u_{it}$ and $u_{it}$ serially uncorrelated,
+
+$$
+\operatorname{Var}(v_{it})=\sigma_a^2+\sigma_u^2,
+$$
+
+and for $t\neq s$,
+
+$$
+\operatorname{Cov}(v_{it},v_{is})=\sigma_a^2.
+$$
+
+Thus pooled OLS ignores within-unit error dependence, even when its slope coefficients are consistent under the RE exogeneity assumptions. RE uses an error-covariance-aware estimator (typically feasible generalised least squares) to improve efficiency. The key extra restriction remains
+
+$$
+\boxed{\operatorname{Cov}(a_i,x_{itj})=0\quad\forall t,j.}
+$$
+
+This covariance calculation is an **explanatory extension** of the lecture's discussion of correlated composite errors; it relies on the additional variance assumptions stated above.
+
+### 10. Sibling differences: fixed effects without time
+
+The lecture studies sisters $s=1,2$ in family $f$. A simplified version of its model is
+
+$$
+\log(\mathrm{incneeds}_{fs})
+=\beta_0+\delta_0\,\mathrm{sister2}_{fs}
++\beta_1\,\mathrm{teenbrth}_{fs}
++\beta_2\,\mathrm{age}_{fs}
++\boldsymbol z_{fs}'\boldsymbol\theta
++a_f+u_{fs},
+\tag{9}
+$$
+
+where $a_f$ is shared, unobserved family background, and $\boldsymbol z_{fs}$ denotes any other included controls.
+
+Subtract sister 1's equation from sister 2's equation **within the same family**:
+
+$$
+\begin{aligned}
+\log(\mathrm{incneeds}_{f2})-\log(\mathrm{incneeds}_{f1})
+={}&\delta_0
++\beta_1(\mathrm{teenbrth}_{f2}-\mathrm{teenbrth}_{f1})\\
+&+\beta_2(\mathrm{age}_{f2}-\mathrm{age}_{f1})
++\Delta\boldsymbol z_f'\boldsymbol\theta
++(u_{f2}-u_{f1}).
+\end{aligned}
+$$
+
+The common intercept $\beta_0$ and family effect $a_f$ cancel. Writing $\Delta$ for **sister 2 minus sister 1**,
+
+$$
+\boxed{
+\Delta\log(\mathrm{incneeds})
+=\delta_0+\beta_1\Delta\mathrm{teenbrth}
++\beta_2\Delta\mathrm{age}
++\Delta\boldsymbol z'\boldsymbol\theta+\Delta u.
+}
+\tag{10}
+$$
+
+Here $\Delta$ is **not a change over time**. It is a difference between sisters. The ordering of sisters must be defined consistently (for example, by age), so that the intercept $\delta_0$ has a stable interpretation.
+
+The lecture's reported change in the estimated teenage-childbearing coefficient from $-0.33$ (pooled OLS) to $-0.08$ (within-family differences) illustrates how shared unobserved family characteristics can confound a cross-sectional association. Consistent causal estimation still requires the **within-family difference in teenage childbearing** to be exogenous to the **difference in sister-specific errors**, conditional on included controls.
+
+### Formula checklist
+
+| Concept | Formula | What to remember |
+|:--|:--|:--|
+| Unit effect model | $y_{it}=\boldsymbol x_{it}'\boldsymbol\beta+a_i+u_{it}$ | $a_i$ is constant over time. |
+| Within transformation | $\ddot z_{it}=z_{it}-\bar z_i$ | Removes $a_i$ and all constant regressors. |
+| FE estimator | $(\ddot X'\ddot X)^{-1}\ddot X'\ddot y$ | Uses within-unit variation. |
+| Strict exogeneity | $E(u_{it}\mid X_i,a_i)=0$ | Conditions on regressors from every period. |
+| FE degrees of freedom | $NT-N-k$ | Balanced panel; $k$ identified slopes. |
+| First differences | $\Delta y_{it}=\boldsymbol\beta'\Delta\boldsymbol x_{it}+\Delta u_{it}$ | Same slopes as FE when $T=2$. |
+| Two-way FE | $y_{it}=\boldsymbol x_{it}'\boldsymbol\beta+a_i+\gamma_t+u_{it}$ | Controls for unit and period effects. |
+| RE restriction | $\operatorname{Cov}(a_i,x_{itj})=0$ | Stronger than FE's allowance for correlation. |
+| Sibling differences | $\Delta y_f=\boldsymbol\beta'\Delta\boldsymbol x_f+\Delta u_f$ | Differences are across siblings, not time. |
+
+*Source: Arne Uhlendorff, **Advanced Panel Data Methods**, Lecture 6 (27 October 2026), slides 1–27. The explanations and algebraic steps above expand the lecture for learning purposes; empirical figures and reported estimates are taken from the slides.*
+
+---
+
+**Ready to practise?**
+
+[Go to Tutorial 6](../tutorials/tutorial-06.qmd)
 

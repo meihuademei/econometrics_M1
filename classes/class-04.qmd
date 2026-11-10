@@ -1,10 +1,495 @@
 ---
 title: "Class 4"
+subtitle: "OLS Asymptotics, Qualitative Regressors and Heteroskedasticity"
 ---
 
 ## Theory & Intuition
 
+This class has **three distinct parts**: (1) what happens to OLS as the sample grows; (2) how to include qualitative information in regressions; and (3) what happens when the error variance is not constant. The common question is: **when can we trust an estimated coefficient and the inference attached to it?**
+
+### Part I — OLS asymptotics
+
+#### 1. Consistency: does the estimator approach the truth?
+
+An estimator is **consistent** if it converges in probability to the true population parameter as the sample size increases:
+
+$$
+\operatorname{plim}_{n\to\infty}\hat\beta_j=\beta_j.
+$$
+
+Intuitively, as we collect more observations, the probability that our estimate is far from the true value tends to zero. The sampling-distribution diagram on **lecture slide 4** shows distributions becoming increasingly concentrated around the true coefficient.
+
+**Consistency is not the same as unbiasedness.** Unbiasedness means $E(\hat\beta_j)=\beta_j$ for a given sample size; consistency concerns what happens as $n\to\infty$. An estimator can be biased in finite samples but consistent. Conversely, unbiasedness alone does not guarantee consistency.
+
+For the multiple regression model
+
+$$
+y_i=\beta_0+\beta_1x_{1i}+\cdots+\beta_kx_{ki}+u_i,
+$$
+
+the lecture states that OLS is consistent under **MLR.1–MLR.4**:
+
+| Assumption | Meaning |
+|---|---|
+| MLR.1: linear in parameters | The regression is linear in the unknown $\beta$ coefficients. |
+| MLR.2: random sampling | Observations are independently drawn from the population. |
+| MLR.3: no perfect collinearity | No regressor is an exact linear combination of the others; sufficient variation exists. |
+| MLR.4: zero conditional mean | $E(u\mid x_1,\ldots,x_k)=0$. |
+
+**Why MLR.4 matters:** it rules out systematic links between the regressors and unobserved determinants of $y$. Under suitable regularity conditions, a weaker requirement—$E(u)=0$ and $\operatorname{Cov}(x_j,u)=0$ for each regressor—is sufficient for consistency. This is **not** generally sufficient for finite-sample unbiasedness.
+
+#### 2. Inconsistency and asymptotic bias
+
+If a regressor is correlated with the error term, increasing the sample size does **not** necessarily fix the problem. In simple regression,
+
+$$
+\operatorname{plim}\hat\beta_1
+=\beta_1+\frac{\operatorname{Cov}(x,u)}{\operatorname{Var}(x)}.
+$$
+
+The extra term is the **asymptotic bias** (the difference between the probability limit and the true coefficient). Positive covariance produces upward asymptotic bias; negative covariance produces downward asymptotic bias.
+
+**Example:** suppose we regress wages on education but omit ability. If ability raises wages and is positively correlated with education, the estimated education coefficient can remain too high even with an enormous sample. **More observations do not cure endogeneity.**
+
+::: {.callout-important}
+**Multiple-regression nuance:** correlation between one regressor and the error threatens consistency, but does not logically imply that *every* OLS coefficient must be inconsistent. The direction and size of each coefficient's asymptotic bias depend on the entire regressor covariance structure.
+:::
+
+#### 3. Asymptotic normality: inference without normally distributed errors
+
+Class 3 used a normality assumption (**MLR.6**) to justify **exact finite-sample** $t$ and $F$ distributions. Many outcomes are not conditionally normal. The lecture's **slide 9** gives the participation rate in a 401(k) pension plan: it lies between 0 and 100, and many observations equal 100. Such an outcome cannot have an unrestricted normal conditional distribution.
+
+Fortunately, the **central limit theorem** often gives a large-sample approximation:
+
+$$
+\frac{\hat\beta_j-\beta_j}{\operatorname{se}(\hat\beta_j)}
+\overset{d}{\longrightarrow}N(0,1).
+$$
+
+Here $\overset{d}{\longrightarrow}$ means *converges in distribution*. Under the lecture's **MLR.1–MLR.5** and the usual regularity conditions, conventional OLS standard errors support this result even without MLR.6. MLR.5 is **homoskedasticity**, or constant conditional error variance.
+
+This makes familiar procedures **approximately valid** in sufficiently large samples:
+
+- **Two-sided test:** reject $H_0:\beta_j=b$ at approximately 5% if $|t|>1.96$, where $t=(\hat\beta_j-b)/\operatorname{se}(\hat\beta_j)$.
+- **Approximate 95% confidence interval:** $\hat\beta_j\pm1.96\operatorname{se}(\hat\beta_j)$.
+- **Joint tests:** use large-sample approximations for $F$-type statistics.
+
+There is **no universal minimum sample size** that guarantees a good normal approximation. Strong skewness, outliers, dependence and weak identifying variation can make it poor.
+
+::: {.callout-note}
+**Do not confuse two conditions.** Non-normality of errors is often manageable with large-sample inference. **Heteroskedasticity** is a separate issue: it makes conventional standard errors unreliable even in large samples, so robust standard errors may be needed (Part III).
+:::
+
+#### 4. Asymptotic efficiency
+
+Under **MLR.1–MLR.5**, OLS is **BLUE** (best linear unbiased estimator) in finite samples. It also has an **asymptotic efficiency** property within an appropriate class of regular estimators using the same moment information: it achieves the smallest asymptotic variance under the stated conditions.
+
+**Interpret carefully:** “best” does not mean best among every imaginable estimator in every model. The result relies on the assumptions, particularly homoskedasticity; under heteroskedasticity, alternative weighting methods may be more efficient.
+
+### Part II — Qualitative information in multiple regression
+
+#### 5. Dummy variables and the reference group
+
+A **dummy variable** (indicator) records whether an observation belongs to a category:
+
+$$
+female_i=\begin{cases}1,&\text{category coded as female},\\0,&\text{reference category coded as male}.\end{cases}
+$$
+
+The lecture uses this binary coding as an illustration. The key is to define **what 1 and 0 mean**; coding conventions are not intrinsic properties of people.
+
+Consider the wage model on **slides 18–20**:
+
+$$
+wage_i=\beta_0+\beta_1female_i+\beta_2educ_i+u_i.
+$$
+
+Holding education fixed:
+
+- Reference group ($female=0$): $E(wage\mid female=0,educ)=\beta_0+\beta_2educ$.
+- Other group ($female=1$): $E(wage\mid female=1,educ)=\beta_0+\beta_1+\beta_2educ$.
+- **Conditional difference:** $\beta_1$.
+
+The two regression lines have **different intercepts but the same slope** (as illustrated on slide 19). If $\beta_1=-2$, the model predicts wages that are £2 per hour lower for the coded female group **at the same education level**. This is a conditional association, **not automatically a causal effect**.
+
+Changing the reference group changes the sign of the dummy coefficient but not the fitted predictions. With an intercept, including both complementary indicators ($female$ and $male$) creates **perfect multicollinearity**, since $female+male=1$. Alternatively, omit the intercept and include both indicators.
+
+#### 6. Example: training grants (lecture slide 21)
+
+The lecture reports the following estimated regression for 105 Michigan manufacturing firms:
+
+$$
+\widehat{hrsemp}=46.67+26.25\,grant-0.98\log(sales)-6.07\log(employ),
+$$
+
+where $hrsemp$ is training hours per employee and $grant=1$ if the firm received a training grant in 1988. The standard error of the grant coefficient is **5.59**, so its $t$ statistic is approximately $26.25/5.59=4.70$.
+
+**Interpretation:** controlling for sales and employment, grant recipients have **26.25 more training hours per employee on average** than non-recipients in the fitted model. This is statistically significant; it is not automatically the causal effect of receiving a grant because selection into the grant programme may matter.
+
+#### 7. More than two categories: the $g-1$ rule
+
+With **$g$ mutually exclusive, exhaustive categories**, use **$g-1$ indicators plus an intercept**. The omitted category is the reference group. Every included dummy coefficient compares its category with that group, holding other regressors fixed.
+
+The lecture combines two binary characteristics—$female$ and $married$—into four groups:
+
+$$
+\begin{aligned}
+marrmale&=married(1-female),\\
+marrfem&=married\cdot female,\\
+singmale&=(1-married)(1-female),\\
+singfem&=(1-married)female.
+\end{aligned}
+$$
+
+Taking **single men** as the reference group gives
+
+$$
+\log(wage)=\beta_0+\delta_1marrmale+\delta_2marrfem+\delta_3singfem+\text{controls}+u.
+$$
+
+The lecture's **slide 24** reports $\hat\delta_1=0.213$, $\hat\delta_2=-0.198$ and $\hat\delta_3=-0.110$, controlling for education, experience and tenure (including squared terms). For a log-wage dependent variable:
+
+- A dummy coefficient $\delta$ gives an **approximate** $100\delta\%$ wage difference.
+- The **exact** percentage difference is $100(e^\delta-1)\%$.
+- Thus $0.213$ means approximately **21.3%**, or exactly **23.7%**, higher predicted wages relative to the reference group, holding controls fixed.
+
+**Comparing two non-reference groups** requires subtracting coefficients. For example, the fitted log-wage difference between married and single women is $-0.198-(-0.110)=-0.088$. Testing whether it is zero requires the **standard error of that difference**, including the covariance between the two estimated coefficients.
+
+**Ordinal categories** (for example, a 1–5 rating) can be entered as a single numerical regressor, imposing a constant increment per step, or as $g-1$ indicators, allowing flexible category differences. The flexible model uses more parameters and may be less precise.
+
+::: {.callout-important}
+**Interpretation warning (slide 24):** the observed wage differences do not establish that marriage itself changes wages. Selection, omitted characteristics and other explanations remain possible.
+:::
+
+#### 8. Interactions: different slopes across groups
+
+A dummy alone changes the intercept. To allow **different slopes**, interact the dummy with a quantitative regressor (slides 27–28):
+
+$$
+\log(wage)=\beta_0+\beta_1female+\beta_2educ+\beta_3(female\cdot educ)+u.
+$$
+
+| Group | Conditional regression line | Return to an extra year of education |
+|---|---|---|
+| $female=0$ | $\beta_0+\beta_2educ$ | $\beta_2$ |
+| $female=1$ | $(\beta_0+\beta_1)+(\beta_2+\beta_3)educ$ | $\beta_2+\beta_3$ |
+
+Thus $\beta_3$ is the **difference in education slopes**. Test $H_0:\beta_3=0$ to test equal slopes. The group difference at education level $e$ is $\beta_1+\beta_3e$; **$\beta_1$ alone is the difference at $educ=0$**, which may be outside the relevant data range. For easier interpretation, education can be centred around a meaningful value.
+
+#### 9. Chow test: do two groups follow the same regression?
+
+The **Chow test** is a joint test of whether regression coefficients differ across two groups (slides 29–32). In the lecture's college-GPA example, the outcome is cumulative GPA and the regressors are SAT score, high-school rank percentile and total college-course hours.
+
+Let $D=female$. A fully interacted model allows a different intercept and different slopes:
+
+$$
+\begin{aligned}
+cumgpa={}&\beta_0+\beta_1sat+\beta_2hsperc+\beta_3tothrs\\
+&+\delta_0D+\delta_1(D\cdot sat)+\delta_2(D\cdot hsperc)
++\delta_3(D\cdot tothrs)+u.
+\end{aligned}
+$$
+
+There are **two different questions**:
+
+1. **Same entire regression function?** $H_0:\delta_0=\delta_1=\delta_2=\delta_3=0$ (four restrictions).
+2. **Same slopes, but possibly different intercepts?** $H_0:\delta_1=\delta_2=\delta_3=0$ (three restrictions).
+
+The lecture's **slide 32** reports that the first test rejects at the **1% level**, whereas the slope-only test has **$p=0.205$** and does not reject at conventional levels. These are **not contradictory**: the full test also examines the intercept difference. Failure to reject equal slopes does not prove that slopes are identical.
+
+### Part III — Heteroskedasticity
+
+#### 10. What changes when error variance is not constant?
+
+**Homoskedasticity (MLR.5):**
+
+$$
+\operatorname{Var}(u_i\mid X_i)=\sigma^2.
+$$
+
+**Heteroskedasticity:**
+
+$$
+\operatorname{Var}(u_i\mid X_i)=\sigma_i^2,
+$$
+
+where $\sigma_i^2$ varies with the regressors or across observations. For example, high-income households may have much more variable spending than low-income households.
+
+Under exogeneity and the other relevant conditions:
+
+- OLS coefficients can remain **unbiased and consistent**.
+- Fitted values and the algebraic definition of **$R^2$** are unchanged.
+- OLS is **not generally BLUE** when error variances differ.
+- **Conventional homoskedasticity-based standard errors are generally incorrect**, so the associated conventional $t$ and $F$ reference distributions are not justified.
+
+**The problem is inference, not necessarily the estimated coefficient.**
+
+#### 11. Heteroskedasticity-robust standard errors
+
+The lecture's **slides 36–38** introduce the Huber–White (sandwich) estimator. It replaces the common error variance assumption with squared OLS residuals that can differ across observations.
+
+The resulting **robust standard error** is the square root of a robust estimated coefficient variance. A robust test statistic is
+
+$$
+t_{robust}=\frac{\hat\beta_j-b}{\operatorname{se}_{robust}(\hat\beta_j)}.
+$$
+
+It is used with a **large-sample normal approximation** (or an appropriate large-sample reference distribution). Joint restrictions can be tested with a **heteroskedasticity-robust Wald test**, often reported in $F$ form.
+
+::: {.callout-warning}
+Robust standard errors **do not** fix omitted-variable bias, reverse causality, measurement error, dependence between observations or a misspecified conditional mean. They correct the estimated uncertainty for heteroskedasticity under suitable sampling and moment conditions; they do not change the OLS point estimates.
+:::
+
+### Class 4 — essential takeaways
+
+| Question | Key answer |
+|---|---|
+| Does more data make OLS correct? | Only if the consistency conditions hold; endogeneity may cause persistent asymptotic bias. |
+| Must errors be normal? | Not for OLS consistency; sufficiently large samples can justify approximate inference. |
+| What does a dummy coefficient mean? | A difference relative to the omitted reference category, holding other variables fixed. |
+| Why omit one of $g$ category dummies? | To avoid perfect collinearity with the intercept. |
+| What does a dummy–continuous interaction do? | Allows slopes to differ between groups. |
+| What does a Chow test assess? | Joint equality of regression functions or, with modified restrictions, equality of slopes. |
+| What if errors are heteroskedastic? | OLS may remain consistent, but conventional standard errors can fail; use appropriate robust inference. |
+
 ## Mathematical Derivations
 
-## Tutorial Exercises
+### 1. Consistency of the simple-regression slope
 
+Start from the population model $y_i=\beta_0+\beta_1x_i+u_i$. The OLS slope is
+
+$$
+\hat\beta_1=\frac{\sum_{i=1}^n(x_i-\bar x)y_i}{\sum_{i=1}^n(x_i-\bar x)^2}.
+$$
+
+Substitute the population model, using $\sum_i(x_i-\bar x)=0$:
+
+$$
+\begin{aligned}
+\hat\beta_1
+&=\frac{\sum_i(x_i-\bar x)(\beta_0+\beta_1x_i+u_i)}{\sum_i(x_i-\bar x)^2}\\
+&=\beta_1+\frac{\sum_i(x_i-\bar x)u_i}{\sum_i(x_i-\bar x)^2}.
+\end{aligned}
+$$
+
+Divide numerator and denominator by $n$:
+
+$$
+\hat\beta_1=\beta_1+
+\frac{n^{-1}\sum_i(x_i-\bar x)u_i}{n^{-1}\sum_i(x_i-\bar x)^2}.
+$$
+
+By the **law of large numbers**, assuming finite relevant moments and $\operatorname{Var}(x)>0$:
+
+$$
+\begin{aligned}
+n^{-1}\sum_i(x_i-\bar x)u_i&\overset{p}{\longrightarrow}\operatorname{Cov}(x,u),\\
+n^{-1}\sum_i(x_i-\bar x)^2&\overset{p}{\longrightarrow}\operatorname{Var}(x).
+\end{aligned}
+$$
+
+Therefore, by the continuous mapping theorem,
+
+$$
+\boxed{\operatorname{plim}\hat\beta_1=\beta_1+
+\frac{\operatorname{Cov}(x,u)}{\operatorname{Var}(x)}}.
+$$
+
+If $\operatorname{Cov}(x,u)=0$, then $\operatorname{plim}\hat\beta_1=\beta_1$. If not, the ratio is the **asymptotic bias**.
+
+### 2. Multiple-regression consistency in matrix form
+
+Write $y=X\beta+u$, where $X$ includes an intercept and has full column rank. Then
+
+$$
+\begin{aligned}
+\hat\beta&=(X'X)^{-1}X'y\\
+&=\beta+(X'X)^{-1}X'u\\
+&=\beta+\left(\frac{X'X}{n}\right)^{-1}\frac{X'u}{n}.
+\end{aligned}
+$$
+
+If $n^{-1}X'X\overset{p}{\to}Q$ with $Q$ nonsingular and $n^{-1}X'u\overset{p}{\to}0$, then
+
+$$
+\boxed{\operatorname{plim}\hat\beta=\beta}.
+$$
+
+This makes the central requirement explicit: **sample regressor–error products must average towards zero**. Zero conditional mean is sufficient, but stronger than necessary for this probability-limit argument.
+
+### 3. Deriving asymptotic normality
+
+From the same identity,
+
+$$
+\sqrt n(\hat\beta-\beta)
+=\left(\frac{X'X}{n}\right)^{-1}\left(\frac{X'u}{\sqrt n}\right).
+$$
+
+Under independent sampling, exogeneity and appropriate finite-moment conditions, the multivariate central limit theorem gives
+
+$$
+\frac{X'u}{\sqrt n}\overset{d}{\longrightarrow}N(0,\Omega),
+\qquad \Omega=E[X_iX_i'u_i^2].
+$$
+
+Thus
+
+$$
+\boxed{\sqrt n(\hat\beta-\beta)\overset{d}{\longrightarrow}
+N(0,Q^{-1}\Omega Q^{-1})}.
+$$
+
+Under **homoskedasticity**, $\Omega=\sigma^2Q$, so the asymptotic covariance simplifies to $\sigma^2Q^{-1}$. With a consistent standard error estimate, the standardised coefficient converges to $N(0,1)$ by **Slutsky's theorem**. This is the mathematical basis for the approximate tests described in Part I.
+
+### 4. Reversing a binary reference group
+
+Start from $y=\beta_0+\beta_1female+\beta_2educ+u$. Since $male=1-female$,
+
+$$
+\begin{aligned}
+y&=\beta_0+\beta_1(1-male)+\beta_2educ+u\\
+&=(\beta_0+\beta_1)-\beta_1male+\beta_2educ+u.
+\end{aligned}
+$$
+
+Hence, if the new model is $y=\alpha_0+\alpha_1male+\alpha_2educ+u$,
+
+$$
+\boxed{\alpha_0=\beta_0+\beta_1,\qquad\alpha_1=-\beta_1,\qquad\alpha_2=\beta_2}.
+$$
+
+The fitted regression function is unchanged: only the **baseline and sign convention** differ.
+
+### 5. Deriving group-specific intercepts and slopes
+
+For $D\in\{0,1\}$, consider
+
+$$
+E(y\mid D,x)=\beta_0+\beta_1D+\beta_2x+\beta_3Dx.
+$$
+
+Set $D=0$ and $D=1$:
+
+$$
+\begin{aligned}
+E(y\mid D=0,x)&=\beta_0+\beta_2x,\\
+E(y\mid D=1,x)&=(\beta_0+\beta_1)+(\beta_2+\beta_3)x.
+\end{aligned}
+$$
+
+Subtract the two conditional means:
+
+$$
+\boxed{E(y\mid D=1,x)-E(y\mid D=0,x)=\beta_1+\beta_3x}.
+$$
+
+Therefore $\beta_1$ is the difference at $x=0$ and $\beta_3$ is the **difference in slopes**. To test a group difference at a particular $x=x_0$, test $H_0:\beta_1+x_0\beta_3=0$; its variance is
+
+$$
+\operatorname{Var}(\hat\beta_1+x_0\hat\beta_3)=
+\operatorname{Var}(\hat\beta_1)+x_0^2\operatorname{Var}(\hat\beta_3)
++2x_0\operatorname{Cov}(\hat\beta_1,\hat\beta_3).
+$$
+
+### 6. Deriving the Chow-test statistic
+
+Suppose there are **$k$ slopes plus one intercept** in each group's regression. The unrestricted model estimates a separate regression for each group, using **$2(k+1)$ parameters** in total. Its residual sum of squares is
+
+$$
+SSR_U=SSR_1+SSR_2.
+$$
+
+To test **equality of all coefficients**, the restricted model pools both groups and estimates **$k+1$ parameters**. Denote its residual sum of squares by $SSR_R=SSR_P$. There are $q=k+1$ restrictions, so
+
+$$
+\boxed{F=\frac{[SSR_P-(SSR_1+SSR_2)]/(k+1)}{(SSR_1+SSR_2)/[n-2(k+1)]}}.
+$$
+
+Under the classical homoskedastic normal-error assumptions and the null,
+
+$$
+F\sim F_{k+1,\,n-2(k+1)}.
+$$
+
+**Slope equality only:** keep a group dummy in the restricted pooled regression (allowing distinct intercepts), but omit the $k$ slope interactions. Now $q=k$, while the unrestricted residual degrees of freedom remain $n-2(k+1)$:
+
+$$
+\boxed{F_{slopes}=\frac{(SSR_{R,slopes}-SSR_U)/k}{SSR_U/[n-2(k+1)]}}.
+$$
+
+**Example from slide 32:** with $k=3$ and $n=366$, the unrestricted residual degrees of freedom are $366-2(4)=358$. The lecture reports $R_U^2\approx0.406$ and $R_R^2\approx0.352$ for the full-equality test. Because both models use the same dependent variable and sample,
+
+$$
+F=\frac{(R_U^2-R_R^2)/(k+1)}{(1-R_U^2)/[n-2(k+1)]}
+\approx\frac{(0.406-0.352)/4}{(1-0.406)/358}
+\approx8.14.
+$$
+
+(The reported $R^2$ values are rounded, so the result is approximate.) The lecture reports a very small $p$-value for this joint test. **If heteroskedasticity is present, this classical SSR-based $F$ reference distribution is not generally valid; use a robust Wald test.**
+
+### 7. Why heteroskedasticity changes the slope variance
+
+In simple regression, conditional on the observed $x_i$ values,
+
+$$
+\hat\beta_1-\beta_1=\frac{\sum_i(x_i-\bar x)u_i}{SST_x},
+\qquad SST_x=\sum_i(x_i-\bar x)^2.
+$$
+
+If errors are conditionally uncorrelated across observations and $\operatorname{Var}(u_i\mid X)=\sigma_i^2$, then
+
+$$
+\begin{aligned}
+\operatorname{Var}(\hat\beta_1\mid X)
+&=\operatorname{Var}\left(\frac{\sum_i(x_i-\bar x)u_i}{SST_x}\,\middle|\,X\right)\\
+&=\boxed{\frac{\sum_i(x_i-\bar x)^2\sigma_i^2}{SST_x^2}}.
+\end{aligned}
+$$
+
+With homoskedasticity, $\sigma_i^2=\sigma^2$ for every $i$, giving
+
+$$
+\operatorname{Var}(\hat\beta_1\mid X)=\frac{\sigma^2}{SST_x}.
+$$
+
+The second expression is **not generally correct** when $\sigma_i^2$ varies.
+
+### 8. Deriving the Huber–White robust variance estimator
+
+Replace each unknown $\sigma_i^2$ with the corresponding squared OLS residual $\hat u_i^2$:
+
+$$
+\boxed{\widehat{\operatorname{Var}}_{HC0}(\hat\beta_1)=
+\frac{\sum_i(x_i-\bar x)^2\hat u_i^2}{SST_x^2}}.
+$$
+
+For multiple regression, let $\hat r_{ij}$ be the residual from regressing regressor $x_j$ on **all the other regressors, including the intercept**, and let $SSR_j=\sum_i\hat r_{ij}^2$. The lecture's coefficient-specific formula is
+
+$$
+\boxed{\widehat{\operatorname{Var}}_{HC0}(\hat\beta_j)=
+\frac{\sum_i\hat r_{ij}^{\,2}\hat u_i^{\,2}}{SSR_j^2}}.
+$$
+
+Its square root is the **heteroskedasticity-robust standard error**. In matrix notation, the corresponding HC0 covariance estimator is
+
+$$
+\boxed{\widehat{\operatorname{Var}}_{HC0}(\hat\beta)=
+(X'X)^{-1}X'\operatorname{diag}(\hat u_1^2,\ldots,\hat u_n^2)X(X'X)^{-1}}.
+$$
+
+The lecture gives the basic **HC0** formula. Other implementations may use small-sample or leverage corrections (HC1, HC2, HC3), so reported robust standard errors need not be numerically identical across software settings.
+
+For $q$ joint linear restrictions $H_0:R\beta=r$, a heteroskedasticity-robust Wald statistic is
+
+$$
+W=(R\hat\beta-r)'[R\widehat{\operatorname{Var}}_{robust}(\hat\beta)R']^{-1}(R\hat\beta-r).
+$$
+
+Under the null and appropriate large-sample conditions, $W\overset{d}{\longrightarrow}\chi_q^2$. Software may report $W/q$ in an **$F$-style format**, but its finite-sample reference distribution is not generally the classical Chow $F$ distribution.
+
+::: {.callout-note}
+**Source and scope:** Based on Arne Uhlendorff, *Applied Econometrics*, **Lecture 4**, slides 2–38. The lecture contains three blocks: OLS asymptotics (slides 2–14), qualitative regressors and interactions (slides 15–32), and heteroskedasticity (slides 33–38). Mathematical clarifications, precise assumptions, exact log-percentage interpretation and matrix formulations have been added to prevent common misunderstandings; they are not all explicitly derived on the slides. Tutorial exercises and R applications are intentionally left for later.
+:::
+
+## Tutorial Exercises

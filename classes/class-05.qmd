@@ -1,10 +1,473 @@
 ---
 title: "Class 5"
+subtitle: "Repeated Cross Sections, Difference-in-Differences and Panel Data"
 ---
 
 ## Theory & Intuition
 
+### 1. Why observe data over time? (Slides 2–4)
+
+A **cross section** observes different units at one point in time. Lecture 5 introduces two ways to observe outcomes over several periods:
+
+| Data structure | Who is observed? | Example | What it permits |
+|---|---|---|---|
+| **Repeated cross sections (RCS)** | Different random samples at different dates | Survey French workers in 2020 and a new sample in 2025 | Compare populations and study changes over time |
+| **Panel data** | The **same** units on several dates | Follow the same workers in 2020 and 2025 | Study individual changes and remove time-invariant unobserved characteristics |
+
+A **rotating panel** follows units for a limited number of waves, with units entering and leaving over time.
+
+Both designs can help evaluate policy changes. Panels also reveal individual trajectories, but following respondents is costly and **attrition** (people dropping out) may create selection bias if departure is related to outcomes. Neither data structure guarantees a causal interpretation on its own.
+
+### 2. Pooling independent cross sections (Slides 5–12)
+
+**Pooling** means stacking independently sampled observations from different years into one dataset. This can increase precision and allows us to ask whether an outcome or a relationship changes over time.
+
+For two periods, a basic model is
+
+$$
+y_i=\beta_0+\delta_0\,post_i+\beta_1x_i+u_i,
+$$
+
+where $post_i=1$ for observations from the later period. Here, $\delta_0$ is the **conditional difference in the outcome between periods**, holding $x$ fixed. The model assumes that the slope $\beta_1$ is the same in both periods.
+
+To allow the effect of $x$ to change, add an interaction:
+
+$$
+y_i=\beta_0+\delta_0post_i+\beta_1x_i+\delta_1(post_i\times x_i)+u_i.
+$$
+
+- Earlier-period slope: $\beta_1$.
+- Later-period slope: $\beta_1+\delta_1$.
+- Change in slope: $\delta_1$.
+- Difference between periods at $x=0$: $\delta_0$; at another value of $x$, it is $\delta_0+\delta_1x$.
+
+**Fertility example (slides 7–8).** A pooled regression for US women over 35 includes age, education, region and year indicators. Relative to **1972**, the coefficient on the **1982** dummy is approximately $-0.522$: conditional on the included characteristics, the estimated number of children is about 0.52 lower. This is a conditional historical comparison, **not** proof that a particular policy caused the decline. An F-test can assess whether all the year coefficients are jointly zero.
+
+**Wages example (slides 9–10).** With 1978 as the reference year, the lecture estimates a log-wage model including education, experience, union status, a female indicator and interactions with the 1985 dummy. The education slope is approximately $0.0747$ in 1978 and $0.0747+0.0185=0.0932$ in 1985: about **7.47%** versus **9.32%** per additional year of education using the usual log-point approximation. The estimated female–male log-wage gap changes from $-0.317$ to $-0.317+0.085=-0.232$. The interaction's $t$-statistic is approximately $0.085/0.051=1.67$, so the evidence for a change in that gap is weaker than for the education slope ($0.0185/0.0094\approx1.97$).
+
+::: {.callout-note}
+## Logarithms and inflation
+If every wage in a given year is divided by the **same** price index $P_t$, then $\log(wage/P_t)=\log(wage)-\log(P_t)$. With a full set of year indicators (excluding the reference year), this year-specific constant is absorbed by the intercepts: **slope estimates do not change**. This result depends on the log specification and a common deflator within each year; it does not generally hold for wages in levels.
+:::
+
+#### Testing structural change: the Chow test
+
+The **Chow test** is an F-test of whether regression coefficients are stable across periods. Decide first whether you want to test **all coefficients** (intercepts and slopes) or **slopes only** while allowing year-specific intercepts. These are different hypotheses; see the derivations below.
+
+### 3. Difference-in-differences (DiD): the central idea (Slides 13–24)
+
+Suppose a policy starts between two periods and affects one group (**treated**) but not another (**control**). A simple before–after comparison is misleading if both groups are affected by inflation, the business cycle or other contemporaneous shocks. Comparing treated and control groups only *after* the policy is also misleading if they differed beforehand.
+
+**Difference-in-differences subtracts the control group's change from the treated group's change.**
+
+| Group | Before ($t=0$) | After ($t=1$) | Change |
+|---|---:|---:|---:|
+| Treated | 50 | 65 | $+15$ |
+| Control | 40 | 50 | $+10$ |
+| **DiD** | | | **$15-10=5$** |
+
+The estimate is **5 outcome units**: the treated group rose by 5 more than the control group. The treated group could have been different at baseline (50 versus 40); DiD removes this **constant level difference**.
+
+#### Potential outcomes and the missing counterfactual
+
+Let $D_i=1$ denote membership in the group that receives treatment after the policy, and $D_i=0$ the control group. Define $Y_{it}(1)$ as the outcome under treatment and $Y_{it}(0)$ as the outcome without treatment. Assume treatment begins **after the baseline measurement**, so nobody has been treated at $t=0$ (no anticipation).
+
+Our target is the **average treatment effect on the treated (ATT)**:
+
+$$
+ATT=E[Y_{i1}(1)-Y_{i1}(0)\mid D_i=1].
+$$
+
+We observe treated units' post-treatment outcomes $Y_{i1}(1)$, but **not** what those same units would have experienced without treatment, $Y_{i1}(0)$. DiD uses the control group's change to estimate this missing counterfactual.
+
+#### The parallel-trends assumption
+
+Without treatment, the **average outcome would have changed by the same amount in both groups**:
+
+$$
+\underbrace{E[Y_{i1}(0)-Y_{i0}(0)\mid D_i=1]}_{\text{untreated trend for treated group}}
+=
+\underbrace{E[Y_{i1}(0)-Y_{i0}(0)\mid D_i=0]}_{\text{untreated trend for controls}}.
+$$
+
+This is **parallel trends** (also called **common trends**). It does **not** require equal outcome levels or identical individual trajectories. It requires the untreated *average changes* to be equal.
+
+**Graphical intuition (slide 21):** project the treated group's baseline mean forward by the same vertical change observed in the control group. The vertical distance between that projected value and the treated group's actual post-treatment mean is the ATT.
+
+**Can we test it?** With at least two pre-treatment observations, compare the groups' **pre-policy trends** (slides 23–24). Similar earlier trends support credibility but **cannot prove** what would have happened without treatment after the policy. Diverging pre-trends raise concerns. Relevant time-varying controls may help when changes in those variables explain different trends, provided the controls are appropriate and not themselves affected by treatment.
+
+**Other threats:** anticipation of the policy; other shocks affecting the groups differently; changing sample composition; and spillovers from treated to control units. A policy that is adopted in response to changing outcomes is especially concerning.
+
+#### DiD as a regression (Slide 22)
+
+$$
+y_{it}=\beta_0+\delta_0post_t+\beta_1D_i+\beta_{DiD}(D_i\times post_t)+u_{it}.
+$$
+
+- $\beta_0$: control-group mean before treatment.
+- $\delta_0$: change in the control-group mean.
+- $\beta_1$: treated-minus-control difference **before** treatment.
+- $\beta_{DiD}$: **extra change** in the treated group; under the identifying assumptions, the ATT.
+
+The lecture also allows additional explanatory variables. With controls, the interaction coefficient is an adjusted DiD estimate; interpreting it causally requires appropriate conditional assumptions.
+
+### 4. The incinerator and house prices (Slides 25–29)
+
+The lecture considers a proposed incinerator in North Andover, Massachusetts. Houses within three miles are the **treated-area group** ($nearinc=1$); houses further away are the control group. The data comprise **independent samples of houses sold** in **1978** and **1981**. Rumours arose after 1978 and construction began in 1981.
+
+In 1981, houses near the site sold for about **$30,688 less** than distant houses. But in 1978—before the incinerator was discussed—they were already about **$18,824 less**. Therefore, the 1981 gap alone is not a credible treatment effect.
+
+The unadjusted DiD is
+
+$$
+(-30,688.27)-(-18,824.37)=\boxed{-11,863.90}.
+$$
+
+Under parallel trends, proximity to the incinerator is associated with an **additional decline of approximately $11,864** in real house prices. However, its reported standard error is **$7,456.65**, giving $t\approx-1.59$: **not significant at the conventional two-sided 5% level**.
+
+The lecture also reports estimates after controlling for house age and then a fuller set of characteristics:
+
+| Specification (slide 28) | DiD estimate | Standard error | Interpretation |
+|---|---:|---:|---|
+| No additional controls | $-11,863.90$ | $7,456.65$ | Negative, imprecise |
+| Age and age squared | $-21,920.27$ | $6,359.75$ | Larger negative estimate |
+| Full set of controls | $-14,177.93$ | $4,987.27$ | Negative estimate with greater precision |
+
+These estimates differ because the characteristics of houses sold can differ across groups and years. The lecture separately mentions a **significant log-price treatment coefficient of $0.063$** (slide 29), without displaying that regression specification. A **positive** log coefficient corresponds to approximately **$100(e^{0.063}-1)\approx6.50\%$ higher prices**, not a fall. **Do not silently assign it a negative sign**: the slide's positive value and the negative level-price results warrant checking the underlying regression before drawing a joint conclusion.
+
+### 5. Two-period panel data and first differences (Slides 30–36)
+
+With a panel, we observe **the same unit $i$ in both periods**. Consider
+
+$$
+y_{it}=\beta_0+\delta_0d2_t+\beta_1x_{it}+a_i+u_{it},
+$$
+
+where $a_i$ is an **unobserved time-invariant characteristic** (for example, a city's persistent characteristics), and $u_{it}$ changes over time. The combined error in pooled OLS would be $v_{it}=a_i+u_{it}$.
+
+**Problem:** if $a_i$ is correlated with $x_{it}$, pooled OLS generally suffers from omitted-variable bias.
+
+**Solution:** subtract the first observation from the second **for each unit**:
+
+$$
+\boxed{\Delta y_i=\delta_0+\beta_1\Delta x_i+\Delta u_i},
+\qquad \Delta z_i=z_{i2}-z_{i1}.
+$$
+
+The fixed characteristic $a_i$ disappears. **First differencing** therefore permits correlation between $a_i$ and $x_{it}$, but it does **not** eliminate bias from unobserved factors that **change** over time and correlate with $\Delta x_i$.
+
+For consistency, a central requirement is $E[\Delta u_i\mid\Delta x_i]=0$ (or suitable orthogonality conditions). It is sufficient, though stronger, to require the errors to be mean-independent of the regressors in **both** periods. We also need variation in $\Delta x_i$ across units. Variables constant within each unit vanish under differencing, and small changes in $x$ can make estimates imprecise.
+
+**Crime example (slides 35–36).** For 46 cities in 1982 and 1987, the 1987 cross-sectional slope of crime on unemployment is **$-4.16$** (SE $3.42$): negative and statistically insignificant. The first-difference regression instead estimates
+
+$$
+\widehat{\Delta crmrte}_i=15.40+2.22\,\Delta unem_i,
+$$
+
+with standard errors **(4.70)** and **(0.88)**, respectively. The slope is positive and statistically significant at 5% ($t\approx2.52$). This illustrates how removing stable differences between cities changes the estimated relationship. **It is not automatically causal**: changing omitted factors remain a concern.
+
+### 6. Policy analysis using panel data (Slides 37–41)
+
+Panel first differences can also implement DiD. Suppose $prog_{it}$ indicates programme participation:
+
+$$
+y_{it}=\beta_0+\delta_0d2_t+\beta_1prog_{it}+a_i+u_{it}.
+$$
+
+Then
+
+$$
+\Delta y_i=\delta_0+\beta_1\Delta prog_i+\Delta u_i.
+$$
+
+If **nobody participates initially** and, in the second period, some units adopt the programme while others do not, $\Delta prog_i$ is a treated-group indicator. Regressing changes in outcomes on this indicator yields the **same two-group, two-period DiD contrast**. This equivalence requires the specified treatment pattern; if units also discontinue treatment, $\Delta prog_i$ can be $-1$, $0$ or $1$.
+
+**Drunk-driving laws (slides 39–40).** US states changed two types of laws between 1985 and 1990: open-container restrictions and administrative *per se* provisions. Using 51 jurisdictions, the lecture reports
+
+$$
+\widehat{\Delta dthrte}=-0.497-0.420\,\Delta open-0.151\,\Delta admn,
+$$
+
+with standard errors **(0.052)**, **(0.206)** and **(0.117)**. The outcome is traffic deaths per **100 million miles driven**. The open-container coefficient is approximately significant at 5% ($t\approx-2.04$); the administrative-law coefficient is not ($t\approx-1.29$). **Policy adoption is not random**: other changing state-level factors could still bias the coefficients.
+
+For **more than two periods**, first-difference adjacent observations and include the appropriate time effects. The lecture's key assumption is **strict exogeneity**: idiosyncratic errors are conditionally mean-zero given the unit's full history of explanatory variables (and its fixed effect).
+
+::: {.callout-important}
+## Five distinctions to remember
+1. **Repeated cross sections are not panels:** the people or houses need not be the same across years.
+2. **Year effects are not treatment effects:** a year dummy captures a common shift, not automatically a policy effect.
+3. **DiD removes constant group differences and common changes**, not group-specific shocks.
+4. **Parallel pre-trends are evidence, not proof**, of the unobservable post-treatment counterfactual.
+5. **First differencing removes fixed unobservables**, not time-varying confounders; time-invariant regressors cannot be separately estimated from differences.
+:::
+
 ## Mathematical Derivations
+
+### 1. Pooled cross sections: year effects and interactions
+
+Take $post\in\{0,1\}$ and the model
+
+$$
+E[y\mid x,post]=\beta_0+\delta_0post+\beta_1x+\delta_1(post\cdot x).
+$$
+
+Substitute each period:
+
+$$
+\begin{aligned}
+post=0:\quad&E[y\mid x,0]=\beta_0+\beta_1x,\\
+post=1:\quad&E[y\mid x,1]=(\beta_0+\delta_0)+(\beta_1+\delta_1)x.
+\end{aligned}
+$$
+
+Therefore,
+
+$$
+\begin{aligned}
+\text{Difference at fixed }x&=\delta_0+\delta_1x,\\
+\text{Change in slope}&=(\beta_1+\delta_1)-\beta_1=\delta_1.
+\end{aligned}
+$$
+
+**Wage application:** the lecture's 1985 interaction on education is $0.0185$, so the education slope rises from $0.0747$ to $0.0932$. For a dummy in a log-outcome regression, the **exact** proportional difference is $e^b-1$ rather than $b$.
+
+### 2. Chow test across $T$ periods
+
+Suppose there are $k$ slope regressors, $T$ periods and $n$ observations in total. Let $SSR_R$ and $SSR_U$ be the restricted and unrestricted sums of squared residuals. For **$q$ linear restrictions**:
+
+$$
+\boxed{F=\frac{(SSR_R-SSR_U)/q}{SSR_U/(n-p_U)}},
+$$
+
+where $p_U$ is the **number of estimated parameters in the unrestricted model, including intercepts**. Under the classical homoskedastic normal-error assumptions and the null, $F\sim F_{q,n-p_U}$.
+
+**Test equal slopes, allowing different intercepts:**
+
+- Restricted model: $T$ intercepts (implemented by year dummies) and $k$ common slopes.
+- Unrestricted model: a separate intercept and $k$ slopes in each period, so $p_U=T(k+1)$.
+- Number of restrictions: $q=(T-1)k$.
+
+Thus the lecture's slide-12 formula is
+
+$$
+\boxed{F_{\text{slopes}}=
+\frac{(SSR_R-SSR_U)/[(T-1)k]}{SSR_U/[n-T(k+1)]}}.
+$$
+
+**Test equal intercepts *and* slopes:** the restricted model has one intercept and $k$ common slopes. The unrestricted model is unchanged, but now $q=(T-1)(k+1)$, so
+
+$$
+F_{\text{all}}=
+\frac{(SSR_R-SSR_U)/[(T-1)(k+1)]}{SSR_U/[n-T(k+1)]}.
+$$
+
+**Critical detail:** the slide-12 expression with $(T-1)k$ restrictions tests **slope stability with time-specific intercepts left unrestricted**. It is *not* the joint test of every intercept and slope. Classical Chow F-tests also rely on error-variance assumptions; robust joint Wald/F tests are preferable if heteroskedasticity is suspected.
+
+### 3. Deriving the DiD estimand from potential outcomes
+
+Assume no treatment before $t=1$, so observed baseline outcomes are $Y_{i0}=Y_{i0}(0)$ for both groups. Assume controls remain untreated and there are no relevant spillovers. Define
+
+$$
+\begin{aligned}
+\mu_{11}&=E[Y_{i1}(1)\mid D_i=1],\\
+\mu_{10}&=E[Y_{i0}(0)\mid D_i=1],\\
+\mu_{01}&=E[Y_{i1}(0)\mid D_i=0],\\
+\mu_{00}&=E[Y_{i0}(0)\mid D_i=0].
+\end{aligned}
+$$
+
+The observed DiD is
+
+$$
+DiD=(\mu_{11}-\mu_{10})-(\mu_{01}-\mu_{00}).
+$$
+
+Add and subtract the **unobserved** $E[Y_{i1}(0)\mid D_i=1]$:
+
+$$
+\begin{aligned}
+DiD={}&\underbrace{E[Y_{i1}(1)-Y_{i1}(0)\mid D_i=1]}_{ATT}\\
+&+\underbrace{E[Y_{i1}(0)-Y_{i0}(0)\mid D_i=1]
+-E[Y_{i1}(0)-Y_{i0}(0)\mid D_i=0]}_{\text{difference in untreated trends}}.
+\end{aligned}
+$$
+
+Under **parallel trends**, the second term is zero, giving
+
+$$
+\boxed{DiD=ATT}.
+$$
+
+This identity also shows the **bias** when parallel trends fails: it is the difference between the groups' untreated trends.
+
+### 4. Why the interaction coefficient equals DiD
+
+Without additional covariates, consider the saturated two-by-two model
+
+$$
+E[y\mid D,post]=\beta_0+\beta_1D+\delta_0post+\beta_{DiD}(D\cdot post).
+$$
+
+Evaluate the four cells:
+
+| | $post=0$ | $post=1$ |
+|---|---|---|
+| $D=0$ | $\beta_0$ | $\beta_0+\delta_0$ |
+| $D=1$ | $\beta_0+\beta_1$ | $\beta_0+\beta_1+\delta_0+\beta_{DiD}$ |
+
+Subtract within groups and then across groups:
+
+$$
+\begin{aligned}
+\Delta\bar y_{D=1}&=\delta_0+\beta_{DiD},\\
+\Delta\bar y_{D=0}&=\delta_0,\\
+\boxed{\Delta\bar y_{D=1}-\Delta\bar y_{D=0}}&=\boxed{\beta_{DiD}}.
+\end{aligned}
+$$
+
+Hence, in the **unadjusted two-by-two regression**, the OLS interaction coefficient reproduces the sample DiD exactly. With controls, the interpretation becomes conditional on the model.
+
+### 5. Housing-price DiD: arithmetic and inference
+
+Using the separate 1978 and 1981 regressions (slides 26–28), the near-minus-far price gaps are
+
+$$
+\begin{aligned}
+G_{1978}&=-18,824.37,\\
+G_{1981}&=-30,688.27.
+\end{aligned}
+$$
+
+Thus
+
+$$
+\widehat{DiD}=G_{1981}-G_{1978}=-11,863.90.
+$$
+
+From the pooled regression's standard error of $7,456.65$,
+
+$$
+t=\frac{-11,863.90}{7,456.65}\approx-1.59.
+$$
+
+So the point estimate is negative, but **the unadjusted model does not reject a zero effect at the 5% two-sided level**. A large estimated gap between near and far houses in 1981 is not itself evidence of an incinerator effect: a substantial gap existed in 1978.
+
+### 6. First-differencing eliminates time-invariant unobservables
+
+Write the model for the same unit in both periods:
+
+$$
+\begin{aligned}
+y_{i1}&=\beta_0+\beta_1x_{i1}+a_i+u_{i1},\\
+y_{i2}&=\beta_0+\delta_0+\beta_1x_{i2}+a_i+u_{i2}.
+\end{aligned}
+$$
+
+Subtract the first equation from the second:
+
+$$
+\begin{aligned}
+y_{i2}-y_{i1}
+&=(\beta_0-\beta_0)+\delta_0
++\beta_1(x_{i2}-x_{i1})\\
+&\quad +(a_i-a_i)+(u_{i2}-u_{i1}).
+\end{aligned}
+$$
+
+Therefore,
+
+$$
+\boxed{\Delta y_i=\delta_0+\beta_1\Delta x_i+\Delta u_i}.
+$$
+
+**What is removed?** The common intercept $\beta_0$ and every unit-specific time-invariant factor $a_i$. **What remains?** The common time change $\delta_0$, the relationship between changes in $x$ and $y$, and changes in unobservables $\Delta u_i$.
+
+For multiple regressors:
+
+$$
+\Delta y_i=\delta_0+\sum_{j=1}^{k}\beta_j\Delta x_{ji}+\Delta u_i.
+$$
+
+If $x_{ji2}=x_{ji1}$ for every unit, then $\Delta x_{ji}=0$ everywhere: its coefficient cannot be identified by this regression. If every unit experiences exactly the same change in $x$, that change is collinear with the intercept and the slope is likewise unidentified.
+
+**Exogeneity condition:** $E[\Delta u_i\mid\Delta X_i]=0$ is sufficient for the usual conditional-mean-zero interpretation of first-difference OLS. The weaker orthogonality $E[\Delta X_i\Delta u_i]=0$, together with full-rank regressors, supports consistency. Neither follows merely from differencing.
+
+### 7. Deriving panel DiD as a first-difference regression
+
+Start from
+
+$$
+y_{it}=\beta_0+\delta_0d2_t+\beta_1prog_{it}+a_i+u_{it}.
+$$
+
+Differencing gives
+
+$$
+\Delta y_i=\delta_0+\beta_1\Delta prog_i+\Delta u_i.
+$$
+
+Suppose $prog_{i1}=0$ for all units and $prog_{i2}=D_i\in\{0,1\}$. Then $\Delta prog_i=D_i$, and
+
+$$
+E[\Delta y_i\mid D_i=1]-E[\Delta y_i\mid D_i=0]=\beta_1
+$$
+
+when the conditional mean of $\Delta u_i$ is the same in both groups. In the sample, a regression of $\Delta y_i$ on a constant and $D_i$ yields
+
+$$
+\boxed{\widehat\beta_1=\overline{\Delta y}_{\mathrm{treated}}-\overline{\Delta y}_{\mathrm{control}}}.
+$$
+
+This is exactly the two-period panel DiD estimator.
+
+### 8. First differences with three or more periods
+
+For $T=3$, the lecture specifies
+
+$$
+y_{it}=\delta_1+\delta_2d2_t+\delta_3d3_t+\boldsymbol{x}_{it}'\boldsymbol\beta+a_i+u_{it}.
+$$
+
+Subtract the previous period for $t=2,3$:
+
+$$
+\boxed{\Delta y_{it}=\delta_2\Delta d2_t+\delta_3\Delta d3_t
++\Delta\boldsymbol{x}_{it}'\boldsymbol\beta+\Delta u_{it}}.
+$$
+
+In particular, $\Delta d2_2=1$, $\Delta d3_2=0$, whereas $\Delta d2_3=-1$, $\Delta d3_3=1$. Thus the time effects in the differenced equations represent **changes between adjacent periods**, not simply the original year coefficients.
+
+A sufficient **strict-exogeneity** condition is
+
+$$
+E[u_{it}\mid\boldsymbol X_i,a_i]=0\quad\text{for every }t,
+$$
+
+where $\boldsymbol X_i$ contains regressors from **all** periods. This implies
+
+$$
+E[\Delta u_{it}\mid\boldsymbol X_i,a_i]=0.
+$$
+
+Because adjacent differences share an error term (for example, $\Delta u_{i2}=u_{i2}-u_{i1}$ and $\Delta u_{i3}=u_{i3}-u_{i2}$), they can be correlated even when the original errors are serially independent. Inference must account for dependence within units (for example, by clustering standard errors at the unit level when appropriate).
+
+::: {.callout-tip}
+## Revision: which estimator solves which problem?
+
+| Estimator | Removes or controls for | Main remaining concern |
+|---|---|---|
+| Pooled cross sections + year dummies | Common shifts across periods | Changes in composition; omitted variables; unstable slopes |
+| DiD | Constant group differences and common time changes | Non-parallel untreated trends and spillovers |
+| First-difference panel OLS | Time-invariant unobserved unit effects | Time-varying confounding; limited within-unit variation |
+| Panel DiD | Unit fixed effects and common time changes | Different untreated trends between treated and controls |
+
+**General rule:** a more sophisticated estimator is not automatically causal. Identify the unobserved counterfactual, the identifying assumption and the threats to that assumption.
+:::
 
 ## Tutorial Exercises
 
+---
+
+**Ready to practise?**
+
+[Go to Tutorial 5](../tutorials/tutorial-05.qmd)

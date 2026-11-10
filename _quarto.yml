@@ -10,7 +10,7 @@ website:
     search: true
     contents:
       - index.qmd
-      - section: "Course Content"
+      - section: "Lectures"
         contents:
           - classes/class-01.qmd
           - classes/class-02.qmd
@@ -21,6 +21,17 @@ website:
           - classes/class-07.qmd
           - classes/class-08.qmd
 
+      - section: "Tutorials"
+        contents:
+          - tutorials/tutorial-01.qmd
+          - tutorials/tutorial-02.qmd
+          - tutorials/tutorial-03.qmd
+          - tutorials/tutorial-04.qmd
+          - tutorials/tutorial-05.qmd
+          - tutorials/tutorial-06.qmd
+          - tutorials/tutorial-07.qmd
+          - tutorials/tutorial-08.qmd
+      
 format:
   html:
     theme: litera

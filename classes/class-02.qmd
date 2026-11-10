@@ -1,10 +1,875 @@
 ---
 title: "Class 2"
+subtitle: "Multiple Linear Regression: OLS, Bias, Precision and Gauss–Markov"
 ---
+
+> **Source and scope.** Study notes based on Arne Uhlendorff's *Applied Econometrics*, Lecture 2 (*The Multiple Regression Model*; supplied PDF, 50 pages). The explanations and examples are rewritten for learning purposes. The lecture's five main parts are covered: motivation, OLS mechanics, expected values and omitted-variable bias, sampling variances, and the Gauss–Markov theorem. Mathematical qualifications correct several imprecise statements in the slides. Tutorial exercises and R applications are reserved for later.
 
 ## Theory & Intuition
 
+### 1. Why move from simple to multiple regression?
+
+In **simple linear regression**, we relate an outcome $Y$ to one explanatory variable $X$. But outcomes usually depend on several factors. If an omitted factor affects $Y$ and is related to $X$, a simple regression can attribute part of that factor's association to $X$.
+
+**Multiple regression** introduces additional explanatory variables so that we can compare observations *holding the included controls fixed*. It also allows more flexible functional forms, such as squared terms.
+
+Consider hourly wages:
+
+$$
+wage_i=\beta_0+\beta_1 educ_i+\beta_2 exper_i+u_i.
+$$
+
+Here, $educ$ measures years of education and $exper$ years of labour-market experience. The coefficient $\beta_1$ describes the change in the modelled wage associated with one more year of education **at a given level of experience**. Education and experience are allowed to be correlated.
+
+::: {.callout-important}
+## Controlling is not the same as identifying a causal effect
+
+Including experience removes *that measured variable* from the error term. It does not automatically remove unobserved ability, family background or other confounders. A causal interpretation still requires a credible assumption about the remaining error term.
+:::
+
+### 2. The multiple linear regression model
+
+With $k$ explanatory variables, the **population model** is
+
+$$
+\boxed{Y_i=\beta_0+\beta_1X_{i1}+\cdots+\beta_kX_{ik}+u_i.}
+$$
+
+- $Y_i$: dependent variable (outcome).
+- $X_{ij}$: explanatory variable $j$ for observation $i$.
+- $\beta_0$: population intercept; $\beta_j$: population slope coefficients.
+- $u_i$: unobserved influences not captured by the included regressors.
+- $n$: number of observations; $k$: number of explanatory variables, **excluding** the intercept.
+
+The model is **linear in its unknown coefficients**, not necessarily in the underlying variables. For instance, $X_1=income$ and $X_2=income^2$ still produce a linear-in-parameters model.
+
+The central conditional-mean assumption is
+
+$$
+\boxed{\mathbb E[u\mid X_1,\ldots,X_k]=0.}
+$$
+
+If it holds, the population conditional mean is
+
+$$
+\mathbb E[Y\mid X_1,\ldots,X_k]
+=\beta_0+\sum_{j=1}^{k}\beta_jX_j.
+$$
+
+This is a strong **exogeneity** assumption: after conditioning on all included regressors, the remaining unobserved influences have no systematic average relationship with them.
+
+### 3. Interpreting coefficients: *ceteris paribus*
+
+For two regressors, the fitted equation is
+
+$$
+\widehat Y=\hat\beta_0+\hat\beta_1X_1+\hat\beta_2X_2.
+$$
+
+A change in the fitted outcome satisfies
+
+$$
+\Delta\widehat Y=\hat\beta_1\Delta X_1+\hat\beta_2\Delta X_2.
+$$
+
+If $X_2$ stays fixed, $\Delta\widehat Y=\hat\beta_1\Delta X_1$. Thus $\hat\beta_1$ is a **partial slope**: it describes the fitted association with $X_1$ after accounting for $X_2$. It is not automatically a causal effect.
+
+**Example:** Suppose a fitted wage equation is
+
+$$
+\widehat{wage}=5+0.8\,educ+0.3\,exper.
+$$
+
+For two workers with the same experience, one additional year of education corresponds to a fitted wage difference of $0.8$ wage units. If education rises by one year *and* experience by two years, the fitted difference is $0.8+2(0.3)=1.4$ units. These numbers are hypothetical, not estimates from the lecture.
+
+### 4. Non-linear relationships within linear regression
+
+A quadratic consumption model is
+
+$$
+cons=\beta_0+\beta_1inc+\beta_2inc^2+u.
+$$
+
+Although the relationship can be curved, OLS remains linear in $\beta_0,\beta_1,\beta_2$. Holding $u$ fixed, the **marginal propensity to consume** is
+
+$$
+\boxed{\frac{\partial cons}{\partial inc}=\beta_1+2\beta_2inc.}
+$$
+
+The marginal effect changes with income. It would be meaningless to increase $inc$ while holding $inc^2$ fixed: the two regressors are mechanically linked.
+
+The lecture also considers CEO pay:
+
+$$
+\log(salary)=\beta_0+\beta_1\log(sales)
++\beta_2ceoten+\beta_3ceoten^2+u.
+$$
+
+Here $\beta_1$ is the elasticity of salary with respect to sales **in the specified log relationship, holding other factors fixed**. For tenure,
+
+$$
+\frac{\partial\log(salary)}{\partial ceoten}
+=\beta_2+2\beta_3ceoten.
+$$
+
+Multiplying by $100$ gives the **approximate percentage change** for one additional year of tenure at a given tenure level. For a finite change $\Delta t$, the exact change in log salary is $\beta_2\Delta t+\beta_3[(t+\Delta t)^2-t^2]$; the corresponding percentage change, holding $u$ fixed, is $100\{\exp(\Delta\log salary)-1\}\%$.
+
+### 5. How multiple-regression OLS works
+
+Given observations $i=1,\ldots,n$, ordinary least squares chooses $k+1$ coefficients to minimise the **sum of squared residuals**:
+
+$$
+\boxed{\min_{b_0,\ldots,b_k}\sum_{i=1}^{n}
+\left(Y_i-b_0-\sum_{j=1}^{k}b_jX_{ij}\right)^2.}
+$$
+
+After estimation,
+
+$$
+\widehat Y_i=\hat\beta_0+\sum_{j=1}^{k}\hat\beta_jX_{ij},
+\qquad \hat u_i=Y_i-\widehat Y_i.
+$$
+
+A **residual** $\hat u_i$ is observable once the model has been fitted; the **population error** $u_i$ is not. OLS finds the line or hyperplane with the smallest total squared residuals.
+
+Provided the regressors are not perfectly collinear, the OLS solution is unique.
+
+### 6. Exact sample properties of OLS
+
+With an intercept, the first-order conditions imply
+
+$$
+\sum_i\hat u_i=0,
+\qquad \sum_iX_{ij}\hat u_i=0\quad(j=1,\ldots,k).
+$$
+
+Consequently:
+
+- The residuals have sample mean zero.
+- Every included regressor has zero sample covariance with the residuals.
+- Fitted values and residuals have zero sample covariance.
+- $\overline{\widehat Y}=\bar Y$.
+- The fitted regression hyperplane passes through $(\bar X_1,\ldots,\bar X_k,\bar Y)$.
+
+These are **algebraic properties of the fitted sample**, not evidence that the regressors are exogenous in the population.
+
+### 7. The Frisch–Waugh–Lovell theorem: partialling out
+
+The **Frisch–Waugh–Lovell (FWL) theorem** explains what a multiple-regression coefficient measures. To obtain the coefficient on $X_1$ in a regression of $Y$ on $X_1,X_2,\ldots,X_k$:
+
+1. Regress $X_1$ on an intercept and $X_2,\ldots,X_k$; retain residuals $\hat r_{1i}$.
+2. Regress $Y$ on the same controls; retain residuals $\hat v_i$.
+3. Regress $\hat v$ on $\hat r_1$; its slope equals the coefficient on $X_1$ in the original multiple regression:
+
+$$
+\boxed{\hat\beta_1=
+\frac{\sum_i\hat r_{1i}\hat v_i}
+{\sum_i\hat r_{1i}^2}.}
+$$
+
+**Intuition:** First remove the variation linearly explained by the controls from both $X_1$ and $Y$. Then examine how the remaining variation moves together. This is why we say multiple regression *partials out* other regressors.
+
+FWL requires the same observations and the same set of controls in the auxiliary regressions, as well as sufficient remaining variation in $X_1$.
+
+### 8. The education–IQ example: why coefficients change
+
+The lecture reports a sample of $759$ workers. Its simple regression is
+
+$$
+\widehat{\log(wage)}=1.142+0.099\,educ.
+$$
+
+After including an IQ measure, it reports
+
+$$
+\widehat{\log(wage)}=1.142+0.073\,educ+0.0076\,IQ.
+$$
+
+The estimated schooling coefficient falls from $0.099$ to $0.073$: roughly **9.9% to 7.3%** using the usual log approximation. The lecture also reports a positive education–IQ correlation of $0.573$.
+
+**Interpretation:** The simple regression partly attributes the positive wage association with IQ to education. Controlling for IQ changes the estimated *conditional association* with schooling. IQ is an imperfect proxy for ability, however, so the multiple-regression coefficient is not automatically a causal return to education.
+
+::: {.callout-warning}
+## A transcription issue in the lecture
+
+The slides print the same intercept, $1.142$, in both wage equations. This is unusual when a regressor is added and could be a slide transcription error. The slope coefficients and the reported correlation are reproduced as shown; the intercepts should not be treated as independently verified without the underlying regression output.
+:::
+
+### 9. Goodness of fit: $R^2$
+
+For OLS **with an intercept**, the lecture uses
+
+$$
+\underbrace{\sum_i(Y_i-\bar Y)^2}_{SST}
+=\underbrace{\sum_i(\widehat Y_i-\bar Y)^2}_{SSE\;\text{(explained)}}
++\underbrace{\sum_i\hat u_i^2}_{SSR\;\text{(residual)}}.
+$$
+
+Thus, when $SST>0$,
+
+$$
+\boxed{R^2=\frac{SSE}{SST}=1-\frac{SSR}{SST}},
+\qquad 0\leq R^2\leq1.
+$$
+
+**Notation warning:** The lecture calls the explained sum of squares **SSE** and the residual sum of squares **SSR**; other textbooks may use SSE for the *error* sum of squares. Always check the definitions.
+
+Adding regressors to OLS **cannot reduce ordinary $R^2$** if the outcome and estimation sample stay the same: the old fitted model remains an available option. This does **not** mean every additional variable improves prediction outside the sample or helps identify causal effects. Adjusted $R^2$ can fall.
+
+### 10. Comparing simple and multiple regression
+
+Suppose we estimate, on the **same observations**,
+
+$$
+\widetilde Y=\tilde\beta_0+\tilde\beta_1X_1
+\qquad\text{and}\qquad
+\widehat Y=\hat\beta_0+\hat\beta_1X_1+\hat\beta_2X_2.
+$$
+
+Let $\tilde\delta_1$ be the slope from a simple regression of $X_2$ on $X_1$. An **exact sample identity** is
+
+$$
+\boxed{\tilde\beta_1=\hat\beta_1+\hat\beta_2\tilde\delta_1.}
+$$
+
+The difference between the two estimates depends on (i) the coefficient on the additional variable and (ii) how that variable co-varies with $X_1$.
+
+With **two** regressors, the slopes coincide if $\hat\beta_2=0$ or $\tilde\delta_1=0$. With **several** omitted controls, contributions can also **cancel**; it is not necessary that every omitted coefficient or every correlation be zero.
+
+### 11. The four assumptions for unbiasedness
+
+The lecture introduces the following assumptions:
+
+| Assumption | Statement | Why it matters |
+|---|---|---|
+| **MLR.1 — Linear in parameters** | $Y_i=\beta_0+\sum_j\beta_jX_{ij}+u_i$ | Defines the population model |
+| **MLR.2 — Random sampling** | Observations are independent draws from the population | Connects the sample to the population |
+| **MLR.3 — No perfect collinearity** | No regressor is an exact linear combination of the intercept and other regressors in the sample | Ensures unique OLS coefficients |
+| **MLR.4 — Zero conditional mean** | $E[u_i\mid X_{i1},\ldots,X_{ik}]=0$ | Makes OLS unbiased under the preceding assumptions |
+
+Under MLR.1–MLR.4, with the requisite expectations defined,
+
+$$
+\boxed{\mathbb E[\hat\beta_j]=\beta_j,\qquad j=0,\ldots,k.}
+$$
+
+**Unbiased** means the estimator's expectation across repeated samples equals the true coefficient; it does not mean each sample estimate is close to the truth.
+
+### 12. Perfect collinearity versus high correlation
+
+**Perfect collinearity** occurs when one included regressor is an exact linear combination of the intercept and the others. OLS then cannot determine all coefficients uniquely.
+
+Two examples from the lecture:
+
+- **Logarithms:** For positive income, $\log(inc^2)=2\log(inc)$. Including both as separate regressors is redundant. By contrast, $[\log(inc)]^2$ is generally **not** equal to $\log(inc^2)$.
+- **Election spending:** If $totalspend=spend_A+spend_B$, including all three with an intercept creates an exact linear dependence. One must remove or reparameterise a variable.
+
+**High but imperfect correlation** is permitted. It can make coefficients imprecise, but does not by itself make OLS undefined or biased.
+
+The rank condition requires at least $n\geq k+1$ observations for a unique fit; estimating the error variance using residual degrees of freedom additionally requires $n>k+1$.
+
+### 13. Omitted-variable bias (OVB)
+
+Suppose the correct population model is
+
+$$
+Y=\beta_0+\beta_1X_1+\beta_2X_2+u,
+\qquad E[u\mid X_1,X_2]=0.
+$$
+
+If we omit $X_2$ and regress $Y$ on $X_1$ alone, the omitted term $\beta_2X_2+u$ becomes the error. The resulting slope generally does not estimate $\beta_1$ without bias.
+
+Let
+
+$$
+\delta_1=\frac{\operatorname{Cov}(X_1,X_2)}
+{\operatorname{Var}(X_1)},
+\qquad \operatorname{Var}(X_1)>0.
+$$
+
+The **population simple-regression slope** is
+
+$$
+\boxed{\beta_1^{simple}=\beta_1+\beta_2\delta_1.}
+$$
+
+Hence the difference between the population simple slope and the desired partial slope is $\beta_2\delta_1$. This is the familiar OVB formula at the **population linear-projection** level.
+
+| Effect of omitted $X_2$ on $Y$ ($\beta_2$) | Association of $X_2$ with $X_1$ ($\delta_1$) | Direction of OVB |
+|---|---|---|
+| Positive | Positive | Upward |
+| Positive | Negative | Downward |
+| Negative | Positive | Downward |
+| Negative | Negative | Upward |
+
+**Wage example:** If ability raises wages and is positively associated with education, omitting ability tends to push the simple schooling slope upwards relative to the coefficient that controls for ability.
+
+::: {.callout-important}
+## Do not confuse a sample identity with an expected bias
+
+The exact identity $\tilde\beta_1=\hat\beta_1+\hat\beta_2\tilde\delta_1$ uses **sample estimates**. Because $\tilde\delta_1$ is random, it is generally **incorrect** to write $E[\hat\beta_2\tilde\delta_1]=E[\hat\beta_2]\tilde\delta_1$ without conditioning. Under the full-model assumptions, the correct conditional statement is
+
+$$
+E[\tilde\beta_1\mid\mathbf X]=\beta_1+\beta_2\tilde\delta_1,
+$$
+
+where $\mathbf X$ contains both regressors for all observations. Unconditionally, the bias is $\beta_2E[\tilde\delta_1]$, when that expectation exists. The population formula above uses the non-random population projection slope $\delta_1$.
+:::
+
+### 14. Adding irrelevant variables
+
+An **irrelevant variable** has a true partial coefficient of zero. If the full model still satisfies MLR.1–MLR.4, including it does not introduce bias into the OLS coefficients.
+
+However, extra regressors consume degrees of freedom and may increase estimator variance. The practical distinction is:
+
+- Omitting a relevant confounder can introduce **bias**.
+- Including an irrelevant regressor need not introduce bias, but can reduce **precision**.
+
+These are not unconditional rules: they depend on the maintained model assumptions.
+
+### 15. Homoskedasticity and heteroskedasticity
+
+To study the sampling variance of OLS, the lecture adds:
+
+$$
+\boxed{\text{MLR.5: }\operatorname{Var}(u\mid X_1,\ldots,X_k)=\sigma^2.}
+$$
+
+This is **homoskedasticity**: the conditional error variance is constant across regressor values. **Heteroskedasticity** means that conditional variance changes with the regressors.
+
+**Example:** Wage outcomes may be more dispersed among highly educated workers than among workers with fewer years of education. That would be consistent with heteroskedasticity even if the conditional mean were correctly specified.
+
+MLR.5 is **not needed for unbiasedness** under MLR.1–MLR.4. It is needed for the simple conventional OLS variance formula and the standard Gauss–Markov efficiency result. With heteroskedasticity, heteroskedasticity-robust standard errors can be appropriate under further regularity conditions; they do not repair endogeneity.
+
+### 16. What determines the precision of OLS?
+
+For regressor $X_j$, define
+
+$$
+SST_j=\sum_{i=1}^{n}(X_{ij}-\bar X_j)^2.
+$$
+
+Let $R_j^2$ be the $R^2$ from regressing $X_j$ on an intercept and **all the other regressors**. Under MLR.1–MLR.5,
+
+$$
+\boxed{\operatorname{Var}(\hat\beta_j\mid\mathbf X)
+=\frac{\sigma^2}{SST_j(1-R_j^2)},\quad j=1,\ldots,k.}
+$$
+
+Three forces determine precision, **holding the others fixed**:
+
+1. **Noise:** Larger error variance $\sigma^2$ means less precise estimates.
+2. **Variation:** Larger $SST_j$ means more information about the slope.
+3. **Multicollinearity:** Larger $R_j^2$ means that less of $X_j$ is distinct from the other regressors, increasing variance.
+
+When $R_j^2\to1$ with $SST_j$ and $\sigma^2$ fixed, the conditional variance grows without bound. At $R_j^2=1$, the coefficient is not separately identified by OLS.
+
+::: {.callout-note}
+## Does adding a control improve precision?
+
+Not necessarily. A useful control may reduce the **population residual variance** of the newly specified model, but it may also increase $R_j^2$ and reduce residual degrees of freedom. Adding regressors therefore has an ambiguous effect on the precision of an existing slope. It cannot increase the *sample residual sum of squares* when the estimation sample is unchanged, but that is a different statement.
+:::
+
+### 17. Estimating the error variance and standard errors
+
+Because $u_i$ is unobserved, we estimate its variance using residuals. Under MLR.1–MLR.5 and $n>k+1$,
+
+$$
+\boxed{\hat\sigma^2=
+\frac{\sum_i\hat u_i^2}{n-k-1}
+=\frac{SSR}{n-k-1}.}
+$$
+
+The denominator is the **residual degrees of freedom**: $n$ observations minus $k+1$ fitted coefficients. Under the assumptions, $E[\hat\sigma^2]=\sigma^2$.
+
+The estimated standard deviation of the regression error is $\hat\sigma=\sqrt{\hat\sigma^2}$. The **conventional homoskedastic standard error** of a slope is
+
+$$
+\boxed{se(\hat\beta_j)=
+\frac{\hat\sigma}{\sqrt{SST_j(1-R_j^2)}}.}
+$$
+
+A standard error measures the estimated **sampling uncertainty of a coefficient**, not the size of the residual for an individual observation. The square root $\hat\sigma$ is not generally an unbiased estimator of $\sigma$, even though $\hat\sigma^2$ is unbiased for $\sigma^2$.
+
+Under suitable large-sample conditions, slope standard errors often shrink at approximately $1/\sqrt n$. This rate is **not automatic** if regressor variation or collinearity deteriorates as $n$ increases.
+
+### 18. The Gauss–Markov theorem: why OLS?
+
+Under **MLR.1–MLR.5**, OLS is **BLUE**:
+
+> **Best Linear Unbiased Estimator:** Among estimators that are linear in the observed outcomes and unbiased for the regression coefficients, OLS has the smallest conditional variance (or, jointly, a covariance matrix no larger in the positive-semidefinite sense).
+
+“Linear” means linear **in the observed $Y_i$ values**, with weights that may depend on the regressors. “Best” means **minimum variance within this restricted class**, not best under every possible criterion.
+
+The theorem does **not** establish that OLS is causal, normally distributed, unbiased under endogeneity, or more efficient than every conceivable non-linear or biased estimator. It also does not justify conventional homoskedastic standard errors when MLR.5 fails.
+
+::: {.callout-important}
+## What to remember from Class 2
+
+Multiple regression estimates **partial associations**. For a causal interpretation, the main obstacle remains **exogeneity**: $E[u\mid X_1,\ldots,X_k]=0$. MLR.1–MLR.4 give **unbiasedness**; adding MLR.5 gives the conventional **variance formula** and the **Gauss–Markov BLUE** result. More controls do not automatically mean less bias or more precision.
+:::
+
 ## Mathematical Derivations
 
-## Tutorial Exercises
+### 1. The conditional mean and partial slopes
+
+Start from
+
+$$
+Y=\beta_0+\sum_{j=1}^{k}\beta_jX_j+u.
+$$
+
+Under $E[u\mid X_1,\ldots,X_k]=0$,
+
+$$
+\begin{aligned}
+E[Y\mid X_1,\ldots,X_k]
+&=\beta_0+\sum_{j=1}^{k}\beta_jX_j
++E[u\mid X_1,\ldots,X_k]\\
+&=\beta_0+\sum_{j=1}^{k}\beta_jX_j.
+\end{aligned}
+$$
+
+Therefore, holding all other regressors fixed,
+
+$$
+\boxed{\frac{\partial E[Y\mid X_1,\ldots,X_k]}
+{\partial X_j}=\beta_j.}
+$$
+
+This is a derivative of the **conditional mean**. Its causal interpretation requires the additional substantive conditions needed to interpret changes in $X_j$ as interventions.
+
+### 2. Deriving the OLS normal equations
+
+Define the objective
+
+$$
+Q(b_0,\ldots,b_k)=\sum_{i=1}^{n}
+\left(Y_i-b_0-\sum_{j=1}^{k}b_jX_{ij}\right)^2.
+$$
+
+**Step 1 — Differentiate with respect to the intercept:**
+
+$$
+\frac{\partial Q}{\partial b_0}
+=-2\sum_i\left(Y_i-b_0-\sum_jb_jX_{ij}\right)=0.
+$$
+
+At the minimum,
+
+$$
+\boxed{\sum_i\hat u_i=0.}
+$$
+
+**Step 2 — Differentiate with respect to each slope $b_j$:**
+
+$$
+\frac{\partial Q}{\partial b_j}
+=-2\sum_iX_{ij}\left(Y_i-b_0-\sum_{\ell=1}^{k}b_\ell X_{i\ell}\right)=0.
+$$
+
+Hence,
+
+$$
+\boxed{\sum_iX_{ij}\hat u_i=0,\qquad j=1,\ldots,k.}
+$$
+
+These $k+1$ equations are the **normal equations**. They are also sample analogues of the population moment conditions $E[u]=0$ and $E[X_ju]=0$. The latter follow from zero conditional mean (when the relevant expectations exist), but are weaker than it.
+
+### 3. Matrix formula for multiple-regression OLS
+
+This is a compact extension of the lecture's normal equations. Let $\mathbf y$ be the $n\times1$ outcome vector, $\mathbf X$ the $n\times(k+1)$ design matrix **including a column of ones**, and $\boldsymbol\beta$ the coefficient vector. Then
+
+$$
+\mathbf y=\mathbf X\boldsymbol\beta+\mathbf u.
+$$
+
+OLS minimises
+
+$$
+Q(\mathbf b)=(\mathbf y-\mathbf X\mathbf b)'(\mathbf y-\mathbf X\mathbf b).
+$$
+
+Expanding and differentiating,
+
+$$
+\frac{\partial Q}{\partial\mathbf b}
+=-2\mathbf X'\mathbf y+2\mathbf X'\mathbf X\mathbf b=\mathbf0.
+$$
+
+If $\mathbf X$ has full column rank, $\mathbf X'\mathbf X$ is invertible and
+
+$$
+\boxed{\hat{\boldsymbol\beta}
+=(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf y.}
+$$
+
+Because the objective is a convex quadratic and the design has full column rank, this solution is the **unique global minimum**.
+
+### 4. Deriving the residual properties
+
+The normal equations give $\mathbf X'\hat{\mathbf u}=\mathbf0$. Since the intercept column is part of $\mathbf X$,
+
+$$
+\sum_i\hat u_i=0
+\quad\Longrightarrow\quad
+\bar Y=\overline{\widehat Y}.
+$$
+
+Because $\widehat{\mathbf y}=\mathbf X\hat{\boldsymbol\beta}$,
+
+$$
+\widehat{\mathbf y}'\hat{\mathbf u}
+=\hat{\boldsymbol\beta}'\mathbf X'\hat{\mathbf u}=0.
+$$
+
+Finally, taking sample averages of the fitted equation yields
+
+$$
+\boxed{\bar Y=\hat\beta_0+\sum_{j=1}^{k}\hat\beta_j\bar X_j.}
+$$
+
+Thus the fitted hyperplane passes through the vector of sample means.
+
+### 5. Proving the Frisch–Waugh–Lovell theorem
+
+Write the design matrix as $\mathbf X=[\mathbf x_1\;\mathbf Z]$, where $\mathbf Z$ contains the intercept and all controls other than $\mathbf x_1$. Assume $\mathbf Z$ has full column rank and $\mathbf x_1$ is not in its column space.
+
+Define the **residual-maker matrix**
+
+$$
+\mathbf M_Z=\mathbf I-\mathbf Z(\mathbf Z'\mathbf Z)^{-1}\mathbf Z'.
+$$
+
+It removes the component linearly explained by $\mathbf Z$:
+
+$$
+\hat{\mathbf r}_1=\mathbf M_Z\mathbf x_1,
+\qquad \hat{\mathbf v}=\mathbf M_Z\mathbf y.
+$$
+
+The full regression is $\mathbf y=\mathbf x_1\hat\beta_1+\mathbf Z\hat{\boldsymbol\gamma}+\hat{\mathbf u}$. Multiplying by $\mathbf M_Z$ eliminates the controls because $\mathbf M_Z\mathbf Z=0$:
+
+$$
+\mathbf M_Z\mathbf y
+=\mathbf M_Z\mathbf x_1\hat\beta_1+\mathbf M_Z\hat{\mathbf u}.
+$$
+
+The full-model normal equations imply $\mathbf x_1'\hat{\mathbf u}=0$ and $\mathbf Z'\hat{\mathbf u}=0$, so $\mathbf M_Z\hat{\mathbf u}=\hat{\mathbf u}$. Premultiplying by $\hat{\mathbf r}_1'$ therefore gives
+
+$$
+\hat{\mathbf r}_1'\hat{\mathbf v}
+=\hat\beta_1\hat{\mathbf r}_1'\hat{\mathbf r}_1.
+$$
+
+Hence
+
+$$
+\boxed{\hat\beta_1
+=\frac{\hat{\mathbf r}_1'\hat{\mathbf v}}
+{\hat{\mathbf r}_1'\hat{\mathbf r}_1}
+=\frac{\sum_i\hat r_{1i}\hat v_i}
+{\sum_i\hat r_{1i}^2}.}
+$$
+
+The residuals from both auxiliary regressions have mean zero because $\mathbf Z$ contains an intercept, so the final regression's intercept is zero.
+
+### 6. Deriving the $R^2$ decomposition
+
+For every observation,
+
+$$
+Y_i-\bar Y=(\widehat Y_i-\bar Y)+\hat u_i.
+$$
+
+Square and sum:
+
+$$
+\begin{aligned}
+\sum_i(Y_i-\bar Y)^2
+&=\sum_i(\widehat Y_i-\bar Y)^2+\sum_i\hat u_i^2\\
+&\quad+2\sum_i(\widehat Y_i-\bar Y)\hat u_i.
+\end{aligned}
+$$
+
+The cross-term is zero because $\sum_i\widehat Y_i\hat u_i=0$ and $\sum_i\hat u_i=0$. Therefore
+
+$$
+\boxed{SST=SSE+SSR},\qquad
+\boxed{R^2=1-\frac{SSR}{SST}}.
+$$
+
+Adding a regressor enlarges the set of candidate fitted models. The minimum attainable $SSR$ therefore cannot increase on an unchanged dataset; consequently ordinary $R^2$ cannot fall.
+
+### 7. Deriving the exact simple-versus-multiple regression identity
+
+The fitted multiple regression gives the **sample identity**
+
+$$
+Y_i=\hat\beta_0+\hat\beta_1X_{i1}
++\hat\beta_2X_{i2}+\hat u_i.
+$$
+
+The simple-regression slope is
+
+$$
+\tilde\beta_1=
+\frac{\sum_i(X_{i1}-\bar X_1)(Y_i-\bar Y)}
+{\sum_i(X_{i1}-\bar X_1)^2}.
+$$
+
+Substitute the fitted multiple-regression equation. The intercept term disappears after demeaning, and the residual term disappears because OLS makes $X_1$ orthogonal to $\hat u$:
+
+$$
+\tilde\beta_1=\hat\beta_1
++\hat\beta_2\frac{\sum_i(X_{i1}-\bar X_1)(X_{i2}-\bar X_2)}
+{\sum_i(X_{i1}-\bar X_1)^2}.
+$$
+
+The final ratio is precisely the slope $\tilde\delta_1$ from regressing $X_2$ on $X_1$. Thus
+
+$$
+\boxed{\tilde\beta_1=\hat\beta_1+\hat\beta_2\tilde\delta_1.}
+$$
+
+With several additional regressors, the corresponding identity is
+
+$$
+\tilde\beta_1=\hat\beta_1+\sum_{j=2}^{k}\hat\beta_j\tilde\delta_j,
+$$
+
+where $\tilde\delta_j$ is the simple-regression slope of $X_j$ on $X_1$. The sum can equal zero through cancellation even when individual terms are non-zero.
+
+### 8. Deriving omitted-variable bias correctly
+
+Assume the true model is
+
+$$
+Y=\beta_0+\beta_1X_1+\beta_2X_2+u,
+\qquad E[u\mid X_1,X_2]=0.
+$$
+
+**Population derivation.** The slope in the population linear projection of $Y$ on an intercept and $X_1$ is
+
+$$
+\begin{aligned}
+\beta_1^{simple}
+&=\frac{\operatorname{Cov}(X_1,Y)}{\operatorname{Var}(X_1)}\\
+&=\frac{\beta_1\operatorname{Var}(X_1)
++\beta_2\operatorname{Cov}(X_1,X_2)
++\operatorname{Cov}(X_1,u)}{\operatorname{Var}(X_1)}.
+\end{aligned}
+$$
+
+Zero conditional mean implies $\operatorname{Cov}(X_1,u)=0$. Therefore
+
+$$
+\boxed{\beta_1^{simple}-\beta_1
+=\beta_2\frac{\operatorname{Cov}(X_1,X_2)}
+{\operatorname{Var}(X_1)}=\beta_2\delta_1.}
+$$
+
+**Finite-sample conditional derivation.** Let $\tilde\delta_1$ be the *sample* slope from regressing $X_2$ on $X_1$. Direct substitution into the simple OLS formula gives
+
+$$
+\tilde\beta_1
+=\beta_1+\beta_2\tilde\delta_1
++\frac{\sum_i(X_{i1}-\bar X_1)u_i}{\sum_i(X_{i1}-\bar X_1)^2}.
+$$
+
+Under random sampling and zero conditional mean, conditioning on the full observed regressor matrix $\mathbf X$ yields
+
+$$
+\boxed{E[\tilde\beta_1\mid\mathbf X]
+=\beta_1+\beta_2\tilde\delta_1.}
+$$
+
+This is the **conditional bias**, given the realised regressors. The unconditional finite-sample bias is $\beta_2E[\tilde\delta_1]$, provided that expectation exists. Do **not** treat the random $\tilde\delta_1$ as a constant inside an unconditional expectation.
+
+### 9. Proving unbiasedness of multiple-regression OLS
+
+Start with the population model in matrix form:
+
+$$
+\mathbf y=\mathbf X\boldsymbol\beta+\mathbf u.
+$$
+
+Substitute into the OLS formula:
+
+$$
+\begin{aligned}
+\hat{\boldsymbol\beta}
+&=(\mathbf X'\mathbf X)^{-1}\mathbf X'(\mathbf X\boldsymbol\beta+\mathbf u)\\
+&=\boldsymbol\beta+(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf u.
+\end{aligned}
+$$
+
+Under MLR.2 and MLR.4, $E[\mathbf u\mid\mathbf X]=\mathbf0$. Therefore, conditional on a full-rank $\mathbf X$,
+
+$$
+\begin{aligned}
+E[\hat{\boldsymbol\beta}\mid\mathbf X]
+&=\boldsymbol\beta+(\mathbf X'\mathbf X)^{-1}\mathbf X'E[\mathbf u\mid\mathbf X]\\
+&=\boxed{\boldsymbol\beta}.
+\end{aligned}
+$$
+
+Taking expectations again gives
+
+$$
+\boxed{E[\hat\beta_j]=\beta_j,\qquad j=0,\ldots,k.}
+$$
+
+This proof uses **MLR.1–MLR.4**. Homoskedasticity is not required.
+
+### 10. Deriving the conditional variance of OLS
+
+From the previous identity,
+
+$$
+\hat{\boldsymbol\beta}-\boldsymbol\beta
+=(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf u.
+$$
+
+Under independent random sampling and MLR.5, the conditional error covariance matrix is $\operatorname{Var}(\mathbf u\mid\mathbf X)=\sigma^2\mathbf I$. Therefore
+
+$$
+\begin{aligned}
+\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)
+&=(\mathbf X'\mathbf X)^{-1}\mathbf X'
+(\sigma^2\mathbf I)\mathbf X(\mathbf X'\mathbf X)^{-1}\\
+&=\boxed{\sigma^2(\mathbf X'\mathbf X)^{-1}}.
+\end{aligned}
+$$
+
+To obtain the variance of slope $j$, use FWL. Let $\hat r_{ji}$ be residuals from regressing $X_j$ on an intercept and all other regressors. Then
+
+$$
+\hat\beta_j-\beta_j
+=\frac{\sum_i\hat r_{ji}u_i}{\sum_i\hat r_{ji}^2}.
+$$
+
+Conditioning on $\mathbf X$,
+
+$$
+\operatorname{Var}(\hat\beta_j\mid\mathbf X)
+=\frac{\sigma^2\sum_i\hat r_{ji}^2}
+{\left(\sum_i\hat r_{ji}^2\right)^2}
+=\frac{\sigma^2}{\sum_i\hat r_{ji}^2}.
+$$
+
+From the auxiliary regression's $R_j^2$ definition,
+
+$$
+\sum_i\hat r_{ji}^2=SST_j(1-R_j^2).
+$$
+
+Hence
+
+$$
+\boxed{\operatorname{Var}(\hat\beta_j\mid\mathbf X)
+=\frac{\sigma^2}{SST_j(1-R_j^2)}.}
+$$
+
+This derivation makes the **multicollinearity penalty** explicit: the relevant information is the part of $X_j$ that cannot be linearly predicted by the other regressors.
+
+### 11. Why divide by $n-k-1$ to estimate $\sigma^2$?
+
+Let $\mathbf H=\mathbf X(\mathbf X'\mathbf X)^{-1}\mathbf X'$ be the projection matrix and $\mathbf M=\mathbf I-\mathbf H$ the residual-maker matrix. Then
+
+$$
+\hat{\mathbf u}=\mathbf M\mathbf y=\mathbf M\mathbf u,
+$$
+
+because $\mathbf M\mathbf X=0$. The residual sum of squares is
+
+$$
+SSR=\hat{\mathbf u}'\hat{\mathbf u}=\mathbf u'\mathbf M\mathbf u.
+$$
+
+Conditional on $\mathbf X$, use $E[\mathbf u\mid\mathbf X]=\mathbf0$ and $E[\mathbf u\mathbf u'\mid\mathbf X]=\sigma^2\mathbf I$:
+
+$$
+\begin{aligned}
+E[SSR\mid\mathbf X]
+&=E[\operatorname{tr}(\mathbf M\mathbf u\mathbf u')\mid\mathbf X]\\
+&=\operatorname{tr}(\mathbf M\sigma^2\mathbf I)\\
+&=\sigma^2\operatorname{tr}(\mathbf M).
+\end{aligned}
+$$
+
+Since $\mathbf H$ projects onto a $(k+1)$-dimensional column space,
+
+$$
+\operatorname{tr}(\mathbf M)=n-(k+1)=n-k-1.
+$$
+
+Therefore
+
+$$
+\boxed{E\left[\frac{SSR}{n-k-1}\middle|\mathbf X\right]
+=\sigma^2.}
+$$
+
+Dividing by $n$ instead would give conditional expectation $\sigma^2(n-k-1)/n$ and bias $-\sigma^2(k+1)/n$.
+
+### 12. Proving the Gauss–Markov theorem (BLUE)
+
+Consider any other estimator $\tilde{\boldsymbol\beta}=\mathbf A\mathbf y$ that is **linear in $\mathbf y$** and conditionally unbiased for every possible $\boldsymbol\beta$. Conditional unbiasedness requires
+
+$$
+\mathbf A\mathbf X=\mathbf I.
+$$
+
+Define the OLS weight matrix
+
+$$
+\mathbf A_0=(\mathbf X'\mathbf X)^{-1}\mathbf X',
+$$
+
+and write $\mathbf A=\mathbf A_0+\mathbf D$. Since both estimators are unbiased, $\mathbf D\mathbf X=\mathbf0$.
+
+Under homoskedasticity,
+
+$$
+\operatorname{Var}(\tilde{\boldsymbol\beta}\mid\mathbf X)
+=\sigma^2(\mathbf A_0+\mathbf D)(\mathbf A_0+\mathbf D)'.
+$$
+
+The cross-terms vanish because
+
+$$
+\mathbf A_0\mathbf D'
+=(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf D'=\mathbf0.
+$$
+
+Thus
+
+$$
+\boxed{\operatorname{Var}(\tilde{\boldsymbol\beta}\mid\mathbf X)
+-\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)
+=\sigma^2\mathbf D\mathbf D'.}
+$$
+
+For any vector $\mathbf a$,
+
+$$
+\mathbf a'(\sigma^2\mathbf D\mathbf D')\mathbf a
+=\sigma^2\|\mathbf D'\mathbf a\|^2\geq0.
+$$
+
+Therefore the difference is **positive semidefinite**: no other linear conditionally unbiased estimator has a smaller conditional variance for any coefficient or linear combination of coefficients. This is the Gauss–Markov result.
+
+
+::: {.callout-note}
+## Limits of these proofs
+
+The proofs establish OLS algebra, unbiasedness under MLR.1–MLR.4, and conventional variance/BLUE results under MLR.1–MLR.5. They do **not** establish that the assumptions hold for a given dataset. In particular, good fit, zero sample residual correlations and small standard errors do not prove a causal interpretation. Normality is **not** one of the five Gauss–Markov assumptions; exact small-sample $t$ inference requires further conditions.
+:::
+
+---
+
+**Ready to practise?**
+
+[Go to Tutorial 2](../tutorials/tutorial-02.qmd)
 

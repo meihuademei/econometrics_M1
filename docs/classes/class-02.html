@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-201d31e195916211fa1ce5c8f54b28c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,7 +109,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -121,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Econometrics — M1 S1</a></li><li class="breadcrumb-item"><a href="../classes/class-02.html">Class 2</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../classes/class-02.html">Class 2</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -155,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Econometrics — M1 S1</span></a>
+ <span class="menu-text">Lectures</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -211,6 +241,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 8</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -221,18 +310,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#theory-intuition" id="toc-theory-intuition" class="nav-link active" data-scroll-target="#theory-intuition">Theory &amp; Intuition</a></li>
-  <li><a href="#mathematical-derivations" id="toc-mathematical-derivations" class="nav-link" data-scroll-target="#mathematical-derivations">Mathematical Derivations</a></li>
-  <li><a href="#tutorial-exercises" id="toc-tutorial-exercises" class="nav-link" data-scroll-target="#tutorial-exercises">Tutorial Exercises</a></li>
+  <li><a href="#theory-intuition" id="toc-theory-intuition" class="nav-link active" data-scroll-target="#theory-intuition">Theory &amp; Intuition</a>
+  <ul class="collapse">
+  <li><a href="#why-move-from-simple-to-multiple-regression" id="toc-why-move-from-simple-to-multiple-regression" class="nav-link" data-scroll-target="#why-move-from-simple-to-multiple-regression">1. Why move from simple to multiple regression?</a></li>
+  <li><a href="#the-multiple-linear-regression-model" id="toc-the-multiple-linear-regression-model" class="nav-link" data-scroll-target="#the-multiple-linear-regression-model">2. The multiple linear regression model</a></li>
+  <li><a href="#interpreting-coefficients-ceteris-paribus" id="toc-interpreting-coefficients-ceteris-paribus" class="nav-link" data-scroll-target="#interpreting-coefficients-ceteris-paribus">3. Interpreting coefficients: <em>ceteris paribus</em></a></li>
+  <li><a href="#non-linear-relationships-within-linear-regression" id="toc-non-linear-relationships-within-linear-regression" class="nav-link" data-scroll-target="#non-linear-relationships-within-linear-regression">4. Non-linear relationships within linear regression</a></li>
+  <li><a href="#how-multiple-regression-ols-works" id="toc-how-multiple-regression-ols-works" class="nav-link" data-scroll-target="#how-multiple-regression-ols-works">5. How multiple-regression OLS works</a></li>
+  <li><a href="#exact-sample-properties-of-ols" id="toc-exact-sample-properties-of-ols" class="nav-link" data-scroll-target="#exact-sample-properties-of-ols">6. Exact sample properties of OLS</a></li>
+  <li><a href="#the-frischwaughlovell-theorem-partialling-out" id="toc-the-frischwaughlovell-theorem-partialling-out" class="nav-link" data-scroll-target="#the-frischwaughlovell-theorem-partialling-out">7. The Frisch–Waugh–Lovell theorem: partialling out</a></li>
+  <li><a href="#the-educationiq-example-why-coefficients-change" id="toc-the-educationiq-example-why-coefficients-change" class="nav-link" data-scroll-target="#the-educationiq-example-why-coefficients-change">8. The education–IQ example: why coefficients change</a></li>
+  <li><a href="#goodness-of-fit-r2" id="toc-goodness-of-fit-r2" class="nav-link" data-scroll-target="#goodness-of-fit-r2">9. Goodness of fit: <span class="math inline">\(R^2\)</span></a></li>
+  <li><a href="#comparing-simple-and-multiple-regression" id="toc-comparing-simple-and-multiple-regression" class="nav-link" data-scroll-target="#comparing-simple-and-multiple-regression">10. Comparing simple and multiple regression</a></li>
+  <li><a href="#the-four-assumptions-for-unbiasedness" id="toc-the-four-assumptions-for-unbiasedness" class="nav-link" data-scroll-target="#the-four-assumptions-for-unbiasedness">11. The four assumptions for unbiasedness</a></li>
+  <li><a href="#perfect-collinearity-versus-high-correlation" id="toc-perfect-collinearity-versus-high-correlation" class="nav-link" data-scroll-target="#perfect-collinearity-versus-high-correlation">12. Perfect collinearity versus high correlation</a></li>
+  <li><a href="#omitted-variable-bias-ovb" id="toc-omitted-variable-bias-ovb" class="nav-link" data-scroll-target="#omitted-variable-bias-ovb">13. Omitted-variable bias (OVB)</a></li>
+  <li><a href="#adding-irrelevant-variables" id="toc-adding-irrelevant-variables" class="nav-link" data-scroll-target="#adding-irrelevant-variables">14. Adding irrelevant variables</a></li>
+  <li><a href="#homoskedasticity-and-heteroskedasticity" id="toc-homoskedasticity-and-heteroskedasticity" class="nav-link" data-scroll-target="#homoskedasticity-and-heteroskedasticity">15. Homoskedasticity and heteroskedasticity</a></li>
+  <li><a href="#what-determines-the-precision-of-ols" id="toc-what-determines-the-precision-of-ols" class="nav-link" data-scroll-target="#what-determines-the-precision-of-ols">16. What determines the precision of OLS?</a></li>
+  <li><a href="#estimating-the-error-variance-and-standard-errors" id="toc-estimating-the-error-variance-and-standard-errors" class="nav-link" data-scroll-target="#estimating-the-error-variance-and-standard-errors">17. Estimating the error variance and standard errors</a></li>
+  <li><a href="#the-gaussmarkov-theorem-why-ols" id="toc-the-gaussmarkov-theorem-why-ols" class="nav-link" data-scroll-target="#the-gaussmarkov-theorem-why-ols">18. The Gauss–Markov theorem: why OLS?</a></li>
+  </ul></li>
+  <li><a href="#mathematical-derivations" id="toc-mathematical-derivations" class="nav-link" data-scroll-target="#mathematical-derivations">Mathematical Derivations</a>
+  <ul class="collapse">
+  <li><a href="#the-conditional-mean-and-partial-slopes" id="toc-the-conditional-mean-and-partial-slopes" class="nav-link" data-scroll-target="#the-conditional-mean-and-partial-slopes">1. The conditional mean and partial slopes</a></li>
+  <li><a href="#deriving-the-ols-normal-equations" id="toc-deriving-the-ols-normal-equations" class="nav-link" data-scroll-target="#deriving-the-ols-normal-equations">2. Deriving the OLS normal equations</a></li>
+  <li><a href="#matrix-formula-for-multiple-regression-ols" id="toc-matrix-formula-for-multiple-regression-ols" class="nav-link" data-scroll-target="#matrix-formula-for-multiple-regression-ols">3. Matrix formula for multiple-regression OLS</a></li>
+  <li><a href="#deriving-the-residual-properties" id="toc-deriving-the-residual-properties" class="nav-link" data-scroll-target="#deriving-the-residual-properties">4. Deriving the residual properties</a></li>
+  <li><a href="#proving-the-frischwaughlovell-theorem" id="toc-proving-the-frischwaughlovell-theorem" class="nav-link" data-scroll-target="#proving-the-frischwaughlovell-theorem">5. Proving the Frisch–Waugh–Lovell theorem</a></li>
+  <li><a href="#deriving-the-r2-decomposition" id="toc-deriving-the-r2-decomposition" class="nav-link" data-scroll-target="#deriving-the-r2-decomposition">6. Deriving the <span class="math inline">\(R^2\)</span> decomposition</a></li>
+  <li><a href="#deriving-the-exact-simple-versus-multiple-regression-identity" id="toc-deriving-the-exact-simple-versus-multiple-regression-identity" class="nav-link" data-scroll-target="#deriving-the-exact-simple-versus-multiple-regression-identity">7. Deriving the exact simple-versus-multiple regression identity</a></li>
+  <li><a href="#deriving-omitted-variable-bias-correctly" id="toc-deriving-omitted-variable-bias-correctly" class="nav-link" data-scroll-target="#deriving-omitted-variable-bias-correctly">8. Deriving omitted-variable bias correctly</a></li>
+  <li><a href="#proving-unbiasedness-of-multiple-regression-ols" id="toc-proving-unbiasedness-of-multiple-regression-ols" class="nav-link" data-scroll-target="#proving-unbiasedness-of-multiple-regression-ols">9. Proving unbiasedness of multiple-regression OLS</a></li>
+  <li><a href="#deriving-the-conditional-variance-of-ols" id="toc-deriving-the-conditional-variance-of-ols" class="nav-link" data-scroll-target="#deriving-the-conditional-variance-of-ols">10. Deriving the conditional variance of OLS</a></li>
+  <li><a href="#why-divide-by-n-k-1-to-estimate-sigma2" id="toc-why-divide-by-n-k-1-to-estimate-sigma2" class="nav-link" data-scroll-target="#why-divide-by-n-k-1-to-estimate-sigma2">11. Why divide by <span class="math inline">\(n-k-1\)</span> to estimate <span class="math inline">\(\sigma^2\)</span>?</a></li>
+  <li><a href="#proving-the-gaussmarkov-theorem-blue" id="toc-proving-the-gaussmarkov-theorem-blue" class="nav-link" data-scroll-target="#proving-the-gaussmarkov-theorem-blue">12. Proving the Gauss–Markov theorem (BLUE)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Econometrics — M1 S1</a></li><li class="breadcrumb-item"><a href="../classes/class-02.html">Class 2</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../classes/class-02.html">Class 2</a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Class 2</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Multiple Linear Regression: OLS, Bias, Precision and Gauss–Markov</p>
 </div>
 
 
@@ -249,18 +372,787 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<blockquote class="blockquote">
+<p><strong>Source and scope.</strong> Study notes based on Arne Uhlendorff’s <em>Applied Econometrics</em>, Lecture 2 (<em>The Multiple Regression Model</em>; supplied PDF, 50 pages). The explanations and examples are rewritten for learning purposes. The lecture’s five main parts are covered: motivation, OLS mechanics, expected values and omitted-variable bias, sampling variances, and the Gauss–Markov theorem. Mathematical qualifications correct several imprecise statements in the slides. Tutorial exercises and R applications are reserved for later.</p>
+</blockquote>
 <section id="theory-intuition" class="level2">
 <h2 class="anchored" data-anchor-id="theory-intuition">Theory &amp; Intuition</h2>
+<section id="why-move-from-simple-to-multiple-regression" class="level3">
+<h3 class="anchored" data-anchor-id="why-move-from-simple-to-multiple-regression">1. Why move from simple to multiple regression?</h3>
+<p>In <strong>simple linear regression</strong>, we relate an outcome <span class="math inline">\(Y\)</span> to one explanatory variable <span class="math inline">\(X\)</span>. But outcomes usually depend on several factors. If an omitted factor affects <span class="math inline">\(Y\)</span> and is related to <span class="math inline">\(X\)</span>, a simple regression can attribute part of that factor’s association to <span class="math inline">\(X\)</span>.</p>
+<p><strong>Multiple regression</strong> introduces additional explanatory variables so that we can compare observations <em>holding the included controls fixed</em>. It also allows more flexible functional forms, such as squared terms.</p>
+<p>Consider hourly wages:</p>
+<p><span class="math display">\[
+wage_i=\beta_0+\beta_1 educ_i+\beta_2 exper_i+u_i.
+\]</span></p>
+<p>Here, <span class="math inline">\(educ\)</span> measures years of education and <span class="math inline">\(exper\)</span> years of labour-market experience. The coefficient <span class="math inline">\(\beta_1\)</span> describes the change in the modelled wage associated with one more year of education <strong>at a given level of experience</strong>. Education and experience are allowed to be correlated.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Controlling is not the same as identifying a causal effect
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Including experience removes <em>that measured variable</em> from the error term. It does not automatically remove unobserved ability, family background or other confounders. A causal interpretation still requires a credible assumption about the remaining error term.</p>
+</div>
+</div>
+</section>
+<section id="the-multiple-linear-regression-model" class="level3">
+<h3 class="anchored" data-anchor-id="the-multiple-linear-regression-model">2. The multiple linear regression model</h3>
+<p>With <span class="math inline">\(k\)</span> explanatory variables, the <strong>population model</strong> is</p>
+<p><span class="math display">\[
+\boxed{Y_i=\beta_0+\beta_1X_{i1}+\cdots+\beta_kX_{ik}+u_i.}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Y_i\)</span>: dependent variable (outcome).</li>
+<li><span class="math inline">\(X_{ij}\)</span>: explanatory variable <span class="math inline">\(j\)</span> for observation <span class="math inline">\(i\)</span>.</li>
+<li><span class="math inline">\(\beta_0\)</span>: population intercept; <span class="math inline">\(\beta_j\)</span>: population slope coefficients.</li>
+<li><span class="math inline">\(u_i\)</span>: unobserved influences not captured by the included regressors.</li>
+<li><span class="math inline">\(n\)</span>: number of observations; <span class="math inline">\(k\)</span>: number of explanatory variables, <strong>excluding</strong> the intercept.</li>
+</ul>
+<p>The model is <strong>linear in its unknown coefficients</strong>, not necessarily in the underlying variables. For instance, <span class="math inline">\(X_1=income\)</span> and <span class="math inline">\(X_2=income^2\)</span> still produce a linear-in-parameters model.</p>
+<p>The central conditional-mean assumption is</p>
+<p><span class="math display">\[
+\boxed{\mathbb E[u\mid X_1,\ldots,X_k]=0.}
+\]</span></p>
+<p>If it holds, the population conditional mean is</p>
+<p><span class="math display">\[
+\mathbb E[Y\mid X_1,\ldots,X_k]
+=\beta_0+\sum_{j=1}^{k}\beta_jX_j.
+\]</span></p>
+<p>This is a strong <strong>exogeneity</strong> assumption: after conditioning on all included regressors, the remaining unobserved influences have no systematic average relationship with them.</p>
+</section>
+<section id="interpreting-coefficients-ceteris-paribus" class="level3">
+<h3 class="anchored" data-anchor-id="interpreting-coefficients-ceteris-paribus">3. Interpreting coefficients: <em>ceteris paribus</em></h3>
+<p>For two regressors, the fitted equation is</p>
+<p><span class="math display">\[
+\widehat Y=\hat\beta_0+\hat\beta_1X_1+\hat\beta_2X_2.
+\]</span></p>
+<p>A change in the fitted outcome satisfies</p>
+<p><span class="math display">\[
+\Delta\widehat Y=\hat\beta_1\Delta X_1+\hat\beta_2\Delta X_2.
+\]</span></p>
+<p>If <span class="math inline">\(X_2\)</span> stays fixed, <span class="math inline">\(\Delta\widehat Y=\hat\beta_1\Delta X_1\)</span>. Thus <span class="math inline">\(\hat\beta_1\)</span> is a <strong>partial slope</strong>: it describes the fitted association with <span class="math inline">\(X_1\)</span> after accounting for <span class="math inline">\(X_2\)</span>. It is not automatically a causal effect.</p>
+<p><strong>Example:</strong> Suppose a fitted wage equation is</p>
+<p><span class="math display">\[
+\widehat{wage}=5+0.8\,educ+0.3\,exper.
+\]</span></p>
+<p>For two workers with the same experience, one additional year of education corresponds to a fitted wage difference of <span class="math inline">\(0.8\)</span> wage units. If education rises by one year <em>and</em> experience by two years, the fitted difference is <span class="math inline">\(0.8+2(0.3)=1.4\)</span> units. These numbers are hypothetical, not estimates from the lecture.</p>
+</section>
+<section id="non-linear-relationships-within-linear-regression" class="level3">
+<h3 class="anchored" data-anchor-id="non-linear-relationships-within-linear-regression">4. Non-linear relationships within linear regression</h3>
+<p>A quadratic consumption model is</p>
+<p><span class="math display">\[
+cons=\beta_0+\beta_1inc+\beta_2inc^2+u.
+\]</span></p>
+<p>Although the relationship can be curved, OLS remains linear in <span class="math inline">\(\beta_0,\beta_1,\beta_2\)</span>. Holding <span class="math inline">\(u\)</span> fixed, the <strong>marginal propensity to consume</strong> is</p>
+<p><span class="math display">\[
+\boxed{\frac{\partial cons}{\partial inc}=\beta_1+2\beta_2inc.}
+\]</span></p>
+<p>The marginal effect changes with income. It would be meaningless to increase <span class="math inline">\(inc\)</span> while holding <span class="math inline">\(inc^2\)</span> fixed: the two regressors are mechanically linked.</p>
+<p>The lecture also considers CEO pay:</p>
+<p><span class="math display">\[
+\log(salary)=\beta_0+\beta_1\log(sales)
++\beta_2ceoten+\beta_3ceoten^2+u.
+\]</span></p>
+<p>Here <span class="math inline">\(\beta_1\)</span> is the elasticity of salary with respect to sales <strong>in the specified log relationship, holding other factors fixed</strong>. For tenure,</p>
+<p><span class="math display">\[
+\frac{\partial\log(salary)}{\partial ceoten}
+=\beta_2+2\beta_3ceoten.
+\]</span></p>
+<p>Multiplying by <span class="math inline">\(100\)</span> gives the <strong>approximate percentage change</strong> for one additional year of tenure at a given tenure level. For a finite change <span class="math inline">\(\Delta t\)</span>, the exact change in log salary is <span class="math inline">\(\beta_2\Delta t+\beta_3[(t+\Delta t)^2-t^2]\)</span>; the corresponding percentage change, holding <span class="math inline">\(u\)</span> fixed, is <span class="math inline">\(100\{\exp(\Delta\log salary)-1\}\%\)</span>.</p>
+</section>
+<section id="how-multiple-regression-ols-works" class="level3">
+<h3 class="anchored" data-anchor-id="how-multiple-regression-ols-works">5. How multiple-regression OLS works</h3>
+<p>Given observations <span class="math inline">\(i=1,\ldots,n\)</span>, ordinary least squares chooses <span class="math inline">\(k+1\)</span> coefficients to minimise the <strong>sum of squared residuals</strong>:</p>
+<p><span class="math display">\[
+\boxed{\min_{b_0,\ldots,b_k}\sum_{i=1}^{n}
+\left(Y_i-b_0-\sum_{j=1}^{k}b_jX_{ij}\right)^2.}
+\]</span></p>
+<p>After estimation,</p>
+<p><span class="math display">\[
+\widehat Y_i=\hat\beta_0+\sum_{j=1}^{k}\hat\beta_jX_{ij},
+\qquad \hat u_i=Y_i-\widehat Y_i.
+\]</span></p>
+<p>A <strong>residual</strong> <span class="math inline">\(\hat u_i\)</span> is observable once the model has been fitted; the <strong>population error</strong> <span class="math inline">\(u_i\)</span> is not. OLS finds the line or hyperplane with the smallest total squared residuals.</p>
+<p>Provided the regressors are not perfectly collinear, the OLS solution is unique.</p>
+</section>
+<section id="exact-sample-properties-of-ols" class="level3">
+<h3 class="anchored" data-anchor-id="exact-sample-properties-of-ols">6. Exact sample properties of OLS</h3>
+<p>With an intercept, the first-order conditions imply</p>
+<p><span class="math display">\[
+\sum_i\hat u_i=0,
+\qquad \sum_iX_{ij}\hat u_i=0\quad(j=1,\ldots,k).
+\]</span></p>
+<p>Consequently:</p>
+<ul>
+<li>The residuals have sample mean zero.</li>
+<li>Every included regressor has zero sample covariance with the residuals.</li>
+<li>Fitted values and residuals have zero sample covariance.</li>
+<li><span class="math inline">\(\overline{\widehat Y}=\bar Y\)</span>.</li>
+<li>The fitted regression hyperplane passes through <span class="math inline">\((\bar X_1,\ldots,\bar X_k,\bar Y)\)</span>.</li>
+</ul>
+<p>These are <strong>algebraic properties of the fitted sample</strong>, not evidence that the regressors are exogenous in the population.</p>
+</section>
+<section id="the-frischwaughlovell-theorem-partialling-out" class="level3">
+<h3 class="anchored" data-anchor-id="the-frischwaughlovell-theorem-partialling-out">7. The Frisch–Waugh–Lovell theorem: partialling out</h3>
+<p>The <strong>Frisch–Waugh–Lovell (FWL) theorem</strong> explains what a multiple-regression coefficient measures. To obtain the coefficient on <span class="math inline">\(X_1\)</span> in a regression of <span class="math inline">\(Y\)</span> on <span class="math inline">\(X_1,X_2,\ldots,X_k\)</span>:</p>
+<ol type="1">
+<li>Regress <span class="math inline">\(X_1\)</span> on an intercept and <span class="math inline">\(X_2,\ldots,X_k\)</span>; retain residuals <span class="math inline">\(\hat r_{1i}\)</span>.</li>
+<li>Regress <span class="math inline">\(Y\)</span> on the same controls; retain residuals <span class="math inline">\(\hat v_i\)</span>.</li>
+<li>Regress <span class="math inline">\(\hat v\)</span> on <span class="math inline">\(\hat r_1\)</span>; its slope equals the coefficient on <span class="math inline">\(X_1\)</span> in the original multiple regression:</li>
+</ol>
+<p><span class="math display">\[
+\boxed{\hat\beta_1=
+\frac{\sum_i\hat r_{1i}\hat v_i}
+{\sum_i\hat r_{1i}^2}.}
+\]</span></p>
+<p><strong>Intuition:</strong> First remove the variation linearly explained by the controls from both <span class="math inline">\(X_1\)</span> and <span class="math inline">\(Y\)</span>. Then examine how the remaining variation moves together. This is why we say multiple regression <em>partials out</em> other regressors.</p>
+<p>FWL requires the same observations and the same set of controls in the auxiliary regressions, as well as sufficient remaining variation in <span class="math inline">\(X_1\)</span>.</p>
+</section>
+<section id="the-educationiq-example-why-coefficients-change" class="level3">
+<h3 class="anchored" data-anchor-id="the-educationiq-example-why-coefficients-change">8. The education–IQ example: why coefficients change</h3>
+<p>The lecture reports a sample of <span class="math inline">\(759\)</span> workers. Its simple regression is</p>
+<p><span class="math display">\[
+\widehat{\log(wage)}=1.142+0.099\,educ.
+\]</span></p>
+<p>After including an IQ measure, it reports</p>
+<p><span class="math display">\[
+\widehat{\log(wage)}=1.142+0.073\,educ+0.0076\,IQ.
+\]</span></p>
+<p>The estimated schooling coefficient falls from <span class="math inline">\(0.099\)</span> to <span class="math inline">\(0.073\)</span>: roughly <strong>9.9% to 7.3%</strong> using the usual log approximation. The lecture also reports a positive education–IQ correlation of <span class="math inline">\(0.573\)</span>.</p>
+<p><strong>Interpretation:</strong> The simple regression partly attributes the positive wage association with IQ to education. Controlling for IQ changes the estimated <em>conditional association</em> with schooling. IQ is an imperfect proxy for ability, however, so the multiple-regression coefficient is not automatically a causal return to education.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>A transcription issue in the lecture
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The slides print the same intercept, <span class="math inline">\(1.142\)</span>, in both wage equations. This is unusual when a regressor is added and could be a slide transcription error. The slope coefficients and the reported correlation are reproduced as shown; the intercepts should not be treated as independently verified without the underlying regression output.</p>
+</div>
+</div>
+</section>
+<section id="goodness-of-fit-r2" class="level3">
+<h3 class="anchored" data-anchor-id="goodness-of-fit-r2">9. Goodness of fit: <span class="math inline">\(R^2\)</span></h3>
+<p>For OLS <strong>with an intercept</strong>, the lecture uses</p>
+<p><span class="math display">\[
+\underbrace{\sum_i(Y_i-\bar Y)^2}_{SST}
+=\underbrace{\sum_i(\widehat Y_i-\bar Y)^2}_{SSE\;\text{(explained)}}
++\underbrace{\sum_i\hat u_i^2}_{SSR\;\text{(residual)}}.
+\]</span></p>
+<p>Thus, when <span class="math inline">\(SST&gt;0\)</span>,</p>
+<p><span class="math display">\[
+\boxed{R^2=\frac{SSE}{SST}=1-\frac{SSR}{SST}},
+\qquad 0\leq R^2\leq1.
+\]</span></p>
+<p><strong>Notation warning:</strong> The lecture calls the explained sum of squares <strong>SSE</strong> and the residual sum of squares <strong>SSR</strong>; other textbooks may use SSE for the <em>error</em> sum of squares. Always check the definitions.</p>
+<p>Adding regressors to OLS <strong>cannot reduce ordinary <span class="math inline">\(R^2\)</span></strong> if the outcome and estimation sample stay the same: the old fitted model remains an available option. This does <strong>not</strong> mean every additional variable improves prediction outside the sample or helps identify causal effects. Adjusted <span class="math inline">\(R^2\)</span> can fall.</p>
+</section>
+<section id="comparing-simple-and-multiple-regression" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-simple-and-multiple-regression">10. Comparing simple and multiple regression</h3>
+<p>Suppose we estimate, on the <strong>same observations</strong>,</p>
+<p><span class="math display">\[
+\widetilde Y=\tilde\beta_0+\tilde\beta_1X_1
+\qquad\text{and}\qquad
+\widehat Y=\hat\beta_0+\hat\beta_1X_1+\hat\beta_2X_2.
+\]</span></p>
+<p>Let <span class="math inline">\(\tilde\delta_1\)</span> be the slope from a simple regression of <span class="math inline">\(X_2\)</span> on <span class="math inline">\(X_1\)</span>. An <strong>exact sample identity</strong> is</p>
+<p><span class="math display">\[
+\boxed{\tilde\beta_1=\hat\beta_1+\hat\beta_2\tilde\delta_1.}
+\]</span></p>
+<p>The difference between the two estimates depends on (i) the coefficient on the additional variable and (ii) how that variable co-varies with <span class="math inline">\(X_1\)</span>.</p>
+<p>With <strong>two</strong> regressors, the slopes coincide if <span class="math inline">\(\hat\beta_2=0\)</span> or <span class="math inline">\(\tilde\delta_1=0\)</span>. With <strong>several</strong> omitted controls, contributions can also <strong>cancel</strong>; it is not necessary that every omitted coefficient or every correlation be zero.</p>
+</section>
+<section id="the-four-assumptions-for-unbiasedness" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-assumptions-for-unbiasedness">11. The four assumptions for unbiasedness</h3>
+<p>The lecture introduces the following assumptions:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Assumption</th>
+<th>Statement</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>MLR.1 — Linear in parameters</strong></td>
+<td><span class="math inline">\(Y_i=\beta_0+\sum_j\beta_jX_{ij}+u_i\)</span></td>
+<td>Defines the population model</td>
+</tr>
+<tr class="even">
+<td><strong>MLR.2 — Random sampling</strong></td>
+<td>Observations are independent draws from the population</td>
+<td>Connects the sample to the population</td>
+</tr>
+<tr class="odd">
+<td><strong>MLR.3 — No perfect collinearity</strong></td>
+<td>No regressor is an exact linear combination of the intercept and other regressors in the sample</td>
+<td>Ensures unique OLS coefficients</td>
+</tr>
+<tr class="even">
+<td><strong>MLR.4 — Zero conditional mean</strong></td>
+<td><span class="math inline">\(E[u_i\mid X_{i1},\ldots,X_{ik}]=0\)</span></td>
+<td>Makes OLS unbiased under the preceding assumptions</td>
+</tr>
+</tbody>
+</table>
+<p>Under MLR.1–MLR.4, with the requisite expectations defined,</p>
+<p><span class="math display">\[
+\boxed{\mathbb E[\hat\beta_j]=\beta_j,\qquad j=0,\ldots,k.}
+\]</span></p>
+<p><strong>Unbiased</strong> means the estimator’s expectation across repeated samples equals the true coefficient; it does not mean each sample estimate is close to the truth.</p>
+</section>
+<section id="perfect-collinearity-versus-high-correlation" class="level3">
+<h3 class="anchored" data-anchor-id="perfect-collinearity-versus-high-correlation">12. Perfect collinearity versus high correlation</h3>
+<p><strong>Perfect collinearity</strong> occurs when one included regressor is an exact linear combination of the intercept and the others. OLS then cannot determine all coefficients uniquely.</p>
+<p>Two examples from the lecture:</p>
+<ul>
+<li><strong>Logarithms:</strong> For positive income, <span class="math inline">\(\log(inc^2)=2\log(inc)\)</span>. Including both as separate regressors is redundant. By contrast, <span class="math inline">\([\log(inc)]^2\)</span> is generally <strong>not</strong> equal to <span class="math inline">\(\log(inc^2)\)</span>.</li>
+<li><strong>Election spending:</strong> If <span class="math inline">\(totalspend=spend_A+spend_B\)</span>, including all three with an intercept creates an exact linear dependence. One must remove or reparameterise a variable.</li>
+</ul>
+<p><strong>High but imperfect correlation</strong> is permitted. It can make coefficients imprecise, but does not by itself make OLS undefined or biased.</p>
+<p>The rank condition requires at least <span class="math inline">\(n\geq k+1\)</span> observations for a unique fit; estimating the error variance using residual degrees of freedom additionally requires <span class="math inline">\(n&gt;k+1\)</span>.</p>
+</section>
+<section id="omitted-variable-bias-ovb" class="level3">
+<h3 class="anchored" data-anchor-id="omitted-variable-bias-ovb">13. Omitted-variable bias (OVB)</h3>
+<p>Suppose the correct population model is</p>
+<p><span class="math display">\[
+Y=\beta_0+\beta_1X_1+\beta_2X_2+u,
+\qquad E[u\mid X_1,X_2]=0.
+\]</span></p>
+<p>If we omit <span class="math inline">\(X_2\)</span> and regress <span class="math inline">\(Y\)</span> on <span class="math inline">\(X_1\)</span> alone, the omitted term <span class="math inline">\(\beta_2X_2+u\)</span> becomes the error. The resulting slope generally does not estimate <span class="math inline">\(\beta_1\)</span> without bias.</p>
+<p>Let</p>
+<p><span class="math display">\[
+\delta_1=\frac{\operatorname{Cov}(X_1,X_2)}
+{\operatorname{Var}(X_1)},
+\qquad \operatorname{Var}(X_1)&gt;0.
+\]</span></p>
+<p>The <strong>population simple-regression slope</strong> is</p>
+<p><span class="math display">\[
+\boxed{\beta_1^{simple}=\beta_1+\beta_2\delta_1.}
+\]</span></p>
+<p>Hence the difference between the population simple slope and the desired partial slope is <span class="math inline">\(\beta_2\delta_1\)</span>. This is the familiar OVB formula at the <strong>population linear-projection</strong> level.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Effect of omitted <span class="math inline">\(X_2\)</span> on <span class="math inline">\(Y\)</span> (<span class="math inline">\(\beta_2\)</span>)</th>
+<th>Association of <span class="math inline">\(X_2\)</span> with <span class="math inline">\(X_1\)</span> (<span class="math inline">\(\delta_1\)</span>)</th>
+<th>Direction of OVB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Positive</td>
+<td>Positive</td>
+<td>Upward</td>
+</tr>
+<tr class="even">
+<td>Positive</td>
+<td>Negative</td>
+<td>Downward</td>
+</tr>
+<tr class="odd">
+<td>Negative</td>
+<td>Positive</td>
+<td>Downward</td>
+</tr>
+<tr class="even">
+<td>Negative</td>
+<td>Negative</td>
+<td>Upward</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wage example:</strong> If ability raises wages and is positively associated with education, omitting ability tends to push the simple schooling slope upwards relative to the coefficient that controls for ability.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Do not confuse a sample identity with an expected bias
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The exact identity <span class="math inline">\(\tilde\beta_1=\hat\beta_1+\hat\beta_2\tilde\delta_1\)</span> uses <strong>sample estimates</strong>. Because <span class="math inline">\(\tilde\delta_1\)</span> is random, it is generally <strong>incorrect</strong> to write <span class="math inline">\(E[\hat\beta_2\tilde\delta_1]=E[\hat\beta_2]\tilde\delta_1\)</span> without conditioning. Under the full-model assumptions, the correct conditional statement is</p>
+<p><span class="math display">\[
+E[\tilde\beta_1\mid\mathbf X]=\beta_1+\beta_2\tilde\delta_1,
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf X\)</span> contains both regressors for all observations. Unconditionally, the bias is <span class="math inline">\(\beta_2E[\tilde\delta_1]\)</span>, when that expectation exists. The population formula above uses the non-random population projection slope <span class="math inline">\(\delta_1\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="adding-irrelevant-variables" class="level3">
+<h3 class="anchored" data-anchor-id="adding-irrelevant-variables">14. Adding irrelevant variables</h3>
+<p>An <strong>irrelevant variable</strong> has a true partial coefficient of zero. If the full model still satisfies MLR.1–MLR.4, including it does not introduce bias into the OLS coefficients.</p>
+<p>However, extra regressors consume degrees of freedom and may increase estimator variance. The practical distinction is:</p>
+<ul>
+<li>Omitting a relevant confounder can introduce <strong>bias</strong>.</li>
+<li>Including an irrelevant regressor need not introduce bias, but can reduce <strong>precision</strong>.</li>
+</ul>
+<p>These are not unconditional rules: they depend on the maintained model assumptions.</p>
+</section>
+<section id="homoskedasticity-and-heteroskedasticity" class="level3">
+<h3 class="anchored" data-anchor-id="homoskedasticity-and-heteroskedasticity">15. Homoskedasticity and heteroskedasticity</h3>
+<p>To study the sampling variance of OLS, the lecture adds:</p>
+<p><span class="math display">\[
+\boxed{\text{MLR.5: }\operatorname{Var}(u\mid X_1,\ldots,X_k)=\sigma^2.}
+\]</span></p>
+<p>This is <strong>homoskedasticity</strong>: the conditional error variance is constant across regressor values. <strong>Heteroskedasticity</strong> means that conditional variance changes with the regressors.</p>
+<p><strong>Example:</strong> Wage outcomes may be more dispersed among highly educated workers than among workers with fewer years of education. That would be consistent with heteroskedasticity even if the conditional mean were correctly specified.</p>
+<p>MLR.5 is <strong>not needed for unbiasedness</strong> under MLR.1–MLR.4. It is needed for the simple conventional OLS variance formula and the standard Gauss–Markov efficiency result. With heteroskedasticity, heteroskedasticity-robust standard errors can be appropriate under further regularity conditions; they do not repair endogeneity.</p>
+</section>
+<section id="what-determines-the-precision-of-ols" class="level3">
+<h3 class="anchored" data-anchor-id="what-determines-the-precision-of-ols">16. What determines the precision of OLS?</h3>
+<p>For regressor <span class="math inline">\(X_j\)</span>, define</p>
+<p><span class="math display">\[
+SST_j=\sum_{i=1}^{n}(X_{ij}-\bar X_j)^2.
+\]</span></p>
+<p>Let <span class="math inline">\(R_j^2\)</span> be the <span class="math inline">\(R^2\)</span> from regressing <span class="math inline">\(X_j\)</span> on an intercept and <strong>all the other regressors</strong>. Under MLR.1–MLR.5,</p>
+<p><span class="math display">\[
+\boxed{\operatorname{Var}(\hat\beta_j\mid\mathbf X)
+=\frac{\sigma^2}{SST_j(1-R_j^2)},\quad j=1,\ldots,k.}
+\]</span></p>
+<p>Three forces determine precision, <strong>holding the others fixed</strong>:</p>
+<ol type="1">
+<li><strong>Noise:</strong> Larger error variance <span class="math inline">\(\sigma^2\)</span> means less precise estimates.</li>
+<li><strong>Variation:</strong> Larger <span class="math inline">\(SST_j\)</span> means more information about the slope.</li>
+<li><strong>Multicollinearity:</strong> Larger <span class="math inline">\(R_j^2\)</span> means that less of <span class="math inline">\(X_j\)</span> is distinct from the other regressors, increasing variance.</li>
+</ol>
+<p>When <span class="math inline">\(R_j^2\to1\)</span> with <span class="math inline">\(SST_j\)</span> and <span class="math inline">\(\sigma^2\)</span> fixed, the conditional variance grows without bound. At <span class="math inline">\(R_j^2=1\)</span>, the coefficient is not separately identified by OLS.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Does adding a control improve precision?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Not necessarily. A useful control may reduce the <strong>population residual variance</strong> of the newly specified model, but it may also increase <span class="math inline">\(R_j^2\)</span> and reduce residual degrees of freedom. Adding regressors therefore has an ambiguous effect on the precision of an existing slope. It cannot increase the <em>sample residual sum of squares</em> when the estimation sample is unchanged, but that is a different statement.</p>
+</div>
+</div>
+</section>
+<section id="estimating-the-error-variance-and-standard-errors" class="level3">
+<h3 class="anchored" data-anchor-id="estimating-the-error-variance-and-standard-errors">17. Estimating the error variance and standard errors</h3>
+<p>Because <span class="math inline">\(u_i\)</span> is unobserved, we estimate its variance using residuals. Under MLR.1–MLR.5 and <span class="math inline">\(n&gt;k+1\)</span>,</p>
+<p><span class="math display">\[
+\boxed{\hat\sigma^2=
+\frac{\sum_i\hat u_i^2}{n-k-1}
+=\frac{SSR}{n-k-1}.}
+\]</span></p>
+<p>The denominator is the <strong>residual degrees of freedom</strong>: <span class="math inline">\(n\)</span> observations minus <span class="math inline">\(k+1\)</span> fitted coefficients. Under the assumptions, <span class="math inline">\(E[\hat\sigma^2]=\sigma^2\)</span>.</p>
+<p>The estimated standard deviation of the regression error is <span class="math inline">\(\hat\sigma=\sqrt{\hat\sigma^2}\)</span>. The <strong>conventional homoskedastic standard error</strong> of a slope is</p>
+<p><span class="math display">\[
+\boxed{se(\hat\beta_j)=
+\frac{\hat\sigma}{\sqrt{SST_j(1-R_j^2)}}.}
+\]</span></p>
+<p>A standard error measures the estimated <strong>sampling uncertainty of a coefficient</strong>, not the size of the residual for an individual observation. The square root <span class="math inline">\(\hat\sigma\)</span> is not generally an unbiased estimator of <span class="math inline">\(\sigma\)</span>, even though <span class="math inline">\(\hat\sigma^2\)</span> is unbiased for <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>Under suitable large-sample conditions, slope standard errors often shrink at approximately <span class="math inline">\(1/\sqrt n\)</span>. This rate is <strong>not automatic</strong> if regressor variation or collinearity deteriorates as <span class="math inline">\(n\)</span> increases.</p>
+</section>
+<section id="the-gaussmarkov-theorem-why-ols" class="level3">
+<h3 class="anchored" data-anchor-id="the-gaussmarkov-theorem-why-ols">18. The Gauss–Markov theorem: why OLS?</h3>
+<p>Under <strong>MLR.1–MLR.5</strong>, OLS is <strong>BLUE</strong>:</p>
+<blockquote class="blockquote">
+<p><strong>Best Linear Unbiased Estimator:</strong> Among estimators that are linear in the observed outcomes and unbiased for the regression coefficients, OLS has the smallest conditional variance (or, jointly, a covariance matrix no larger in the positive-semidefinite sense).</p>
+</blockquote>
+<p>“Linear” means linear <strong>in the observed <span class="math inline">\(Y_i\)</span> values</strong>, with weights that may depend on the regressors. “Best” means <strong>minimum variance within this restricted class</strong>, not best under every possible criterion.</p>
+<p>The theorem does <strong>not</strong> establish that OLS is causal, normally distributed, unbiased under endogeneity, or more efficient than every conceivable non-linear or biased estimator. It also does not justify conventional homoskedastic standard errors when MLR.5 fails.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>What to remember from Class 2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Multiple regression estimates <strong>partial associations</strong>. For a causal interpretation, the main obstacle remains <strong>exogeneity</strong>: <span class="math inline">\(E[u\mid X_1,\ldots,X_k]=0\)</span>. MLR.1–MLR.4 give <strong>unbiasedness</strong>; adding MLR.5 gives the conventional <strong>variance formula</strong> and the <strong>Gauss–Markov BLUE</strong> result. More controls do not automatically mean less bias or more precision.</p>
+</div>
+</div>
+</section>
 </section>
 <section id="mathematical-derivations" class="level2">
 <h2 class="anchored" data-anchor-id="mathematical-derivations">Mathematical Derivations</h2>
+<section id="the-conditional-mean-and-partial-slopes" class="level3">
+<h3 class="anchored" data-anchor-id="the-conditional-mean-and-partial-slopes">1. The conditional mean and partial slopes</h3>
+<p>Start from</p>
+<p><span class="math display">\[
+Y=\beta_0+\sum_{j=1}^{k}\beta_jX_j+u.
+\]</span></p>
+<p>Under <span class="math inline">\(E[u\mid X_1,\ldots,X_k]=0\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+E[Y\mid X_1,\ldots,X_k]
+&amp;=\beta_0+\sum_{j=1}^{k}\beta_jX_j
++E[u\mid X_1,\ldots,X_k]\\
+&amp;=\beta_0+\sum_{j=1}^{k}\beta_jX_j.
+\end{aligned}
+\]</span></p>
+<p>Therefore, holding all other regressors fixed,</p>
+<p><span class="math display">\[
+\boxed{\frac{\partial E[Y\mid X_1,\ldots,X_k]}
+{\partial X_j}=\beta_j.}
+\]</span></p>
+<p>This is a derivative of the <strong>conditional mean</strong>. Its causal interpretation requires the additional substantive conditions needed to interpret changes in <span class="math inline">\(X_j\)</span> as interventions.</p>
 </section>
-<section id="tutorial-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-exercises">Tutorial Exercises</h2>
+<section id="deriving-the-ols-normal-equations" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-ols-normal-equations">2. Deriving the OLS normal equations</h3>
+<p>Define the objective</p>
+<p><span class="math display">\[
+Q(b_0,\ldots,b_k)=\sum_{i=1}^{n}
+\left(Y_i-b_0-\sum_{j=1}^{k}b_jX_{ij}\right)^2.
+\]</span></p>
+<p><strong>Step 1 — Differentiate with respect to the intercept:</strong></p>
+<p><span class="math display">\[
+\frac{\partial Q}{\partial b_0}
+=-2\sum_i\left(Y_i-b_0-\sum_jb_jX_{ij}\right)=0.
+\]</span></p>
+<p>At the minimum,</p>
+<p><span class="math display">\[
+\boxed{\sum_i\hat u_i=0.}
+\]</span></p>
+<p><strong>Step 2 — Differentiate with respect to each slope <span class="math inline">\(b_j\)</span>:</strong></p>
+<p><span class="math display">\[
+\frac{\partial Q}{\partial b_j}
+=-2\sum_iX_{ij}\left(Y_i-b_0-\sum_{\ell=1}^{k}b_\ell X_{i\ell}\right)=0.
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
+\boxed{\sum_iX_{ij}\hat u_i=0,\qquad j=1,\ldots,k.}
+\]</span></p>
+<p>These <span class="math inline">\(k+1\)</span> equations are the <strong>normal equations</strong>. They are also sample analogues of the population moment conditions <span class="math inline">\(E[u]=0\)</span> and <span class="math inline">\(E[X_ju]=0\)</span>. The latter follow from zero conditional mean (when the relevant expectations exist), but are weaker than it.</p>
+</section>
+<section id="matrix-formula-for-multiple-regression-ols" class="level3">
+<h3 class="anchored" data-anchor-id="matrix-formula-for-multiple-regression-ols">3. Matrix formula for multiple-regression OLS</h3>
+<p>This is a compact extension of the lecture’s normal equations. Let <span class="math inline">\(\mathbf y\)</span> be the <span class="math inline">\(n\times1\)</span> outcome vector, <span class="math inline">\(\mathbf X\)</span> the <span class="math inline">\(n\times(k+1)\)</span> design matrix <strong>including a column of ones</strong>, and <span class="math inline">\(\boldsymbol\beta\)</span> the coefficient vector. Then</p>
+<p><span class="math display">\[
+\mathbf y=\mathbf X\boldsymbol\beta+\mathbf u.
+\]</span></p>
+<p>OLS minimises</p>
+<p><span class="math display">\[
+Q(\mathbf b)=(\mathbf y-\mathbf X\mathbf b)'(\mathbf y-\mathbf X\mathbf b).
+\]</span></p>
+<p>Expanding and differentiating,</p>
+<p><span class="math display">\[
+\frac{\partial Q}{\partial\mathbf b}
+=-2\mathbf X'\mathbf y+2\mathbf X'\mathbf X\mathbf b=\mathbf0.
+\]</span></p>
+<p>If <span class="math inline">\(\mathbf X\)</span> has full column rank, <span class="math inline">\(\mathbf X'\mathbf X\)</span> is invertible and</p>
+<p><span class="math display">\[
+\boxed{\hat{\boldsymbol\beta}
+=(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf y.}
+\]</span></p>
+<p>Because the objective is a convex quadratic and the design has full column rank, this solution is the <strong>unique global minimum</strong>.</p>
+</section>
+<section id="deriving-the-residual-properties" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-residual-properties">4. Deriving the residual properties</h3>
+<p>The normal equations give <span class="math inline">\(\mathbf X'\hat{\mathbf u}=\mathbf0\)</span>. Since the intercept column is part of <span class="math inline">\(\mathbf X\)</span>,</p>
+<p><span class="math display">\[
+\sum_i\hat u_i=0
+\quad\Longrightarrow\quad
+\bar Y=\overline{\widehat Y}.
+\]</span></p>
+<p>Because <span class="math inline">\(\widehat{\mathbf y}=\mathbf X\hat{\boldsymbol\beta}\)</span>,</p>
+<p><span class="math display">\[
+\widehat{\mathbf y}'\hat{\mathbf u}
+=\hat{\boldsymbol\beta}'\mathbf X'\hat{\mathbf u}=0.
+\]</span></p>
+<p>Finally, taking sample averages of the fitted equation yields</p>
+<p><span class="math display">\[
+\boxed{\bar Y=\hat\beta_0+\sum_{j=1}^{k}\hat\beta_j\bar X_j.}
+\]</span></p>
+<p>Thus the fitted hyperplane passes through the vector of sample means.</p>
+</section>
+<section id="proving-the-frischwaughlovell-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="proving-the-frischwaughlovell-theorem">5. Proving the Frisch–Waugh–Lovell theorem</h3>
+<p>Write the design matrix as <span class="math inline">\(\mathbf X=[\mathbf x_1\;\mathbf Z]\)</span>, where <span class="math inline">\(\mathbf Z\)</span> contains the intercept and all controls other than <span class="math inline">\(\mathbf x_1\)</span>. Assume <span class="math inline">\(\mathbf Z\)</span> has full column rank and <span class="math inline">\(\mathbf x_1\)</span> is not in its column space.</p>
+<p>Define the <strong>residual-maker matrix</strong></p>
+<p><span class="math display">\[
+\mathbf M_Z=\mathbf I-\mathbf Z(\mathbf Z'\mathbf Z)^{-1}\mathbf Z'.
+\]</span></p>
+<p>It removes the component linearly explained by <span class="math inline">\(\mathbf Z\)</span>:</p>
+<p><span class="math display">\[
+\hat{\mathbf r}_1=\mathbf M_Z\mathbf x_1,
+\qquad \hat{\mathbf v}=\mathbf M_Z\mathbf y.
+\]</span></p>
+<p>The full regression is <span class="math inline">\(\mathbf y=\mathbf x_1\hat\beta_1+\mathbf Z\hat{\boldsymbol\gamma}+\hat{\mathbf u}\)</span>. Multiplying by <span class="math inline">\(\mathbf M_Z\)</span> eliminates the controls because <span class="math inline">\(\mathbf M_Z\mathbf Z=0\)</span>:</p>
+<p><span class="math display">\[
+\mathbf M_Z\mathbf y
+=\mathbf M_Z\mathbf x_1\hat\beta_1+\mathbf M_Z\hat{\mathbf u}.
+\]</span></p>
+<p>The full-model normal equations imply <span class="math inline">\(\mathbf x_1'\hat{\mathbf u}=0\)</span> and <span class="math inline">\(\mathbf Z'\hat{\mathbf u}=0\)</span>, so <span class="math inline">\(\mathbf M_Z\hat{\mathbf u}=\hat{\mathbf u}\)</span>. Premultiplying by <span class="math inline">\(\hat{\mathbf r}_1'\)</span> therefore gives</p>
+<p><span class="math display">\[
+\hat{\mathbf r}_1'\hat{\mathbf v}
+=\hat\beta_1\hat{\mathbf r}_1'\hat{\mathbf r}_1.
+\]</span></p>
+<p>Hence</p>
+<p><span class="math display">\[
+\boxed{\hat\beta_1
+=\frac{\hat{\mathbf r}_1'\hat{\mathbf v}}
+{\hat{\mathbf r}_1'\hat{\mathbf r}_1}
+=\frac{\sum_i\hat r_{1i}\hat v_i}
+{\sum_i\hat r_{1i}^2}.}
+\]</span></p>
+<p>The residuals from both auxiliary regressions have mean zero because <span class="math inline">\(\mathbf Z\)</span> contains an intercept, so the final regression’s intercept is zero.</p>
+</section>
+<section id="deriving-the-r2-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-r2-decomposition">6. Deriving the <span class="math inline">\(R^2\)</span> decomposition</h3>
+<p>For every observation,</p>
+<p><span class="math display">\[
+Y_i-\bar Y=(\widehat Y_i-\bar Y)+\hat u_i.
+\]</span></p>
+<p>Square and sum:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_i(Y_i-\bar Y)^2
+&amp;=\sum_i(\widehat Y_i-\bar Y)^2+\sum_i\hat u_i^2\\
+&amp;\quad+2\sum_i(\widehat Y_i-\bar Y)\hat u_i.
+\end{aligned}
+\]</span></p>
+<p>The cross-term is zero because <span class="math inline">\(\sum_i\widehat Y_i\hat u_i=0\)</span> and <span class="math inline">\(\sum_i\hat u_i=0\)</span>. Therefore</p>
+<p><span class="math display">\[
+\boxed{SST=SSE+SSR},\qquad
+\boxed{R^2=1-\frac{SSR}{SST}}.
+\]</span></p>
+<p>Adding a regressor enlarges the set of candidate fitted models. The minimum attainable <span class="math inline">\(SSR\)</span> therefore cannot increase on an unchanged dataset; consequently ordinary <span class="math inline">\(R^2\)</span> cannot fall.</p>
+</section>
+<section id="deriving-the-exact-simple-versus-multiple-regression-identity" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-exact-simple-versus-multiple-regression-identity">7. Deriving the exact simple-versus-multiple regression identity</h3>
+<p>The fitted multiple regression gives the <strong>sample identity</strong></p>
+<p><span class="math display">\[
+Y_i=\hat\beta_0+\hat\beta_1X_{i1}
++\hat\beta_2X_{i2}+\hat u_i.
+\]</span></p>
+<p>The simple-regression slope is</p>
+<p><span class="math display">\[
+\tilde\beta_1=
+\frac{\sum_i(X_{i1}-\bar X_1)(Y_i-\bar Y)}
+{\sum_i(X_{i1}-\bar X_1)^2}.
+\]</span></p>
+<p>Substitute the fitted multiple-regression equation. The intercept term disappears after demeaning, and the residual term disappears because OLS makes <span class="math inline">\(X_1\)</span> orthogonal to <span class="math inline">\(\hat u\)</span>:</p>
+<p><span class="math display">\[
+\tilde\beta_1=\hat\beta_1
++\hat\beta_2\frac{\sum_i(X_{i1}-\bar X_1)(X_{i2}-\bar X_2)}
+{\sum_i(X_{i1}-\bar X_1)^2}.
+\]</span></p>
+<p>The final ratio is precisely the slope <span class="math inline">\(\tilde\delta_1\)</span> from regressing <span class="math inline">\(X_2\)</span> on <span class="math inline">\(X_1\)</span>. Thus</p>
+<p><span class="math display">\[
+\boxed{\tilde\beta_1=\hat\beta_1+\hat\beta_2\tilde\delta_1.}
+\]</span></p>
+<p>With several additional regressors, the corresponding identity is</p>
+<p><span class="math display">\[
+\tilde\beta_1=\hat\beta_1+\sum_{j=2}^{k}\hat\beta_j\tilde\delta_j,
+\]</span></p>
+<p>where <span class="math inline">\(\tilde\delta_j\)</span> is the simple-regression slope of <span class="math inline">\(X_j\)</span> on <span class="math inline">\(X_1\)</span>. The sum can equal zero through cancellation even when individual terms are non-zero.</p>
+</section>
+<section id="deriving-omitted-variable-bias-correctly" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-omitted-variable-bias-correctly">8. Deriving omitted-variable bias correctly</h3>
+<p>Assume the true model is</p>
+<p><span class="math display">\[
+Y=\beta_0+\beta_1X_1+\beta_2X_2+u,
+\qquad E[u\mid X_1,X_2]=0.
+\]</span></p>
+<p><strong>Population derivation.</strong> The slope in the population linear projection of <span class="math inline">\(Y\)</span> on an intercept and <span class="math inline">\(X_1\)</span> is</p>
+<p><span class="math display">\[
+\begin{aligned}
+\beta_1^{simple}
+&amp;=\frac{\operatorname{Cov}(X_1,Y)}{\operatorname{Var}(X_1)}\\
+&amp;=\frac{\beta_1\operatorname{Var}(X_1)
++\beta_2\operatorname{Cov}(X_1,X_2)
++\operatorname{Cov}(X_1,u)}{\operatorname{Var}(X_1)}.
+\end{aligned}
+\]</span></p>
+<p>Zero conditional mean implies <span class="math inline">\(\operatorname{Cov}(X_1,u)=0\)</span>. Therefore</p>
+<p><span class="math display">\[
+\boxed{\beta_1^{simple}-\beta_1
+=\beta_2\frac{\operatorname{Cov}(X_1,X_2)}
+{\operatorname{Var}(X_1)}=\beta_2\delta_1.}
+\]</span></p>
+<p><strong>Finite-sample conditional derivation.</strong> Let <span class="math inline">\(\tilde\delta_1\)</span> be the <em>sample</em> slope from regressing <span class="math inline">\(X_2\)</span> on <span class="math inline">\(X_1\)</span>. Direct substitution into the simple OLS formula gives</p>
+<p><span class="math display">\[
+\tilde\beta_1
+=\beta_1+\beta_2\tilde\delta_1
++\frac{\sum_i(X_{i1}-\bar X_1)u_i}{\sum_i(X_{i1}-\bar X_1)^2}.
+\]</span></p>
+<p>Under random sampling and zero conditional mean, conditioning on the full observed regressor matrix <span class="math inline">\(\mathbf X\)</span> yields</p>
+<p><span class="math display">\[
+\boxed{E[\tilde\beta_1\mid\mathbf X]
+=\beta_1+\beta_2\tilde\delta_1.}
+\]</span></p>
+<p>This is the <strong>conditional bias</strong>, given the realised regressors. The unconditional finite-sample bias is <span class="math inline">\(\beta_2E[\tilde\delta_1]\)</span>, provided that expectation exists. Do <strong>not</strong> treat the random <span class="math inline">\(\tilde\delta_1\)</span> as a constant inside an unconditional expectation.</p>
+</section>
+<section id="proving-unbiasedness-of-multiple-regression-ols" class="level3">
+<h3 class="anchored" data-anchor-id="proving-unbiasedness-of-multiple-regression-ols">9. Proving unbiasedness of multiple-regression OLS</h3>
+<p>Start with the population model in matrix form:</p>
+<p><span class="math display">\[
+\mathbf y=\mathbf X\boldsymbol\beta+\mathbf u.
+\]</span></p>
+<p>Substitute into the OLS formula:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{\boldsymbol\beta}
+&amp;=(\mathbf X'\mathbf X)^{-1}\mathbf X'(\mathbf X\boldsymbol\beta+\mathbf u)\\
+&amp;=\boldsymbol\beta+(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf u.
+\end{aligned}
+\]</span></p>
+<p>Under MLR.2 and MLR.4, <span class="math inline">\(E[\mathbf u\mid\mathbf X]=\mathbf0\)</span>. Therefore, conditional on a full-rank <span class="math inline">\(\mathbf X\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+E[\hat{\boldsymbol\beta}\mid\mathbf X]
+&amp;=\boldsymbol\beta+(\mathbf X'\mathbf X)^{-1}\mathbf X'E[\mathbf u\mid\mathbf X]\\
+&amp;=\boxed{\boldsymbol\beta}.
+\end{aligned}
+\]</span></p>
+<p>Taking expectations again gives</p>
+<p><span class="math display">\[
+\boxed{E[\hat\beta_j]=\beta_j,\qquad j=0,\ldots,k.}
+\]</span></p>
+<p>This proof uses <strong>MLR.1–MLR.4</strong>. Homoskedasticity is not required.</p>
+</section>
+<section id="deriving-the-conditional-variance-of-ols" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-conditional-variance-of-ols">10. Deriving the conditional variance of OLS</h3>
+<p>From the previous identity,</p>
+<p><span class="math display">\[
+\hat{\boldsymbol\beta}-\boldsymbol\beta
+=(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf u.
+\]</span></p>
+<p>Under independent random sampling and MLR.5, the conditional error covariance matrix is <span class="math inline">\(\operatorname{Var}(\mathbf u\mid\mathbf X)=\sigma^2\mathbf I\)</span>. Therefore</p>
+<p><span class="math display">\[
+\begin{aligned}
+\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)
+&amp;=(\mathbf X'\mathbf X)^{-1}\mathbf X'
+(\sigma^2\mathbf I)\mathbf X(\mathbf X'\mathbf X)^{-1}\\
+&amp;=\boxed{\sigma^2(\mathbf X'\mathbf X)^{-1}}.
+\end{aligned}
+\]</span></p>
+<p>To obtain the variance of slope <span class="math inline">\(j\)</span>, use FWL. Let <span class="math inline">\(\hat r_{ji}\)</span> be residuals from regressing <span class="math inline">\(X_j\)</span> on an intercept and all other regressors. Then</p>
+<p><span class="math display">\[
+\hat\beta_j-\beta_j
+=\frac{\sum_i\hat r_{ji}u_i}{\sum_i\hat r_{ji}^2}.
+\]</span></p>
+<p>Conditioning on <span class="math inline">\(\mathbf X\)</span>,</p>
+<p><span class="math display">\[
+\operatorname{Var}(\hat\beta_j\mid\mathbf X)
+=\frac{\sigma^2\sum_i\hat r_{ji}^2}
+{\left(\sum_i\hat r_{ji}^2\right)^2}
+=\frac{\sigma^2}{\sum_i\hat r_{ji}^2}.
+\]</span></p>
+<p>From the auxiliary regression’s <span class="math inline">\(R_j^2\)</span> definition,</p>
+<p><span class="math display">\[
+\sum_i\hat r_{ji}^2=SST_j(1-R_j^2).
+\]</span></p>
+<p>Hence</p>
+<p><span class="math display">\[
+\boxed{\operatorname{Var}(\hat\beta_j\mid\mathbf X)
+=\frac{\sigma^2}{SST_j(1-R_j^2)}.}
+\]</span></p>
+<p>This derivation makes the <strong>multicollinearity penalty</strong> explicit: the relevant information is the part of <span class="math inline">\(X_j\)</span> that cannot be linearly predicted by the other regressors.</p>
+</section>
+<section id="why-divide-by-n-k-1-to-estimate-sigma2" class="level3">
+<h3 class="anchored" data-anchor-id="why-divide-by-n-k-1-to-estimate-sigma2">11. Why divide by <span class="math inline">\(n-k-1\)</span> to estimate <span class="math inline">\(\sigma^2\)</span>?</h3>
+<p>Let <span class="math inline">\(\mathbf H=\mathbf X(\mathbf X'\mathbf X)^{-1}\mathbf X'\)</span> be the projection matrix and <span class="math inline">\(\mathbf M=\mathbf I-\mathbf H\)</span> the residual-maker matrix. Then</p>
+<p><span class="math display">\[
+\hat{\mathbf u}=\mathbf M\mathbf y=\mathbf M\mathbf u,
+\]</span></p>
+<p>because <span class="math inline">\(\mathbf M\mathbf X=0\)</span>. The residual sum of squares is</p>
+<p><span class="math display">\[
+SSR=\hat{\mathbf u}'\hat{\mathbf u}=\mathbf u'\mathbf M\mathbf u.
+\]</span></p>
+<p>Conditional on <span class="math inline">\(\mathbf X\)</span>, use <span class="math inline">\(E[\mathbf u\mid\mathbf X]=\mathbf0\)</span> and <span class="math inline">\(E[\mathbf u\mathbf u'\mid\mathbf X]=\sigma^2\mathbf I\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+E[SSR\mid\mathbf X]
+&amp;=E[\operatorname{tr}(\mathbf M\mathbf u\mathbf u')\mid\mathbf X]\\
+&amp;=\operatorname{tr}(\mathbf M\sigma^2\mathbf I)\\
+&amp;=\sigma^2\operatorname{tr}(\mathbf M).
+\end{aligned}
+\]</span></p>
+<p>Since <span class="math inline">\(\mathbf H\)</span> projects onto a <span class="math inline">\((k+1)\)</span>-dimensional column space,</p>
+<p><span class="math display">\[
+\operatorname{tr}(\mathbf M)=n-(k+1)=n-k-1.
+\]</span></p>
+<p>Therefore</p>
+<p><span class="math display">\[
+\boxed{E\left[\frac{SSR}{n-k-1}\middle|\mathbf X\right]
+=\sigma^2.}
+\]</span></p>
+<p>Dividing by <span class="math inline">\(n\)</span> instead would give conditional expectation <span class="math inline">\(\sigma^2(n-k-1)/n\)</span> and bias <span class="math inline">\(-\sigma^2(k+1)/n\)</span>.</p>
+</section>
+<section id="proving-the-gaussmarkov-theorem-blue" class="level3">
+<h3 class="anchored" data-anchor-id="proving-the-gaussmarkov-theorem-blue">12. Proving the Gauss–Markov theorem (BLUE)</h3>
+<p>Consider any other estimator <span class="math inline">\(\tilde{\boldsymbol\beta}=\mathbf A\mathbf y\)</span> that is <strong>linear in <span class="math inline">\(\mathbf y\)</span></strong> and conditionally unbiased for every possible <span class="math inline">\(\boldsymbol\beta\)</span>. Conditional unbiasedness requires</p>
+<p><span class="math display">\[
+\mathbf A\mathbf X=\mathbf I.
+\]</span></p>
+<p>Define the OLS weight matrix</p>
+<p><span class="math display">\[
+\mathbf A_0=(\mathbf X'\mathbf X)^{-1}\mathbf X',
+\]</span></p>
+<p>and write <span class="math inline">\(\mathbf A=\mathbf A_0+\mathbf D\)</span>. Since both estimators are unbiased, <span class="math inline">\(\mathbf D\mathbf X=\mathbf0\)</span>.</p>
+<p>Under homoskedasticity,</p>
+<p><span class="math display">\[
+\operatorname{Var}(\tilde{\boldsymbol\beta}\mid\mathbf X)
+=\sigma^2(\mathbf A_0+\mathbf D)(\mathbf A_0+\mathbf D)'.
+\]</span></p>
+<p>The cross-terms vanish because</p>
+<p><span class="math display">\[
+\mathbf A_0\mathbf D'
+=(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf D'=\mathbf0.
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+\boxed{\operatorname{Var}(\tilde{\boldsymbol\beta}\mid\mathbf X)
+-\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)
+=\sigma^2\mathbf D\mathbf D'.}
+\]</span></p>
+<p>For any vector <span class="math inline">\(\mathbf a\)</span>,</p>
+<p><span class="math display">\[
+\mathbf a'(\sigma^2\mathbf D\mathbf D')\mathbf a
+=\sigma^2\|\mathbf D'\mathbf a\|^2\geq0.
+\]</span></p>
+<p>Therefore the difference is <strong>positive semidefinite</strong>: no other linear conditionally unbiased estimator has a smaller conditional variance for any coefficient or linear combination of coefficients. This is the Gauss–Markov result.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Limits of these proofs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The proofs establish OLS algebra, unbiasedness under MLR.1–MLR.4, and conventional variance/BLUE results under MLR.1–MLR.5. They do <strong>not</strong> establish that the assumptions hold for a given dataset. In particular, good fit, zero sample residual correlations and small standard errors do not prove a causal interpretation. Normality is <strong>not</strong> one of the five Gauss–Markov assumptions; exact small-sample <span class="math inline">\(t\)</span> inference requires further conditions.</p>
+</div>
+</div>
+<hr>
+<p><strong>Ready to practise?</strong></p>
+<p><a href="../tutorials/tutorial-02.html">Go to Tutorial 2</a></p>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -717,13 +1609,878 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Class 2"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Theory &amp; Intuition</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mathematical Derivations</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tutorial Exercises</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Multiple Linear Regression: OLS, Bias, Precision and Gauss–Markov"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Source and scope.** Study notes based on Arne Uhlendorff's *Applied Econometrics*, Lecture 2 (*The Multiple Regression Model*; supplied PDF, 50 pages). The explanations and examples are rewritten for learning purposes. The lecture's five main parts are covered: motivation, OLS mechanics, expected values and omitted-variable bias, sampling variances, and the Gauss–Markov theorem. Mathematical qualifications correct several imprecise statements in the slides. Tutorial exercises and R applications are reserved for later.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Theory &amp; Intuition</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. Why move from simple to multiple regression?</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>In **simple linear regression**, we relate an outcome $Y$ to one explanatory variable $X$. But outcomes usually depend on several factors. If an omitted factor affects $Y$ and is related to $X$, a simple regression can attribute part of that factor's association to $X$.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>**Multiple regression** introduces additional explanatory variables so that we can compare observations *holding the included controls fixed*. It also allows more flexible functional forms, such as squared terms.</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Consider hourly wages:</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>wage_i=\beta_0+\beta_1 educ_i+\beta_2 exper_i+u_i.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Here, $educ$ measures years of education and $exper$ years of labour-market experience. The coefficient $\beta_1$ describes the change in the modelled wage associated with one more year of education **at a given level of experience**. Education and experience are allowed to be correlated.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Controlling is not the same as identifying a causal effect</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Including experience removes *that measured variable* from the error term. It does not automatically remove unobserved ability, family background or other confounders. A causal interpretation still requires a credible assumption about the remaining error term.</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. The multiple linear regression model</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>With $k$ explanatory variables, the **population model** is</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>\boxed{Y_i=\beta_0+\beta_1X_{i1}+\cdots+\beta_kX_{ik}+u_i.}</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$Y_i$: dependent variable (outcome).</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$X_{ij}$: explanatory variable $j$ for observation $i$.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\beta_0$: population intercept; $\beta_j$: population slope coefficients.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$u_i$: unobserved influences not captured by the included regressors.</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$n$: number of observations; $k$: number of explanatory variables, **excluding** the intercept.</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>The model is **linear in its unknown coefficients**, not necessarily in the underlying variables. For instance, $X_1=income$ and $X_2=income^2$ still produce a linear-in-parameters model.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>The central conditional-mean assumption is</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>\boxed{\mathbb E<span class="co">[</span><span class="ot">u\mid X_1,\ldots,X_k</span><span class="co">]</span>=0.}</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>If it holds, the population conditional mean is</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>\mathbb E<span class="co">[</span><span class="ot">Y\mid X_1,\ldots,X_k</span><span class="co">]</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>=\beta_0+\sum_{j=1}^{k}\beta_jX_j.</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>This is a strong **exogeneity** assumption: after conditioning on all included regressors, the remaining unobserved influences have no systematic average relationship with them.</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. Interpreting coefficients: *ceteris paribus*</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>For two regressors, the fitted equation is</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>\widehat Y=\hat\beta_0+\hat\beta_1X_1+\hat\beta_2X_2.</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>A change in the fitted outcome satisfies</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>\Delta\widehat Y=\hat\beta_1\Delta X_1+\hat\beta_2\Delta X_2.</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>If $X_2$ stays fixed, $\Delta\widehat Y=\hat\beta_1\Delta X_1$. Thus $\hat\beta_1$ is a **partial slope**: it describes the fitted association with $X_1$ after accounting for $X_2$. It is not automatically a causal effect.</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>**Example:** Suppose a fitted wage equation is</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>\widehat{wage}=5+0.8\,educ+0.3\,exper.</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>For two workers with the same experience, one additional year of education corresponds to a fitted wage difference of $0.8$ wage units. If education rises by one year *and* experience by two years, the fitted difference is $0.8+2(0.3)=1.4$ units. These numbers are hypothetical, not estimates from the lecture.</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. Non-linear relationships within linear regression</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>A quadratic consumption model is</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>cons=\beta_0+\beta_1inc+\beta_2inc^2+u.</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>Although the relationship can be curved, OLS remains linear in $\beta_0,\beta_1,\beta_2$. Holding $u$ fixed, the **marginal propensity to consume** is</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>\boxed{\frac{\partial cons}{\partial inc}=\beta_1+2\beta_2inc.}</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>The marginal effect changes with income. It would be meaningless to increase $inc$ while holding $inc^2$ fixed: the two regressors are mechanically linked.</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>The lecture also considers CEO pay:</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>\log(salary)=\beta_0+\beta_1\log(sales)</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>+\beta_2ceoten+\beta_3ceoten^2+u.</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>Here $\beta_1$ is the elasticity of salary with respect to sales **in the specified log relationship, holding other factors fixed**. For tenure,</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>\frac{\partial\log(salary)}{\partial ceoten}</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>=\beta_2+2\beta_3ceoten.</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>Multiplying by $100$ gives the **approximate percentage change** for one additional year of tenure at a given tenure level. For a finite change $\Delta t$, the exact change in log salary is $\beta_2\Delta t+\beta_3<span class="co">[</span><span class="ot">(t+\Delta t)^2-t^2</span><span class="co">]</span>$; the corresponding percentage change, holding $u$ fixed, is $100<span class="sc">\{</span>\exp(\Delta\log salary)-1<span class="sc">\}</span>\%$.</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. How multiple-regression OLS works</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>Given observations $i=1,\ldots,n$, ordinary least squares chooses $k+1$ coefficients to minimise the **sum of squared residuals**:</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>\boxed{\min_{b_0,\ldots,b_k}\sum_{i=1}^{n}</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>\left(Y_i-b_0-\sum_{j=1}^{k}b_jX_{ij}\right)^2.}</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>After estimation,</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>\widehat Y_i=\hat\beta_0+\sum_{j=1}^{k}\hat\beta_jX_{ij},</span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>\qquad \hat u_i=Y_i-\widehat Y_i.</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a>A **residual** $\hat u_i$ is observable once the model has been fitted; the **population error** $u_i$ is not. OLS finds the line or hyperplane with the smallest total squared residuals.</span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>Provided the regressors are not perfectly collinear, the OLS solution is unique.</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. Exact sample properties of OLS</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>With an intercept, the first-order conditions imply</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>\sum_i\hat u_i=0,</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a>\qquad \sum_iX_{ij}\hat u_i=0\quad(j=1,\ldots,k).</span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>Consequently:</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The residuals have sample mean zero.</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Every included regressor has zero sample covariance with the residuals.</span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Fitted values and residuals have zero sample covariance.</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\overline{\widehat Y}=\bar Y$.</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The fitted regression hyperplane passes through $(\bar X_1,\ldots,\bar X_k,\bar Y)$.</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>These are **algebraic properties of the fitted sample**, not evidence that the regressors are exogenous in the population.</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### 7. The Frisch–Waugh–Lovell theorem: partialling out</span></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>The **Frisch–Waugh–Lovell (FWL) theorem** explains what a multiple-regression coefficient measures. To obtain the coefficient on $X_1$ in a regression of $Y$ on $X_1,X_2,\ldots,X_k$:</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Regress $X_1$ on an intercept and $X_2,\ldots,X_k$; retain residuals $\hat r_{1i}$.</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Regress $Y$ on the same controls; retain residuals $\hat v_i$.</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Regress $\hat v$ on $\hat r_1$; its slope equals the coefficient on $X_1$ in the original multiple regression:</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>\boxed{\hat\beta_1=</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>\frac{\sum_i\hat r_{1i}\hat v_i}</span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>{\sum_i\hat r_{1i}^2}.}</span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>**Intuition:** First remove the variation linearly explained by the controls from both $X_1$ and $Y$. Then examine how the remaining variation moves together. This is why we say multiple regression *partials out* other regressors.</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>FWL requires the same observations and the same set of controls in the auxiliary regressions, as well as sufficient remaining variation in $X_1$.</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a><span class="fu">### 8. The education–IQ example: why coefficients change</span></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>The lecture reports a sample of $759$ workers. Its simple regression is</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>\widehat{\log(wage)}=1.142+0.099\,educ.</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>After including an IQ measure, it reports</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>\widehat{\log(wage)}=1.142+0.073\,educ+0.0076\,IQ.</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>The estimated schooling coefficient falls from $0.099$ to $0.073$: roughly **9.9% to 7.3%** using the usual log approximation. The lecture also reports a positive education–IQ correlation of $0.573$.</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>**Interpretation:** The simple regression partly attributes the positive wage association with IQ to education. Controlling for IQ changes the estimated *conditional association* with schooling. IQ is an imperfect proxy for ability, however, so the multiple-regression coefficient is not automatically a causal return to education.</span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="fu">## A transcription issue in the lecture</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>The slides print the same intercept, $1.142$, in both wage equations. This is unusual when a regressor is added and could be a slide transcription error. The slope coefficients and the reported correlation are reproduced as shown; the intercepts should not be treated as independently verified without the underlying regression output.</span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a><span class="fu">### 9. Goodness of fit: $R^2$</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>For OLS **with an intercept**, the lecture uses</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>\underbrace{\sum_i(Y_i-\bar Y)^2}_{SST}</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>=\underbrace{\sum_i(\widehat Y_i-\bar Y)^2}_{SSE\;\text{(explained)}}</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>+\underbrace{\sum_i\hat u_i^2}_{SSR\;\text{(residual)}}.</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>Thus, when $SST&gt;0$,</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>\boxed{R^2=\frac{SSE}{SST}=1-\frac{SSR}{SST}},</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>\qquad 0\leq R^2\leq1.</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>**Notation warning:** The lecture calls the explained sum of squares **SSE** and the residual sum of squares **SSR**; other textbooks may use SSE for the *error* sum of squares. Always check the definitions.</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>Adding regressors to OLS **cannot reduce ordinary $R^2$** if the outcome and estimation sample stay the same: the old fitted model remains an available option. This does **not** mean every additional variable improves prediction outside the sample or helps identify causal effects. Adjusted $R^2$ can fall.</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="fu">### 10. Comparing simple and multiple regression</span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>Suppose we estimate, on the **same observations**,</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>\widetilde Y=\tilde\beta_0+\tilde\beta_1X_1</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>\qquad\text{and}\qquad</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>\widehat Y=\hat\beta_0+\hat\beta_1X_1+\hat\beta_2X_2.</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>Let $\tilde\delta_1$ be the slope from a simple regression of $X_2$ on $X_1$. An **exact sample identity** is</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>\boxed{\tilde\beta_1=\hat\beta_1+\hat\beta_2\tilde\delta_1.}</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>The difference between the two estimates depends on (i) the coefficient on the additional variable and (ii) how that variable co-varies with $X_1$.</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>With **two** regressors, the slopes coincide if $\hat\beta_2=0$ or $\tilde\delta_1=0$. With **several** omitted controls, contributions can also **cancel**; it is not necessary that every omitted coefficient or every correlation be zero.</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="fu">### 11. The four assumptions for unbiasedness</span></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>The lecture introduces the following assumptions:</span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Assumption <span class="pp">|</span> Statement <span class="pp">|</span> Why it matters <span class="pp">|</span></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **MLR.1 — Linear in parameters** <span class="pp">|</span> $Y_i=\beta_0+\sum_j\beta_jX_{ij}+u_i$ <span class="pp">|</span> Defines the population model <span class="pp">|</span></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **MLR.2 — Random sampling** <span class="pp">|</span> Observations are independent draws from the population <span class="pp">|</span> Connects the sample to the population <span class="pp">|</span></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **MLR.3 — No perfect collinearity** <span class="pp">|</span> No regressor is an exact linear combination of the intercept and other regressors in the sample <span class="pp">|</span> Ensures unique OLS coefficients <span class="pp">|</span></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> **MLR.4 — Zero conditional mean** <span class="pp">|</span> $E<span class="co">[</span><span class="ot">u_i\mid X_{i1},\ldots,X_{ik}</span><span class="co">]</span>=0$ <span class="pp">|</span> Makes OLS unbiased under the preceding assumptions <span class="pp">|</span></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>Under MLR.1–MLR.4, with the requisite expectations defined,</span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>\boxed{\mathbb E<span class="co">[</span><span class="ot">\hat\beta_j</span><span class="co">]</span>=\beta_j,\qquad j=0,\ldots,k.}</span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>**Unbiased** means the estimator's expectation across repeated samples equals the true coefficient; it does not mean each sample estimate is close to the truth.</span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a><span class="fu">### 12. Perfect collinearity versus high correlation</span></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>**Perfect collinearity** occurs when one included regressor is an exact linear combination of the intercept and the others. OLS then cannot determine all coefficients uniquely.</span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>Two examples from the lecture:</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Logarithms:** For positive income, $\log(inc^2)=2\log(inc)$. Including both as separate regressors is redundant. By contrast, $[\log(inc)]^2$ is generally **not** equal to $\log(inc^2)$.</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Election spending:** If $totalspend=spend_A+spend_B$, including all three with an intercept creates an exact linear dependence. One must remove or reparameterise a variable.</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>**High but imperfect correlation** is permitted. It can make coefficients imprecise, but does not by itself make OLS undefined or biased.</span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>The rank condition requires at least $n\geq k+1$ observations for a unique fit; estimating the error variance using residual degrees of freedom additionally requires $n&gt;k+1$.</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="fu">### 13. Omitted-variable bias (OVB)</span></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>Suppose the correct population model is</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>Y=\beta_0+\beta_1X_1+\beta_2X_2+u,</span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>\qquad E<span class="co">[</span><span class="ot">u\mid X_1,X_2</span><span class="co">]</span>=0.</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>If we omit $X_2$ and regress $Y$ on $X_1$ alone, the omitted term $\beta_2X_2+u$ becomes the error. The resulting slope generally does not estimate $\beta_1$ without bias.</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>Let</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>\delta_1=\frac{\operatorname{Cov}(X_1,X_2)}</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>{\operatorname{Var}(X_1)},</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>\qquad \operatorname{Var}(X_1)&gt;0.</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>The **population simple-regression slope** is</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>\boxed{\beta_1^{simple}=\beta_1+\beta_2\delta_1.}</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>Hence the difference between the population simple slope and the desired partial slope is $\beta_2\delta_1$. This is the familiar OVB formula at the **population linear-projection** level.</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Effect of omitted $X_2$ on $Y$ ($\beta_2$) <span class="pp">|</span> Association of $X_2$ with $X_1$ ($\delta_1$) <span class="pp">|</span> Direction of OVB <span class="pp">|</span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Positive <span class="pp">|</span> Positive <span class="pp">|</span> Upward <span class="pp">|</span></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Positive <span class="pp">|</span> Negative <span class="pp">|</span> Downward <span class="pp">|</span></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Negative <span class="pp">|</span> Positive <span class="pp">|</span> Downward <span class="pp">|</span></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Negative <span class="pp">|</span> Negative <span class="pp">|</span> Upward <span class="pp">|</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>**Wage example:** If ability raises wages and is positively associated with education, omitting ability tends to push the simple schooling slope upwards relative to the coefficient that controls for ability.</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="fu">## Do not confuse a sample identity with an expected bias</span></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>The exact identity $\tilde\beta_1=\hat\beta_1+\hat\beta_2\tilde\delta_1$ uses **sample estimates**. Because $\tilde\delta_1$ is random, it is generally **incorrect** to write $E<span class="co">[</span><span class="ot">\hat\beta_2\tilde\delta_1</span><span class="co">]</span>=E<span class="co">[</span><span class="ot">\hat\beta_2</span><span class="co">]</span>\tilde\delta_1$ without conditioning. Under the full-model assumptions, the correct conditional statement is</span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>E<span class="co">[</span><span class="ot">\tilde\beta_1\mid\mathbf X</span><span class="co">]</span>=\beta_1+\beta_2\tilde\delta_1,</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>where $\mathbf X$ contains both regressors for all observations. Unconditionally, the bias is $\beta_2E<span class="co">[</span><span class="ot">\tilde\delta_1</span><span class="co">]</span>$, when that expectation exists. The population formula above uses the non-random population projection slope $\delta_1$.</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a><span class="fu">### 14. Adding irrelevant variables</span></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>An **irrelevant variable** has a true partial coefficient of zero. If the full model still satisfies MLR.1–MLR.4, including it does not introduce bias into the OLS coefficients.</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>However, extra regressors consume degrees of freedom and may increase estimator variance. The practical distinction is:</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Omitting a relevant confounder can introduce **bias**.</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Including an irrelevant regressor need not introduce bias, but can reduce **precision**.</span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>These are not unconditional rules: they depend on the maintained model assumptions.</span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a><span class="fu">### 15. Homoskedasticity and heteroskedasticity</span></span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>To study the sampling variance of OLS, the lecture adds:</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>\boxed{\text{MLR.5: }\operatorname{Var}(u\mid X_1,\ldots,X_k)=\sigma^2.}</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>This is **homoskedasticity**: the conditional error variance is constant across regressor values. **Heteroskedasticity** means that conditional variance changes with the regressors.</span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>**Example:** Wage outcomes may be more dispersed among highly educated workers than among workers with fewer years of education. That would be consistent with heteroskedasticity even if the conditional mean were correctly specified.</span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>MLR.5 is **not needed for unbiasedness** under MLR.1–MLR.4. It is needed for the simple conventional OLS variance formula and the standard Gauss–Markov efficiency result. With heteroskedasticity, heteroskedasticity-robust standard errors can be appropriate under further regularity conditions; they do not repair endogeneity.</span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="fu">### 16. What determines the precision of OLS?</span></span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a>For regressor $X_j$, define</span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>SST_j=\sum_{i=1}^{n}(X_{ij}-\bar X_j)^2.</span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>Let $R_j^2$ be the $R^2$ from regressing $X_j$ on an intercept and **all the other regressors**. Under MLR.1–MLR.5,</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>\boxed{\operatorname{Var}(\hat\beta_j\mid\mathbf X)</span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>=\frac{\sigma^2}{SST_j(1-R_j^2)},\quad j=1,\ldots,k.}</span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>Three forces determine precision, **holding the others fixed**:</span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Noise:** Larger error variance $\sigma^2$ means less precise estimates.</span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Variation:** Larger $SST_j$ means more information about the slope.</span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Multicollinearity:** Larger $R_j^2$ means that less of $X_j$ is distinct from the other regressors, increasing variance.</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>When $R_j^2\to1$ with $SST_j$ and $\sigma^2$ fixed, the conditional variance grows without bound. At $R_j^2=1$, the coefficient is not separately identified by OLS.</span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="fu">## Does adding a control improve precision?</span></span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>Not necessarily. A useful control may reduce the **population residual variance** of the newly specified model, but it may also increase $R_j^2$ and reduce residual degrees of freedom. Adding regressors therefore has an ambiguous effect on the precision of an existing slope. It cannot increase the *sample residual sum of squares* when the estimation sample is unchanged, but that is a different statement.</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a><span class="fu">### 17. Estimating the error variance and standard errors</span></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>Because $u_i$ is unobserved, we estimate its variance using residuals. Under MLR.1–MLR.5 and $n&gt;k+1$,</span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>\boxed{\hat\sigma^2=</span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>\frac{\sum_i\hat u_i^2}{n-k-1}</span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>=\frac{SSR}{n-k-1}.}</span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>The denominator is the **residual degrees of freedom**: $n$ observations minus $k+1$ fitted coefficients. Under the assumptions, $E<span class="co">[</span><span class="ot">\hat\sigma^2</span><span class="co">]</span>=\sigma^2$.</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>The estimated standard deviation of the regression error is $\hat\sigma=\sqrt{\hat\sigma^2}$. The **conventional homoskedastic standard error** of a slope is</span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>\boxed{se(\hat\beta_j)=</span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>\frac{\hat\sigma}{\sqrt{SST_j(1-R_j^2)}}.}</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>A standard error measures the estimated **sampling uncertainty of a coefficient**, not the size of the residual for an individual observation. The square root $\hat\sigma$ is not generally an unbiased estimator of $\sigma$, even though $\hat\sigma^2$ is unbiased for $\sigma^2$.</span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>Under suitable large-sample conditions, slope standard errors often shrink at approximately $1/\sqrt n$. This rate is **not automatic** if regressor variation or collinearity deteriorates as $n$ increases.</span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a><span class="fu">### 18. The Gauss–Markov theorem: why OLS?</span></span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a>Under **MLR.1–MLR.5**, OLS is **BLUE**:</span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; **Best Linear Unbiased Estimator:** Among estimators that are linear in the observed outcomes and unbiased for the regression coefficients, OLS has the smallest conditional variance (or, jointly, a covariance matrix no larger in the positive-semidefinite sense).</span></span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>“Linear” means linear **in the observed $Y_i$ values**, with weights that may depend on the regressors. “Best” means **minimum variance within this restricted class**, not best under every possible criterion.</span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>The theorem does **not** establish that OLS is causal, normally distributed, unbiased under endogeneity, or more efficient than every conceivable non-linear or biased estimator. It also does not justify conventional homoskedastic standard errors when MLR.5 fails.</span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a><span class="fu">## What to remember from Class 2</span></span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a>Multiple regression estimates **partial associations**. For a causal interpretation, the main obstacle remains **exogeneity**: $E[u\mid X_1,\ldots,X_k]=0$. MLR.1–MLR.4 give **unbiasedness**; adding MLR.5 gives the conventional **variance formula** and the **Gauss–Markov BLUE** result. More controls do not automatically mean less bias or more precision.</span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mathematical Derivations</span></span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. The conditional mean and partial slopes</span></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a>Start from</span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a>Y=\beta_0+\sum_{j=1}^{k}\beta_jX_j+u.</span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-421"><a href="#cb1-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-422"><a href="#cb1-422" aria-hidden="true" tabindex="-1"></a>Under $E<span class="co">[</span><span class="ot">u\mid X_1,\ldots,X_k</span><span class="co">]</span>=0$,</span>
+<span id="cb1-423"><a href="#cb1-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-424"><a href="#cb1-424" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-425"><a href="#cb1-425" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-426"><a href="#cb1-426" aria-hidden="true" tabindex="-1"></a>E<span class="co">[</span><span class="ot">Y\mid X_1,\ldots,X_k</span><span class="co">]</span></span>
+<span id="cb1-427"><a href="#cb1-427" aria-hidden="true" tabindex="-1"></a>&amp;=\beta_0+\sum_{j=1}^{k}\beta_jX_j</span>
+<span id="cb1-428"><a href="#cb1-428" aria-hidden="true" tabindex="-1"></a>+E<span class="co">[</span><span class="ot">u\mid X_1,\ldots,X_k</span><span class="co">]</span><span class="sc">\\</span></span>
+<span id="cb1-429"><a href="#cb1-429" aria-hidden="true" tabindex="-1"></a>&amp;=\beta_0+\sum_{j=1}^{k}\beta_jX_j.</span>
+<span id="cb1-430"><a href="#cb1-430" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-431"><a href="#cb1-431" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-432"><a href="#cb1-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-433"><a href="#cb1-433" aria-hidden="true" tabindex="-1"></a>Therefore, holding all other regressors fixed,</span>
+<span id="cb1-434"><a href="#cb1-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-435"><a href="#cb1-435" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-436"><a href="#cb1-436" aria-hidden="true" tabindex="-1"></a>\boxed{\frac{\partial E<span class="co">[</span><span class="ot">Y\mid X_1,\ldots,X_k</span><span class="co">]</span>}</span>
+<span id="cb1-437"><a href="#cb1-437" aria-hidden="true" tabindex="-1"></a>{\partial X_j}=\beta_j.}</span>
+<span id="cb1-438"><a href="#cb1-438" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-439"><a href="#cb1-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-440"><a href="#cb1-440" aria-hidden="true" tabindex="-1"></a>This is a derivative of the **conditional mean**. Its causal interpretation requires the additional substantive conditions needed to interpret changes in $X_j$ as interventions.</span>
+<span id="cb1-441"><a href="#cb1-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-442"><a href="#cb1-442" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. Deriving the OLS normal equations</span></span>
+<span id="cb1-443"><a href="#cb1-443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-444"><a href="#cb1-444" aria-hidden="true" tabindex="-1"></a>Define the objective</span>
+<span id="cb1-445"><a href="#cb1-445" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-446"><a href="#cb1-446" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-447"><a href="#cb1-447" aria-hidden="true" tabindex="-1"></a>Q(b_0,\ldots,b_k)=\sum_{i=1}^{n}</span>
+<span id="cb1-448"><a href="#cb1-448" aria-hidden="true" tabindex="-1"></a>\left(Y_i-b_0-\sum_{j=1}^{k}b_jX_{ij}\right)^2.</span>
+<span id="cb1-449"><a href="#cb1-449" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-450"><a href="#cb1-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-451"><a href="#cb1-451" aria-hidden="true" tabindex="-1"></a>**Step 1 — Differentiate with respect to the intercept:**</span>
+<span id="cb1-452"><a href="#cb1-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-453"><a href="#cb1-453" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-454"><a href="#cb1-454" aria-hidden="true" tabindex="-1"></a>\frac{\partial Q}{\partial b_0}</span>
+<span id="cb1-455"><a href="#cb1-455" aria-hidden="true" tabindex="-1"></a>=-2\sum_i\left(Y_i-b_0-\sum_jb_jX_{ij}\right)=0.</span>
+<span id="cb1-456"><a href="#cb1-456" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-457"><a href="#cb1-457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-458"><a href="#cb1-458" aria-hidden="true" tabindex="-1"></a>At the minimum,</span>
+<span id="cb1-459"><a href="#cb1-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-460"><a href="#cb1-460" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-461"><a href="#cb1-461" aria-hidden="true" tabindex="-1"></a>\boxed{\sum_i\hat u_i=0.}</span>
+<span id="cb1-462"><a href="#cb1-462" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-463"><a href="#cb1-463" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-464"><a href="#cb1-464" aria-hidden="true" tabindex="-1"></a>**Step 2 — Differentiate with respect to each slope $b_j$:**</span>
+<span id="cb1-465"><a href="#cb1-465" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-466"><a href="#cb1-466" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-467"><a href="#cb1-467" aria-hidden="true" tabindex="-1"></a>\frac{\partial Q}{\partial b_j}</span>
+<span id="cb1-468"><a href="#cb1-468" aria-hidden="true" tabindex="-1"></a>=-2\sum_iX_{ij}\left(Y_i-b_0-\sum_{\ell=1}^{k}b_\ell X_{i\ell}\right)=0.</span>
+<span id="cb1-469"><a href="#cb1-469" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-470"><a href="#cb1-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-471"><a href="#cb1-471" aria-hidden="true" tabindex="-1"></a>Hence,</span>
+<span id="cb1-472"><a href="#cb1-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-473"><a href="#cb1-473" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-474"><a href="#cb1-474" aria-hidden="true" tabindex="-1"></a>\boxed{\sum_iX_{ij}\hat u_i=0,\qquad j=1,\ldots,k.}</span>
+<span id="cb1-475"><a href="#cb1-475" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-476"><a href="#cb1-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-477"><a href="#cb1-477" aria-hidden="true" tabindex="-1"></a>These $k+1$ equations are the **normal equations**. They are also sample analogues of the population moment conditions $E<span class="co">[</span><span class="ot">u</span><span class="co">]</span>=0$ and $E<span class="co">[</span><span class="ot">X_ju</span><span class="co">]</span>=0$. The latter follow from zero conditional mean (when the relevant expectations exist), but are weaker than it.</span>
+<span id="cb1-478"><a href="#cb1-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-479"><a href="#cb1-479" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. Matrix formula for multiple-regression OLS</span></span>
+<span id="cb1-480"><a href="#cb1-480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-481"><a href="#cb1-481" aria-hidden="true" tabindex="-1"></a>This is a compact extension of the lecture's normal equations. Let $\mathbf y$ be the $n\times1$ outcome vector, $\mathbf X$ the $n\times(k+1)$ design matrix **including a column of ones**, and $\boldsymbol\beta$ the coefficient vector. Then</span>
+<span id="cb1-482"><a href="#cb1-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-483"><a href="#cb1-483" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-484"><a href="#cb1-484" aria-hidden="true" tabindex="-1"></a>\mathbf y=\mathbf X\boldsymbol\beta+\mathbf u.</span>
+<span id="cb1-485"><a href="#cb1-485" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-486"><a href="#cb1-486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-487"><a href="#cb1-487" aria-hidden="true" tabindex="-1"></a>OLS minimises</span>
+<span id="cb1-488"><a href="#cb1-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-489"><a href="#cb1-489" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-490"><a href="#cb1-490" aria-hidden="true" tabindex="-1"></a>Q(\mathbf b)=(\mathbf y-\mathbf X\mathbf b)'(\mathbf y-\mathbf X\mathbf b).</span>
+<span id="cb1-491"><a href="#cb1-491" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-492"><a href="#cb1-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-493"><a href="#cb1-493" aria-hidden="true" tabindex="-1"></a>Expanding and differentiating,</span>
+<span id="cb1-494"><a href="#cb1-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-495"><a href="#cb1-495" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-496"><a href="#cb1-496" aria-hidden="true" tabindex="-1"></a>\frac{\partial Q}{\partial\mathbf b}</span>
+<span id="cb1-497"><a href="#cb1-497" aria-hidden="true" tabindex="-1"></a>=-2\mathbf X'\mathbf y+2\mathbf X'\mathbf X\mathbf b=\mathbf0.</span>
+<span id="cb1-498"><a href="#cb1-498" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-499"><a href="#cb1-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-500"><a href="#cb1-500" aria-hidden="true" tabindex="-1"></a>If $\mathbf X$ has full column rank, $\mathbf X'\mathbf X$ is invertible and</span>
+<span id="cb1-501"><a href="#cb1-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-502"><a href="#cb1-502" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-503"><a href="#cb1-503" aria-hidden="true" tabindex="-1"></a>\boxed{\hat{\boldsymbol\beta}</span>
+<span id="cb1-504"><a href="#cb1-504" aria-hidden="true" tabindex="-1"></a>=(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf y.}</span>
+<span id="cb1-505"><a href="#cb1-505" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-506"><a href="#cb1-506" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-507"><a href="#cb1-507" aria-hidden="true" tabindex="-1"></a>Because the objective is a convex quadratic and the design has full column rank, this solution is the **unique global minimum**.</span>
+<span id="cb1-508"><a href="#cb1-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-509"><a href="#cb1-509" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. Deriving the residual properties</span></span>
+<span id="cb1-510"><a href="#cb1-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-511"><a href="#cb1-511" aria-hidden="true" tabindex="-1"></a>The normal equations give $\mathbf X'\hat{\mathbf u}=\mathbf0$. Since the intercept column is part of $\mathbf X$,</span>
+<span id="cb1-512"><a href="#cb1-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-513"><a href="#cb1-513" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-514"><a href="#cb1-514" aria-hidden="true" tabindex="-1"></a>\sum_i\hat u_i=0</span>
+<span id="cb1-515"><a href="#cb1-515" aria-hidden="true" tabindex="-1"></a>\quad\Longrightarrow\quad</span>
+<span id="cb1-516"><a href="#cb1-516" aria-hidden="true" tabindex="-1"></a>\bar Y=\overline{\widehat Y}.</span>
+<span id="cb1-517"><a href="#cb1-517" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-518"><a href="#cb1-518" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-519"><a href="#cb1-519" aria-hidden="true" tabindex="-1"></a>Because $\widehat{\mathbf y}=\mathbf X\hat{\boldsymbol\beta}$,</span>
+<span id="cb1-520"><a href="#cb1-520" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-521"><a href="#cb1-521" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-522"><a href="#cb1-522" aria-hidden="true" tabindex="-1"></a>\widehat{\mathbf y}'\hat{\mathbf u}</span>
+<span id="cb1-523"><a href="#cb1-523" aria-hidden="true" tabindex="-1"></a>=\hat{\boldsymbol\beta}'\mathbf X'\hat{\mathbf u}=0.</span>
+<span id="cb1-524"><a href="#cb1-524" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-525"><a href="#cb1-525" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-526"><a href="#cb1-526" aria-hidden="true" tabindex="-1"></a>Finally, taking sample averages of the fitted equation yields</span>
+<span id="cb1-527"><a href="#cb1-527" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-528"><a href="#cb1-528" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-529"><a href="#cb1-529" aria-hidden="true" tabindex="-1"></a>\boxed{\bar Y=\hat\beta_0+\sum_{j=1}^{k}\hat\beta_j\bar X_j.}</span>
+<span id="cb1-530"><a href="#cb1-530" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-531"><a href="#cb1-531" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-532"><a href="#cb1-532" aria-hidden="true" tabindex="-1"></a>Thus the fitted hyperplane passes through the vector of sample means.</span>
+<span id="cb1-533"><a href="#cb1-533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-534"><a href="#cb1-534" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. Proving the Frisch–Waugh–Lovell theorem</span></span>
+<span id="cb1-535"><a href="#cb1-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-536"><a href="#cb1-536" aria-hidden="true" tabindex="-1"></a>Write the design matrix as $\mathbf X=<span class="co">[</span><span class="ot">\mathbf x_1\;\mathbf Z</span><span class="co">]</span>$, where $\mathbf Z$ contains the intercept and all controls other than $\mathbf x_1$. Assume $\mathbf Z$ has full column rank and $\mathbf x_1$ is not in its column space.</span>
+<span id="cb1-537"><a href="#cb1-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-538"><a href="#cb1-538" aria-hidden="true" tabindex="-1"></a>Define the **residual-maker matrix**</span>
+<span id="cb1-539"><a href="#cb1-539" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-540"><a href="#cb1-540" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-541"><a href="#cb1-541" aria-hidden="true" tabindex="-1"></a>\mathbf M_Z=\mathbf I-\mathbf Z(\mathbf Z'\mathbf Z)^{-1}\mathbf Z'.</span>
+<span id="cb1-542"><a href="#cb1-542" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-543"><a href="#cb1-543" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-544"><a href="#cb1-544" aria-hidden="true" tabindex="-1"></a>It removes the component linearly explained by $\mathbf Z$:</span>
+<span id="cb1-545"><a href="#cb1-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-546"><a href="#cb1-546" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-547"><a href="#cb1-547" aria-hidden="true" tabindex="-1"></a>\hat{\mathbf r}_1=\mathbf M_Z\mathbf x_1,</span>
+<span id="cb1-548"><a href="#cb1-548" aria-hidden="true" tabindex="-1"></a>\qquad \hat{\mathbf v}=\mathbf M_Z\mathbf y.</span>
+<span id="cb1-549"><a href="#cb1-549" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-550"><a href="#cb1-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-551"><a href="#cb1-551" aria-hidden="true" tabindex="-1"></a>The full regression is $\mathbf y=\mathbf x_1\hat\beta_1+\mathbf Z\hat{\boldsymbol\gamma}+\hat{\mathbf u}$. Multiplying by $\mathbf M_Z$ eliminates the controls because $\mathbf M_Z\mathbf Z=0$:</span>
+<span id="cb1-552"><a href="#cb1-552" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-553"><a href="#cb1-553" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-554"><a href="#cb1-554" aria-hidden="true" tabindex="-1"></a>\mathbf M_Z\mathbf y</span>
+<span id="cb1-555"><a href="#cb1-555" aria-hidden="true" tabindex="-1"></a>=\mathbf M_Z\mathbf x_1\hat\beta_1+\mathbf M_Z\hat{\mathbf u}.</span>
+<span id="cb1-556"><a href="#cb1-556" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-557"><a href="#cb1-557" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-558"><a href="#cb1-558" aria-hidden="true" tabindex="-1"></a>The full-model normal equations imply $\mathbf x_1'\hat{\mathbf u}=0$ and $\mathbf Z'\hat{\mathbf u}=0$, so $\mathbf M_Z\hat{\mathbf u}=\hat{\mathbf u}$. Premultiplying by $\hat{\mathbf r}_1'$ therefore gives</span>
+<span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a>\hat{\mathbf r}_1'\hat{\mathbf v}</span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a>=\hat\beta_1\hat{\mathbf r}_1'\hat{\mathbf r}_1.</span>
+<span id="cb1-563"><a href="#cb1-563" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-564"><a href="#cb1-564" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-565"><a href="#cb1-565" aria-hidden="true" tabindex="-1"></a>Hence</span>
+<span id="cb1-566"><a href="#cb1-566" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-567"><a href="#cb1-567" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-568"><a href="#cb1-568" aria-hidden="true" tabindex="-1"></a>\boxed{\hat\beta_1</span>
+<span id="cb1-569"><a href="#cb1-569" aria-hidden="true" tabindex="-1"></a>=\frac{\hat{\mathbf r}_1'\hat{\mathbf v}}</span>
+<span id="cb1-570"><a href="#cb1-570" aria-hidden="true" tabindex="-1"></a>{\hat{\mathbf r}_1'\hat{\mathbf r}_1}</span>
+<span id="cb1-571"><a href="#cb1-571" aria-hidden="true" tabindex="-1"></a>=\frac{\sum_i\hat r_{1i}\hat v_i}</span>
+<span id="cb1-572"><a href="#cb1-572" aria-hidden="true" tabindex="-1"></a>{\sum_i\hat r_{1i}^2}.}</span>
+<span id="cb1-573"><a href="#cb1-573" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-574"><a href="#cb1-574" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-575"><a href="#cb1-575" aria-hidden="true" tabindex="-1"></a>The residuals from both auxiliary regressions have mean zero because $\mathbf Z$ contains an intercept, so the final regression's intercept is zero.</span>
+<span id="cb1-576"><a href="#cb1-576" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-577"><a href="#cb1-577" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. Deriving the $R^2$ decomposition</span></span>
+<span id="cb1-578"><a href="#cb1-578" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-579"><a href="#cb1-579" aria-hidden="true" tabindex="-1"></a>For every observation,</span>
+<span id="cb1-580"><a href="#cb1-580" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-581"><a href="#cb1-581" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-582"><a href="#cb1-582" aria-hidden="true" tabindex="-1"></a>Y_i-\bar Y=(\widehat Y_i-\bar Y)+\hat u_i.</span>
+<span id="cb1-583"><a href="#cb1-583" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-584"><a href="#cb1-584" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-585"><a href="#cb1-585" aria-hidden="true" tabindex="-1"></a>Square and sum:</span>
+<span id="cb1-586"><a href="#cb1-586" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-587"><a href="#cb1-587" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-588"><a href="#cb1-588" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-589"><a href="#cb1-589" aria-hidden="true" tabindex="-1"></a>\sum_i(Y_i-\bar Y)^2</span>
+<span id="cb1-590"><a href="#cb1-590" aria-hidden="true" tabindex="-1"></a>&amp;=\sum_i(\widehat Y_i-\bar Y)^2+\sum_i\hat u_i^2<span class="sc">\\</span></span>
+<span id="cb1-591"><a href="#cb1-591" aria-hidden="true" tabindex="-1"></a>&amp;\quad+2\sum_i(\widehat Y_i-\bar Y)\hat u_i.</span>
+<span id="cb1-592"><a href="#cb1-592" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-593"><a href="#cb1-593" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-594"><a href="#cb1-594" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-595"><a href="#cb1-595" aria-hidden="true" tabindex="-1"></a>The cross-term is zero because $\sum_i\widehat Y_i\hat u_i=0$ and $\sum_i\hat u_i=0$. Therefore</span>
+<span id="cb1-596"><a href="#cb1-596" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-597"><a href="#cb1-597" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-598"><a href="#cb1-598" aria-hidden="true" tabindex="-1"></a>\boxed{SST=SSE+SSR},\qquad</span>
+<span id="cb1-599"><a href="#cb1-599" aria-hidden="true" tabindex="-1"></a>\boxed{R^2=1-\frac{SSR}{SST}}.</span>
+<span id="cb1-600"><a href="#cb1-600" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-601"><a href="#cb1-601" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-602"><a href="#cb1-602" aria-hidden="true" tabindex="-1"></a>Adding a regressor enlarges the set of candidate fitted models. The minimum attainable $SSR$ therefore cannot increase on an unchanged dataset; consequently ordinary $R^2$ cannot fall.</span>
+<span id="cb1-603"><a href="#cb1-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-604"><a href="#cb1-604" aria-hidden="true" tabindex="-1"></a><span class="fu">### 7. Deriving the exact simple-versus-multiple regression identity</span></span>
+<span id="cb1-605"><a href="#cb1-605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-606"><a href="#cb1-606" aria-hidden="true" tabindex="-1"></a>The fitted multiple regression gives the **sample identity**</span>
+<span id="cb1-607"><a href="#cb1-607" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-608"><a href="#cb1-608" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-609"><a href="#cb1-609" aria-hidden="true" tabindex="-1"></a>Y_i=\hat\beta_0+\hat\beta_1X_{i1}</span>
+<span id="cb1-610"><a href="#cb1-610" aria-hidden="true" tabindex="-1"></a>+\hat\beta_2X_{i2}+\hat u_i.</span>
+<span id="cb1-611"><a href="#cb1-611" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-612"><a href="#cb1-612" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-613"><a href="#cb1-613" aria-hidden="true" tabindex="-1"></a>The simple-regression slope is</span>
+<span id="cb1-614"><a href="#cb1-614" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-615"><a href="#cb1-615" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-616"><a href="#cb1-616" aria-hidden="true" tabindex="-1"></a>\tilde\beta_1=</span>
+<span id="cb1-617"><a href="#cb1-617" aria-hidden="true" tabindex="-1"></a>\frac{\sum_i(X_{i1}-\bar X_1)(Y_i-\bar Y)}</span>
+<span id="cb1-618"><a href="#cb1-618" aria-hidden="true" tabindex="-1"></a>{\sum_i(X_{i1}-\bar X_1)^2}.</span>
+<span id="cb1-619"><a href="#cb1-619" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-620"><a href="#cb1-620" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-621"><a href="#cb1-621" aria-hidden="true" tabindex="-1"></a>Substitute the fitted multiple-regression equation. The intercept term disappears after demeaning, and the residual term disappears because OLS makes $X_1$ orthogonal to $\hat u$:</span>
+<span id="cb1-622"><a href="#cb1-622" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-623"><a href="#cb1-623" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-624"><a href="#cb1-624" aria-hidden="true" tabindex="-1"></a>\tilde\beta_1=\hat\beta_1</span>
+<span id="cb1-625"><a href="#cb1-625" aria-hidden="true" tabindex="-1"></a>+\hat\beta_2\frac{\sum_i(X_{i1}-\bar X_1)(X_{i2}-\bar X_2)}</span>
+<span id="cb1-626"><a href="#cb1-626" aria-hidden="true" tabindex="-1"></a>{\sum_i(X_{i1}-\bar X_1)^2}.</span>
+<span id="cb1-627"><a href="#cb1-627" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-628"><a href="#cb1-628" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-629"><a href="#cb1-629" aria-hidden="true" tabindex="-1"></a>The final ratio is precisely the slope $\tilde\delta_1$ from regressing $X_2$ on $X_1$. Thus</span>
+<span id="cb1-630"><a href="#cb1-630" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-631"><a href="#cb1-631" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-632"><a href="#cb1-632" aria-hidden="true" tabindex="-1"></a>\boxed{\tilde\beta_1=\hat\beta_1+\hat\beta_2\tilde\delta_1.}</span>
+<span id="cb1-633"><a href="#cb1-633" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-634"><a href="#cb1-634" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-635"><a href="#cb1-635" aria-hidden="true" tabindex="-1"></a>With several additional regressors, the corresponding identity is</span>
+<span id="cb1-636"><a href="#cb1-636" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-637"><a href="#cb1-637" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-638"><a href="#cb1-638" aria-hidden="true" tabindex="-1"></a>\tilde\beta_1=\hat\beta_1+\sum_{j=2}^{k}\hat\beta_j\tilde\delta_j,</span>
+<span id="cb1-639"><a href="#cb1-639" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-640"><a href="#cb1-640" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-641"><a href="#cb1-641" aria-hidden="true" tabindex="-1"></a>where $\tilde\delta_j$ is the simple-regression slope of $X_j$ on $X_1$. The sum can equal zero through cancellation even when individual terms are non-zero.</span>
+<span id="cb1-642"><a href="#cb1-642" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-643"><a href="#cb1-643" aria-hidden="true" tabindex="-1"></a><span class="fu">### 8. Deriving omitted-variable bias correctly</span></span>
+<span id="cb1-644"><a href="#cb1-644" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-645"><a href="#cb1-645" aria-hidden="true" tabindex="-1"></a>Assume the true model is</span>
+<span id="cb1-646"><a href="#cb1-646" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-647"><a href="#cb1-647" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-648"><a href="#cb1-648" aria-hidden="true" tabindex="-1"></a>Y=\beta_0+\beta_1X_1+\beta_2X_2+u,</span>
+<span id="cb1-649"><a href="#cb1-649" aria-hidden="true" tabindex="-1"></a>\qquad E<span class="co">[</span><span class="ot">u\mid X_1,X_2</span><span class="co">]</span>=0.</span>
+<span id="cb1-650"><a href="#cb1-650" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-651"><a href="#cb1-651" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-652"><a href="#cb1-652" aria-hidden="true" tabindex="-1"></a>**Population derivation.** The slope in the population linear projection of $Y$ on an intercept and $X_1$ is</span>
+<span id="cb1-653"><a href="#cb1-653" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-654"><a href="#cb1-654" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-655"><a href="#cb1-655" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-656"><a href="#cb1-656" aria-hidden="true" tabindex="-1"></a>\beta_1^{simple}</span>
+<span id="cb1-657"><a href="#cb1-657" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{\operatorname{Cov}(X_1,Y)}{\operatorname{Var}(X_1)}<span class="sc">\\</span></span>
+<span id="cb1-658"><a href="#cb1-658" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{\beta_1\operatorname{Var}(X_1)</span>
+<span id="cb1-659"><a href="#cb1-659" aria-hidden="true" tabindex="-1"></a>+\beta_2\operatorname{Cov}(X_1,X_2)</span>
+<span id="cb1-660"><a href="#cb1-660" aria-hidden="true" tabindex="-1"></a>+\operatorname{Cov}(X_1,u)}{\operatorname{Var}(X_1)}.</span>
+<span id="cb1-661"><a href="#cb1-661" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-662"><a href="#cb1-662" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-663"><a href="#cb1-663" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-664"><a href="#cb1-664" aria-hidden="true" tabindex="-1"></a>Zero conditional mean implies $\operatorname{Cov}(X_1,u)=0$. Therefore</span>
+<span id="cb1-665"><a href="#cb1-665" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-666"><a href="#cb1-666" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-667"><a href="#cb1-667" aria-hidden="true" tabindex="-1"></a>\boxed{\beta_1^{simple}-\beta_1</span>
+<span id="cb1-668"><a href="#cb1-668" aria-hidden="true" tabindex="-1"></a>=\beta_2\frac{\operatorname{Cov}(X_1,X_2)}</span>
+<span id="cb1-669"><a href="#cb1-669" aria-hidden="true" tabindex="-1"></a>{\operatorname{Var}(X_1)}=\beta_2\delta_1.}</span>
+<span id="cb1-670"><a href="#cb1-670" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-671"><a href="#cb1-671" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-672"><a href="#cb1-672" aria-hidden="true" tabindex="-1"></a>**Finite-sample conditional derivation.** Let $\tilde\delta_1$ be the *sample* slope from regressing $X_2$ on $X_1$. Direct substitution into the simple OLS formula gives</span>
+<span id="cb1-673"><a href="#cb1-673" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-674"><a href="#cb1-674" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-675"><a href="#cb1-675" aria-hidden="true" tabindex="-1"></a>\tilde\beta_1</span>
+<span id="cb1-676"><a href="#cb1-676" aria-hidden="true" tabindex="-1"></a>=\beta_1+\beta_2\tilde\delta_1</span>
+<span id="cb1-677"><a href="#cb1-677" aria-hidden="true" tabindex="-1"></a>+\frac{\sum_i(X_{i1}-\bar X_1)u_i}{\sum_i(X_{i1}-\bar X_1)^2}.</span>
+<span id="cb1-678"><a href="#cb1-678" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-679"><a href="#cb1-679" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-680"><a href="#cb1-680" aria-hidden="true" tabindex="-1"></a>Under random sampling and zero conditional mean, conditioning on the full observed regressor matrix $\mathbf X$ yields</span>
+<span id="cb1-681"><a href="#cb1-681" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-682"><a href="#cb1-682" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-683"><a href="#cb1-683" aria-hidden="true" tabindex="-1"></a>\boxed{E<span class="co">[</span><span class="ot">\tilde\beta_1\mid\mathbf X</span><span class="co">]</span></span>
+<span id="cb1-684"><a href="#cb1-684" aria-hidden="true" tabindex="-1"></a>=\beta_1+\beta_2\tilde\delta_1.}</span>
+<span id="cb1-685"><a href="#cb1-685" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-686"><a href="#cb1-686" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-687"><a href="#cb1-687" aria-hidden="true" tabindex="-1"></a>This is the **conditional bias**, given the realised regressors. The unconditional finite-sample bias is $\beta_2E[\tilde\delta_1]$, provided that expectation exists. Do **not** treat the random $\tilde\delta_1$ as a constant inside an unconditional expectation.</span>
+<span id="cb1-688"><a href="#cb1-688" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-689"><a href="#cb1-689" aria-hidden="true" tabindex="-1"></a><span class="fu">### 9. Proving unbiasedness of multiple-regression OLS</span></span>
+<span id="cb1-690"><a href="#cb1-690" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-691"><a href="#cb1-691" aria-hidden="true" tabindex="-1"></a>Start with the population model in matrix form:</span>
+<span id="cb1-692"><a href="#cb1-692" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-693"><a href="#cb1-693" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-694"><a href="#cb1-694" aria-hidden="true" tabindex="-1"></a>\mathbf y=\mathbf X\boldsymbol\beta+\mathbf u.</span>
+<span id="cb1-695"><a href="#cb1-695" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-696"><a href="#cb1-696" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-697"><a href="#cb1-697" aria-hidden="true" tabindex="-1"></a>Substitute into the OLS formula:</span>
+<span id="cb1-698"><a href="#cb1-698" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-699"><a href="#cb1-699" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-700"><a href="#cb1-700" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-701"><a href="#cb1-701" aria-hidden="true" tabindex="-1"></a>\hat{\boldsymbol\beta}</span>
+<span id="cb1-702"><a href="#cb1-702" aria-hidden="true" tabindex="-1"></a>&amp;=(\mathbf X'\mathbf X)^{-1}\mathbf X'(\mathbf X\boldsymbol\beta+\mathbf u)<span class="sc">\\</span></span>
+<span id="cb1-703"><a href="#cb1-703" aria-hidden="true" tabindex="-1"></a>&amp;=\boldsymbol\beta+(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf u.</span>
+<span id="cb1-704"><a href="#cb1-704" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-705"><a href="#cb1-705" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-706"><a href="#cb1-706" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-707"><a href="#cb1-707" aria-hidden="true" tabindex="-1"></a>Under MLR.2 and MLR.4, $E<span class="co">[</span><span class="ot">\mathbf u\mid\mathbf X</span><span class="co">]</span>=\mathbf0$. Therefore, conditional on a full-rank $\mathbf X$,</span>
+<span id="cb1-708"><a href="#cb1-708" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-709"><a href="#cb1-709" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-710"><a href="#cb1-710" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-711"><a href="#cb1-711" aria-hidden="true" tabindex="-1"></a>E<span class="co">[</span><span class="ot">\hat{\boldsymbol\beta}\mid\mathbf X</span><span class="co">]</span></span>
+<span id="cb1-712"><a href="#cb1-712" aria-hidden="true" tabindex="-1"></a>&amp;=\boldsymbol\beta+(\mathbf X'\mathbf X)^{-1}\mathbf X'E<span class="co">[</span><span class="ot">\mathbf u\mid\mathbf X</span><span class="co">]</span><span class="sc">\\</span></span>
+<span id="cb1-713"><a href="#cb1-713" aria-hidden="true" tabindex="-1"></a>&amp;=\boxed{\boldsymbol\beta}.</span>
+<span id="cb1-714"><a href="#cb1-714" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-715"><a href="#cb1-715" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-716"><a href="#cb1-716" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-717"><a href="#cb1-717" aria-hidden="true" tabindex="-1"></a>Taking expectations again gives</span>
+<span id="cb1-718"><a href="#cb1-718" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-719"><a href="#cb1-719" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-720"><a href="#cb1-720" aria-hidden="true" tabindex="-1"></a>\boxed{E<span class="co">[</span><span class="ot">\hat\beta_j</span><span class="co">]</span>=\beta_j,\qquad j=0,\ldots,k.}</span>
+<span id="cb1-721"><a href="#cb1-721" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-722"><a href="#cb1-722" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-723"><a href="#cb1-723" aria-hidden="true" tabindex="-1"></a>This proof uses **MLR.1–MLR.4**. Homoskedasticity is not required.</span>
+<span id="cb1-724"><a href="#cb1-724" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-725"><a href="#cb1-725" aria-hidden="true" tabindex="-1"></a><span class="fu">### 10. Deriving the conditional variance of OLS</span></span>
+<span id="cb1-726"><a href="#cb1-726" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-727"><a href="#cb1-727" aria-hidden="true" tabindex="-1"></a>From the previous identity,</span>
+<span id="cb1-728"><a href="#cb1-728" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-729"><a href="#cb1-729" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-730"><a href="#cb1-730" aria-hidden="true" tabindex="-1"></a>\hat{\boldsymbol\beta}-\boldsymbol\beta</span>
+<span id="cb1-731"><a href="#cb1-731" aria-hidden="true" tabindex="-1"></a>=(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf u.</span>
+<span id="cb1-732"><a href="#cb1-732" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-733"><a href="#cb1-733" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-734"><a href="#cb1-734" aria-hidden="true" tabindex="-1"></a>Under independent random sampling and MLR.5, the conditional error covariance matrix is $\operatorname{Var}(\mathbf u\mid\mathbf X)=\sigma^2\mathbf I$. Therefore</span>
+<span id="cb1-735"><a href="#cb1-735" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-736"><a href="#cb1-736" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-737"><a href="#cb1-737" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-738"><a href="#cb1-738" aria-hidden="true" tabindex="-1"></a>\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)</span>
+<span id="cb1-739"><a href="#cb1-739" aria-hidden="true" tabindex="-1"></a>&amp;=(\mathbf X'\mathbf X)^{-1}\mathbf X'</span>
+<span id="cb1-740"><a href="#cb1-740" aria-hidden="true" tabindex="-1"></a>(\sigma^2\mathbf I)\mathbf X(\mathbf X'\mathbf X)^{-1}<span class="sc">\\</span></span>
+<span id="cb1-741"><a href="#cb1-741" aria-hidden="true" tabindex="-1"></a>&amp;=\boxed{\sigma^2(\mathbf X'\mathbf X)^{-1}}.</span>
+<span id="cb1-742"><a href="#cb1-742" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-743"><a href="#cb1-743" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-744"><a href="#cb1-744" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-745"><a href="#cb1-745" aria-hidden="true" tabindex="-1"></a>To obtain the variance of slope $j$, use FWL. Let $\hat r_{ji}$ be residuals from regressing $X_j$ on an intercept and all other regressors. Then</span>
+<span id="cb1-746"><a href="#cb1-746" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-747"><a href="#cb1-747" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-748"><a href="#cb1-748" aria-hidden="true" tabindex="-1"></a>\hat\beta_j-\beta_j</span>
+<span id="cb1-749"><a href="#cb1-749" aria-hidden="true" tabindex="-1"></a>=\frac{\sum_i\hat r_{ji}u_i}{\sum_i\hat r_{ji}^2}.</span>
+<span id="cb1-750"><a href="#cb1-750" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-751"><a href="#cb1-751" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-752"><a href="#cb1-752" aria-hidden="true" tabindex="-1"></a>Conditioning on $\mathbf X$,</span>
+<span id="cb1-753"><a href="#cb1-753" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-754"><a href="#cb1-754" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-755"><a href="#cb1-755" aria-hidden="true" tabindex="-1"></a>\operatorname{Var}(\hat\beta_j\mid\mathbf X)</span>
+<span id="cb1-756"><a href="#cb1-756" aria-hidden="true" tabindex="-1"></a>=\frac{\sigma^2\sum_i\hat r_{ji}^2}</span>
+<span id="cb1-757"><a href="#cb1-757" aria-hidden="true" tabindex="-1"></a>{\left(\sum_i\hat r_{ji}^2\right)^2}</span>
+<span id="cb1-758"><a href="#cb1-758" aria-hidden="true" tabindex="-1"></a>=\frac{\sigma^2}{\sum_i\hat r_{ji}^2}.</span>
+<span id="cb1-759"><a href="#cb1-759" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-760"><a href="#cb1-760" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-761"><a href="#cb1-761" aria-hidden="true" tabindex="-1"></a>From the auxiliary regression's $R_j^2$ definition,</span>
+<span id="cb1-762"><a href="#cb1-762" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-763"><a href="#cb1-763" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-764"><a href="#cb1-764" aria-hidden="true" tabindex="-1"></a>\sum_i\hat r_{ji}^2=SST_j(1-R_j^2).</span>
+<span id="cb1-765"><a href="#cb1-765" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-766"><a href="#cb1-766" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-767"><a href="#cb1-767" aria-hidden="true" tabindex="-1"></a>Hence</span>
+<span id="cb1-768"><a href="#cb1-768" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-769"><a href="#cb1-769" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-770"><a href="#cb1-770" aria-hidden="true" tabindex="-1"></a>\boxed{\operatorname{Var}(\hat\beta_j\mid\mathbf X)</span>
+<span id="cb1-771"><a href="#cb1-771" aria-hidden="true" tabindex="-1"></a>=\frac{\sigma^2}{SST_j(1-R_j^2)}.}</span>
+<span id="cb1-772"><a href="#cb1-772" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-773"><a href="#cb1-773" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-774"><a href="#cb1-774" aria-hidden="true" tabindex="-1"></a>This derivation makes the **multicollinearity penalty** explicit: the relevant information is the part of $X_j$ that cannot be linearly predicted by the other regressors.</span>
+<span id="cb1-775"><a href="#cb1-775" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-776"><a href="#cb1-776" aria-hidden="true" tabindex="-1"></a><span class="fu">### 11. Why divide by $n-k-1$ to estimate $\sigma^2$?</span></span>
+<span id="cb1-777"><a href="#cb1-777" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-778"><a href="#cb1-778" aria-hidden="true" tabindex="-1"></a>Let $\mathbf H=\mathbf X(\mathbf X'\mathbf X)^{-1}\mathbf X'$ be the projection matrix and $\mathbf M=\mathbf I-\mathbf H$ the residual-maker matrix. Then</span>
+<span id="cb1-779"><a href="#cb1-779" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-780"><a href="#cb1-780" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-781"><a href="#cb1-781" aria-hidden="true" tabindex="-1"></a>\hat{\mathbf u}=\mathbf M\mathbf y=\mathbf M\mathbf u,</span>
+<span id="cb1-782"><a href="#cb1-782" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-783"><a href="#cb1-783" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-784"><a href="#cb1-784" aria-hidden="true" tabindex="-1"></a>because $\mathbf M\mathbf X=0$. The residual sum of squares is</span>
+<span id="cb1-785"><a href="#cb1-785" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-786"><a href="#cb1-786" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-787"><a href="#cb1-787" aria-hidden="true" tabindex="-1"></a>SSR=\hat{\mathbf u}'\hat{\mathbf u}=\mathbf u'\mathbf M\mathbf u.</span>
+<span id="cb1-788"><a href="#cb1-788" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-789"><a href="#cb1-789" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-790"><a href="#cb1-790" aria-hidden="true" tabindex="-1"></a>Conditional on $\mathbf X$, use $E<span class="co">[</span><span class="ot">\mathbf u\mid\mathbf X</span><span class="co">]</span>=\mathbf0$ and $E<span class="co">[</span><span class="ot">\mathbf u\mathbf u'\mid\mathbf X</span><span class="co">]</span>=\sigma^2\mathbf I$:</span>
+<span id="cb1-791"><a href="#cb1-791" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-792"><a href="#cb1-792" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-793"><a href="#cb1-793" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-794"><a href="#cb1-794" aria-hidden="true" tabindex="-1"></a>E<span class="co">[</span><span class="ot">SSR\mid\mathbf X</span><span class="co">]</span></span>
+<span id="cb1-795"><a href="#cb1-795" aria-hidden="true" tabindex="-1"></a>&amp;=E<span class="co">[</span><span class="ot">\operatorname{tr}(\mathbf M\mathbf u\mathbf u')\mid\mathbf X</span><span class="co">]</span><span class="sc">\\</span></span>
+<span id="cb1-796"><a href="#cb1-796" aria-hidden="true" tabindex="-1"></a>&amp;=\operatorname{tr}(\mathbf M\sigma^2\mathbf I)<span class="sc">\\</span></span>
+<span id="cb1-797"><a href="#cb1-797" aria-hidden="true" tabindex="-1"></a>&amp;=\sigma^2\operatorname{tr}(\mathbf M).</span>
+<span id="cb1-798"><a href="#cb1-798" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-799"><a href="#cb1-799" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-800"><a href="#cb1-800" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-801"><a href="#cb1-801" aria-hidden="true" tabindex="-1"></a>Since $\mathbf H$ projects onto a $(k+1)$-dimensional column space,</span>
+<span id="cb1-802"><a href="#cb1-802" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-803"><a href="#cb1-803" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-804"><a href="#cb1-804" aria-hidden="true" tabindex="-1"></a>\operatorname{tr}(\mathbf M)=n-(k+1)=n-k-1.</span>
+<span id="cb1-805"><a href="#cb1-805" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-806"><a href="#cb1-806" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-807"><a href="#cb1-807" aria-hidden="true" tabindex="-1"></a>Therefore</span>
+<span id="cb1-808"><a href="#cb1-808" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-809"><a href="#cb1-809" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-810"><a href="#cb1-810" aria-hidden="true" tabindex="-1"></a>\boxed{E\left<span class="co">[</span><span class="ot">\frac{SSR}{n-k-1}\middle|\mathbf X\right</span><span class="co">]</span></span>
+<span id="cb1-811"><a href="#cb1-811" aria-hidden="true" tabindex="-1"></a>=\sigma^2.}</span>
+<span id="cb1-812"><a href="#cb1-812" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-813"><a href="#cb1-813" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-814"><a href="#cb1-814" aria-hidden="true" tabindex="-1"></a>Dividing by $n$ instead would give conditional expectation $\sigma^2(n-k-1)/n$ and bias $-\sigma^2(k+1)/n$.</span>
+<span id="cb1-815"><a href="#cb1-815" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-816"><a href="#cb1-816" aria-hidden="true" tabindex="-1"></a><span class="fu">### 12. Proving the Gauss–Markov theorem (BLUE)</span></span>
+<span id="cb1-817"><a href="#cb1-817" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-818"><a href="#cb1-818" aria-hidden="true" tabindex="-1"></a>Consider any other estimator $\tilde{\boldsymbol\beta}=\mathbf A\mathbf y$ that is **linear in $\mathbf y$** and conditionally unbiased for every possible $\boldsymbol\beta$. Conditional unbiasedness requires</span>
+<span id="cb1-819"><a href="#cb1-819" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-820"><a href="#cb1-820" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-821"><a href="#cb1-821" aria-hidden="true" tabindex="-1"></a>\mathbf A\mathbf X=\mathbf I.</span>
+<span id="cb1-822"><a href="#cb1-822" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-823"><a href="#cb1-823" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-824"><a href="#cb1-824" aria-hidden="true" tabindex="-1"></a>Define the OLS weight matrix</span>
+<span id="cb1-825"><a href="#cb1-825" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-826"><a href="#cb1-826" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-827"><a href="#cb1-827" aria-hidden="true" tabindex="-1"></a>\mathbf A_0=(\mathbf X'\mathbf X)^{-1}\mathbf X',</span>
+<span id="cb1-828"><a href="#cb1-828" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-829"><a href="#cb1-829" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-830"><a href="#cb1-830" aria-hidden="true" tabindex="-1"></a>and write $\mathbf A=\mathbf A_0+\mathbf D$. Since both estimators are unbiased, $\mathbf D\mathbf X=\mathbf0$.</span>
+<span id="cb1-831"><a href="#cb1-831" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-832"><a href="#cb1-832" aria-hidden="true" tabindex="-1"></a>Under homoskedasticity,</span>
+<span id="cb1-833"><a href="#cb1-833" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-834"><a href="#cb1-834" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-835"><a href="#cb1-835" aria-hidden="true" tabindex="-1"></a>\operatorname{Var}(\tilde{\boldsymbol\beta}\mid\mathbf X)</span>
+<span id="cb1-836"><a href="#cb1-836" aria-hidden="true" tabindex="-1"></a>=\sigma^2(\mathbf A_0+\mathbf D)(\mathbf A_0+\mathbf D)'.</span>
+<span id="cb1-837"><a href="#cb1-837" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-838"><a href="#cb1-838" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-839"><a href="#cb1-839" aria-hidden="true" tabindex="-1"></a>The cross-terms vanish because</span>
+<span id="cb1-840"><a href="#cb1-840" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-841"><a href="#cb1-841" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-842"><a href="#cb1-842" aria-hidden="true" tabindex="-1"></a>\mathbf A_0\mathbf D'</span>
+<span id="cb1-843"><a href="#cb1-843" aria-hidden="true" tabindex="-1"></a>=(\mathbf X'\mathbf X)^{-1}\mathbf X'\mathbf D'=\mathbf0.</span>
+<span id="cb1-844"><a href="#cb1-844" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-845"><a href="#cb1-845" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-846"><a href="#cb1-846" aria-hidden="true" tabindex="-1"></a>Thus</span>
+<span id="cb1-847"><a href="#cb1-847" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-848"><a href="#cb1-848" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-849"><a href="#cb1-849" aria-hidden="true" tabindex="-1"></a>\boxed{\operatorname{Var}(\tilde{\boldsymbol\beta}\mid\mathbf X)</span>
+<span id="cb1-850"><a href="#cb1-850" aria-hidden="true" tabindex="-1"></a>-\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)</span>
+<span id="cb1-851"><a href="#cb1-851" aria-hidden="true" tabindex="-1"></a>=\sigma^2\mathbf D\mathbf D'.}</span>
+<span id="cb1-852"><a href="#cb1-852" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-853"><a href="#cb1-853" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-854"><a href="#cb1-854" aria-hidden="true" tabindex="-1"></a>For any vector $\mathbf a$,</span>
+<span id="cb1-855"><a href="#cb1-855" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-856"><a href="#cb1-856" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-857"><a href="#cb1-857" aria-hidden="true" tabindex="-1"></a>\mathbf a'(\sigma^2\mathbf D\mathbf D')\mathbf a</span>
+<span id="cb1-858"><a href="#cb1-858" aria-hidden="true" tabindex="-1"></a>=\sigma^2<span class="sc">\|</span>\mathbf D'\mathbf a<span class="sc">\|</span>^2\geq0.</span>
+<span id="cb1-859"><a href="#cb1-859" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-860"><a href="#cb1-860" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-861"><a href="#cb1-861" aria-hidden="true" tabindex="-1"></a>Therefore the difference is **positive semidefinite**: no other linear conditionally unbiased estimator has a smaller conditional variance for any coefficient or linear combination of coefficients. This is the Gauss–Markov result.</span>
+<span id="cb1-862"><a href="#cb1-862" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-863"><a href="#cb1-863" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-864"><a href="#cb1-864" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-865"><a href="#cb1-865" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limits of these proofs</span></span>
+<span id="cb1-866"><a href="#cb1-866" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-867"><a href="#cb1-867" aria-hidden="true" tabindex="-1"></a>The proofs establish OLS algebra, unbiasedness under MLR.1–MLR.4, and conventional variance/BLUE results under MLR.1–MLR.5. They do **not** establish that the assumptions hold for a given dataset. In particular, good fit, zero sample residual correlations and small standard errors do not prove a causal interpretation. Normality is **not** one of the five Gauss–Markov assumptions; exact small-sample $t$ inference requires further conditions.</span>
+<span id="cb1-868"><a href="#cb1-868" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-869"><a href="#cb1-869" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-870"><a href="#cb1-870" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-871"><a href="#cb1-871" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-872"><a href="#cb1-872" aria-hidden="true" tabindex="-1"></a>**Ready to practise?**</span>
+<span id="cb1-873"><a href="#cb1-873" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-874"><a href="#cb1-874" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Go to Tutorial 2</span><span class="co">](../tutorials/tutorial-02.qmd)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

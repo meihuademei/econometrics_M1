@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-201d31e195916211fa1ce5c8f54b28c5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,7 +109,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -121,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Econometrics — M1 S1</a></li><li class="breadcrumb-item"><a href="../classes/class-07.html">Class 7</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../classes/class-07.html">Class 7</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -155,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Econometrics — M1 S1</span></a>
+ <span class="menu-text">Lectures</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -211,6 +241,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tutorials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/tutorial-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial 8</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -221,18 +310,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#theory-intuition" id="toc-theory-intuition" class="nav-link active" data-scroll-target="#theory-intuition">Theory &amp; Intuition</a></li>
-  <li><a href="#mathematical-derivations" id="toc-mathematical-derivations" class="nav-link" data-scroll-target="#mathematical-derivations">Mathematical Derivations</a></li>
-  <li><a href="#tutorial-exercises" id="toc-tutorial-exercises" class="nav-link" data-scroll-target="#tutorial-exercises">Tutorial Exercises</a></li>
+  <li><a href="#theory-intuition" id="toc-theory-intuition" class="nav-link active" data-scroll-target="#theory-intuition">Theory &amp; Intuition</a>
+  <ul class="collapse">
+  <li><a href="#why-do-we-need-instrumental-variables-slides-35" id="toc-why-do-we-need-instrumental-variables-slides-35" class="nav-link" data-scroll-target="#why-do-we-need-instrumental-variables-slides-35">1. Why do we need instrumental variables? (slides 3–5)</a></li>
+  <li><a href="#what-makes-a-good-instrument-slides-69" id="toc-what-makes-a-good-instrument-slides-69" class="nav-link" data-scroll-target="#what-makes-a-good-instrument-slides-69">2. What makes a good instrument? (slides 6–9)</a></li>
+  <li><a href="#understanding-the-simple-iv-estimate-slides-1011" id="toc-understanding-the-simple-iv-estimate-slides-1011" class="nav-link" data-scroll-target="#understanding-the-simple-iv-estimate-slides-1011">3. Understanding the simple IV estimate (slides 10–11)</a></li>
+  <li><a href="#precision-weak-instruments-and-r2-slides-1214-1820" id="toc-precision-weak-instruments-and-r2-slides-1214-1820" class="nav-link" data-scroll-target="#precision-weak-instruments-and-r2-slides-1214-1820">4. Precision, weak instruments and <span class="math inline">\(R^2\)</span> (slides 12–14, 18–20)</a></li>
+  <li><a href="#example-education-and-wages-for-married-working-women-slides-1517" id="toc-example-education-and-wages-for-married-working-women-slides-1517" class="nav-link" data-scroll-target="#example-education-and-wages-for-married-working-women-slides-1517">5. Example: education and wages for married working women (slides 15–17)</a></li>
+  <li><a href="#multiple-regression-controls-and-excluded-instruments-slides-2225" id="toc-multiple-regression-controls-and-excluded-instruments-slides-2225" class="nav-link" data-scroll-target="#multiple-regression-controls-and-excluded-instruments-slides-2225">6. Multiple regression: controls and excluded instruments (slides 22–25)</a></li>
+  <li><a href="#example-proximity-to-college-slides-2627" id="toc-example-proximity-to-college-slides-2627" class="nav-link" data-scroll-target="#example-proximity-to-college-slides-2627">7. Example: proximity to college (slides 26–27)</a></li>
+  <li><a href="#two-stage-least-squares-2sls-slides-2934" id="toc-two-stage-least-squares-2sls-slides-2934" class="nav-link" data-scroll-target="#two-stage-least-squares-2sls-slides-2934">8. Two-stage least squares (2SLS) (slides 29–34)</a></li>
+  <li><a href="#application-a-randomised-fee-reduction-for-uber-drivers-slides-3539" id="toc-application-a-randomised-fee-reduction-for-uber-drivers-slides-3539" class="nav-link" data-scroll-target="#application-a-randomised-fee-reduction-for-uber-drivers-slides-3539">9. Application: a randomised fee reduction for Uber drivers (slides 35–39)</a></li>
+  </ul></li>
+  <li><a href="#mathematical-derivations" id="toc-mathematical-derivations" class="nav-link" data-scroll-target="#mathematical-derivations">Mathematical Derivations</a>
+  <ul class="collapse">
+  <li><a href="#omitted-variable-bias-slides-45" id="toc-omitted-variable-bias-slides-45" class="nav-link" data-scroll-target="#omitted-variable-bias-slides-45">1. Omitted-variable bias (slides 4–5)</a></li>
+  <li><a href="#deriving-the-simple-iv-estimator-slides-6-1011" id="toc-deriving-the-simple-iv-estimator-slides-6-1011" class="nav-link" data-scroll-target="#deriving-the-simple-iv-estimator-slides-6-1011">2. Deriving the simple IV estimator (slides 6, 10–11)</a></li>
+  <li><a href="#the-first-stage-slope-and-identification-slides-8-1819" id="toc-the-first-stage-slope-and-identification-slides-8-1819" class="nav-link" data-scroll-target="#the-first-stage-slope-and-identification-slides-8-1819">3. The first-stage slope and identification (slides 8, 18–19)</a></li>
+  <li><a href="#large-sample-variance-and-the-weak-instrument-penalty-slides-1214" id="toc-large-sample-variance-and-the-weak-instrument-penalty-slides-1214" class="nav-link" data-scroll-target="#large-sample-variance-and-the-weak-instrument-penalty-slides-1214">4. Large-sample variance and the weak-instrument penalty (slides 12–14)</a></li>
+  <li><a href="#iv-in-multiple-regression-moment-conditions-slides-2224" id="toc-iv-in-multiple-regression-moment-conditions-slides-2224" class="nav-link" data-scroll-target="#iv-in-multiple-regression-moment-conditions-slides-2224">5. IV in multiple regression: moment conditions (slides 22–24)</a></li>
+  <li><a href="#reduced-form-and-the-iv-ratio-with-controls-slide-32" id="toc-reduced-form-and-the-iv-ratio-with-controls-slide-32" class="nav-link" data-scroll-target="#reduced-form-and-the-iv-ratio-with-controls-slide-32">6. Reduced form and the IV ratio with controls (slide 32)</a></li>
+  <li><a href="#deriving-2sls-as-a-projection-slides-2933" id="toc-deriving-2sls-as-a-projection-slides-2933" class="nav-link" data-scroll-target="#deriving-2sls-as-a-projection-slides-2933">7. Deriving 2SLS as a projection (slides 29–33)</a></li>
+  <li><a href="#the-uber-application-as-an-iv-ratio-slides-3539" id="toc-the-uber-application-as-an-iv-ratio-slides-3539" class="nav-link" data-scroll-target="#the-uber-application-as-an-iv-ratio-slides-3539">8. The Uber application as an IV ratio (slides 35–39)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Econometrics — M1 S1</a></li><li class="breadcrumb-item"><a href="../classes/class-07.html">Class 7</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../classes/class-01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../classes/class-07.html">Class 7</a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Class 7</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Instrumental Variables and Two-Stage Least Squares</p>
 </div>
 
 
@@ -251,16 +361,351 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="theory-intuition" class="level2">
 <h2 class="anchored" data-anchor-id="theory-intuition">Theory &amp; Intuition</h2>
+<section id="why-do-we-need-instrumental-variables-slides-35" class="level3">
+<h3 class="anchored" data-anchor-id="why-do-we-need-instrumental-variables-slides-35">1. Why do we need instrumental variables? (slides 3–5)</h3>
+<p>Ordinary least squares (OLS) estimates the effect of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> consistently only when the explanatory variable is <strong>exogenous</strong>: it is uncorrelated with the regression error. An <strong>endogenous</strong> explanatory variable is correlated with that error. Omitted variables, reverse causality and measurement error can produce endogeneity.</p>
+<p>Consider the return to education:</p>
+<p><span class="math display">\[
+\log(wage_i)=\beta_0+\beta_1 educ_i+\beta_2 abil_i+e_i.
+\]</span></p>
+<p>Ability is not observed. If we omit it, the estimated equation becomes</p>
+<p><span class="math display">\[
+\log(wage_i)=\beta_0+\beta_1 educ_i+u_i,
+\qquad u_i=\beta_2 abil_i+e_i.
+\]</span></p>
+<p>If education and ability are correlated, then <span class="math inline">\(\operatorname{Cov}(educ_i,u_i)\ne0\)</span> (assuming the other error component does not offset this relationship). OLS confuses the effect of education with the effect of ability.</p>
+<p>Panel-data fixed effects and first differences can remove <em>time-invariant</em> unobserved characteristics, but cannot automatically remove time-varying confounders or identify the effects of time-invariant regressors. <strong>Instrumental variables (IV)</strong> offer another approach. This lecture considers IV primarily with cross-sectional random samples.</p>
+</section>
+<section id="what-makes-a-good-instrument-slides-69" class="level3">
+<h3 class="anchored" data-anchor-id="what-makes-a-good-instrument-slides-69">2. What makes a good instrument? (slides 6–9)</h3>
+<p>For the structural equation</p>
+<p><span class="math display">\[
+y_i=\beta_0+\beta_1x_i+u_i,
+\]</span></p>
+<p>an instrument <span class="math inline">\(z_i\)</span> must satisfy <strong>two distinct conditions</strong>:</p>
+<ol type="1">
+<li><strong>Exogeneity:</strong> <span class="math inline">\(\operatorname{Cov}(z_i,u_i)=0\)</span>. The instrument must not be related to unobserved determinants of <span class="math inline">\(y\)</span>.</li>
+<li><strong>Relevance:</strong> <span class="math inline">\(\operatorname{Cov}(z_i,x_i)\ne0\)</span>. The instrument must predict the endogenous regressor.</li>
+</ol>
+<p>For a causal interpretation, we also need a credible <strong>exclusion restriction</strong>: <span class="math inline">\(z\)</span> affects <span class="math inline">\(y\)</span> through <span class="math inline">\(x\)</span>, not through an additional direct channel. This is part of the substantive argument for instrument validity; correlation alone cannot establish it.</p>
+<p><strong>Intuition:</strong> IV isolates the part of <span class="math inline">\(x\)</span> that moves with <span class="math inline">\(z\)</span> rather than with the problematic error <span class="math inline">\(u\)</span>. In a diagram, the intended channel is <span class="math inline">\(z\rightarrow x\rightarrow y\)</span>, while unobserved influences <span class="math inline">\(u\)</span> affect both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. There must be no unblocked path from <span class="math inline">\(z\)</span> to <span class="math inline">\(y\)</span> other than through <span class="math inline">\(x\)</span>.</p>
+<p><strong>Example: education and wages.</strong> IQ scores may predict education but also reflect ability, so exogeneity is doubtful. A parent’s education may predict a child’s education but also correlate with family advantages affecting wages. Number of siblings may predict schooling, but family circumstances may invalidate the exclusion restriction. These are <strong>candidate instruments, not automatically valid instruments</strong>.</p>
+<p>We can investigate relevance with a <em>first-stage</em> regression of <span class="math inline">\(x\)</span> on <span class="math inline">\(z\)</span>. We cannot establish exogeneity merely by running that regression: economic reasoning and institutional knowledge are essential.</p>
+</section>
+<section id="understanding-the-simple-iv-estimate-slides-1011" class="level3">
+<h3 class="anchored" data-anchor-id="understanding-the-simple-iv-estimate-slides-1011">3. Understanding the simple IV estimate (slides 10–11)</h3>
+<p>With one endogenous regressor and one instrument,</p>
+<p><span class="math display">\[
+\boxed{\hat\beta_{1,IV}=\frac{\widehat{\operatorname{Cov}}(z,y)}{\widehat{\operatorname{Cov}}(z,x)}}.
+\]</span></p>
+<p><strong>Interpretation:</strong> how strongly the instrument changes the outcome, divided by how strongly it changes the explanatory variable. For example, if an instrument raises schooling by <span class="math inline">\(0.5\)</span> years and log wages by <span class="math inline">\(0.03\)</span>, the IV slope is <span class="math inline">\(0.03/0.5=0.06\)</span>: approximately a 6% wage increase per extra year of schooling, <strong>provided the instrument is valid</strong>.</p>
+<p>If <span class="math inline">\(x\)</span> is exogenous and we choose <span class="math inline">\(z=x\)</span>, this formula reduces to OLS. IV is consistent under the stated conditions, but may be substantially biased in small samples.</p>
+</section>
+<section id="precision-weak-instruments-and-r2-slides-1214-1820" class="level3">
+<h3 class="anchored" data-anchor-id="precision-weak-instruments-and-r2-slides-1214-1820">4. Precision, weak instruments and <span class="math inline">\(R^2\)</span> (slides 12–14, 18–20)</h3>
+<p>IV generally sacrifices precision to address endogeneity. Under homoskedasticity, its approximate slope variance is</p>
+<p><span class="math display">\[
+\operatorname{Avar}(\hat\beta_{1,IV})
+=\frac{\sigma_u^2}{n\sigma_x^2\rho_{xz}^2}.
+\]</span></p>
+<p>Here <span class="math inline">\(\rho_{xz}^2\)</span> is the <strong>squared correlation</strong> between the instrument and the endogenous regressor. When it is small, the IV estimate is imprecise. Heteroskedasticity-robust standard errors are available.</p>
+<p>A <strong>weak instrument</strong> predicts <span class="math inline">\(x\)</span> only weakly. Weak instruments can cause substantial finite-sample bias and make conventional confidence intervals and hypothesis tests unreliable, even in large samples. The lecture mentions the familiar <strong>first-stage <span class="math inline">\(F&gt;10\)</span> rule of thumb</strong>. This is a screening heuristic, <strong>not a guarantee</strong> of strong identification or reliable inference, especially with multiple instruments or heteroskedasticity.</p>
+<p>The lecture cites quarter of birth as an instrument for schooling (Angrist and Krueger, 1991), and subsequent concerns about its weakness (Bound, Jaeger and Baker, 1995).</p>
+<p><strong>Do not judge IV by its <span class="math inline">\(R^2\)</span>.</strong> Unlike OLS, IV does not choose coefficients to minimise squared residuals, so its conventional <span class="math inline">\(R^2=1-SSR/SST\)</span> may be lower than OLS’s or even negative. The purpose is credible estimation of a structural effect, not maximising fit.</p>
+</section>
+<section id="example-education-and-wages-for-married-working-women-slides-1517" class="level3">
+<h3 class="anchored" data-anchor-id="example-education-and-wages-for-married-working-women-slides-1517">5. Example: education and wages for married working women (slides 15–17)</h3>
+<p>The lecture uses 428 married working women from 1975 and considers father’s education as an instrument for the woman’s education.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Regression</th>
+<th style="text-align: right;">Estimated education coefficient</th>
+<th style="text-align: right;">Standard error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OLS: <span class="math inline">\(\log(wage)\)</span> on education</td>
+<td style="text-align: right;">0.109</td>
+<td style="text-align: right;">0.014</td>
+</tr>
+<tr class="even">
+<td>First stage: education on father’s education</td>
+<td style="text-align: right;">0.269</td>
+<td style="text-align: right;">0.029</td>
+</tr>
+<tr class="odd">
+<td>IV: <span class="math inline">\(\log(wage)\)</span> on education</td>
+<td style="text-align: right;">0.059</td>
+<td style="text-align: right;">0.035</td>
+</tr>
+</tbody>
+</table>
+<p>The first-stage <span class="math inline">\(t\)</span> statistic is approximately <span class="math inline">\(0.269/0.029=9.28\)</span>; its <span class="math inline">\(R^2\)</span> is 0.173. Thus father’s education is predictive of schooling <strong>in this sample</strong>. It does <strong>not</strong> prove that father’s education is uncorrelated with omitted determinants of wages.</p>
+<p>The IV estimate suggests a return of approximately <strong>5.9%</strong> per extra year of education, compared with <strong>10.9%</strong> from OLS. This difference is consistent with upward omitted-ability bias in OLS, but does not prove it: the IV estimate is less precise, and its validity is assumed rather than demonstrated. In particular, <span class="math inline">\(0.059/0.035\approx1.69\)</span>, so this simple IV coefficient is <strong>not statistically significant at the conventional two-sided 5% level</strong>.</p>
+</section>
+<section id="multiple-regression-controls-and-excluded-instruments-slides-2225" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-regression-controls-and-excluded-instruments-slides-2225">6. Multiple regression: controls and excluded instruments (slides 22–25)</h3>
+<p>Most economic questions require control variables. The lecture writes</p>
+<p><span class="math display">\[
+y_{1i}=\beta_0+\beta_1y_{2i}+\beta_2z_{1i}+u_{1i},
+\]</span></p>
+<p>where <span class="math inline">\(y_1\)</span> is the outcome, <span class="math inline">\(y_2\)</span> is endogenous, and <span class="math inline">\(z_1\)</span> is an exogenous control. We introduce an <strong>excluded instrument</strong> <span class="math inline">\(z_2\)</span>, which is not a direct regressor in the structural equation.</p>
+<p>The relevant first stage is</p>
+<p><span class="math display">\[
+y_{2i}=\pi_0+\pi_1z_{1i}+\pi_2z_{2i}+v_{2i}.
+\]</span></p>
+<p><strong>Crucial distinction:</strong> relevance now means <span class="math inline">\(\pi_2\ne0\)</span>: <span class="math inline">\(z_2\)</span> must predict <span class="math inline">\(y_2\)</span> <strong>after controlling for <span class="math inline">\(z_1\)</span></strong>. A simple correlation between <span class="math inline">\(z_2\)</span> and <span class="math inline">\(y_2\)</span> is insufficient.</p>
+<p>The <strong>structural equation</strong> describes the effect of interest. The <strong>reduced form</strong> expresses an endogenous variable as a function of exogenous variables. Included exogenous controls serve as their own instruments; excluded instruments provide additional identifying variation.</p>
+</section>
+<section id="example-proximity-to-college-slides-2627" class="level3">
+<h3 class="anchored" data-anchor-id="example-proximity-to-college-slides-2627">7. Example: proximity to college (slides 26–27)</h3>
+<p>Card (1995) uses whether a man grew up near a four-year college (<code>nearc4</code>) as an instrument for education. The sample contains 3,010 men, with controls including experience, experience squared, race, urban residence and region.</p>
+<p>The reduced-form regression for education reports a coefficient of <strong>0.320</strong> (SE <strong>0.088</strong>) on <code>nearc4</code>: conditional on the included controls, growing up near a college is associated with about <strong>0.32 additional years of education</strong>. The corresponding <span class="math inline">\(t\)</span> statistic is about 3.64.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Estimated return to education</th>
+<th style="text-align: right;">OLS</th>
+<th style="text-align: right;">IV</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Coefficient on education</td>
+<td style="text-align: right;">0.075</td>
+<td style="text-align: right;">0.132</td>
+</tr>
+<tr class="even">
+<td>Standard error</td>
+<td style="text-align: right;">0.003</td>
+<td style="text-align: right;">0.055</td>
+</tr>
+</tbody>
+</table>
+<p>Here IV is <strong>larger</strong> than OLS, unlike the previous example. IV does not systematically raise or lower coefficients. Interpretation depends on whether proximity satisfies the exclusion restriction: for instance, proximity may be related to family location choices or local economic opportunities.</p>
+</section>
+<section id="two-stage-least-squares-2sls-slides-2934" class="level3">
+<h3 class="anchored" data-anchor-id="two-stage-least-squares-2sls-slides-2934">8. Two-stage least squares (2SLS) (slides 29–34)</h3>
+<p>Suppose the structural model contains one endogenous regressor <span class="math inline">\(y_2\)</span>, one included exogenous control <span class="math inline">\(z_1\)</span>, and <strong>two excluded instruments</strong> <span class="math inline">\(z_2,z_3\)</span>:</p>
+<p><span class="math display">\[
+y_1=\beta_0+\beta_1y_2+\beta_2z_1+u_1.
+\]</span></p>
+<p>Using only one instrument would discard information in the other. <strong>Two-stage least squares (2SLS)</strong> combines the instruments:</p>
+<p><strong>Stage 1 — predict the endogenous variable using all exogenous variables:</strong></p>
+<p><span class="math display">\[
+y_2=\pi_0+\pi_1z_1+\pi_2z_2+\pi_3z_3+v_2.
+\]</span></p>
+<p>Obtain the fitted values <span class="math inline">\(\hat y_2\)</span>. The first-stage <strong>joint</strong> relevance question is whether <span class="math inline">\(\pi_2=\pi_3=0\)</span>; a joint <span class="math inline">\(F\)</span> test is informative, subject to the weak-instrument caveat.</p>
+<p><strong>Stage 2 — estimate the structural relationship using predicted <span class="math inline">\(y_2\)</span>:</strong></p>
+<p><span class="math display">\[
+y_1=\beta_0+\beta_1\hat y_2+\beta_2z_1+\text{residual}.
+\]</span></p>
+<p>The fitted values use only variation explained by the instruments and included exogenous controls. This two-regression procedure gives the <strong>2SLS point estimates</strong>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Do not use ordinary second-stage OLS standard errors
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Although the two regressions reproduce the 2SLS coefficients, ordinary OLS standard errors from the second regression are generally <strong>incorrect</strong> because <span class="math inline">\(\hat y_2\)</span> is estimated. Use a proper IV/2SLS estimator with appropriate standard errors (robust or clustered where required).</p>
+</div>
+</div>
+<p>With one endogenous regressor, identification requires at least one relevant excluded instrument; with several endogenous regressors, there must be enough instruments <strong>and</strong> sufficient independent predictive variation (the rank condition). More instruments do not compensate for invalid instruments.</p>
+<p><strong>Lecture example:</strong> Using both parents’ education as instruments for schooling, the married-working-women example reports a first-stage joint <span class="math inline">\(F=55.4\)</span> and a 2SLS education coefficient of <strong>0.061</strong> (SE <strong>0.031</strong>) in a specification that also controls for experience and its square. This is approximately a <strong>6.1%</strong> return, with greater precision than the single-instrument estimate reported earlier, though the specifications differ.</p>
+</section>
+<section id="application-a-randomised-fee-reduction-for-uber-drivers-slides-3539" class="level3">
+<h3 class="anchored" data-anchor-id="application-a-randomised-fee-reduction-for-uber-drivers-slides-3539">9. Application: a randomised fee reduction for Uber drivers (slides 35–39)</h3>
+<p>The lecture examines whether higher <strong>average hourly earnings</strong> cause drivers to work more hours on Uber. The model is</p>
+<p><span class="math display">\[
+\log(h_{it})=\beta_0+\beta_1\log(w_{it})+X_{it}'\gamma+u_{it},
+\]</span></p>
+<p>where <span class="math inline">\(h_{it}\)</span> is weekly Uber hours and <span class="math inline">\(w_{it}\)</span> is average hourly earnings, after Uber fees but before vehicle expenses. The coefficient <span class="math inline">\(\beta_1\)</span> is an <strong>elasticity</strong>: a 1% increase in hourly earnings corresponds to approximately a <span class="math inline">\(\beta_1\)</span>% change in Uber hours.</p>
+<p><strong>Why not OLS?</strong> Drivers choose when and where to work, while demand conditions affect earnings. Working additional less-profitable hours may itself reduce average hourly earnings: the direction of causation is not simply earnings <span class="math inline">\(\rightarrow\)</span> hours.</p>
+<p><strong>Instrument:</strong> In Boston in 2016, randomly selected drivers were offered a week without Uber’s usual commission. Define <span class="math inline">\(Z_{it}=1\)</span> if offered fee-free driving. Around <strong>64% opted in</strong>. The offer—not actual take-up—is the instrument. Random assignment supports independence within assignment groups, but exclusion still requires that the offer affects hours <strong>only through hourly earnings</strong>.</p>
+<ul>
+<li><strong>First stage:</strong> the offer raises log hourly earnings by <strong>0.20</strong> (SE <strong>0.01</strong>).</li>
+<li><strong>OLS elasticity:</strong> <strong>0.21</strong> (SE <strong>0.06</strong>).</li>
+<li><strong>IV/2SLS elasticity:</strong> <strong>1.16</strong> (SE <strong>0.12</strong>).</li>
+</ul>
+<p>The IV estimate implies approximately <strong>1.16% more Uber hours for a 1% increase in hourly earnings</strong> in the setting studied. It concerns a <strong>temporary earnings change</strong>; it does not automatically imply the same response to permanent wage changes. Drivers may also reallocate hours from other platforms or jobs, so increased Uber hours need not mean increased total working hours.</p>
+<p>The lecture reports <strong>1,176 drivers</strong> and <strong>2,214 observations with positive hours</strong>; standard errors are clustered by driver. The study is Angrist, Caldwell and Hall (2021), <em>Uber versus Taxi: A Driver’s Eye View</em>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The central IV checklist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before interpreting any IV estimate, ask: <strong>(1)</strong> What makes <span class="math inline">\(x\)</span> endogenous? <strong>(2)</strong> What is the instrument? <strong>(3)</strong> Why should it predict <span class="math inline">\(x\)</span> <em>conditional on controls</em>? <strong>(4)</strong> Why should it have no other route to <span class="math inline">\(y\)</span>? <strong>(5)</strong> Is the first stage strong enough? <strong>(6)</strong> Are the standard errors appropriate? <strong>(7)</strong> Which population and type of variation does the estimate describe?</p>
+</div>
+</div>
+</section>
 </section>
 <section id="mathematical-derivations" class="level2">
 <h2 class="anchored" data-anchor-id="mathematical-derivations">Mathematical Derivations</h2>
+<section id="omitted-variable-bias-slides-45" class="level3">
+<h3 class="anchored" data-anchor-id="omitted-variable-bias-slides-45">1. Omitted-variable bias (slides 4–5)</h3>
+<p>Suppose the true model is</p>
+<p><span class="math display">\[
+y_i=\beta_0+\beta_1x_{1i}+\beta_2x_{2i}+e_i,
+\qquad E(e_i\mid x_{1i},x_{2i})=0.
+\]</span></p>
+<p>If we regress <span class="math inline">\(y\)</span> only on <span class="math inline">\(x_1\)</span>, the population regression slope is</p>
+<p><span class="math display">\[
+\begin{aligned}
+\tilde\beta_1
+&amp;=\frac{\operatorname{Cov}(x_1,y)}{\operatorname{Var}(x_1)}\\
+&amp;=\beta_1+\beta_2\frac{\operatorname{Cov}(x_1,x_2)}{\operatorname{Var}(x_1)}.
+\end{aligned}
+\]</span></p>
+<p>Writing <span class="math inline">\(\delta_1=\operatorname{Cov}(x_1,x_2)/\operatorname{Var}(x_1)\)</span>, we obtain</p>
+<p><span class="math display">\[
+\boxed{\tilde\beta_1-\beta_1=\beta_2\delta_1.}
+\]</span></p>
+<p><strong>Sign:</strong> omitted-variable bias is positive when the omitted factor raises <span class="math inline">\(y\)</span> (<span class="math inline">\(\beta_2&gt;0\)</span>) and is positively associated with <span class="math inline">\(x_1\)</span> (<span class="math inline">\(\delta_1&gt;0\)</span>). If either factor is zero, this particular bias disappears.</p>
 </section>
-<section id="tutorial-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="tutorial-exercises">Tutorial Exercises</h2>
+<section id="deriving-the-simple-iv-estimator-slides-6-1011" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-simple-iv-estimator-slides-6-1011">2. Deriving the simple IV estimator (slides 6, 10–11)</h3>
+<p>Start with <span class="math inline">\(y=\beta_0+\beta_1x+u\)</span> and assume <span class="math inline">\(\operatorname{Cov}(z,u)=0\)</span>. Taking covariance with <span class="math inline">\(z\)</span> gives</p>
+<p><span class="math display">\[
+\begin{aligned}
+\operatorname{Cov}(z,y)
+&amp;=\operatorname{Cov}(z,\beta_0+\beta_1x+u)\\
+&amp;=\beta_1\operatorname{Cov}(z,x)+\operatorname{Cov}(z,u)\\
+&amp;=\beta_1\operatorname{Cov}(z,x).
+\end{aligned}
+\]</span></p>
+<p>If <span class="math inline">\(\operatorname{Cov}(z,x)\ne0\)</span>, divide to identify the coefficient:</p>
+<p><span class="math display">\[
+\boxed{\beta_1=\frac{\operatorname{Cov}(z,y)}{\operatorname{Cov}(z,x)}}.
+\]</span></p>
+<p>Replace population covariances by sample analogues:</p>
+<p><span class="math display">\[
+\boxed{\hat\beta_{1,IV}=
+\frac{\sum_{i=1}^n(z_i-\bar z)(y_i-\bar y)}
+{\sum_{i=1}^n(z_i-\bar z)(x_i-\bar x)}};
+\qquad
+\hat\beta_{0,IV}=\bar y-\hat\beta_{1,IV}\bar x.
+\]</span></p>
+<p>The denominator explains why weak relevance is dangerous: if <span class="math inline">\(z\)</span> hardly varies with <span class="math inline">\(x\)</span>, small sampling fluctuations can create large changes in the ratio.</p>
+</section>
+<section id="the-first-stage-slope-and-identification-slides-8-1819" class="level3">
+<h3 class="anchored" data-anchor-id="the-first-stage-slope-and-identification-slides-8-1819">3. The first-stage slope and identification (slides 8, 18–19)</h3>
+<p>The population linear projection of <span class="math inline">\(x\)</span> on <span class="math inline">\(z\)</span> is</p>
+<p><span class="math display">\[
+x=\pi_0+\pi_1z+v,
+\qquad \pi_1=\frac{\operatorname{Cov}(z,x)}{\operatorname{Var}(z)}.
+\]</span></p>
+<p>Thus <span class="math inline">\(\pi_1\ne0\)</span> is equivalent to instrument relevance, provided <span class="math inline">\(\operatorname{Var}(z)&gt;0\)</span>. In a simple first stage, testing <span class="math inline">\(H_0:\pi_1=0\)</span> is a direct test of <em>zero</em> linear association; rejecting it does not prove the instrument is sufficiently strong for reliable IV inference.</p>
+</section>
+<section id="large-sample-variance-and-the-weak-instrument-penalty-slides-1214" class="level3">
+<h3 class="anchored" data-anchor-id="large-sample-variance-and-the-weak-instrument-penalty-slides-1214">4. Large-sample variance and the weak-instrument penalty (slides 12–14)</h3>
+<p>With independent observations, instrument exogeneity, finite moments and homoskedasticity <span class="math inline">\(E(u^2\mid z)=\sigma_u^2\)</span>,</p>
+<p><span class="math display">\[
+\operatorname{Avar}(\hat\beta_{1,IV})
+=\frac{\sigma_u^2\operatorname{Var}(z)}{n\operatorname{Cov}(z,x)^2}.
+\]</span></p>
+<p>Since <span class="math inline">\(\operatorname{Cov}(z,x)=\rho_{xz}\sigma_x\sigma_z\)</span>,</p>
+<p><span class="math display">\[
+\boxed{\operatorname{Avar}(\hat\beta_{1,IV})
+=\frac{\sigma_u^2}{n\sigma_x^2\rho_{xz}^2}}.
+\]</span></p>
+<p>Using <span class="math inline">\(SST_x=\sum_i(x_i-\bar x)^2\)</span> and the first-stage <span class="math inline">\(R^2=\hat\rho_{xz}^2\)</span>,</p>
+<p><span class="math display">\[
+\widehat{\operatorname{Var}}(\hat\beta_{1,IV})
+\approx\frac{\hat\sigma_u^2}{SST_xR_{x,z}^2},
+\qquad
+\hat\sigma_u^2=\frac{\sum_i\hat u_i^2}{n-2},
+\quad \hat u_i=y_i-\hat\beta_{0,IV}-\hat\beta_{1,IV}x_i.
+\]</span></p>
+<p>The estimated <strong>standard error</strong> is the square root of this variance. Relative to the analogous OLS variance formula under exogeneity, <span class="math inline">\(1/R_{x,z}^2\)</span> is the IV variance inflation factor. <strong>Important:</strong> when OLS is endogenous, its usual standard error describes uncertainty around an inconsistent estimator; a smaller OLS standard error does not make OLS preferable.</p>
+</section>
+<section id="iv-in-multiple-regression-moment-conditions-slides-2224" class="level3">
+<h3 class="anchored" data-anchor-id="iv-in-multiple-regression-moment-conditions-slides-2224">5. IV in multiple regression: moment conditions (slides 22–24)</h3>
+<p>Let</p>
+<p><span class="math display">\[
+y_{1i}=\beta_0+\beta_1y_{2i}+\beta_2z_{1i}+u_{1i},
+\]</span></p>
+<p>where <span class="math inline">\(z_1\)</span> is an exogenous control and <span class="math inline">\(z_2\)</span> is an excluded instrument. Assume</p>
+<p><span class="math display">\[
+E(u_1)=0,\qquad E(z_1u_1)=0,\qquad E(z_2u_1)=0.
+\]</span></p>
+<p>Define <span class="math inline">\(\hat u_{1i}=y_{1i}-\hat\beta_0-\hat\beta_1y_{2i}-\hat\beta_2z_{1i}\)</span>. The sample moment equations are</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_i\hat u_{1i}&amp;=0,\\
+\sum_i z_{1i}\hat u_{1i}&amp;=0,\\
+\sum_i z_{2i}\hat u_{1i}&amp;=0.
+\end{aligned}
+\]</span></p>
+<p>These give three equations for three coefficients, <strong>provided the instruments supply sufficient independent variation</strong>. Notice that every residual contains <span class="math inline">\(\hat\beta_2z_{1i}\)</span>: the included control must not accidentally be replaced by <span class="math inline">\(z_2\)</span>.</p>
+<p>The first-stage equation <span class="math inline">\(y_2=\pi_0+\pi_1z_1+\pi_2z_2+v_2\)</span> identifies the relevance requirement <span class="math inline">\(\pi_2\ne0\)</span> <strong>conditional on <span class="math inline">\(z_1\)</span></strong>.</p>
+</section>
+<section id="reduced-form-and-the-iv-ratio-with-controls-slide-32" class="level3">
+<h3 class="anchored" data-anchor-id="reduced-form-and-the-iv-ratio-with-controls-slide-32">6. Reduced form and the IV ratio with controls (slide 32)</h3>
+<p>Substitute the first stage into the structural equation:</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_1&amp;=\beta_0+\beta_1(\pi_0+\pi_1z_1+\pi_2z_2+v_2)+\beta_2z_1+u_1\\
+&amp;=(\beta_0+\beta_1\pi_0)+(\beta_2+\beta_1\pi_1)z_1
++\beta_1\pi_2z_2+(u_1+\beta_1v_2).
+\end{aligned}
+\]</span></p>
+<p>If the reduced form for <span class="math inline">\(y_1\)</span> is <span class="math inline">\(y_1=\alpha_0+\alpha_1z_1+\alpha_2z_2+e\)</span>, then <span class="math inline">\(\alpha_2=\beta_1\pi_2\)</span> and therefore</p>
+<p><span class="math display">\[
+\boxed{\beta_1=\frac{\alpha_2}{\pi_2}\quad\text{if }\pi_2\ne0.}
+\]</span></p>
+<p>This is the <strong>conditional</strong> counterpart of the simple covariance-ratio estimator: the instrument’s effect on the outcome divided by its effect on the endogenous regressor, holding the control fixed.</p>
+</section>
+<section id="deriving-2sls-as-a-projection-slides-2933" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-2sls-as-a-projection-slides-2933">7. Deriving 2SLS as a projection (slides 29–33)</h3>
+<p>Let <span class="math inline">\(X\)</span> contain the intercept, endogenous regressor(s) and included controls; let <span class="math inline">\(Z\)</span> contain the intercept, included exogenous controls and excluded instruments. Define the projection matrix</p>
+<p><span class="math display">\[
+P_Z=Z(Z'Z)^{-1}Z',
+\]</span></p>
+<p>assuming <span class="math inline">\(Z'Z\)</span> is invertible. The first-stage fitted regressors are <span class="math inline">\(\hat X=P_ZX\)</span>. OLS of <span class="math inline">\(y\)</span> on <span class="math inline">\(\hat X\)</span> gives</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat\beta_{2SLS}
+&amp;=(\hat X'\hat X)^{-1}\hat X'y\\
+&amp;=(X'P_ZX)^{-1}X'P_Zy,
+\end{aligned}
+\]</span></p>
+<p>because <span class="math inline">\(P_Z'=P_Z\)</span> and <span class="math inline">\(P_Z^2=P_Z\)</span>. This is the standard <strong>2SLS estimator</strong>. Its existence requires <span class="math inline">\(X'P_ZX\)</span> to be invertible: the relevant rank condition.</p>
+<p>Under the appropriate IV assumptions, this estimator uses instrument-predicted variation to identify the structural coefficients. Inference must account for the IV estimation procedure rather than treating fitted regressors as observed exogenous variables.</p>
+</section>
+<section id="the-uber-application-as-an-iv-ratio-slides-3539" class="level3">
+<h3 class="anchored" data-anchor-id="the-uber-application-as-an-iv-ratio-slides-3539">8. The Uber application as an IV ratio (slides 35–39)</h3>
+<p>Write the two equations (suppressing the controls for readability):</p>
+<p><span class="math display">\[
+\begin{aligned}
+\log(w_{it})&amp;=\pi_0+\pi_1Z_{it}+X_{it}'\delta+v_{it},\\
+\log(h_{it})&amp;=\beta_0+\beta_1\log(w_{it})+X_{it}'\gamma+u_{it}.
+\end{aligned}
+\]</span></p>
+<p>The lecture reports <span class="math inline">\(\hat\pi_1=0.20\)</span> and <span class="math inline">\(\hat\beta_{1,IV}=1.16\)</span>. In a just-identified model, the corresponding conditional reduced-form coefficient of the offer on log Uber hours is therefore approximately</p>
+<p><span class="math display">\[
+\hat\alpha_Z=\hat\beta_{1,IV}\hat\pi_1
+\approx1.16\times0.20=0.232.
+\]</span></p>
+<p>This <strong>0.232 is an implied calculation</strong>, not a separately reported reduced-form estimate in the slides. The IV coefficient is an elasticity, while the first-stage coefficient measures the offer’s effect on log earnings. As in the lecture, inference should account for repeated observations of drivers by clustering standard errors at driver level.</p>
+<hr>
+<p><strong>Ready to practise?</strong></p>
+<p><a href="../tutorials/tutorial-07.html">Go to Tutorial 7</a></p>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -717,13 +1162,388 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Class 7"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Theory &amp; Intuition</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mathematical Derivations</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tutorial Exercises</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Instrumental Variables and Two-Stage Least Squares"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Theory &amp; Intuition</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. Why do we need instrumental variables? (slides 3–5)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Ordinary least squares (OLS) estimates the effect of $x$ on $y$ consistently only when the explanatory variable is **exogenous**: it is uncorrelated with the regression error. An **endogenous** explanatory variable is correlated with that error. Omitted variables, reverse causality and measurement error can produce endogeneity.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Consider the return to education:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>\log(wage_i)=\beta_0+\beta_1 educ_i+\beta_2 abil_i+e_i.</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Ability is not observed. If we omit it, the estimated equation becomes</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>\log(wage_i)=\beta_0+\beta_1 educ_i+u_i,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>\qquad u_i=\beta_2 abil_i+e_i.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>If education and ability are correlated, then $\operatorname{Cov}(educ_i,u_i)\ne0$ (assuming the other error component does not offset this relationship). OLS confuses the effect of education with the effect of ability.</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Panel-data fixed effects and first differences can remove *time-invariant* unobserved characteristics, but cannot automatically remove time-varying confounders or identify the effects of time-invariant regressors. **Instrumental variables (IV)** offer another approach. This lecture considers IV primarily with cross-sectional random samples.</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. What makes a good instrument? (slides 6–9)</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>For the structural equation</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>y_i=\beta_0+\beta_1x_i+u_i,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>an instrument $z_i$ must satisfy **two distinct conditions**:</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Exogeneity:** $\operatorname{Cov}(z_i,u_i)=0$. The instrument must not be related to unobserved determinants of $y$.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Relevance:** $\operatorname{Cov}(z_i,x_i)\ne0$. The instrument must predict the endogenous regressor.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>For a causal interpretation, we also need a credible **exclusion restriction**: $z$ affects $y$ through $x$, not through an additional direct channel. This is part of the substantive argument for instrument validity; correlation alone cannot establish it.</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>**Intuition:** IV isolates the part of $x$ that moves with $z$ rather than with the problematic error $u$. In a diagram, the intended channel is $z\rightarrow x\rightarrow y$, while unobserved influences $u$ affect both $x$ and $y$. There must be no unblocked path from $z$ to $y$ other than through $x$.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>**Example: education and wages.** IQ scores may predict education but also reflect ability, so exogeneity is doubtful. A parent's education may predict a child's education but also correlate with family advantages affecting wages. Number of siblings may predict schooling, but family circumstances may invalidate the exclusion restriction. These are **candidate instruments, not automatically valid instruments**.</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>We can investigate relevance with a *first-stage* regression of $x$ on $z$. We cannot establish exogeneity merely by running that regression: economic reasoning and institutional knowledge are essential.</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. Understanding the simple IV estimate (slides 10–11)</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>With one endogenous regressor and one instrument,</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>\boxed{\hat\beta_{1,IV}=\frac{\widehat{\operatorname{Cov}}(z,y)}{\widehat{\operatorname{Cov}}(z,x)}}.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>**Interpretation:** how strongly the instrument changes the outcome, divided by how strongly it changes the explanatory variable. For example, if an instrument raises schooling by $0.5$ years and log wages by $0.03$, the IV slope is $0.03/0.5=0.06$: approximately a 6% wage increase per extra year of schooling, **provided the instrument is valid**.</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>If $x$ is exogenous and we choose $z=x$, this formula reduces to OLS. IV is consistent under the stated conditions, but may be substantially biased in small samples.</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. Precision, weak instruments and $R^2$ (slides 12–14, 18–20)</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>IV generally sacrifices precision to address endogeneity. Under homoskedasticity, its approximate slope variance is</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>\operatorname{Avar}(\hat\beta_{1,IV})</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>=\frac{\sigma_u^2}{n\sigma_x^2\rho_{xz}^2}.</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>Here $\rho_{xz}^2$ is the **squared correlation** between the instrument and the endogenous regressor. When it is small, the IV estimate is imprecise. Heteroskedasticity-robust standard errors are available.</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>A **weak instrument** predicts $x$ only weakly. Weak instruments can cause substantial finite-sample bias and make conventional confidence intervals and hypothesis tests unreliable, even in large samples. The lecture mentions the familiar **first-stage $F&gt;10$ rule of thumb**. This is a screening heuristic, **not a guarantee** of strong identification or reliable inference, especially with multiple instruments or heteroskedasticity.</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>The lecture cites quarter of birth as an instrument for schooling (Angrist and Krueger, 1991), and subsequent concerns about its weakness (Bound, Jaeger and Baker, 1995).</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>**Do not judge IV by its $R^2$.** Unlike OLS, IV does not choose coefficients to minimise squared residuals, so its conventional $R^2=1-SSR/SST$ may be lower than OLS's or even negative. The purpose is credible estimation of a structural effect, not maximising fit.</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. Example: education and wages for married working women (slides 15–17)</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>The lecture uses 428 married working women from 1975 and considers father's education as an instrument for the woman's education.</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Regression <span class="pp">|</span> Estimated education coefficient <span class="pp">|</span> Standard error <span class="pp">|</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---:|---:|</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> OLS: $\log(wage)$ on education <span class="pp">|</span> 0.109 <span class="pp">|</span> 0.014 <span class="pp">|</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> First stage: education on father's education <span class="pp">|</span> 0.269 <span class="pp">|</span> 0.029 <span class="pp">|</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> IV: $\log(wage)$ on education <span class="pp">|</span> 0.059 <span class="pp">|</span> 0.035 <span class="pp">|</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>The first-stage $t$ statistic is approximately $0.269/0.029=9.28$; its $R^2$ is 0.173. Thus father's education is predictive of schooling **in this sample**. It does **not** prove that father's education is uncorrelated with omitted determinants of wages.</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>The IV estimate suggests a return of approximately **5.9%** per extra year of education, compared with **10.9%** from OLS. This difference is consistent with upward omitted-ability bias in OLS, but does not prove it: the IV estimate is less precise, and its validity is assumed rather than demonstrated. In particular, $0.059/0.035\approx1.69$, so this simple IV coefficient is **not statistically significant at the conventional two-sided 5% level**.</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. Multiple regression: controls and excluded instruments (slides 22–25)</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>Most economic questions require control variables. The lecture writes</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>y_{1i}=\beta_0+\beta_1y_{2i}+\beta_2z_{1i}+u_{1i},</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>where $y_1$ is the outcome, $y_2$ is endogenous, and $z_1$ is an exogenous control. We introduce an **excluded instrument** $z_2$, which is not a direct regressor in the structural equation.</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>The relevant first stage is</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>y_{2i}=\pi_0+\pi_1z_{1i}+\pi_2z_{2i}+v_{2i}.</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>**Crucial distinction:** relevance now means $\pi_2\ne0$: $z_2$ must predict $y_2$ **after controlling for $z_1$**. A simple correlation between $z_2$ and $y_2$ is insufficient.</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>The **structural equation** describes the effect of interest. The **reduced form** expresses an endogenous variable as a function of exogenous variables. Included exogenous controls serve as their own instruments; excluded instruments provide additional identifying variation.</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="fu">### 7. Example: proximity to college (slides 26–27)</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>Card (1995) uses whether a man grew up near a four-year college (<span class="in">`nearc4`</span>) as an instrument for education. The sample contains 3,010 men, with controls including experience, experience squared, race, urban residence and region.</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>The reduced-form regression for education reports a coefficient of **0.320** (SE **0.088**) on `nearc4`: conditional on the included controls, growing up near a college is associated with about **0.32 additional years of education**. The corresponding $t$ statistic is about 3.64.</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Estimated return to education <span class="pp">|</span> OLS <span class="pp">|</span> IV <span class="pp">|</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---:|---:|</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Coefficient on education <span class="pp">|</span> 0.075 <span class="pp">|</span> 0.132 <span class="pp">|</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Standard error <span class="pp">|</span> 0.003 <span class="pp">|</span> 0.055 <span class="pp">|</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>Here IV is **larger** than OLS, unlike the previous example. IV does not systematically raise or lower coefficients. Interpretation depends on whether proximity satisfies the exclusion restriction: for instance, proximity may be related to family location choices or local economic opportunities.</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="fu">### 8. Two-stage least squares (2SLS) (slides 29–34)</span></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>Suppose the structural model contains one endogenous regressor $y_2$, one included exogenous control $z_1$, and **two excluded instruments** $z_2,z_3$:</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>y_1=\beta_0+\beta_1y_2+\beta_2z_1+u_1.</span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a>Using only one instrument would discard information in the other. **Two-stage least squares (2SLS)** combines the instruments:</span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>**Stage 1 — predict the endogenous variable using all exogenous variables:**</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>y_2=\pi_0+\pi_1z_1+\pi_2z_2+\pi_3z_3+v_2.</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>Obtain the fitted values $\hat y_2$. The first-stage **joint** relevance question is whether $\pi_2=\pi_3=0$; a joint $F$ test is informative, subject to the weak-instrument caveat.</span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>**Stage 2 — estimate the structural relationship using predicted $y_2$:**</span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>y_1=\beta_0+\beta_1\hat y_2+\beta_2z_1+\text{residual}.</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>The fitted values use only variation explained by the instruments and included exogenous controls. This two-regression procedure gives the **2SLS point estimates**.</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="fu">## Do not use ordinary second-stage OLS standard errors</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>Although the two regressions reproduce the 2SLS coefficients, ordinary OLS standard errors from the second regression are generally **incorrect** because $\hat y_2$ is estimated. Use a proper IV/2SLS estimator with appropriate standard errors (robust or clustered where required).</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>With one endogenous regressor, identification requires at least one relevant excluded instrument; with several endogenous regressors, there must be enough instruments **and** sufficient independent predictive variation (the rank condition). More instruments do not compensate for invalid instruments.</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>**Lecture example:** Using both parents' education as instruments for schooling, the married-working-women example reports a first-stage joint $F=55.4$ and a 2SLS education coefficient of **0.061** (SE **0.031**) in a specification that also controls for experience and its square. This is approximately a **6.1%** return, with greater precision than the single-instrument estimate reported earlier, though the specifications differ.</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="fu">### 9. Application: a randomised fee reduction for Uber drivers (slides 35–39)</span></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>The lecture examines whether higher **average hourly earnings** cause drivers to work more hours on Uber. The model is</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>\log(h_{it})=\beta_0+\beta_1\log(w_{it})+X_{it}'\gamma+u_{it},</span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>where $h_{it}$ is weekly Uber hours and $w_{it}$ is average hourly earnings, after Uber fees but before vehicle expenses. The coefficient $\beta_1$ is an **elasticity**: a 1% increase in hourly earnings corresponds to approximately a $\beta_1$% change in Uber hours.</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>**Why not OLS?** Drivers choose when and where to work, while demand conditions affect earnings. Working additional less-profitable hours may itself reduce average hourly earnings: the direction of causation is not simply earnings $\rightarrow$ hours.</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>**Instrument:** In Boston in 2016, randomly selected drivers were offered a week without Uber's usual commission. Define $Z_{it}=1$ if offered fee-free driving. Around **64% opted in**. The offer—not actual take-up—is the instrument. Random assignment supports independence within assignment groups, but exclusion still requires that the offer affects hours **only through hourly earnings**.</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**First stage:** the offer raises log hourly earnings by **0.20** (SE **0.01**).</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**OLS elasticity:** **0.21** (SE **0.06**).</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**IV/2SLS elasticity:** **1.16** (SE **0.12**).</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>The IV estimate implies approximately **1.16% more Uber hours for a 1% increase in hourly earnings** in the setting studied. It concerns a **temporary earnings change**; it does not automatically imply the same response to permanent wage changes. Drivers may also reallocate hours from other platforms or jobs, so increased Uber hours need not mean increased total working hours.</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>The lecture reports **1,176 drivers** and **2,214 observations with positive hours**; standard errors are clustered by driver. The study is Angrist, Caldwell and Hall (2021), *Uber versus Taxi: A Driver's Eye View*.</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="fu">## The central IV checklist</span></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>Before interpreting any IV estimate, ask: **(1)** What makes $x$ endogenous? **(2)** What is the instrument? **(3)** Why should it predict $x$ *conditional on controls*? **(4)** Why should it have no other route to $y$? **(5)** Is the first stage strong enough? **(6)** Are the standard errors appropriate? **(7)** Which population and type of variation does the estimate describe?</span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mathematical Derivations</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. Omitted-variable bias (slides 4–5)</span></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>Suppose the true model is</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>y_i=\beta_0+\beta_1x_{1i}+\beta_2x_{2i}+e_i,</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>\qquad E(e_i\mid x_{1i},x_{2i})=0.</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>If we regress $y$ only on $x_1$, the population regression slope is</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>\tilde\beta_1</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>&amp;=\frac{\operatorname{Cov}(x_1,y)}{\operatorname{Var}(x_1)}<span class="sc">\\</span></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>&amp;=\beta_1+\beta_2\frac{\operatorname{Cov}(x_1,x_2)}{\operatorname{Var}(x_1)}.</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>Writing $\delta_1=\operatorname{Cov}(x_1,x_2)/\operatorname{Var}(x_1)$, we obtain</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>\boxed{\tilde\beta_1-\beta_1=\beta_2\delta_1.}</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>**Sign:** omitted-variable bias is positive when the omitted factor raises $y$ ($\beta_2&gt;0$) and is positively associated with $x_1$ ($\delta_1&gt;0$). If either factor is zero, this particular bias disappears.</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="fu">### 2. Deriving the simple IV estimator (slides 6, 10–11)</span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>Start with $y=\beta_0+\beta_1x+u$ and assume $\operatorname{Cov}(z,u)=0$. Taking covariance with $z$ gives</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>\operatorname{Cov}(z,y)</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>&amp;=\operatorname{Cov}(z,\beta_0+\beta_1x+u)<span class="sc">\\</span></span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>&amp;=\beta_1\operatorname{Cov}(z,x)+\operatorname{Cov}(z,u)<span class="sc">\\</span></span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>&amp;=\beta_1\operatorname{Cov}(z,x).</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>If $\operatorname{Cov}(z,x)\ne0$, divide to identify the coefficient:</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>\boxed{\beta_1=\frac{\operatorname{Cov}(z,y)}{\operatorname{Cov}(z,x)}}.</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>Replace population covariances by sample analogues:</span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>\boxed{\hat\beta_{1,IV}=</span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>\frac{\sum_{i=1}^n(z_i-\bar z)(y_i-\bar y)}</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>{\sum_{i=1}^n(z_i-\bar z)(x_i-\bar x)}};</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>\qquad</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>\hat\beta_{0,IV}=\bar y-\hat\beta_{1,IV}\bar x.</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>The denominator explains why weak relevance is dangerous: if $z$ hardly varies with $x$, small sampling fluctuations can create large changes in the ratio.</span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="fu">### 3. The first-stage slope and identification (slides 8, 18–19)</span></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>The population linear projection of $x$ on $z$ is</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>x=\pi_0+\pi_1z+v,</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>\qquad \pi_1=\frac{\operatorname{Cov}(z,x)}{\operatorname{Var}(z)}.</span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>Thus $\pi_1\ne0$ is equivalent to instrument relevance, provided $\operatorname{Var}(z)&gt;0$. In a simple first stage, testing $H_0:\pi_1=0$ is a direct test of *zero* linear association; rejecting it does not prove the instrument is sufficiently strong for reliable IV inference.</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4. Large-sample variance and the weak-instrument penalty (slides 12–14)</span></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>With independent observations, instrument exogeneity, finite moments and homoskedasticity $E(u^2\mid z)=\sigma_u^2$,</span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>\operatorname{Avar}(\hat\beta_{1,IV})</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>=\frac{\sigma_u^2\operatorname{Var}(z)}{n\operatorname{Cov}(z,x)^2}.</span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>Since $\operatorname{Cov}(z,x)=\rho_{xz}\sigma_x\sigma_z$,</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>\boxed{\operatorname{Avar}(\hat\beta_{1,IV})</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>=\frac{\sigma_u^2}{n\sigma_x^2\rho_{xz}^2}}.</span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>Using $SST_x=\sum_i(x_i-\bar x)^2$ and the first-stage $R^2=\hat\rho_{xz}^2$,</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>\widehat{\operatorname{Var}}(\hat\beta_{1,IV})</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>\approx\frac{\hat\sigma_u^2}{SST_xR_{x,z}^2},</span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>\qquad</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>\hat\sigma_u^2=\frac{\sum_i\hat u_i^2}{n-2},</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>\quad \hat u_i=y_i-\hat\beta_{0,IV}-\hat\beta_{1,IV}x_i.</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>The estimated **standard error** is the square root of this variance. Relative to the analogous OLS variance formula under exogeneity, $1/R_{x,z}^2$ is the IV variance inflation factor. **Important:** when OLS is endogenous, its usual standard error describes uncertainty around an inconsistent estimator; a smaller OLS standard error does not make OLS preferable.</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a><span class="fu">### 5. IV in multiple regression: moment conditions (slides 22–24)</span></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>Let</span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>y_{1i}=\beta_0+\beta_1y_{2i}+\beta_2z_{1i}+u_{1i},</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>where $z_1$ is an exogenous control and $z_2$ is an excluded instrument. Assume</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>E(u_1)=0,\qquad E(z_1u_1)=0,\qquad E(z_2u_1)=0.</span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>Define $\hat u_{1i}=y_{1i}-\hat\beta_0-\hat\beta_1y_{2i}-\hat\beta_2z_{1i}$. The sample moment equations are</span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>\sum_i\hat u_{1i}&amp;=0,<span class="sc">\\</span></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>\sum_i z_{1i}\hat u_{1i}&amp;=0,<span class="sc">\\</span></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>\sum_i z_{2i}\hat u_{1i}&amp;=0.</span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>These give three equations for three coefficients, **provided the instruments supply sufficient independent variation**. Notice that every residual contains $\hat\beta_2z_{1i}$: the included control must not accidentally be replaced by $z_2$.</span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>The first-stage equation $y_2=\pi_0+\pi_1z_1+\pi_2z_2+v_2$ identifies the relevance requirement $\pi_2\ne0$ **conditional on $z_1$**.</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="fu">### 6. Reduced form and the IV ratio with controls (slide 32)</span></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>Substitute the first stage into the structural equation:</span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>y_1&amp;=\beta_0+\beta_1(\pi_0+\pi_1z_1+\pi_2z_2+v_2)+\beta_2z_1+u_1<span class="sc">\\</span></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>&amp;=(\beta_0+\beta_1\pi_0)+(\beta_2+\beta_1\pi_1)z_1</span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>+\beta_1\pi_2z_2+(u_1+\beta_1v_2).</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>If the reduced form for $y_1$ is $y_1=\alpha_0+\alpha_1z_1+\alpha_2z_2+e$, then $\alpha_2=\beta_1\pi_2$ and therefore</span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>\boxed{\beta_1=\frac{\alpha_2}{\pi_2}\quad\text{if }\pi_2\ne0.}</span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>This is the **conditional** counterpart of the simple covariance-ratio estimator: the instrument's effect on the outcome divided by its effect on the endogenous regressor, holding the control fixed.</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a><span class="fu">### 7. Deriving 2SLS as a projection (slides 29–33)</span></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>Let $X$ contain the intercept, endogenous regressor(s) and included controls; let $Z$ contain the intercept, included exogenous controls and excluded instruments. Define the projection matrix</span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>P_Z=Z(Z'Z)^{-1}Z',</span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>assuming $Z'Z$ is invertible. The first-stage fitted regressors are $\hat X=P_ZX$. OLS of $y$ on $\hat X$ gives</span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>\hat\beta_{2SLS}</span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>&amp;=(\hat X'\hat X)^{-1}\hat X'y<span class="sc">\\</span></span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>&amp;=(X'P_ZX)^{-1}X'P_Zy,</span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>because $P_Z'=P_Z$ and $P_Z^2=P_Z$. This is the standard **2SLS estimator**. Its existence requires $X'P_ZX$ to be invertible: the relevant rank condition.</span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>Under the appropriate IV assumptions, this estimator uses instrument-predicted variation to identify the structural coefficients. Inference must account for the IV estimation procedure rather than treating fitted regressors as observed exogenous variables.</span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a><span class="fu">### 8. The Uber application as an IV ratio (slides 35–39)</span></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>Write the two equations (suppressing the controls for readability):</span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a>\begin{aligned}</span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>\log(w_{it})&amp;=\pi_0+\pi_1Z_{it}+X_{it}'\delta+v_{it},<span class="sc">\\</span></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>\log(h_{it})&amp;=\beta_0+\beta_1\log(w_{it})+X_{it}'\gamma+u_{it}.</span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>\end{aligned}</span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>The lecture reports $\hat\pi_1=0.20$ and $\hat\beta_{1,IV}=1.16$. In a just-identified model, the corresponding conditional reduced-form coefficient of the offer on log Uber hours is therefore approximately</span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>\hat\alpha_Z=\hat\beta_{1,IV}\hat\pi_1</span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>\approx1.16\times0.20=0.232.</span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>This **0.232 is an implied calculation**, not a separately reported reduced-form estimate in the slides. The IV coefficient is an elasticity, while the first-stage coefficient measures the offer's effect on log earnings. As in the lecture, inference should account for repeated observations of drivers by clustering standard errors at driver level.</span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>**Ready to practise?**</span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Go to Tutorial 7</span><span class="co">](../tutorials/tutorial-07.qmd)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

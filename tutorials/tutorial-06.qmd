@@ -1,0 +1,9 @@
+---
+title: "Tutorial 6"
+---
+
+[Back to Class 6](../classes/class-06.qmd)
+
+## Exercises
+
+## R Applications

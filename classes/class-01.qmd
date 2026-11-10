@@ -1,10 +1,554 @@
 ---
 title: "Class 1"
+subtitle: "Introduction to Econometrics and Simple Linear Regression"
 ---
+
+> **Source and scope.** Study notes based on Arne Uhlendorff's *Applied Econometrics*, Lecture 1 (68 slides). Explanations and worked illustrations are rewritten for learning purposes. The lecture covers both causal inference and simple regression; neither should be skipped. Tutorial exercises are intentionally reserved for later.
 
 ## Theory & Intuition
 
+### 1. What does econometrics do?
+
+**Econometrics** uses economic theory, data and statistical methods to quantify relationships, test hypotheses, evaluate policies and make forecasts. Its central challenge is distinguishing **association** from **causation**.
+
+For example, people with more education often earn more. This is an *association*. To claim that an additional year of education **causes** higher earnings, we must rule out alternative explanations, such as differences in ability or family background.
+
+A typical analysis proceeds as follows:
+
+1. **Define a question:** Does an extra year of schooling increase hourly wages?
+2. **Specify an economic model:** Explain why education might affect productivity and wages.
+3. **Specify an econometric model:** Express the relationship mathematically, including unobserved influences.
+4. **Collect data, estimate and draw inferences:** Evaluate the evidence and assess whether the assumptions are credible.
+
+### 2. Economic models, econometric models and the error term
+
+An **economic model** describes a mechanism. An **econometric model** translates it into a relationship that can be estimated from data.
+
+The lecture uses Gary Becker's model of criminal behaviour as an illustration. Economic theory suggests that time devoted to crime depends on the returns to criminal and legal activity, the risk of being caught and punished, age and other factors. An empirical equation might be:
+
+$$
+crime_i = \beta_0 + \beta_1 wage_i + \beta_2 income_i
++ \beta_3 arrests_i + \beta_4 convictions_i
++ \beta_5 sentence_i + \beta_6 age_i + u_i.
+$$
+
+Here, $crime_i$ is a measure of criminal activity, and $u_i$ contains influences not explicitly included in the model (for example, some aspects of personal circumstances). The precise proxies and functional form are modelling choices, not facts supplied by economic theory.
+
+::: {.callout-important}
+## Why the error term matters
+
+If an omitted factor affects both an explanatory variable and the outcome, the estimated relationship may be misleading. Including an error term does **not** automatically solve omitted-variable bias; we need assumptions about how that error relates to the observed variables.
+:::
+
+### 3. Four common data structures
+
+| Structure | What is observed? | Example | Main feature |
+|---|---|---|---|
+| **Cross-section** | Different units in one period | Wages of 526 workers | Units differ, time is essentially fixed |
+| **Pooled cross-sections** | Separate samples from multiple periods | House prices from different houses in 1993 and 1995 | Units need not be the same across periods |
+| **Panel (longitudinal)** | The same units repeatedly over time | Crime rates in the same cities in 1986 and 1990 | Tracks within-unit changes |
+| **Time series** | One unit or aggregate measured over time | Quarterly GDP | Observations may be serially correlated |
+
+The lecture initially concentrates on a **random cross-sectional sample**. Random sampling is an assumption about how observations are obtained; it does **not** mean that education, wages or other explanatory variables are randomly assigned.
+
+Panel data can help account for characteristics that do not change over time. Time-series data require particular care with trends, seasonality and dependence between successive observations.
+
+### 4. Causality and *ceteris paribus*
+
+*Ceteris paribus* means **holding other relevant factors constant**. The causal question is not merely whether $x$ and $y$ move together, but what would happen to $y$ if we changed $x$ while relevant alternative influences remained fixed.
+
+- **Education and wages:** People choose different amounts of education; those choices may correlate with ability and family background.
+- **Minimum wages and unemployment:** Governments change minimum wages in response to economic and political circumstances, which may also affect employment.
+- **Ice cream and drowning:** Both may increase in hot weather. Their correlation does not establish that one causes the other.
+
+A useful thought experiment is to ask what **randomised experiment** would answer the question. Random assignment can make treatment groups comparable *on average*. Where experiments are infeasible, econometric methods attempt to construct credible comparisons using observational data.
+
+### 5. Potential outcomes: defining a causal effect
+
+Let $D_i=1$ if person $i$ receives a treatment and $D_i=0$ otherwise. Define:
+
+- $Y_i(1)$: the outcome person $i$ **would have** under treatment;
+- $Y_i(0)$: the outcome the same person **would have** without treatment.
+
+The **individual treatment effect** is:
+
+$$
+\Delta_i=Y_i(1)-Y_i(0).
+$$
+
+**Fundamental problem of causal inference:** for a given person at a given point in time, we observe only one of these two potential outcomes. The other is a **counterfactual**.
+
+For example, if a worker earns £18 per hour after a training programme, that does not tell us what the *same worker* would have earned without training.
+
+We therefore study average effects:
+
+$$
+\underbrace{ATE}_{\text{average treatment effect}}
+=\mathbb E[Y(1)-Y(0)],
+$$
+
+$$
+\underbrace{ATT}_{\text{average treatment effect on the treated}}
+=\mathbb E[Y(1)-Y(0)\mid D=1].
+$$
+
+**ATE** concerns the population overall; **ATT** concerns those who actually received treatment. They need not coincide when effects differ across individuals.
+
+### 6. The selection problem
+
+A tempting estimate is the difference between the average observed outcomes of treated and untreated people:
+
+$$
+\mathbb E[Y\mid D=1]-\mathbb E[Y\mid D=0].
+$$
+
+But the two groups might have differed **even without treatment**. That pre-existing difference is **selection bias**.
+
+**Illustration (hypothetical):** Trainees earn £20/hour after training, while non-trainees earn £17/hour. The observed difference is £3/hour. Suppose the trainees would already have earned £19/hour without training. Then the ATT is £1/hour and the selection bias is £2/hour. We normally cannot observe that £19 counterfactual directly.
+
+Random assignment makes treatment independent of potential outcomes in the population, removing selection bias **in expectation**. In a finite experiment, realised sample means can still differ by chance. Without randomisation, methods such as regression, difference-in-differences and instrumental variables require additional identifying assumptions.
+
+### 7. Simple linear regression: the basic model
+
+The population model is:
+
+$$
+\boxed{Y_i=\beta_0+\beta_1 X_i+u_i.}
+$$
+
+| Symbol | Meaning |
+|---|---|
+| $Y_i$ | Dependent variable: outcome to explain |
+| $X_i$ | Explanatory variable (regressor) |
+| $\beta_0$ | Population intercept |
+| $\beta_1$ | Population slope |
+| $u_i$ | Unobserved influences on $Y_i$ |
+| $i=1,\ldots,n$ | Observation index |
+
+The model is **linear in its parameters**. For a fixed error term, increasing $X$ by $\Delta X$ changes $Y$ by $\beta_1\Delta X$.
+
+**Wage example:**
+
+$$
+wage_i=\beta_0+\beta_1 educ_i+u_i.
+$$
+
+If $\beta_1=0.54$, an additional year of education corresponds to £0.54 more in hourly wages **within this model, holding $u_i$ fixed**. Interpreting an estimated slope as a causal effect requires stronger assumptions than fitting a line.
+
+#### Population parameters versus sample estimates
+
+$\beta_0$ and $\beta_1$ are fixed but unknown **population parameters**. Their estimates, $\hat\beta_0$ and $\hat\beta_1$, are calculated from a sample and vary across samples.
+
+The **population regression function** (PRF) describes the conditional average outcome:
+
+$$
+\mathbb E[Y\mid X=x]=\beta_0+\beta_1x
+$$
+
+**provided** $\mathbb E[u\mid X=x]=0$. Individual outcomes can lie above or below this line because their errors differ.
+
+### 8. The key assumption: zero conditional mean
+
+The lecture distinguishes two conditions:
+
+1. **Zero unconditional mean:** $\mathbb E[u]=0$. With an intercept, we can absorb any non-zero error mean into the intercept.
+2. **Zero conditional mean:** $\mathbb E[u\mid X]=0$. At **every** value of $X$, the average unobserved influence is zero.
+
+The second is much more demanding. In the wage example, it says that people with different years of education do not systematically differ in the *combined omitted influences* on wages. If ability affects wages and is associated with schooling, this condition may fail.
+
+::: {.callout-warning}
+## Three distinctions worth remembering
+
+- $\mathbb E[u]=0$ does **not** imply $\mathbb E[u\mid X]=0$.
+- A random **sample** does **not** imply random **assignment** of $X$.
+- OLS residuals are uncorrelated with $X$ **by construction**; this does **not** prove that the unobserved population errors are unrelated to $X$.
+:::
+
+### 9. Ordinary least squares (OLS): choosing the best-fitting line
+
+Given observations $(X_i,Y_i)$, OLS selects the intercept and slope that minimise the **sum of squared residuals**:
+
+$$
+\min_{b_0,b_1}\sum_{i=1}^n(Y_i-b_0-b_1X_i)^2.
+$$
+
+For each observation:
+
+$$
+\hat Y_i=\hat\beta_0+\hat\beta_1X_i,
+\qquad \hat u_i=Y_i-\hat Y_i.
+$$
+
+$\hat Y_i$ is the **fitted value**; $\hat u_i$ is the **residual**. A residual is observable after estimation; the population error $u_i$ is not.
+
+Squaring residuals prevents positive and negative errors from cancelling and penalises large errors more heavily.
+
+The resulting estimates are:
+
+$$
+\boxed{\hat\beta_1=
+\frac{\sum_i(X_i-\bar X)(Y_i-\bar Y)}
+{\sum_i(X_i-\bar X)^2}},
+\qquad
+\boxed{\hat\beta_0=\bar Y-\hat\beta_1\bar X}.
+$$
+
+The slope is the sample covariance of $X$ and $Y$ divided by the sample variance of $X$ (using the same denominator convention for both). It is defined only when $X$ varies in the sample.
+
+**Lecture illustration:** In a sample of 526 workers, the estimated line is
+
+$$
+\widehat{wage}=-0.90+0.54\,educ.
+$$
+
+At eight years of education, the fitted hourly wage is $-0.90+0.54(8)=3.42$ in the dataset's wage units. The negative intercept should not be interpreted literally if zero years of education lies outside the relevant sample range. The £ amounts used elsewhere on this page are separate illustrative units, not a claim about the dataset's currency.
+
+### 10. Algebraic properties of OLS
+
+When OLS includes an intercept, the fitted line has several **exact sample properties**:
+
+- **Residuals sum to zero:** $\sum_i\hat u_i=0$.
+- **Residuals are orthogonal to $X$:** $\sum_i X_i\hat u_i=0$.
+- **Fitted values and residuals are orthogonal:** $\sum_i\hat Y_i\hat u_i=0$.
+- **Average fitted outcome equals average actual outcome:** $\overline{\hat Y}=\bar Y$.
+- **The fitted line passes through the sample means:** $(\bar X,\bar Y)$.
+
+These are algebraic consequences of minimising squared residuals, **not** evidence that the regression is causal or correctly specified.
+
+### 11. Goodness of fit: interpreting $R^2$
+
+With an intercept, the total variation in the outcome can be split into explained and unexplained parts:
+
+$$
+\underbrace{\sum_i(Y_i-\bar Y)^2}_{SST}
+=
+\underbrace{\sum_i(\hat Y_i-\bar Y)^2}_{SSE\;\text{(explained)}}
++
+\underbrace{\sum_i\hat u_i^2}_{SSR\;\text{(residual)}}.
+$$
+
+**Note the lecture's notation:** It calls the explained sum of squares **SSE** and the residual sum of squares **SSR**. Other textbooks use different abbreviations, so always check definitions.
+
+For $SST>0$:
+
+$$
+\boxed{R^2=\frac{SSE}{SST}=1-\frac{SSR}{SST}.}
+$$
+
+In simple OLS with an intercept, $0\le R^2\le1$. For example, $R^2=0.40$ means the fitted line accounts for 40% of the *sample variation* in $Y$ around its mean. It does **not** mean that $X$ causes 40% of $Y$, nor that 40% of individuals' outcomes are determined by $X$.
+
+### 12. Units, logarithms and functional form
+
+The units of $X$ and $Y$ determine how to read a coefficient. If wages are converted from pounds to pence, all wage-level coefficients multiply by 100, but $R^2$ stays unchanged.
+
+The lecture introduces four common specifications. Here $\log$ means the **natural logarithm**; log models require positive values for logged variables.
+
+| Model | Equation | Interpretation of $\beta_1$ |
+|---|---|---|
+| **Level–level** | $Y=\beta_0+\beta_1X+u$ | One extra unit of $X$ corresponds to $\beta_1$ units of $Y$ |
+| **Log–level** | $\log Y=\beta_0+\beta_1X+u$ | One extra unit of $X$ corresponds to approximately $100\beta_1\%$ change in $Y$ |
+| **Level–log** | $Y=\beta_0+\beta_1\log X+u$ | A 1% increase in $X$ corresponds to approximately $\beta_1/100$ units of $Y$ |
+| **Log–log** | $\log Y=\beta_0+\beta_1\log X+u$ | A 1% increase in $X$ corresponds to approximately $\beta_1\%$ change in $Y$ |
+
+These are interpretations of the specified relationships; **causal** interpretations still require identification assumptions.
+
+#### Marginal effects, semi-elasticities and elasticities
+
+$$
+\text{Marginal effect}=\frac{\partial Y}{\partial X},\qquad
+\text{Semi-elasticity}=\frac{1}{Y}\frac{\partial Y}{\partial X},\qquad
+\text{Elasticity}=\frac{X}{Y}\frac{\partial Y}{\partial X}.
+$$
+
+The **marginal effect** measures units of $Y$ per unit of $X$. The **semi-elasticity** measures proportional change in $Y$ per unit of $X$. The **elasticity** measures proportional change in $Y$ per proportional change in $X$.
+
+**Lecture wage illustration:**
+
+$$
+\widehat{\log(wage)}=0.584+0.083\,educ.
+$$
+
+One more year of education is associated with approximately **8.3%** higher wages. The exact percentage difference implied by the log-level equation is $100(e^{0.083}-1)\approx8.65\%$ (about **8.7%**). This is an association unless the relevant causal assumptions hold.
+
+### 13. What makes OLS unbiased?
+
+The lecture concludes with four assumptions for simple linear regression:
+
+1. **SLR.1 — Linear in parameters:** $Y_i=\beta_0+\beta_1X_i+u_i$.
+2. **SLR.2 — Random sampling:** $(X_i,Y_i)$ are independently sampled from the population.
+3. **SLR.3 — Sample variation:** $\sum_i(X_i-\bar X)^2>0$.
+4. **SLR.4 — Zero conditional mean:** $\mathbb E[u_i\mid X_i]=0$.
+
+Under these assumptions, OLS is **unbiased**:
+
+$$
+\mathbb E[\hat\beta_1]=\beta_1,
+\qquad
+\mathbb E[\hat\beta_0]=\beta_0.
+$$
+
+Unbiasedness means that the estimator is correct **on average across repeated random samples**; it does not guarantee that any one estimate equals the population parameter. The lecture proves the slope result and leaves the intercept proof implicit. Both derivations are supplied below.
+
+::: {.callout-important}
+## The central diagnostic question
+
+What is hidden in $u$? Could those omitted influences be systematically related to $X$? If so, zero conditional mean is doubtful and the OLS slope need not identify the causal effect of $X$ on $Y$.
+:::
+
 ## Mathematical Derivations
 
-## Tutorial Exercises
+### 1. Recentring the error to have mean zero
 
+Start from $Y=\beta_0+\beta_1X+u$, and suppose $\mathbb E[u]=\alpha_0$. Define $u^*=u-\alpha_0$ and $\beta_0^*=\beta_0+\alpha_0$. Then
+
+$$
+Y=\beta_0^*+\beta_1X+u^*,
+\qquad \mathbb E[u^*]=0.
+$$
+
+Thus, with an intercept, imposing a zero **unconditional** error mean is a normalisation: the slope does not change. It says nothing about whether $\mathbb E[u^*\mid X]=0$.
+
+### 2. From zero conditional mean to the population regression function
+
+Assume $\mathbb E[u\mid X]=0$. By linearity of conditional expectation,
+
+$$
+\begin{aligned}
+\mathbb E[Y\mid X]
+&=\mathbb E[\beta_0+\beta_1X+u\mid X]\\
+&=\beta_0+\beta_1X+\mathbb E[u\mid X]\\
+&=\beta_0+\beta_1X.
+\end{aligned}
+$$
+
+By iterated expectations, $\mathbb E[u]=\mathbb E[\mathbb E[u\mid X]]=0$. Moreover,
+
+$$
+\operatorname{Cov}(X,u)
+=\mathbb E[Xu]-\mathbb E[X]\mathbb E[u]=0,
+$$
+
+provided the relevant moments exist, because $\mathbb E[Xu]=\mathbb E[X\mathbb E[u\mid X]]=0$. The converse is **not** generally true: zero covariance is weaker than zero conditional mean.
+
+### 3. Deriving the OLS estimates by minimisation
+
+For candidate coefficients $b_0,b_1$, define
+
+$$
+Q(b_0,b_1)=\sum_{i=1}^n(Y_i-b_0-b_1X_i)^2.
+$$
+
+**Step 1 — Differentiate with respect to the intercept.**
+
+$$
+\frac{\partial Q}{\partial b_0}
+=-2\sum_i(Y_i-b_0-b_1X_i)=0.
+$$
+
+Hence $\sum_i(Y_i-\hat\beta_0-\hat\beta_1X_i)=0$, so
+
+$$
+\boxed{\hat\beta_0=\bar Y-\hat\beta_1\bar X.}
+$$
+
+**Step 2 — Differentiate with respect to the slope.**
+
+$$
+\frac{\partial Q}{\partial b_1}
+=-2\sum_i X_i(Y_i-b_0-b_1X_i)=0.
+$$
+
+**Step 3 — Substitute the intercept formula.**
+
+$$
+\begin{aligned}
+0&=\sum_i X_i\big[(Y_i-\bar Y)-\hat\beta_1(X_i-\bar X)\big]\\
+&=\sum_i(X_i-\bar X)(Y_i-\bar Y)
+-\hat\beta_1\sum_i(X_i-\bar X)^2.
+\end{aligned}
+$$
+
+We used $\sum_i(X_i-\bar X)=0$ and $\sum_i(Y_i-\bar Y)=0$.
+
+**Step 4 — Solve.** If $S_{xx}=\sum_i(X_i-\bar X)^2>0$,
+
+$$
+\boxed{\hat\beta_1=
+\frac{\sum_i(X_i-\bar X)(Y_i-\bar Y)}{S_{xx}}.}
+$$
+
+Since $Q$ is a sum of squares, and the design matrix has full column rank when $S_{xx}>0$, these first-order conditions give the unique global minimum.
+
+### 4. Why the residual properties hold
+
+The two first-order conditions can be written
+
+$$
+\sum_i\hat u_i=0,
+\qquad
+\sum_iX_i\hat u_i=0.
+$$
+
+Since $\hat Y_i=\hat\beta_0+\hat\beta_1X_i$,
+
+$$
+\sum_i\hat Y_i\hat u_i
+=\hat\beta_0\sum_i\hat u_i
++\hat\beta_1\sum_iX_i\hat u_i=0.
+$$
+
+Averaging $Y_i=\hat Y_i+\hat u_i$ gives $\bar Y=\overline{\hat Y}$. Substituting the intercept formula into the fitted line shows
+
+$$
+\hat\beta_0+\hat\beta_1\bar X=\bar Y.
+$$
+
+Hence the fitted line passes through $(\bar X,\bar Y)$.
+
+### 5. Deriving the decomposition of variation and $R^2$
+
+For each observation,
+
+$$
+Y_i-\bar Y=(Y_i-\hat Y_i)+(\hat Y_i-\bar Y)
+=\hat u_i+(\hat Y_i-\bar Y).
+$$
+
+Square and sum:
+
+$$
+\begin{aligned}
+\sum_i(Y_i-\bar Y)^2
+&=\sum_i\hat u_i^2
++\sum_i(\hat Y_i-\bar Y)^2\\
+&\quad+2\sum_i\hat u_i(\hat Y_i-\bar Y).
+\end{aligned}
+$$
+
+The cross-term is zero because $\sum_i\hat u_i\hat Y_i=0$ and $\sum_i\hat u_i=0$. Therefore,
+
+$$
+SST=SSR+SSE,
+\qquad
+R^2=1-\frac{SSR}{SST}=\frac{SSE}{SST}.
+$$
+
+This decomposition assumes OLS **with an intercept**; it should not be applied uncritically to regressions without one.
+
+### 6. Deriving the log-level percentage effect
+
+Consider $\log Y=\beta_0+\beta_1X+u$ with $Y>0$. Holding $u$ fixed, compare $X_0$ and $X_1$:
+
+$$
+\log Y_1-\log Y_0=\beta_1(X_1-X_0)=\beta_1\Delta X.
+$$
+
+Exponentiating,
+
+$$
+\frac{Y_1}{Y_0}=e^{\beta_1\Delta X}.
+$$
+
+Thus the **exact** percentage change is
+
+$$
+\boxed{100\frac{Y_1-Y_0}{Y_0}
+=100\left(e^{\beta_1\Delta X}-1\right).}
+$$
+
+For small $\beta_1\Delta X$, use $e^z\approx1+z$ to obtain the approximation $100\beta_1\Delta X\%$. The approximation becomes less accurate as the change grows.
+
+### 7. Deriving the level–log and log–log interpretations
+
+For the **level–log** model $Y=\beta_0+\beta_1\log X+u$ ($X>0$), holding $u$ fixed,
+
+$$
+\frac{\partial Y}{\partial X}=\frac{\beta_1}{X}.
+$$
+
+A 1% increase in $X$ means $\Delta X\approx0.01X$, giving $\Delta Y\approx\beta_1/100$. The **exact** finite change for a 1% increase is $\beta_1\log(1.01)$.
+
+For the **log–log** model $\log Y=\beta_0+\beta_1\log X+u$ ($X,Y>0$),
+
+$$
+\frac{1}{Y}\frac{\partial Y}{\partial X}
+=\frac{\beta_1}{X}
+\quad\Longrightarrow\quad
+\boxed{\frac{X}{Y}\frac{\partial Y}{\partial X}=\beta_1.}
+$$
+
+Thus $\beta_1$ is the elasticity. For a finite 1% increase in $X$, the exact percentage change in $Y$ (holding $u$ fixed) is $100[(1.01)^{\beta_1}-1]\%$.
+
+### 8. Deriving the unbiasedness of the OLS slope
+
+Let $S_{xx}=\sum_i(X_i-\bar X)^2>0$. Write the OLS slope as
+
+$$
+\hat\beta_1=\frac{\sum_i(X_i-\bar X)Y_i}{S_{xx}}.
+$$
+
+**Step 1 — Substitute the population model.**
+
+$$
+\begin{aligned}
+\hat\beta_1
+&=\frac{\sum_i(X_i-\bar X)(\beta_0+\beta_1X_i+u_i)}{S_{xx}}\\
+&=\beta_1+\frac{\sum_i(X_i-\bar X)u_i}{S_{xx}}.
+\end{aligned}
+$$
+
+This uses $\sum_i(X_i-\bar X)=0$ and $\sum_i(X_i-\bar X)X_i=S_{xx}$.
+
+**Step 2 — Condition on all observed $X$ values.** Let $\mathbf X=(X_1,\ldots,X_n)$. Under random sampling and zero conditional mean, $\mathbb E[u_i\mid\mathbf X]=0$. Therefore,
+
+$$
+\begin{aligned}
+\mathbb E[\hat\beta_1\mid\mathbf X]
+&=\beta_1+\frac{\sum_i(X_i-\bar X)\mathbb E[u_i\mid\mathbf X]}{S_{xx}}\\
+&=\boxed{\beta_1}.
+\end{aligned}
+$$
+
+**Step 3 — Remove the conditioning.** By iterated expectations,
+
+$$
+\boxed{\mathbb E[\hat\beta_1]=\beta_1.}
+$$
+
+This is **unbiasedness**, not a claim that every estimated slope is accurate.
+
+### 9. Deriving the unbiasedness of the intercept
+
+Recall $\hat\beta_0=\bar Y-\hat\beta_1\bar X$ and
+
+$$
+\bar Y=\beta_0+\beta_1\bar X+\bar u.
+$$
+
+Therefore,
+
+$$
+\hat\beta_0
+=\beta_0+\bar u-(\hat\beta_1-\beta_1)\bar X.
+$$
+
+Conditioning on $\mathbf X$, the zero conditional mean assumption gives $\mathbb E[\bar u\mid\mathbf X]=0$, and the preceding proof gives $\mathbb E[\hat\beta_1-\beta_1\mid\mathbf X]=0$. Consequently,
+
+$$
+\mathbb E[\hat\beta_0\mid\mathbf X]=\beta_0
+\quad\Longrightarrow\quad
+\boxed{\mathbb E[\hat\beta_0]=\beta_0.}
+$$
+
+
+::: {.callout-note}
+## What the proofs do — and do not — establish
+
+The derivations establish the algebraic OLS formulae and, **under SLR.1–SLR.4**, unbiasedness across repeated samples. They do **not** establish that zero conditional mean is plausible for a particular dataset, that coefficients are causal, or that standard errors and confidence intervals are valid without further assumptions.
+:::
+
+---
+
+**Ready to practise?**
+
+[Go to Tutorial 1](../tutorials/tutorial-01.qmd)

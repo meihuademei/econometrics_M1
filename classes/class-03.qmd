@@ -1,10 +1,442 @@
 ---
 title: "Class 3"
+subtitle: "Multiple Regression: Statistical Inference"
 ---
 
 ## Theory & Intuition
 
+### 1. What is statistical inference?
+
+In Class 2, we estimated regression coefficients using ordinary least squares (OLS). Here, we ask whether an estimated relationship is **statistically distinguishable** from a proposed value, and how precisely we have estimated it.
+
+Consider the population model
+
+$$
+y_i=\beta_0+\beta_1x_{i1}+\cdots+\beta_kx_{ik}+u_i.
+$$
+
+- $\beta_j$: unknown **population** coefficient.
+- $\hat\beta_j$: coefficient estimated from our sample.
+- $\operatorname{se}(\hat\beta_j)$: estimated standard deviation of $\hat\beta_j$ across repeated samples, called its **standard error**.
+- $n$: number of observations; $k$: number of explanatory variables, excluding the intercept.
+- $df=n-k-1$: residual **degrees of freedom** when the model contains an intercept.
+
+A coefficient can be large but imprecisely estimated; conversely, a small coefficient can be precisely estimated. **Statistical significance is not the same as economic importance or causality.**
+
+### 2. Why does the sampling distribution matter?
+
+If we repeatedly drew random samples and fitted the same model, we would generally obtain different values of $\hat\beta_j$. The *sampling distribution* describes this variation.
+
+The lecture introduces **MLR.6 (normality)**: the error $u_i$ is normally distributed, has mean zero and constant variance $\sigma^2$, and is independent of the explanatory variables. Together with MLR.1–MLR.5 (including random sampling and no perfect collinearity), this forms the **classical linear model (CLM)**.
+
+Under these assumptions, conditional on the observed explanatory variables,
+
+$$
+\hat\beta_j\mid X\sim N\!\left(\beta_j,\operatorname{Var}(\hat\beta_j\mid X)\right).
+$$
+
+For a slope coefficient, the conditional variance is
+
+$$
+\operatorname{Var}(\hat\beta_j\mid X)
+=\frac{\sigma^2}{SST_j(1-R_j^2)},\qquad
+SST_j=\sum_{i=1}^n(x_{ij}-\bar x_j)^2.
+$$
+
+Here $R_j^2$ is from regressing $x_j$ on the *other* explanatory variables. More variation in $x_j$ improves precision; stronger collinearity with other regressors reduces it. This particular formula applies to **slope** coefficients, not generally to the intercept.
+
+::: {.callout-important}
+## Normality is an assumption, not a consequence of OLS
+Exact small-sample $t$ and $F$ tests in this lecture rely on the CLM assumptions. In large samples, approximate inference may be possible without normally distributed errors, but the conditions and standard errors must still be appropriate.
+:::
+
+### 3. From the normal distribution to the t distribution
+
+If $\sigma$ were known, we could standardise a coefficient using its true standard deviation and obtain a standard normal variable. In practice, $\sigma$ is unknown, so we estimate it from the residuals:
+
+$$
+\hat\sigma^2=\frac{SSR}{n-k-1},\qquad
+SSR=\sum_{i=1}^n\hat u_i^2.
+$$
+
+Replacing the unknown standard deviation with an estimated **standard error** introduces additional uncertainty. Under the CLM assumptions,
+
+$$
+\boxed{\frac{\hat\beta_j-\beta_j}{\operatorname{se}(\hat\beta_j)}\sim t_{n-k-1}.}
+$$
+
+The $t$ distribution is symmetric and bell-shaped, with heavier tails than the standard normal. As its degrees of freedom increase, it approaches $N(0,1)$. Its variance is $df/(df-2)$ **only when $df>2$**; its mean exists and equals zero when $df>1$.
+
+### 4. Testing one coefficient: the t test
+
+A **null hypothesis** $H_0$ specifies the value being tested. The **alternative** $H_1$ describes the departure we want to detect. To test
+
+$$H_0:\beta_j=a\quad\text{against}\quad H_1:\beta_j\ne a,$$
+
+compute
+
+$$
+\boxed{t=\frac{\hat\beta_j-a}{\operatorname{se}(\hat\beta_j)}.}
+$$
+
+This tells us how many standard errors the estimate lies from the hypothesised value. The common case $a=0$ asks whether $x_j$ has a non-zero **partial association** with $y$, holding the other regressors fixed.
+
+**A reliable testing procedure:**
+
+1. State $H_0$ and $H_1$ **before inspecting the results**.
+2. Choose a significance level $\alpha$, often 5%.
+3. Calculate the test statistic and its degrees of freedom.
+4. Find the relevant critical value, or calculate a $p$-value.
+5. Reject $H_0$ if the statistic enters the rejection region (equivalently, if $p<\alpha$); otherwise **fail to reject** it.
+
+For a **two-sided** alternative $H_1:\beta_j\ne a$, reject when
+
+$$|t|>t_{1-\alpha/2,\,df}.$$
+
+For a **positive one-sided** alternative $H_1:\beta_j>a$, reject when $t>t_{1-\alpha,df}$. For a **negative one-sided** alternative $H_1:\beta_j<a$, reject when $t<-t_{1-\alpha,df}$. In a one-sided test, the null includes values on the opposite side of $a$; the boundary $\beta_j=a$ determines the critical value.
+
+For large degrees of freedom, useful **normal approximations** are:
+
+| Significance level | One-sided critical value | Two-sided critical value ($\lvert t\rvert$) |
+|---|---:|---:|
+| 10% | 1.282 | 1.645 |
+| 5% | 1.645 | 1.960 |
+| 1% | 2.326 | 2.576 |
+
+Use the **$t$ distribution**, rather than these approximations, for exact finite-sample inference.
+
+**Example: determinants of university grades (lecture, p. 20).** The fitted regression is
+
+$$
+\widehat{colGPA}=1.39+0.412\,hsGPA+0.015\,ACT-0.083\,skipped,
+$$
+
+with standard errors $0.33$, $0.094$, $0.011$, $0.026$ respectively, and $n=141$. For the three slopes, the reported $t$ statistics are approximately $4.38$, $1.36$, and $-3.19$. At the 5% two-sided level, high-school GPA and lectures skipped are statistically significant, whereas the ACT score is not. **Interpretation:** holding the other regressors fixed, one additional missed lecture per week is associated with a predicted GPA lower by $0.083$ points. This does not by itself establish a causal effect.
+
+### 5. Significance, errors and statistical power
+
+- **Type I error:** rejecting a true null hypothesis. The significance level $\alpha$ bounds its probability.
+- **Type II error:** failing to reject a false null hypothesis.
+- **Power:** probability of rejecting the null at a specified alternative; power equals $1-P(\text{Type II error})$.
+
+For example, when testing whether a training programme raises earnings, a Type I error means claiming evidence of a positive effect when none exists. A Type II error means missing a real positive effect. Holding other factors fixed, reducing $\alpha$ makes rejection harder and generally lowers power.
+
+::: {.callout-warning}
+## What failure to reject means
+A non-significant result is **not proof** that the true effect is zero. It may reflect a small effect, a noisy estimate, or insufficient sample information.
+:::
+
+### 6. Understanding p-values
+
+The **$p$-value** is the probability, **assuming the null hypothesis and model assumptions hold**, of obtaining a test statistic at least as extreme as the one observed, in the direction(s) specified by the alternative.
+
+For a two-sided $t$ test, with observed statistic $t_{obs}$ and $T\sim t_{df}$,
+
+$$
+\boxed{p=2P(T\ge |t_{obs}|).}
+$$
+
+For a positive one-sided test, $p=P(T\ge t_{obs})$; for a negative one-sided test, $p=P(T\le t_{obs})$.
+
+**Lecture example (p. 23):** if $df=40$ and $t_{obs}=1.85$, the two-sided $p$-value is approximately $0.0718$. We fail to reject at 5%, but reject at 10%.
+
+A $p$-value is **not** the probability that $H_0$ is true, nor the probability that the result occurred ‘by chance’.
+
+### 7. Confidence intervals
+
+A $(1-\alpha)\times100\%$ confidence interval for a coefficient is
+
+$$
+\boxed{\hat\beta_j\ \pm\ t_{1-\alpha/2,df}\operatorname{se}(\hat\beta_j).}
+$$
+
+For a 95% interval, the critical value is close to $1.96$ in large samples. **Interpretation:** if we repeatedly sampled and constructed intervals this way, 95% of those intervals would cover the fixed true coefficient. The probability statement concerns the **procedure**, not a random true coefficient.
+
+**GPA example:** for $ACT$, the approximate 95% interval is
+
+$$0.015\pm1.96(0.011)=[-0.0066,\,0.0366].$$
+
+It includes zero, agreeing with the two-sided 5% test. For $skipped$,
+
+$$-0.083\pm1.96(0.026)=[-0.1340,\,-0.0320].$$
+
+It excludes zero, agreeing with rejection at 5%. The exact finite-sample interval uses $t_{0.975,137}$ rather than $1.96$.
+
+**Test–interval connection:** a two-sided test of $H_0:\beta_j=a$ at level $\alpha$ rejects exactly when $a$ falls **outside** the corresponding $(1-\alpha)$ confidence interval.
+
+### 8. Testing a single linear combination of coefficients
+
+Some economic questions concern **differences between coefficients**, not individual coefficients. The lecture asks whether the returns to one year of junior college and one year of university are equal:
+
+$$
+\log(wage)=\beta_0+\beta_1jc+\beta_2univ+\beta_3exper+u.
+$$
+
+The hypothesis is $H_0:\beta_1-\beta_2=0$. The relevant statistic is
+
+$$
+\boxed{t=\frac{\hat\beta_1-\hat\beta_2}{\operatorname{se}(\hat\beta_1-\hat\beta_2)}.}
+$$
+
+**Crucial:** the standard error of a difference is **not** generally the sum or difference of the individual standard errors. It also depends on their **covariance**.
+
+The lecture reports $\hat\beta_1-\hat\beta_2=-0.0102$ and $\operatorname{se}(\hat\beta_1-\hat\beta_2)=0.0069$, giving $t\approx-1.48$ and a two-sided $p$-value around $0.14$. Thus, there is insufficient evidence at 5% that the returns differ. The estimated difference is approximately **1.02 percentage points** in log-wage returns per year.
+
+### 9. Testing several restrictions jointly: the F test
+
+A single $t$ test addresses one linear restriction. An **$F$ test** assesses several restrictions simultaneously. Separate $t$ tests are **not** a valid substitute for a joint test.
+
+**Lecture example: baseball salaries.** Consider
+
+$$
+\begin{aligned}
+\log(salary)={}&\beta_0+\beta_1years+\beta_2gamesyr\\
+&+\beta_3bavg+\beta_4hrunsyr+\beta_5rbisyr+u.
+\end{aligned}
+$$
+
+The question is whether batting average, home runs and runs batted in are **jointly irrelevant**, after controlling for experience and games played:
+
+$$H_0:\beta_3=\beta_4=\beta_5=0.$$
+
+- **Unrestricted model (UR):** includes all five regressors.
+- **Restricted model (R):** imposes the null and keeps only $years$ and $gamesyr$ (plus the intercept).
+- **$q=3$:** number of restrictions.
+
+Dropping regressors cannot reduce the OLS sum of squared residuals: $SSR_R\ge SSR_{UR}$. The question is whether the deterioration in fit is **large relative to residual noise**:
+
+$$
+\boxed{F=\frac{(SSR_R-SSR_{UR})/q}{SSR_{UR}/(n-k-1)}\sim F_{q,n-k-1}\quad\text{under }H_0.}
+$$
+
+Here $k$ counts explanatory variables in the **unrestricted** model. Reject for a sufficiently large positive $F$ statistic.
+
+**Numerical example (lecture, pp. 35–40):** $n=353$, $k=5$, $q=3$, $SSR_{UR}=183.186$, and $SSR_R=198.311$. Therefore,
+
+$$
+F=\frac{(198.311-183.186)/3}{183.186/347}\approx9.55.
+$$
+
+This is strong evidence against the joint null, even though the three individual $t$ tests are not significant at 5%. A joint rejection tells us **at least one** restriction fails; it does not identify which coefficient differs from zero.
+
+### 10. Key distinctions to remember
+
+| Question | Tool | Essential idea |
+|---|---|---|
+| Is one coefficient equal to a specified value? | $t$ test | Estimate minus hypothesised value, divided by its SE |
+| Is one coefficient positive or negative? | One-sided $t$ test | Direction determines the rejection tail |
+| Which coefficient values are compatible with the data? | Confidence interval | Estimate $\pm$ critical value $\times$ SE |
+| Are two coefficients equal? | $t$ test on a difference | Include the covariance when calculating its SE |
+| Are several coefficients jointly zero? | $F$ test | Compare restricted and unrestricted model fit |
+
 ## Mathematical Derivations
 
-## Tutorial Exercises
+### 1. Conditional distribution of the OLS estimator
+
+Write the regression in matrix form, with an intercept included in $X$:
+
+$$y=X\beta+u,\qquad \hat\beta=(X'X)^{-1}X'y.$$
+
+Substitute the model into the OLS formula:
+
+$$
+\hat\beta=(X'X)^{-1}X'(X\beta+u)
+=\beta+(X'X)^{-1}X'u.
+$$
+
+Under the CLM assumptions, conditional on $X$, $u\sim N(0,\sigma^2I_n)$. A linear transformation of a multivariate normal vector is normal, so
+
+$$
+\boxed{\hat\beta\mid X\sim N\!\left(\beta,\sigma^2(X'X)^{-1}\right).}
+$$
+
+In particular, each component $\hat\beta_j$ is normally distributed, and any linear combination of the estimated coefficients is also normal.
+
+For a slope $j$, the Frisch–Waugh–Lovell result from Class 2 gives
+
+$$
+\hat\beta_j-\beta_j=\frac{\sum_i r_{ij}u_i}{\sum_i r_{ij}^2},
+$$
+
+where $r_{ij}$ are the residuals from regressing $x_j$ on the other regressors (including an intercept). Since $\sum_i r_{ij}^2=SST_j(1-R_j^2)$,
+
+$$
+\operatorname{Var}(\hat\beta_j\mid X)
+=\frac{\sigma^2}{\sum_i r_{ij}^2}
+=\frac{\sigma^2}{SST_j(1-R_j^2)}.
+$$
+
+### 2. Deriving the t statistic and its degrees of freedom
+
+Under the CLM assumptions,
+
+$$
+Z=\frac{\hat\beta_j-\beta_j}{\sigma\sqrt{[(X'X)^{-1}]_{jj}}}\sim N(0,1).
+$$
+
+The unbiased residual variance estimator is
+
+$$
+\hat\sigma^2=\frac{\hat u'\hat u}{n-k-1}.
+$$
+
+With $\nu=n-k-1$, normal regression theory gives
+
+$$
+\frac{\nu\hat\sigma^2}{\sigma^2}\sim\chi^2_\nu,
+$$
+
+and this chi-squared variable is independent of $Z$. Therefore,
+
+$$
+\frac{Z}{\sqrt{(\nu\hat\sigma^2/\sigma^2)/\nu}}
+=\frac{\hat\beta_j-\beta_j}{\hat\sigma\sqrt{[(X'X)^{-1}]_{jj}}}
+=\frac{\hat\beta_j-\beta_j}{\operatorname{se}(\hat\beta_j)}
+\sim t_\nu.
+$$
+
+We lose $k+1$ degrees of freedom because OLS estimates $k$ slopes and one intercept.
+
+### 3. Deriving the t-test rejection rules and p-values
+
+Under $H_0:\beta_j=a$,
+
+$$T=\frac{\hat\beta_j-a}{\operatorname{se}(\hat\beta_j)}\sim t_\nu.$$
+
+Let $t_{p,\nu}$ denote the $p$th quantile of the $t_\nu$ distribution.
+
+- Two-sided: reject if $|T|>t_{1-\alpha/2,\nu}$; $p=2[1-F_{t_\nu}(|t_{obs}|)]$.
+- Upper-tailed: reject if $T>t_{1-\alpha,\nu}$; $p=1-F_{t_\nu}(t_{obs})$.
+- Lower-tailed: reject if $T<-t_{1-\alpha,\nu}$; $p=F_{t_\nu}(t_{obs})$.
+
+Here $F_{t_\nu}$ is the cumulative distribution function. The one-sided rules have size $\alpha$ at the boundary $\beta_j=a$.
+
+### 4. Deriving a confidence interval by inverting a test
+
+Start with the probability statement
+
+$$
+P\!\left(-t_{1-\alpha/2,\nu}\le
+\frac{\hat\beta_j-\beta_j}{\operatorname{se}(\hat\beta_j)}
+\le t_{1-\alpha/2,\nu}\right)=1-\alpha.
+$$
+
+Multiply by the positive standard error and rearrange to isolate $\beta_j$:
+
+$$
+P\!\left(\hat\beta_j-t_{1-\alpha/2,\nu}\operatorname{se}(\hat\beta_j)
+\le\beta_j\le
+\hat\beta_j+t_{1-\alpha/2,\nu}\operatorname{se}(\hat\beta_j)\right)=1-\alpha.
+$$
+
+Thus the interval is $\hat\beta_j\pm t_{1-\alpha/2,\nu}\operatorname{se}(\hat\beta_j)$. The same algebra shows why $H_0:\beta_j=a$ is rejected by a two-sided level-$\alpha$ test exactly when $a$ lies outside this interval.
+
+### 5. Deriving the standard error of a coefficient difference
+
+For any random variables $A,B$,
+
+$$\operatorname{Var}(A-B)=\operatorname{Var}(A)+\operatorname{Var}(B)-2\operatorname{Cov}(A,B).$$
+
+Apply this to two OLS coefficients:
+
+$$
+\widehat{\operatorname{Var}}(\hat\beta_1-\hat\beta_2)
+=\widehat{\operatorname{Var}}(\hat\beta_1)
++\widehat{\operatorname{Var}}(\hat\beta_2)
+-2\widehat{\operatorname{Cov}}(\hat\beta_1,\hat\beta_2).
+$$
+
+Under the CLM, the estimated coefficient covariance matrix is
+
+$$\widehat{\operatorname{Var}}(\hat\beta)=\hat\sigma^2(X'X)^{-1}.$$
+
+Hence
+
+$$
+\boxed{\operatorname{se}(\hat\beta_1-\hat\beta_2)
+=\sqrt{\operatorname{se}(\hat\beta_1)^2+\operatorname{se}(\hat\beta_2)^2
+-2\widehat{\operatorname{Cov}}(\hat\beta_1,\hat\beta_2)}.}
+$$
+
+More generally, for a specified coefficient vector $c$ and a hypothesised value $a$,
+
+$$
+H_0:c'\beta=a,\qquad
+\boxed{t=\frac{c'\hat\beta-a}{\hat\sigma\sqrt{c'(X'X)^{-1}c}}\sim t_{n-k-1}\ \text{under }H_0.}
+$$
+
+For $\beta_1=\beta_2$, choose $c$ with $+1$ at position 1, $-1$ at position 2, and zeros elsewhere.
+
+### 6. Deriving the F statistic for multiple restrictions
+
+Suppose the null imposes $q$ independent linear restrictions. For the lecture's exclusion test, the unrestricted model has $k$ slopes and the restricted model removes $q$ of them.
+
+Under the CLM and $H_0$,
+
+$$
+\frac{SSR_R-SSR_{UR}}{\sigma^2}\sim\chi^2_q,
+\qquad
+\frac{SSR_{UR}}{\sigma^2}\sim\chi^2_{n-k-1},
+$$
+
+and these chi-squared variables are independent. Dividing each by its degrees of freedom and taking their ratio yields
+
+$$
+\boxed{F=\frac{(SSR_R-SSR_{UR})/q}{SSR_{UR}/(n-k-1)}\sim F_{q,n-k-1}.}
+$$
+
+The statistic cannot be negative because the unrestricted OLS fit minimises SSR over a larger set of possible coefficient values. Under the alternative, a sufficiently large increase in SSR from imposing the restrictions favours rejection.
+
+**General matrix form.** If $H_0:R\beta=r$ contains $q$ linearly independent restrictions, the same test can be written as
+
+$$
+F=\frac{(R\hat\beta-r)'[R(X'X)^{-1}R']^{-1}(R\hat\beta-r)}{q\hat\sigma^2}.
+$$
+
+This form also covers restrictions such as $\beta_1=\beta_2$, not just setting coefficients to zero. For **one** restriction, $F=t^2$ and the two-sided $t$ test and $F$ test agree.
+
+### 7. Deriving the R-squared form of the F test
+
+For regressions fitted to the **same observations**, with an intercept and the same dependent variable,
+
+$$R^2=1-\frac{SSR}{TSS},\qquad TSS=\sum_i(y_i-\bar y)^2.$$
+
+Consequently,
+
+$$SSR_R-SSR_{UR}=TSS(R^2_{UR}-R^2_R),$$
+
+and $SSR_{UR}=TSS(1-R^2_{UR})$. Substitute these into the SSR-based $F$ statistic and cancel $TSS$:
+
+$$
+\boxed{F=\frac{(R^2_{UR}-R^2_R)/q}{(1-R^2_{UR})/(n-k-1)}.}
+$$
+
+For the **overall significance test** $H_0:\beta_1=\cdots=\beta_k=0$, the restricted model contains only an intercept, so $R_R^2=0$ and $q=k$:
+
+$$
+\boxed{F=\frac{R^2/k}{(1-R^2)/(n-k-1)}.}
+$$
+
+This measures whether the regressors, **taken together**, explain significantly more variation than an intercept-only model.
+
+
+::: {.callout-note}
+## Source-check notes: corrections to the lecture slides
+
+These notes follow Lecture 3's five-part structure, but correct several inconsistencies rather than repeating them:
+
+- **Slide 4:** the conditional normal mean must be $\beta_0+\beta_1x_1+\cdots+\beta_kx_k$; it must **not** include $+u$. The displayed slide formula also repeats the wrong index.
+- **Slide 16:** the 1% one-sided *normal* critical value is **2.326**, not 2.362.
+- **Slide 27:** the confidence interval for the $skipped$ coefficient is **negative**, approximately $[-0.134,-0.032]$, not the positive interval printed on the slide. The alternative hypothesis should be labelled $H_1$, not $H_0$.
+- **Slides 34–38:** with the baseball model as written, the restrictions are **$\beta_3=\beta_4=\beta_5=0$**, the restricted model retains **$years$ and $gamesyr$**, $k=5$, and $n=353$ gives **347** unrestricted residual degrees of freedom. The slides inconsistently use $\beta_2,\beta_3,\beta_4$, $k=6$, $n=330$, and an incorrect restricted specification.
+- **Slide 30:** the covariance term in the standard error formula must be **estimated**; the true variance and covariance are not observed.
+
+The examples retain the numerical results reported in the lecture, with rounding made explicit.
+:::
+
+---
+
+**Ready to practise?**
+
+[Go to Tutorial 3](../tutorials/tutorial-03.qmd)
 

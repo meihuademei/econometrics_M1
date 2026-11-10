@@ -1,10 +1,385 @@
 ---
 title: "Class 7"
+subtitle: "Instrumental Variables and Two-Stage Least Squares"
 ---
 
 ## Theory & Intuition
 
+### 1. Why do we need instrumental variables? (slides 3–5)
+
+Ordinary least squares (OLS) estimates the effect of $x$ on $y$ consistently only when the explanatory variable is **exogenous**: it is uncorrelated with the regression error. An **endogenous** explanatory variable is correlated with that error. Omitted variables, reverse causality and measurement error can produce endogeneity.
+
+Consider the return to education:
+
+$$
+\log(wage_i)=\beta_0+\beta_1 educ_i+\beta_2 abil_i+e_i.
+$$
+
+Ability is not observed. If we omit it, the estimated equation becomes
+
+$$
+\log(wage_i)=\beta_0+\beta_1 educ_i+u_i,
+\qquad u_i=\beta_2 abil_i+e_i.
+$$
+
+If education and ability are correlated, then $\operatorname{Cov}(educ_i,u_i)\ne0$ (assuming the other error component does not offset this relationship). OLS confuses the effect of education with the effect of ability.
+
+Panel-data fixed effects and first differences can remove *time-invariant* unobserved characteristics, but cannot automatically remove time-varying confounders or identify the effects of time-invariant regressors. **Instrumental variables (IV)** offer another approach. This lecture considers IV primarily with cross-sectional random samples.
+
+### 2. What makes a good instrument? (slides 6–9)
+
+For the structural equation
+
+$$
+y_i=\beta_0+\beta_1x_i+u_i,
+$$
+
+an instrument $z_i$ must satisfy **two distinct conditions**:
+
+1. **Exogeneity:** $\operatorname{Cov}(z_i,u_i)=0$. The instrument must not be related to unobserved determinants of $y$.
+2. **Relevance:** $\operatorname{Cov}(z_i,x_i)\ne0$. The instrument must predict the endogenous regressor.
+
+For a causal interpretation, we also need a credible **exclusion restriction**: $z$ affects $y$ through $x$, not through an additional direct channel. This is part of the substantive argument for instrument validity; correlation alone cannot establish it.
+
+**Intuition:** IV isolates the part of $x$ that moves with $z$ rather than with the problematic error $u$. In a diagram, the intended channel is $z\rightarrow x\rightarrow y$, while unobserved influences $u$ affect both $x$ and $y$. There must be no unblocked path from $z$ to $y$ other than through $x$.
+
+**Example: education and wages.** IQ scores may predict education but also reflect ability, so exogeneity is doubtful. A parent's education may predict a child's education but also correlate with family advantages affecting wages. Number of siblings may predict schooling, but family circumstances may invalidate the exclusion restriction. These are **candidate instruments, not automatically valid instruments**.
+
+We can investigate relevance with a *first-stage* regression of $x$ on $z$. We cannot establish exogeneity merely by running that regression: economic reasoning and institutional knowledge are essential.
+
+### 3. Understanding the simple IV estimate (slides 10–11)
+
+With one endogenous regressor and one instrument,
+
+$$
+\boxed{\hat\beta_{1,IV}=\frac{\widehat{\operatorname{Cov}}(z,y)}{\widehat{\operatorname{Cov}}(z,x)}}.
+$$
+
+**Interpretation:** how strongly the instrument changes the outcome, divided by how strongly it changes the explanatory variable. For example, if an instrument raises schooling by $0.5$ years and log wages by $0.03$, the IV slope is $0.03/0.5=0.06$: approximately a 6% wage increase per extra year of schooling, **provided the instrument is valid**.
+
+If $x$ is exogenous and we choose $z=x$, this formula reduces to OLS. IV is consistent under the stated conditions, but may be substantially biased in small samples.
+
+### 4. Precision, weak instruments and $R^2$ (slides 12–14, 18–20)
+
+IV generally sacrifices precision to address endogeneity. Under homoskedasticity, its approximate slope variance is
+
+$$
+\operatorname{Avar}(\hat\beta_{1,IV})
+=\frac{\sigma_u^2}{n\sigma_x^2\rho_{xz}^2}.
+$$
+
+Here $\rho_{xz}^2$ is the **squared correlation** between the instrument and the endogenous regressor. When it is small, the IV estimate is imprecise. Heteroskedasticity-robust standard errors are available.
+
+A **weak instrument** predicts $x$ only weakly. Weak instruments can cause substantial finite-sample bias and make conventional confidence intervals and hypothesis tests unreliable, even in large samples. The lecture mentions the familiar **first-stage $F>10$ rule of thumb**. This is a screening heuristic, **not a guarantee** of strong identification or reliable inference, especially with multiple instruments or heteroskedasticity.
+
+The lecture cites quarter of birth as an instrument for schooling (Angrist and Krueger, 1991), and subsequent concerns about its weakness (Bound, Jaeger and Baker, 1995).
+
+**Do not judge IV by its $R^2$.** Unlike OLS, IV does not choose coefficients to minimise squared residuals, so its conventional $R^2=1-SSR/SST$ may be lower than OLS's or even negative. The purpose is credible estimation of a structural effect, not maximising fit.
+
+### 5. Example: education and wages for married working women (slides 15–17)
+
+The lecture uses 428 married working women from 1975 and considers father's education as an instrument for the woman's education.
+
+| Regression | Estimated education coefficient | Standard error |
+|---|---:|---:|
+| OLS: $\log(wage)$ on education | 0.109 | 0.014 |
+| First stage: education on father's education | 0.269 | 0.029 |
+| IV: $\log(wage)$ on education | 0.059 | 0.035 |
+
+The first-stage $t$ statistic is approximately $0.269/0.029=9.28$; its $R^2$ is 0.173. Thus father's education is predictive of schooling **in this sample**. It does **not** prove that father's education is uncorrelated with omitted determinants of wages.
+
+The IV estimate suggests a return of approximately **5.9%** per extra year of education, compared with **10.9%** from OLS. This difference is consistent with upward omitted-ability bias in OLS, but does not prove it: the IV estimate is less precise, and its validity is assumed rather than demonstrated. In particular, $0.059/0.035\approx1.69$, so this simple IV coefficient is **not statistically significant at the conventional two-sided 5% level**.
+
+### 6. Multiple regression: controls and excluded instruments (slides 22–25)
+
+Most economic questions require control variables. The lecture writes
+
+$$
+y_{1i}=\beta_0+\beta_1y_{2i}+\beta_2z_{1i}+u_{1i},
+$$
+
+where $y_1$ is the outcome, $y_2$ is endogenous, and $z_1$ is an exogenous control. We introduce an **excluded instrument** $z_2$, which is not a direct regressor in the structural equation.
+
+The relevant first stage is
+
+$$
+y_{2i}=\pi_0+\pi_1z_{1i}+\pi_2z_{2i}+v_{2i}.
+$$
+
+**Crucial distinction:** relevance now means $\pi_2\ne0$: $z_2$ must predict $y_2$ **after controlling for $z_1$**. A simple correlation between $z_2$ and $y_2$ is insufficient.
+
+The **structural equation** describes the effect of interest. The **reduced form** expresses an endogenous variable as a function of exogenous variables. Included exogenous controls serve as their own instruments; excluded instruments provide additional identifying variation.
+
+### 7. Example: proximity to college (slides 26–27)
+
+Card (1995) uses whether a man grew up near a four-year college (`nearc4`) as an instrument for education. The sample contains 3,010 men, with controls including experience, experience squared, race, urban residence and region.
+
+The reduced-form regression for education reports a coefficient of **0.320** (SE **0.088**) on `nearc4`: conditional on the included controls, growing up near a college is associated with about **0.32 additional years of education**. The corresponding $t$ statistic is about 3.64.
+
+| Estimated return to education | OLS | IV |
+|---|---:|---:|
+| Coefficient on education | 0.075 | 0.132 |
+| Standard error | 0.003 | 0.055 |
+
+Here IV is **larger** than OLS, unlike the previous example. IV does not systematically raise or lower coefficients. Interpretation depends on whether proximity satisfies the exclusion restriction: for instance, proximity may be related to family location choices or local economic opportunities.
+
+### 8. Two-stage least squares (2SLS) (slides 29–34)
+
+Suppose the structural model contains one endogenous regressor $y_2$, one included exogenous control $z_1$, and **two excluded instruments** $z_2,z_3$:
+
+$$
+y_1=\beta_0+\beta_1y_2+\beta_2z_1+u_1.
+$$
+
+Using only one instrument would discard information in the other. **Two-stage least squares (2SLS)** combines the instruments:
+
+**Stage 1 — predict the endogenous variable using all exogenous variables:**
+
+$$
+y_2=\pi_0+\pi_1z_1+\pi_2z_2+\pi_3z_3+v_2.
+$$
+
+Obtain the fitted values $\hat y_2$. The first-stage **joint** relevance question is whether $\pi_2=\pi_3=0$; a joint $F$ test is informative, subject to the weak-instrument caveat.
+
+**Stage 2 — estimate the structural relationship using predicted $y_2$:**
+
+$$
+y_1=\beta_0+\beta_1\hat y_2+\beta_2z_1+\text{residual}.
+$$
+
+The fitted values use only variation explained by the instruments and included exogenous controls. This two-regression procedure gives the **2SLS point estimates**.
+
+::: {.callout-warning}
+## Do not use ordinary second-stage OLS standard errors
+
+Although the two regressions reproduce the 2SLS coefficients, ordinary OLS standard errors from the second regression are generally **incorrect** because $\hat y_2$ is estimated. Use a proper IV/2SLS estimator with appropriate standard errors (robust or clustered where required).
+:::
+
+With one endogenous regressor, identification requires at least one relevant excluded instrument; with several endogenous regressors, there must be enough instruments **and** sufficient independent predictive variation (the rank condition). More instruments do not compensate for invalid instruments.
+
+**Lecture example:** Using both parents' education as instruments for schooling, the married-working-women example reports a first-stage joint $F=55.4$ and a 2SLS education coefficient of **0.061** (SE **0.031**) in a specification that also controls for experience and its square. This is approximately a **6.1%** return, with greater precision than the single-instrument estimate reported earlier, though the specifications differ.
+
+### 9. Application: a randomised fee reduction for Uber drivers (slides 35–39)
+
+The lecture examines whether higher **average hourly earnings** cause drivers to work more hours on Uber. The model is
+
+$$
+\log(h_{it})=\beta_0+\beta_1\log(w_{it})+X_{it}'\gamma+u_{it},
+$$
+
+where $h_{it}$ is weekly Uber hours and $w_{it}$ is average hourly earnings, after Uber fees but before vehicle expenses. The coefficient $\beta_1$ is an **elasticity**: a 1% increase in hourly earnings corresponds to approximately a $\beta_1$% change in Uber hours.
+
+**Why not OLS?** Drivers choose when and where to work, while demand conditions affect earnings. Working additional less-profitable hours may itself reduce average hourly earnings: the direction of causation is not simply earnings $\rightarrow$ hours.
+
+**Instrument:** In Boston in 2016, randomly selected drivers were offered a week without Uber's usual commission. Define $Z_{it}=1$ if offered fee-free driving. Around **64% opted in**. The offer—not actual take-up—is the instrument. Random assignment supports independence within assignment groups, but exclusion still requires that the offer affects hours **only through hourly earnings**.
+
+- **First stage:** the offer raises log hourly earnings by **0.20** (SE **0.01**).
+- **OLS elasticity:** **0.21** (SE **0.06**).
+- **IV/2SLS elasticity:** **1.16** (SE **0.12**).
+
+The IV estimate implies approximately **1.16% more Uber hours for a 1% increase in hourly earnings** in the setting studied. It concerns a **temporary earnings change**; it does not automatically imply the same response to permanent wage changes. Drivers may also reallocate hours from other platforms or jobs, so increased Uber hours need not mean increased total working hours.
+
+The lecture reports **1,176 drivers** and **2,214 observations with positive hours**; standard errors are clustered by driver. The study is Angrist, Caldwell and Hall (2021), *Uber versus Taxi: A Driver's Eye View*.
+
+::: {.callout-note}
+## The central IV checklist
+
+Before interpreting any IV estimate, ask: **(1)** What makes $x$ endogenous? **(2)** What is the instrument? **(3)** Why should it predict $x$ *conditional on controls*? **(4)** Why should it have no other route to $y$? **(5)** Is the first stage strong enough? **(6)** Are the standard errors appropriate? **(7)** Which population and type of variation does the estimate describe?
+:::
+
 ## Mathematical Derivations
 
-## Tutorial Exercises
+### 1. Omitted-variable bias (slides 4–5)
+
+Suppose the true model is
+
+$$
+y_i=\beta_0+\beta_1x_{1i}+\beta_2x_{2i}+e_i,
+\qquad E(e_i\mid x_{1i},x_{2i})=0.
+$$
+
+If we regress $y$ only on $x_1$, the population regression slope is
+
+$$
+\begin{aligned}
+\tilde\beta_1
+&=\frac{\operatorname{Cov}(x_1,y)}{\operatorname{Var}(x_1)}\\
+&=\beta_1+\beta_2\frac{\operatorname{Cov}(x_1,x_2)}{\operatorname{Var}(x_1)}.
+\end{aligned}
+$$
+
+Writing $\delta_1=\operatorname{Cov}(x_1,x_2)/\operatorname{Var}(x_1)$, we obtain
+
+$$
+\boxed{\tilde\beta_1-\beta_1=\beta_2\delta_1.}
+$$
+
+**Sign:** omitted-variable bias is positive when the omitted factor raises $y$ ($\beta_2>0$) and is positively associated with $x_1$ ($\delta_1>0$). If either factor is zero, this particular bias disappears.
+
+### 2. Deriving the simple IV estimator (slides 6, 10–11)
+
+Start with $y=\beta_0+\beta_1x+u$ and assume $\operatorname{Cov}(z,u)=0$. Taking covariance with $z$ gives
+
+$$
+\begin{aligned}
+\operatorname{Cov}(z,y)
+&=\operatorname{Cov}(z,\beta_0+\beta_1x+u)\\
+&=\beta_1\operatorname{Cov}(z,x)+\operatorname{Cov}(z,u)\\
+&=\beta_1\operatorname{Cov}(z,x).
+\end{aligned}
+$$
+
+If $\operatorname{Cov}(z,x)\ne0$, divide to identify the coefficient:
+
+$$
+\boxed{\beta_1=\frac{\operatorname{Cov}(z,y)}{\operatorname{Cov}(z,x)}}.
+$$
+
+Replace population covariances by sample analogues:
+
+$$
+\boxed{\hat\beta_{1,IV}=
+\frac{\sum_{i=1}^n(z_i-\bar z)(y_i-\bar y)}
+{\sum_{i=1}^n(z_i-\bar z)(x_i-\bar x)}};
+\qquad
+\hat\beta_{0,IV}=\bar y-\hat\beta_{1,IV}\bar x.
+$$
+
+The denominator explains why weak relevance is dangerous: if $z$ hardly varies with $x$, small sampling fluctuations can create large changes in the ratio.
+
+### 3. The first-stage slope and identification (slides 8, 18–19)
+
+The population linear projection of $x$ on $z$ is
+
+$$
+x=\pi_0+\pi_1z+v,
+\qquad \pi_1=\frac{\operatorname{Cov}(z,x)}{\operatorname{Var}(z)}.
+$$
+
+Thus $\pi_1\ne0$ is equivalent to instrument relevance, provided $\operatorname{Var}(z)>0$. In a simple first stage, testing $H_0:\pi_1=0$ is a direct test of *zero* linear association; rejecting it does not prove the instrument is sufficiently strong for reliable IV inference.
+
+### 4. Large-sample variance and the weak-instrument penalty (slides 12–14)
+
+With independent observations, instrument exogeneity, finite moments and homoskedasticity $E(u^2\mid z)=\sigma_u^2$,
+
+$$
+\operatorname{Avar}(\hat\beta_{1,IV})
+=\frac{\sigma_u^2\operatorname{Var}(z)}{n\operatorname{Cov}(z,x)^2}.
+$$
+
+Since $\operatorname{Cov}(z,x)=\rho_{xz}\sigma_x\sigma_z$,
+
+$$
+\boxed{\operatorname{Avar}(\hat\beta_{1,IV})
+=\frac{\sigma_u^2}{n\sigma_x^2\rho_{xz}^2}}.
+$$
+
+Using $SST_x=\sum_i(x_i-\bar x)^2$ and the first-stage $R^2=\hat\rho_{xz}^2$,
+
+$$
+\widehat{\operatorname{Var}}(\hat\beta_{1,IV})
+\approx\frac{\hat\sigma_u^2}{SST_xR_{x,z}^2},
+\qquad
+\hat\sigma_u^2=\frac{\sum_i\hat u_i^2}{n-2},
+\quad \hat u_i=y_i-\hat\beta_{0,IV}-\hat\beta_{1,IV}x_i.
+$$
+
+The estimated **standard error** is the square root of this variance. Relative to the analogous OLS variance formula under exogeneity, $1/R_{x,z}^2$ is the IV variance inflation factor. **Important:** when OLS is endogenous, its usual standard error describes uncertainty around an inconsistent estimator; a smaller OLS standard error does not make OLS preferable.
+
+### 5. IV in multiple regression: moment conditions (slides 22–24)
+
+Let
+
+$$
+y_{1i}=\beta_0+\beta_1y_{2i}+\beta_2z_{1i}+u_{1i},
+$$
+
+where $z_1$ is an exogenous control and $z_2$ is an excluded instrument. Assume
+
+$$
+E(u_1)=0,\qquad E(z_1u_1)=0,\qquad E(z_2u_1)=0.
+$$
+
+Define $\hat u_{1i}=y_{1i}-\hat\beta_0-\hat\beta_1y_{2i}-\hat\beta_2z_{1i}$. The sample moment equations are
+
+$$
+\begin{aligned}
+\sum_i\hat u_{1i}&=0,\\
+\sum_i z_{1i}\hat u_{1i}&=0,\\
+\sum_i z_{2i}\hat u_{1i}&=0.
+\end{aligned}
+$$
+
+These give three equations for three coefficients, **provided the instruments supply sufficient independent variation**. Notice that every residual contains $\hat\beta_2z_{1i}$: the included control must not accidentally be replaced by $z_2$.
+
+The first-stage equation $y_2=\pi_0+\pi_1z_1+\pi_2z_2+v_2$ identifies the relevance requirement $\pi_2\ne0$ **conditional on $z_1$**.
+
+### 6. Reduced form and the IV ratio with controls (slide 32)
+
+Substitute the first stage into the structural equation:
+
+$$
+\begin{aligned}
+y_1&=\beta_0+\beta_1(\pi_0+\pi_1z_1+\pi_2z_2+v_2)+\beta_2z_1+u_1\\
+&=(\beta_0+\beta_1\pi_0)+(\beta_2+\beta_1\pi_1)z_1
++\beta_1\pi_2z_2+(u_1+\beta_1v_2).
+\end{aligned}
+$$
+
+If the reduced form for $y_1$ is $y_1=\alpha_0+\alpha_1z_1+\alpha_2z_2+e$, then $\alpha_2=\beta_1\pi_2$ and therefore
+
+$$
+\boxed{\beta_1=\frac{\alpha_2}{\pi_2}\quad\text{if }\pi_2\ne0.}
+$$
+
+This is the **conditional** counterpart of the simple covariance-ratio estimator: the instrument's effect on the outcome divided by its effect on the endogenous regressor, holding the control fixed.
+
+### 7. Deriving 2SLS as a projection (slides 29–33)
+
+Let $X$ contain the intercept, endogenous regressor(s) and included controls; let $Z$ contain the intercept, included exogenous controls and excluded instruments. Define the projection matrix
+
+$$
+P_Z=Z(Z'Z)^{-1}Z',
+$$
+
+assuming $Z'Z$ is invertible. The first-stage fitted regressors are $\hat X=P_ZX$. OLS of $y$ on $\hat X$ gives
+
+$$
+\begin{aligned}
+\hat\beta_{2SLS}
+&=(\hat X'\hat X)^{-1}\hat X'y\\
+&=(X'P_ZX)^{-1}X'P_Zy,
+\end{aligned}
+$$
+
+because $P_Z'=P_Z$ and $P_Z^2=P_Z$. This is the standard **2SLS estimator**. Its existence requires $X'P_ZX$ to be invertible: the relevant rank condition.
+
+Under the appropriate IV assumptions, this estimator uses instrument-predicted variation to identify the structural coefficients. Inference must account for the IV estimation procedure rather than treating fitted regressors as observed exogenous variables.
+
+### 8. The Uber application as an IV ratio (slides 35–39)
+
+Write the two equations (suppressing the controls for readability):
+
+$$
+\begin{aligned}
+\log(w_{it})&=\pi_0+\pi_1Z_{it}+X_{it}'\delta+v_{it},\\
+\log(h_{it})&=\beta_0+\beta_1\log(w_{it})+X_{it}'\gamma+u_{it}.
+\end{aligned}
+$$
+
+The lecture reports $\hat\pi_1=0.20$ and $\hat\beta_{1,IV}=1.16$. In a just-identified model, the corresponding conditional reduced-form coefficient of the offer on log Uber hours is therefore approximately
+
+$$
+\hat\alpha_Z=\hat\beta_{1,IV}\hat\pi_1
+\approx1.16\times0.20=0.232.
+$$
+
+This **0.232 is an implied calculation**, not a separately reported reduced-form estimate in the slides. The IV coefficient is an elasticity, while the first-stage coefficient measures the offer's effect on log earnings. As in the lecture, inference should account for repeated observations of drivers by clustering standard errors at driver level.
+
+
+---
+
+**Ready to practise?**
+
+[Go to Tutorial 7](../tutorials/tutorial-07.qmd)
 

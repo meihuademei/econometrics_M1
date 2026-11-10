@@ -1,0 +1,9 @@
+---
+title: "Tutorial 8"
+---
+
+[Back to Class 8](../classes/class-08.qmd)
+
+## Exercises
+
+## R Applications
