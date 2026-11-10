@@ -1,0 +1,30 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Econometrics | M1"
+
+  sidebar:
+    style: docked
+    search: true
+    contents:
+      - index.qmd
+      - section: "Course Content"
+        contents:
+          - classes/class-01.qmd
+          - classes/class-02.qmd
+          - classes/class-03.qmd
+          - classes/class-04.qmd
+          - classes/class-05.qmd
+          - classes/class-06.qmd
+          - classes/class-07.qmd
+          - classes/class-08.qmd
+
+format:
+  html:
+    theme: litera
+    css: styles.css
+    toc: true
+    code-fold: true
+    code-tools: true

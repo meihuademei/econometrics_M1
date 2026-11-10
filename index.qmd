@@ -1,0 +1,38 @@
+---
+title: "Econometrics — M1"
+subtitle: "An Interactive Learning Companion"
+---
+
+## Welcome
+
+This website is my personal interactive econometrics textbook,
+developed alongside my Master's workshops and lectures at École Polytechnique.
+
+Its purpose is to consolidate theoretical concepts, mathematical
+derivations, tutorial exercises, and computational applications
+in R into a structured resource for long-term learning.
+
+## Course Structure
+
+The course is organised into eight classes.
+
+Each class contains:
+
+- **Theory & Intuition:** Key concepts and explanations.
+- **Mathematical Derivations:** Important proofs and results.
+- **Tutorial Exercises:** Practice problems with detailed solutions, including simulations and econometric implementations, with R applications.
+
+## Learning Objectives
+
+The goal is to understand their mathematical foundations,
+interpret their results, and recognize when they can
+be applied.
+
+::: {.callout-note}
+## How to use this website
+
+Navigate through the classes using the sidebar.
+
+Try solving the exercises before revealing their solutions,
+and use the R applications to explore the theoretical results.
+:::

@@ -1,0 +1,103 @@
+/* css styles */
+/* ========================================
+   ECONOMETRICS M1
+   Folklore × Lover - Soft Romantic Academia
+   ======================================== */
+
+/* Main color palette */
+:root {
+  --ivory: #FAF7F2;
+  --dusty-rose: #D8B7C3;
+  --lavender: #C9BDD9;
+  --sage: #B9C7B4;
+  --mauve: #947B91;
+  --dark-text: #403A40;
+}
+
+/* Main website background */
+body {
+  background-color: var(--ivory);
+  color: var(--dark-text);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--mauve);
+}
+
+/* Links */
+a {
+  color: #80647C;
+}
+
+a:hover {
+  color: #684D65;
+}
+
+/* Sidebar */
+#quarto-sidebar {
+  background-color: #F5F0EE;
+  border-right: 1px solid var(--dusty-rose);
+}
+
+/* Sidebar links */
+#quarto-sidebar a {
+  color: #403A40;
+}
+
+/* Active sidebar item */
+#quarto-sidebar .active {
+  color: #765B73;
+  font-weight: 600;
+}
+
+/* Sidebar section headings */
+#quarto-sidebar .sidebar-item-section > .sidebar-item-container {
+  font-weight: 600;
+  color: #765B73;
+}
+
+/* Table of contents */
+#TOC a {
+  color: var(--mauve);
+}
+
+/* Code blocks */
+pre {
+  background-color: #F3EEF2;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+/* Inline code */
+:not(pre) > code {
+  background-color: #F3EEF2;
+  color: #765B73;
+  border-radius: 4px;
+  padding: 2px 5px;
+}
+
+/* Information boxes */
+.callout {
+  border-radius: 10px;
+}
+
+/* Notes */
+.callout-note {
+  border-left-color: var(--sage);
+}
+
+/* Tips */
+.callout-tip {
+  border-left-color: var(--lavender);
+}
+
+/* Tables */
+table {
+  background-color: #FFFCFA;
+}
+
+/* Table headings */
+thead {
+  background-color: #F0E4EA;
+}
